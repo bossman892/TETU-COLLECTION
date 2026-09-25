@@ -817,6 +817,12 @@ body.menu-open {
 }
 
 /* Compact the Tailwind header layout used by the page documents. */
+@media screen and (max-width: 1023px) {
+  body.menu-open header {
+    z-index: 60 !important;
+  }
+}
+
 @media screen and (max-width: 480px) {
   header > div {
     padding-left: 12px !important;

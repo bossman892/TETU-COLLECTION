@@ -323,14 +323,22 @@
       toggle.setAttribute('aria-expanded', 'false');
       toggle.setAttribute('aria-controls', 'mobile-menu-panel');
 
-      toggle.addEventListener('click', (e) => {
+      document.addEventListener('click', (e) => {
+        if (!toggle.contains(e.target)) return;
+
+        e.preventDefault();
         e.stopPropagation();
-        if (state.isMobileMenuOpen) {
+        e.stopImmediatePropagation();
+
+        const isOpen = panel
+          ? panel.classList.contains('translate-x-0')
+          : state.isMobileMenuOpen;
+        if (isOpen) {
           closeMobileNav();
         } else {
           openMobileNav();
         }
-      });
+      }, true);
     }
 
     // Backdrop click closes menu
