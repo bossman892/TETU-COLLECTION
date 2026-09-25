@@ -324,6 +324,15 @@
       toggle.setAttribute('aria-controls', 'mobile-menu-panel');
 
       document.addEventListener('click', (e) => {
+        const closeButton = panel && panel.querySelector('#mobile-menu-close');
+        if (closeButton && closeButton.contains(e.target)) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          closeMobileNav();
+          return;
+        }
+
         if (!toggle.contains(e.target)) return;
 
         e.preventDefault();
