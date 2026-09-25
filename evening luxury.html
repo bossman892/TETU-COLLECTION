@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+  <meta content="web_standard" name="shell-type">
+  <title>Evening Luxury — TETU COLLECTION</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="component.css">
+  <link rel="stylesheet" href="animation.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="responsive.css">
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+      ::-webkit-scrollbar { display: none; }
+    }
+    html { scroll-behavior: smooth; }
+    body.menu-open { overflow: hidden; }
+    .mobile-menu-backdrop { transition: opacity 0.3s ease, visibility 0.3s ease; }
+    .mobile-menu-backdrop.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .translate-x-0 { transform: translateX(0); }
+    .-translate-x-full { transform: translateX(-100%); }
+    #mobile-menu-panel { will-change: transform; }
+    .vault-item { transition: opacity 0.4s ease-in-out, display 0.4s ease-in-out; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-tertiary": "#283046",
+            "on-primary-container": "#554300",
+            "inverse-surface": "#e1e2ec",
+            "secondary": "#d1c6a1",
+            "on-tertiary-fixed-variant": "#3e465e",
+            "on-secondary-fixed-variant": "#4e472a",
+            "surface-container": "#1d1f27",
+            "surface": "#10131a",
+            "on-primary": "#3c2f00",
+            "error-container": "#93000a",
+            "tertiary-fixed-dim": "#bec6e3",
+            "surface-bright": "#363941",
+            "on-secondary-fixed": "#211b04",
+            "primary-fixed-dim": "#e9c349",
+            "surface-dim": "#10131a",
+            "tertiary-fixed": "#dae2ff",
+            "on-primary-fixed": "#241a00",
+            "tertiary-container": "#aab2ce",
+            "tertiary": "#c6cdeb",
+            "surface-container-high": "#272a32",
+            "inverse-primary": "#735c00",
+            "secondary-fixed": "#eee2bc",
+            "surface-variant": "#32353d",
+            "on-error-container": "#ffdad6",
+            "secondary-container": "#4e472a",
+            "on-error": "#690005",
+            "surface-container-lowest": "#0b0e15",
+            "error": "#ffb4ab",
+            "surface-tint": "#e9c349",
+            "on-secondary": "#373016",
+            "primary-container": "#d4af37",
+            "on-primary-fixed-variant": "#574500",
+            "on-tertiary-container": "#3c445c",
+            "primary-fixed": "#ffe088",
+            "background": "#10131a",
+            "primary": "#f2ca50",
+            "on-secondary-container": "#bfb591",
+            "outline": "#99907c",
+            "outline-variant": "#4d4635",
+            "on-tertiary-fixed": "#131b30",
+            "inverse-on-surface": "#2d3038",
+            "surface-container-low": "#191b23",
+            "surface-container-highest": "#32353d",
+            "secondary-fixed-dim": "#d1c6a1",
+            "on-background": "#e1e2ec",
+            "on-surface-variant": "#d0c5af",
+            "on-surface": "#e1e2ec"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter": "1.5rem",
+            "space-xl": "3rem",
+            "space-md": "1rem",
+            "margin": "1.5rem",
+            "space-xs": "0.25rem",
+            "gutter-desktop": "2.5rem",
+            "space-2xl": "5rem",
+            "margin-tablet": "3rem",
+            "margin-desktop": "5rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.75rem"
+          },
+          fontFamily: {
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Bodoni Moda"],
+            "display": ["Bodoni Moda"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "title": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Bodoni Moda"],
+            "headline-lg": ["Bodoni Moda"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "display-mobile": ["Bodoni Moda"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-sm": ["Bodoni Moda"],
+            "label-md": ["Plus Jakarta Sans"]
+          },
+          fontSize: {
+            "body-md": ["0.9375rem", { lineHeight: "1.625rem", letterSpacing: "0.01em", fontWeight: "300" }],
+            "headline-md": ["2rem", { lineHeight: "2.5rem", letterSpacing: "0em", fontWeight: "500" }],
+            "display": ["4.5rem", { lineHeight: "5rem", letterSpacing: "-0.02em", fontWeight: "400" }],
+            "body-lg": ["1.125rem", { lineHeight: "1.875rem", letterSpacing: "0.01em", fontWeight: "300" }],
+            "title": ["1.125rem", { lineHeight: "1.75rem", letterSpacing: "0.04em", fontWeight: "500" }],
+            "label-lg": ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0.14em", fontWeight: "600" }],
+            "headline-lg-mobile": ["2rem", { lineHeight: "2.5rem", letterSpacing: "0em", fontWeight: "400" }],
+            "headline-lg": ["3rem", { lineHeight: "3.5rem", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "label-sm": ["0.6875rem", { lineHeight: "0.875rem", letterSpacing: "0.22em", fontWeight: "600" }],
+            "display-mobile": ["2.75rem", { lineHeight: "3.25rem", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "body-sm": ["0.8125rem", { lineHeight: "1.375rem", letterSpacing: "0.02em", fontWeight: "400" }],
+            "headline-sm": ["1.5rem", { lineHeight: "2rem", letterSpacing: "0.01em", fontWeight: "500" }],
+            "label-md": ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.18em", fontWeight: "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+
+<!-- HEADER -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-primary/20 transition-all duration-300">
+  <div class="h-20 max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between">
+    <!-- Logo -->
+    <a class="flex items-center space-x-2 z-50" data-path="home" href="index.html">
+      <span class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-[0.25em] font-normal">TETU<span class="font-body-sm text-body-sm tracking-[0.35em] text-primary ml-2 uppercase">COLLECTION</span></span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden lg:flex items-center space-x-space-xl" data-active-classes="text-primary border-b border-primary">
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 py-1 uppercase relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-300" data-path="home" href="index.html">Home</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 py-1 uppercase relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-300" data-path="new-arrivals" href="new-arrival.html">New Arrivals</a>
+      <a aria-current="page" class="font-label-md transition-all duration-300 py-1 uppercase relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-300 text-primary border-b border-primary" data-path="evening-luxury" href="evening%20luxury.html">Evening Luxury</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 py-1 uppercase relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-300" data-path="reviews" href="review.html">Reviews</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 py-1 uppercase relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-300" data-path="contact" href="contact.html">Contact</a>
+    </nav>
+
+    <!-- Right Icons + Mobile Menu Button -->
+    <div class="flex items-center space-x-space-md">
+      <button aria-label="Search Archive" class="p-2 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center">
+        <span class="material-symbols-outlined text-[20px]">search</span>
+      </button>
+      <button aria-label="Bespoke Cart" class="p-2 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center relative">
+        <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+        <span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-primary rounded-full ring-2 ring-surface"></span>
+      </button>
+      <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+        <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+      </div>
+      <!-- Mobile Menu Toggle -->
+      <button id="mobile-menu-toggle" aria-label="Toggle navigation menu" class="lg:hidden p-2 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center">
+        <span class="material-symbols-outlined text-[24px]">menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAVIGATION OVERLAY -->
+<div id="mobile-menu-backdrop" class="mobile-menu-backdrop fixed inset-0 bg-surface-container-lowest/80 backdrop-blur-sm z-40 hidden lg:hidden"></div>
+<div id="mobile-menu-panel" class="fixed top-0 right-0 h-full w-64 bg-surface-container-low border-l border-primary/20 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col pt-24 px-6 space-y-6">
+  <a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors py-2 border-b border-outline-variant/30 uppercase tracking-wider" href="index.html">Home</a>
+  <a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors py-2 border-b border-outline-variant/30 uppercase tracking-wider" href="new-arrival.html">New Arrivals</a>
+  <a class="font-label-md text-label-md text-primary hover:text-secondary-fixed transition-colors py-2 border-b border-outline-variant/30 uppercase tracking-wider" href="evening%20luxury.html">Evening Luxury</a>
+  <a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors py-2 border-b border-outline-variant/30 uppercase tracking-wider" href="review.html">Reviews</a>
+  <a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors py-2 border-b border-outline-variant/30 uppercase tracking-wider" href="contact.html">Contact</a>
+  <a class="font-label-md text-label-md text-primary hover:text-secondary-fixed transition-colors py-2 uppercase tracking-wider flex items-center gap-2" href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer">
+    <span class="material-symbols-outlined text-[18px]">chat</span> WhatsApp
+  </a>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="w-full pt-20 bg-surface min-h-[calc(100vh-140px)]">
+  <div class="flex flex-col w-full">
+
+    <!-- Top Breadcrumb & Archive Return Nav -->
+    <section class="w-full bg-surface-container-lowest">
+      <div class="max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-4 flex flex-wrap items-center justify-between gap-4">
+        <nav aria-label="Breadcrumb" class="flex items-center space-x-3">
+          <a class="font-label-sm text-label-sm text-secondary hover:text-primary transition-colors duration-200 uppercase tracking-widest flex items-center gap-1.5" href="index.html">
+            <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+            Return to Main Atelier (index.html)
+          </a>
+          <span class="text-secondary/40 font-mono text-xs">/</span>
+          <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Evening Luxury Capsule</span>
+        </nav>
+        <div class="hidden sm:flex items-center gap-4">
+          <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Nairobi Atelier № 2026.04</span>
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+          <span class="font-label-sm text-label-sm text-secondary-fixed uppercase tracking-wider">Private Salon Access</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Hero Section -->
+    <section class="relative w-full overflow-hidden bg-surface-container-lowest -mt-20">
+      <div class="relative w-full min-h-[92vh] flex items-end">
+        <div class="absolute inset-0 z-0">
+          <img alt="The Grand Nocturne Croc Pochette on polished gold mirror surface in boutique ambiance" class="w-full h-full object-cover object-center filter brightness-90 contrast-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO-Aqp0YSk8Rxly6G1dAQGSupCSfAz1jj3ys9gYElEcAtp8WY2jE9gJuVenRE6Ctq00F623p79577jslfdugY2m4-Ajb5ubgjdFF556PRuzqG6zaplU0iLXY2Yop2HZ1AgkrsuFUAJO-pA2dYYXuQw6uRJkoAY1qezihqZi3gOolCx1vtUOYST_xGcR8zb6fsM3Bx4yQd-aGC5APlaxT84hCJ2_N2ncLvqRAAigqEUoc4iPXN-oewlCg">
+          <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/60 to-surface/30"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest/90 via-surface/40 to-transparent"></div>
+        </div>
+        <div class="relative z-10 w-full max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop pt-32 pb-space-2xl">
+          <div class="max-w-3xl space-y-6">
+            <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-surface-container-low/90 backdrop-blur-md">
+              <span class="w-2 h-2 rounded-full bg-primary"></span>
+              <span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-primary">EVENING COLLECTION • NAIROBI</span>
+            </div>
+            <div class="space-y-2">
+              <h1 class="font-display text-display text-on-surface tracking-tight uppercase leading-[0.95]">
+                EVENING <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-container to-secondary font-headline-lg">LUXURY</span>
+              </h1>
+              <p class="font-headline-sm text-headline-sm text-secondary-fixed/90 font-light tracking-widest uppercase">
+                THE ART OF THE SOIRÉE
+              </p>
+            </div>
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl font-light leading-relaxed">Handcrafted evening bags and footwear designed for special occasions and dinner wear, handmade in Nairobi.</p>
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+              <a class="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.25)] hover:bg-secondary-fixed hover:text-on-secondary-fixed hover:shadow-[0_0_30px_rgba(244,232,193,0.45)]" href="#vault-collection">
+                <span>Explore The Nocturne Vault</span>
+                <span class="material-symbols-outlined text-[18px] transition-transform duration-300 group-hover:translate-y-1">arrow_downward</span>
+              </a>
+              <a class="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-surface-container-high/80 backdrop-blur-md text-on-surface hover:text-primary font-label-md text-label-md uppercase tracking-[0.2em] transition-all duration-300 hover:bg-surface-container-highest" href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION%2C%20I%20am%20inquiring%20about%20the%20Evening%20Luxury%20Capsule." rel="noopener noreferrer" target="_blank">
+                <svg class="w-4 h-4 fill-current text-primary transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path>
+                </svg>
+                <span>Enquire on WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Curated Filter & Atelier Dispatch Bar -->
+    <section class="w-full bg-surface sticky top-20 z-40 backdrop-blur-xl bg-surface/95 py-4" id="vault-collection">
+      <div class="max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+        <div class="flex flex-wrap items-center gap-2" id="filter-container">
+          <button class="vault-filter-btn px-4 py-2 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-widest transition-all duration-300" onclick="filterVault('all', this)">
+            All Evening Pieces
+          </button>
+          <button class="vault-filter-btn px-4 py-2 bg-surface-container text-on-surface-variant hover:text-primary hover:bg-surface-container-high font-label-sm text-label-sm uppercase tracking-widest transition-all duration-300" onclick="filterVault('bags', this)">
+            Nocturne Miniaudières &amp; Bags
+          </button>
+          <button class="vault-filter-btn px-4 py-2 bg-surface-container text-on-surface-variant hover:text-primary hover:bg-surface-container-high font-label-sm text-label-sm uppercase tracking-widest transition-all duration-300" onclick="filterVault('footwear', this)">
+            Gilded Evening Footwear
+          </button>
+          <button class="vault-filter-btn px-4 py-2 bg-surface-container text-on-surface-variant hover:text-primary hover:bg-surface-container-high font-label-sm text-label-sm uppercase tracking-widest transition-all duration-300" onclick="filterVault('blacktie', this)">
+            Black Tie Edition
+          </button>
+        </div>
+        <div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+          <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+          <span>Curated by Atelier Nairobi • Bespoke sizing &amp; commissions upon request</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Master Curated Product Showcase (Grid) -->
+    <section class="w-full bg-surface py-space-xl">
+      <div class="max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
+
+          <!-- Piece 3: The Gilded Python Evening Slide -->
+          <article class="vault-item footwear group flex flex-col bg-surface-container-low overflow-hidden transition-all duration-500 hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.9),0_0_35px_-5px_rgba(212,175,55,0.18)]">
+            <div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+              <img alt="The Gilded Python Evening Slide" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5bTm3DSz-eW9ZOioYFlpG6GeyPIzVwu57ky6bt0YbhpsvkVHjNWM1EjwnHmsjb4NGilQ-vO0lvxH33Z8oelZIccsNF4kMoWUjfkGD_SVAJqLndo3fRe77LsVC504LT0B1d878hKsh1QYYnAIdVQCNmGcfN5lEhTvU3JxqFHNnpv2_xe99f-acsq18Ubx5vZk4gqBBI8fo7p0sawGHrmxB3KwgCdIkKUvZoHIWKI15jH5Yvl2q6QscrwiEOgfW_zTBZtI">
+              <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent opacity-80"></div>
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm uppercase tracking-widest font-semibold">
+                  Gala Footwear
+                </span>
+              </div>
+              <div class="absolute bottom-4 right-4">
+                <span class="px-2.5 py-1 bg-surface-container-high/90 text-secondary font-label-sm text-label-sm tracking-wider uppercase">
+                  № 03 / VAULT
+                </span>
+              </div>
+            </div>
+            <div class="p-space-lg flex flex-col flex-grow justify-between space-y-6">
+              <div class="space-y-2">
+                <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors duration-300">
+                  The Gilded Python Evening Slide
+                </h3>
+                <p class="font-body-md text-body-md text-on-surface-variant font-light line-clamp-3">
+                  Luminous gold micro-textured reptile leather with double-band contouring and cushioned heel.
+                </p>
+              </div>
+              <div class="pt-4 space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="font-label-sm text-label-sm text-secondary-fixed/80 uppercase tracking-widest">Acquisition</span>
+                  <span class="font-title text-title text-primary uppercase font-light tracking-wide">Price Upon Request</span>
+                </div>
+                <a class="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-surface-container text-on-surface hover:bg-primary hover:text-on-primary font-label-md text-label-md uppercase tracking-[0.18em] transition-all duration-300" href="https://wa.me/254700309655?text=I%20would%20like%20to%20enquire%20about%20The%20Gilded%20Python%20Evening%20Slide" rel="noopener noreferrer" target="_blank">
+                  <span>Enquire on WhatsApp</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Piece 4: The Monogram Heavy Chain Evening Slide -->
+          <article class="vault-item footwear group flex flex-col bg-surface-container-low overflow-hidden transition-all duration-500 hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.9),0_0_35px_-5px_rgba(212,175,55,0.18)]">
+            <div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+              <img alt="The Monogram Heavy Chain Evening Slide" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2bD0-KYCpOP5mlvQwHfgt9ePZHT26PkZPNQhoXZgIEBvos0RWGPjyeBs5R_DWwJinGgqZROqN3UCVg51iZQVWvNaezRdZ1iJm4lW8pDSMH4E58y6jdDiwU0NxkDr7qRr_kN2vIrQ4DTXbcShhA4N4iRCyWahShWO09nTu9tduLWasnYE5EM5oXLc_S-tfOr6SrjpIpFen0yVVsGxR7hmgDIgZZ78XJp4ZUxvm8q8e4Wgs7MKOCNIA9rtwXn6QSi21McA">
+              <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent opacity-80"></div>
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm uppercase tracking-widest font-semibold">
+                  Chunky Gold Series
+                </span>
+              </div>
+              <div class="absolute bottom-4 right-4">
+                <span class="px-2.5 py-1 bg-surface-container-high/90 text-secondary font-label-sm text-label-sm tracking-wider uppercase">
+                  № 04 / VAULT
+                </span>
+              </div>
+            </div>
+            <div class="p-space-lg flex flex-col flex-grow justify-between space-y-6">
+              <div class="space-y-2">
+                <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors duration-300">
+                  The Monogram Heavy Chain Evening Slide
+                </h3>
+                <p class="font-body-md text-body-md text-on-surface-variant font-light line-clamp-3">
+                  Handcrafted patterned monogram strap highlighted by heavyweight sculptural 24k gold curb chain.
+                </p>
+              </div>
+              <div class="pt-4 space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="font-label-sm text-label-sm text-secondary-fixed/80 uppercase tracking-widest">Acquisition</span>
+                  <span class="font-title text-title text-primary uppercase font-light tracking-wide">Price Upon Request</span>
+                </div>
+                <a class="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-surface-container text-on-surface hover:bg-primary hover:text-on-primary font-label-md text-label-md uppercase tracking-[0.18em] transition-all duration-300" href="https://wa.me/254700309655?text=I%20would%20like%20to%20enquire%20about%20The%20Monogram%20Heavy%20Chain%20Evening%20Slide" rel="noopener noreferrer" target="_blank">
+                  <span>Enquire on WhatsApp</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Piece 5: The Noir Onyx Chain Slide -->
+          <article class="vault-item footwear blacktie group flex flex-col bg-surface-container-low overflow-hidden transition-all duration-500 hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.9),0_0_35px_-5px_rgba(212,175,55,0.18)]">
+            <div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+              <img alt="The Noir Onyx Chain Slide" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgaHpn5R7TJEMug1efD35ug23bV8s8uO78GXl-iM8lAvX1lrQfh9ajt6ViRyIatheovSL7yP0mrOMCarkjZgwsGRKBqrK9g_E8QnO7RpUqQ6LkQ3AGjOP-oXZ2tf5ftZ3dk5Cufrsn4dDwbuM2d17UBDDw7Naa8_5Fvxz9qJfkv7F2Qwr_rBsZgghJreg3MDgDi0kGAOa0v0i_3mMSL6cTCP5hPPz_ljgOSYZz8CnoPok1iw7_gqE0PRqT-5gcTDwrYQU">
+              <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent opacity-80"></div>
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm uppercase tracking-widest font-semibold">
+                  Black Tie Footwear
+                </span>
+              </div>
+              <div class="absolute bottom-4 right-4">
+                <span class="px-2.5 py-1 bg-surface-container-high/90 text-secondary font-label-sm text-label-sm tracking-wider uppercase">
+                  № 05 / VAULT
+                </span>
+              </div>
+            </div>
+            <div class="p-space-lg flex flex-col flex-grow justify-between space-y-6">
+              <div class="space-y-2">
+                <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors duration-300">
+                  The Noir Onyx Chain Slide
+                </h3>
+                <p class="font-body-md text-body-md text-on-surface-variant font-light line-clamp-3">
+                  Sleek jet-black calfskin adorned with interlocking gold and white enamel luxury chain link.
+                </p>
+              </div>
+              <div class="pt-4 space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="font-label-sm text-label-sm text-secondary-fixed/80 uppercase tracking-widest">Acquisition</span>
+                  <span class="font-title text-title text-primary uppercase font-light tracking-wide">Price Upon Request</span>
+                </div>
+                <a class="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-surface-container text-on-surface hover:bg-primary hover:text-on-primary font-label-md text-label-md uppercase tracking-[0.18em] transition-all duration-300" href="https://wa.me/254700309655?text=I%20would%20like%20to%20enquire%20about%20The%20Noir%20Onyx%20Chain%20Slide" rel="noopener noreferrer" target="_blank">
+                  <span>Enquire on WhatsApp</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Piece 6: The Pearl & Gilt Embellished Slide -->
+          <article class="vault-item footwear group flex flex-col bg-surface-container-low overflow-hidden transition-all duration-500 hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.9),0_0_35px_-5px_rgba(212,175,55,0.18)]">
+            <div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+              <img alt="The Pearl and Gilt Embellished Slide" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZyQ3uf1Sx-2SPRhpMcOYpjoDmITJ9uVfPbrfW2VkRFzDO2H5zqvYnIrvldmyS2CeQGZWmEMN_itGqkqRQ8Eq6kFWDaIerpnD6x9cfsNCphlvJ-o2jUFH4XomRgMEB7wsKClRST8teq0_suUFhee3y0IliDHcKNS37uuBJj6wjKwPfUDpmnSPY6XAx3IaDfH1hSBaf7CFVFSL3B7TiV1oJDkPearZvKohOOpkfCrUX0C94Tp0zng92lA34vn4VmZKgP7U">
+              <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent opacity-80"></div>
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm uppercase tracking-widest font-semibold">
+                  Soirée Edition
+                </span>
+              </div>
+              <div class="absolute bottom-4 right-4">
+                <span class="px-2.5 py-1 bg-surface-container-high/90 text-secondary font-label-sm text-label-sm tracking-wider uppercase">
+                  № 06 / VAULT
+                </span>
+              </div>
+            </div>
+            <div class="p-space-lg flex flex-col flex-grow justify-between space-y-6">
+              <div class="space-y-2">
+                <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors duration-300">
+                  The Pearl &amp; Gilt Embellished Slide
+                </h3>
+                <p class="font-body-md text-body-md text-on-surface-variant font-light line-clamp-3">
+                  Lustrous rose gold metallic strap hand-encrusted with rows of ivory pearls and golden caviar beadwork.
+                </p>
+              </div>
+              <div class="pt-4 space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="font-label-sm text-label-sm text-secondary-fixed/80 uppercase tracking-widest">Acquisition</span>
+                  <span class="font-title text-title text-primary uppercase font-light tracking-wide">Price Upon Request</span>
+                </div>
+                <a class="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-surface-container text-on-surface hover:bg-primary hover:text-on-primary font-label-md text-label-md uppercase tracking-[0.18em] transition-all duration-300" href="https://wa.me/254700309655?text=I%20would%20like%20to%20enquire%20about%20The%20Pearl%20and%20Gilt%20Embellished%20Slide" rel="noopener noreferrer" target="_blank">
+                  <span>Enquire on WhatsApp</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Piece 7: The Noir Croc Sculpted Crescent Bag -->
+          <article class="vault-item bags blacktie group flex flex-col bg-surface-container-low overflow-hidden transition-all duration-500 hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.9),0_0_35px_-5px_rgba(212,175,55,0.18)]">
+            <div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+              <img alt="The Noir Croc Sculpted Crescent Bag" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv2gQ0U-zxlH7IlCaKXF4A3h37CdRqkohCC703YONpdiRPWNhPMABQLOpL6nCvwGVCtZzRFUg_2GQPTxNgv36iUvtPPyxqoxwt-CXROmJKPAe4Y4_PNIwqAPi2nthnfPUZZCByaaDx45kdL-BcizM3irnNgA3jUwSGjZVGEQMplr723kE1ik1EMirmfZPgSAq6iTXi4jOLHP-bkFjfpGN6EDv7RSLADDmW5MkPJME2aeGnRyLH_d459kiApuMNx9e_NgA">
+              <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent opacity-80"></div>
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm uppercase tracking-widest font-semibold">
+                  Sculpted Silhouette
+                </span>
+              </div>
+              <div class="absolute bottom-4 right-4">
+                <span class="px-2.5 py-1 bg-surface-container-high/90 text-secondary font-label-sm text-label-sm tracking-wider uppercase">
+                  № 07 / VAULT
+                </span>
+              </div>
+            </div>
+            <div class="p-space-lg flex flex-col flex-grow justify-between space-y-6">
+              <div class="space-y-2">
+                <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors duration-300">
+                  The Noir Croc Sculpted Crescent Bag
+                </h3>
+                <p class="font-body-md text-body-md text-on-surface-variant font-light line-clamp-3">
+                  Deep midnight black and rich emerald exotic croc texture with polished gold drop chain.
+                </p>
+              </div>
+              <div class="pt-4 space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="font-label-sm text-label-sm text-secondary-fixed/80 uppercase tracking-widest">Acquisition</span>
+                  <span class="font-title text-title text-primary uppercase font-light tracking-wide">Price Upon Request</span>
+                </div>
+                <a class="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-surface-container text-on-surface hover:bg-primary hover:text-on-primary font-label-md text-label-md uppercase tracking-[0.18em] transition-all duration-300" href="https://wa.me/254700309655?text=I%20would%20like%20to%20enquire%20about%20The%20Noir%20Croc%20Sculpted%20Crescent%20Bag" rel="noopener noreferrer" target="_blank">
+                  <span>Enquire on WhatsApp</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Piece 8: The Alabaster Evening Crescent -->
+          <article class="vault-item bags group flex flex-col bg-surface-container-low overflow-hidden transition-all duration-500 hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.9),0_0_35px_-5px_rgba(212,175,55,0.18)]">
+            <div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+              <img alt="The Alabaster Evening Crescent" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4sdac4ul3nqel5bbnM-lq4xH4PBzCoRLFBBpYzFhFQRbxOuU06HN7kXKEB-pucjayt6E7fBQ0bxAGYECLmTFOSzkKYv7mFdTVyK2UhKnLCtwSbROdJNCcIt1G_iMxp1TmW1hkofdQ2BUmevrNfhWzY80qV5O_ooWP6oFj9gyd9JgzO8clJBDNnNREHk62Ek7SZmEl4ODFpri3QBS8LQa3R1BXaUb35rDwXjsfxICJA-LOgOdRFrt7PT5jB7hDh0yJK3o">
+              <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent opacity-80"></div>
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm uppercase tracking-widest font-semibold">
+                  Ivory Elegance
+                </span>
+              </div>
+              <div class="absolute bottom-4 right-4">
+                <span class="px-2.5 py-1 bg-surface-container-high/90 text-secondary font-label-sm text-label-sm tracking-wider uppercase">
+                  № 08 / VAULT
+                </span>
+              </div>
+            </div>
+            <div class="p-space-lg flex flex-col flex-grow justify-between space-y-6">
+              <div class="space-y-2">
+                <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors duration-300">
+                  The Alabaster Evening Crescent
+                </h3>
+                <p class="font-body-md text-body-md text-on-surface-variant font-light line-clamp-3">
+                  Flawless alabaster white calfskin featuring architectural pleats and crimson silk interior.
+                </p>
+              </div>
+              <div class="pt-4 space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="font-label-sm text-label-sm text-secondary-fixed/80 uppercase tracking-widest">Acquisition</span>
+                  <span class="font-title text-title text-primary uppercase font-light tracking-wide">Price Upon Request</span>
+                </div>
+                <a class="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-surface-container text-on-surface hover:bg-primary hover:text-on-primary font-label-md text-label-md uppercase tracking-[0.18em] transition-all duration-300" href="https://wa.me/254700309655?text=I%20would%20like%20to%20enquire%20about%20The%20Alabaster%20Evening%20Crescent" rel="noopener noreferrer" target="_blank">
+                  <span>Enquire on WhatsApp</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Piece 9: The Chromatic Metallic Gilded Slide -->
+          <article class="vault-item footwear group flex flex-col bg-surface-container-low overflow-hidden transition-all duration-500 hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.9),0_0_35px_-5px_rgba(212,175,55,0.18)]">
+            <div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+              <img alt="The Chromatic Metallic Gilded Slide" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBno9tNuW4eduhn3bVML8j1pQjCXXCg_AX-jUUq-pIfO4Ei4bf4fIMjbFmevShss4lAdV2ZhyKP-SmQJSpn8aqSRwMtV8YDt0Awk1v-ZBoCipNjsVchu0M3HlQtcGptVvxN6q4rAFPIcwMi1RS5V18tpqZuw4KPC_Fm-G0tI5-v1ueXblkyzhEKiZLA5xO66VBhVdasB1ft_Xi-HInSfqiNjD3CqqeMgpMKMciZ2gn3OP48e9JL3qmadcwIeZmyQ2XcJ20">
+              <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent opacity-80"></div>
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm uppercase tracking-widest font-semibold">
+                  Statement Piece
+                </span>
+              </div>
+              <div class="absolute bottom-4 right-4">
+                <span class="px-2.5 py-1 bg-surface-container-high/90 text-secondary font-label-sm text-label-sm tracking-wider uppercase">
+                  № 09 / VAULT
+                </span>
+              </div>
+            </div>
+            <div class="p-space-lg flex flex-col flex-grow justify-between space-y-6">
+              <div class="space-y-2">
+                <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors duration-300">
+                  The Chromatic Metallic Gilded Slide
+                </h3>
+                <p class="font-body-md text-body-md text-on-surface-variant font-light line-clamp-3">
+                  Artisan woven metallic straps of fuchsia, molten gold, and platinum silver for dazzling gala evenings.
+                </p>
+              </div>
+              <div class="pt-4 space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="font-label-sm text-label-sm text-secondary-fixed/80 uppercase tracking-widest">Acquisition</span>
+                  <span class="font-title text-title text-primary uppercase font-light tracking-wide">Price Upon Request</span>
+                </div>
+                <a class="w-full flex items-center justify-center gap-2 py-3.5 px-6 bg-surface-container text-on-surface hover:bg-primary hover:text-on-primary font-label-md text-label-md uppercase tracking-[0.18em] transition-all duration-300" href="https://wa.me/254700309655?text=I%20would%20like%20to%20enquire%20about%20The%20Chromatic%20Metallic%20Gilded%20Slide" rel="noopener noreferrer" target="_blank">
+                  <span>Enquire on WhatsApp</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Craftsmanship Spotlight -->
+    <section class="w-full bg-surface-container-lowest py-space-2xl">
+      <div class="max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-6 relative">
+            <div class="relative w-full aspect-square overflow-hidden bg-surface-container-low shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+              <img alt="TETU Atelier leathercraft workbench in Nairobi" class="w-full h-full object-cover filter contrast-105" src="https://lh3.googleusercontent.com/aida/AEtjO1Wm5wgMfxfSJgzWz2Ja9bY3Xqa1b7Lxn0N2uUjHvD2owCbWCSSmB-Ozq4buBfGANUa27RRinq9HXXwrvvS9jhRQFhrVU5Rxp52XHHDXHPa3XG2hhIta0D0Ydbii7xRHSL9Hm3eZ4octvBMuy4XLOb-5e3yRVf5LmeVQnvIE9qK2DylBXzWPc46a05n093EgHbi6vieaR7gY2dqxHdDuz42tXbtdpQ3Vi1m4dS1EcYZk9HUBhlzMebBV2LLY">
+              <div class="absolute inset-0 bg-gradient-to-tr from-surface via-transparent to-primary/10"></div>
+            </div>
+            <div class="absolute -bottom-6 -right-4 md:bottom-8 md:-right-8 p-6 bg-surface-container-high/95 backdrop-blur-xl max-w-xs shadow-2xl">
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-1">NAIROBI ATELIER</span>
+              <p class="font-body-sm text-body-sm text-on-surface font-light">Handcrafted locally by skilled Kenyan artisans using select genuine leathers.</p>
+            </div>
+          </div>
+          <div class="lg:col-span-6 space-y-8 lg:pl-8">
+            <div class="space-y-3">
+              <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container text-primary font-label-sm text-label-sm tracking-widest uppercase">OUR CRAFT</div>
+              <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal">Quality Materials &amp; <span class="italic text-primary">Handcraft</span></h2>
+            </div>
+            <p class="font-body-lg text-body-lg text-on-surface-variant font-light leading-relaxed">Each piece is made by skilled Kenyan leather artisans in Nairobi using durable genuine leather and quality hardware built to last.</p>
+            <div class="grid grid-cols-2 gap-6 pt-2">
+              <div class="space-y-2 p-5 bg-surface-container-low">
+                <span class="material-symbols-outlined text-primary text-[28px]">lock</span>
+                <h4 class="font-title text-title text-on-surface">Durable Hardware</h4>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">Precision fittings and clasps designed for everyday elegance.</p>
+              </div>
+              <div class="space-y-2 p-5 bg-surface-container-low">
+                <span class="material-symbols-outlined text-primary text-[28px]">verified</span>
+                <h4 class="font-title text-title text-on-surface">Carefully Finished</h4>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">Smooth edges, neat stitching, and rich leather finishes.</p>
+              </div>
+            </div>
+            <div class="pt-4">
+              <a class="inline-flex items-center gap-3 font-label-md text-label-md text-primary uppercase tracking-[0.2em] group hover:text-secondary-fixed transition-colors" href="https://wa.me/254700309655?text=I%20am%20interested%20in%20a%20private%20atelier%20leather%20commission%20from%20TETU%20COLLECTION." rel="noopener noreferrer" target="_blank">
+                <span>Enquire About Custom Pieces</span>
+                <span class="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bespoke Concierge Callout Banner -->
+    <section class="w-full bg-surface-container py-space-2xl relative overflow-hidden">
+      <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+      <div class="max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop relative z-10">
+        <div class="p-8 md:p-14 bg-surface-container-low flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl">
+          <div class="space-y-4 text-center lg:text-left max-w-2xl">
+            <div class="inline-flex items-center gap-2 text-primary font-label-sm text-label-sm uppercase tracking-widest">
+              <span class="material-symbols-outlined text-[16px]">stars</span>
+              <span>Private Salon &amp; Evening Bespoke Consultation</span>
+            </div>
+            <h2 class="font-headline-md text-headline-md text-on-surface">
+              Require Custom Sizing, Colorway, or Monogramming?
+            </h2>
+            <p class="font-body-md text-body-md text-on-surface-variant font-light">
+              Our Nairobi master craftspeople create custom bespoke commissions for galas, red carpets, and special occasions. Consult directly with the head artisan on WhatsApp. Instant responses during atelier working hours.
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row lg:flex-col items-center gap-4 w-full lg:w-auto">
+            <a class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-[0_0_30px_rgba(242,202,80,0.3)] hover:bg-secondary-fixed hover:text-on-secondary-fixed" href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION%20Concierge%2C%20I%20would%20like%20to%20arrange%20a%20private%20evening%20luxury%20consultation." rel="noopener noreferrer" target="_blank">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path>
+              </svg>
+              <span>Chat: +254700309655</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="w-full bg-surface-container-lowest border-t border-primary/20 py-space-2xl">
+  <div class="max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex flex-col items-center justify-center text-center space-y-8">
+    <div class="flex flex-col items-center">
+      <span class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-[0.25em] font-normal">TETU<span class="font-body-sm text-body-sm tracking-[0.35em] text-primary ml-2 uppercase">COLLECTION</span></span>
+      <p class="font-body-sm text-body-sm text-on-surface-variant max-w-md mt-2 font-light">Bespoke Kenyan leathercraft &amp; artisanal evening luxury from Nairobi.</p>
+    </div>
+
+    <!-- Social Media Links -->
+    <div class="flex items-center gap-6 pt-2">
+      <a class="group flex items-center gap-2 text-secondary-fixed/60 hover:text-primary transition-colors duration-300" href="https://www.tiktok.com/@tetucollection?_r=1&_d=ec9145l8ih51jj&sec_uid=MS4wLjABAAAAkJCod8PPbU2JYWQWJAxcmEJQx8rNmAU6BltOCit7fhA61G-xjRPUIw9SC1lgw-kW&share_author_id=7635027922684609544&sharer_language=en&source=h5_m&u_code=f393lffkck5fi3&timestamp=1790184480&user_id=7635027922684609544&sec_user_id=MS4wLjABAAAAkJCod8PPbU2JYWQWJAxcmEJQx8rNmAU6BltOCit7fhA61G-xjRPUIw9SC1lgw-kW&item_author_type=1&utm_source=whatsapp&utm_campaign=client_share&utm_medium=android&share_iid=7665637160834336519&share_link_id=6024e564-913e-4088-835b-f3e469698981&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb7360&social_share_type=5&enable_checksum=1" target="_blank" rel="noopener noreferrer" aria-label="TETU COLLECTION on TikTok">
+        <svg class="w-5 h-5 fill-current transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+        <span class="font-label-sm text-label-sm uppercase tracking-widest">TikTok</span>
+      </a>
+      <a class="group flex items-center gap-2 text-secondary-fixed/60 hover:text-primary transition-colors duration-300" href="https://www.instagram.com/tetucollection?igsh=MXF2cDZ5b3FyZ3V1" target="_blank" rel="noopener noreferrer" aria-label="TETU COLLECTION on Instagram">
+        <svg class="w-5 h-5 fill-current transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        <span class="font-label-sm text-label-sm uppercase tracking-widest">Instagram</span>
+      </a>
+    </div>
+
+    <div>
+      <a class="group inline-flex items-center gap-3 px-8 py-3.5 bg-surface-container-low border border-primary/30 text-on-surface hover:text-primary hover:border-primary font-label-md text-label-md uppercase tracking-[0.2em] transition-all duration-300 hover:shadow-[0_0_25px_rgba(242,202,80,0.2)]" href="https://wa.me/254700309655" rel="noopener noreferrer" target="_blank">
+        <svg class="w-4 h-4 fill-current text-primary transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+        <span>Contact on WhatsApp: +254700309655</span>
+      </a>
+    </div>
+    <div class="w-full max-w-2xl h-[1px] bg-gradient-to-r from-transparent via-outline-variant/40 to-transparent"></div>
+    <div class="flex flex-col sm:flex-row items-center justify-between w-full gap-4 text-center sm:text-left">
+      <p class="font-label-sm text-label-sm text-secondary-fixed/70 uppercase tracking-widest">© 2026 TETU COLLECTION. All rights reserved.</p>
+      <div class="flex items-center gap-2">
+        <span class="w-6 h-6 rounded-full bg-primary/20 border border-primary/50 text-primary flex items-center justify-center font-headline-sm text-[12px] font-semibold select-none">B</span>
+        <span class="font-label-sm text-label-sm text-secondary-fixed/80 uppercase tracking-widest">Made by <span class="text-primary font-normal">Bossy designs</span></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- JAVASCRIPT: Mobile menu, smooth scrolling & vault filter -->
+<script>
+  (function() {
+    // Mobile menu
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+    const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+    const body = document.body;
+
+    function openMenu() {
+      mobileMenuPanel.classList.remove('-translate-x-full');
+      mobileMenuPanel.classList.add('translate-x-0');
+      mobileMenuBackdrop.classList.remove('hidden');
+      body.classList.add('menu-open');
+    }
+
+    function closeMenu() {
+      mobileMenuPanel.classList.add('-translate-x-full');
+      mobileMenuPanel.classList.remove('translate-x-0');
+      mobileMenuBackdrop.classList.add('hidden');
+      body.classList.remove('menu-open');
+    }
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (mobileMenuPanel.classList.contains('-translate-x-full')) {
+          openMenu();
+        } else {
+          closeMenu();
+        }
+      });
+    }
+
+    if (mobileMenuBackdrop) {
+      mobileMenuBackdrop.addEventListener('click', closeMenu);
+    }
+
+    // Close mobile menu when clicking a link
+    const mobileLinks = mobileMenuPanel.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close menu on window resize if width becomes >= 1024px
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 1024) {
+        closeMenu();
+      }
+    });
+
+    // Smooth scrolling for anchor links (within the same page)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  })();
+
+  // Vault filter function (global scope for onclick)
+  function filterVault(category, btnElement) {
+    const items = document.querySelectorAll('.vault-item');
+    const buttons = document.querySelectorAll('.vault-filter-btn');
+
+    // Update button state styling
+    buttons.forEach(btn => {
+      btn.classList.remove('bg-primary', 'text-on-primary');
+      btn.classList.add('bg-surface-container', 'text-on-surface-variant');
+    });
+    btnElement.classList.remove('bg-surface-container', 'text-on-surface-variant');
+    btnElement.classList.add('bg-primary', 'text-on-primary');
+
+    // Filter product items
+    items.forEach(item => {
+      if (category === 'all' || item.classList.contains(category)) {
+        item.style.display = 'flex';
+        item.style.opacity = '0';
+        setTimeout(() => {
+          item.style.transition = 'opacity 0.4s ease-in-out';
+          item.style.opacity = '1';
+        }, 30);
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+</script>
+<!-- 1. Config MUST load first — everything reads from window.TETU_CONFIG -->
+<script src="config.js"></script>
+
+<!-- 2. Core interactive modules (each one can run standalone) -->
+<script src="whatsapp.js"></script>
+<script src="cart.js"></script>
+<script src="search.js"></script>
+<script src="gallery.js"></script>
+
+<!-- 3. Motion & animation layer -->
+<script src="animation.js"></script>
+
+<!-- 4. Navigation chrome (reads config for breakpoint + selectors) -->
+<script src="navigation.js"></script>
+
+<!-- 5. Page-level logic (star rating, review form, audio toggle) -->
+<script src="main.js"></script>
+</body>
+</html>

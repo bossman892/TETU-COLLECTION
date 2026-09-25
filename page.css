@@ -1,0 +1,1377 @@
+/* ==========================================================================
+  TETU COLLECTION — PAGE-SPECIFIC STYLESHEET (page.css)
+   Brand: TETU COLLECTION
+   Atelier / Made by: Bossy designs
+   Concierge / Direct WhatsApp: +254700309655
+   Theme: Luxury Dark Noir & Brushed Warm Gold (#d4af37)
+   Typography: Bodoni Moda (Display/Serif), Plus Jakarta Sans (Sans-Serif)
+   Description: Page-specific layouts, hero variants, section grids, breadcrumbs,
+                reviews page, contact page, new arrivals, evening luxury, plus
+                smooth mobile navigation and navigation link styling.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Global Page Layout & Header Offset
+   -------------------------------------------------------------------------- */
+:root {
+  --header-height: 80px;
+  --section-padding-y: clamp(3rem, 6vw, 6.5rem);
+  --container-max: 1440px;
+  --container-pad: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+body {
+  padding-top: var(--header-height);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.page-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
+.section-block {
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+}
+
+/* --------------------------------------------------------------------------
+   2. Breadcrumb & Top Return Bar
+   -------------------------------------------------------------------------- */
+.breadcrumb-bar {
+  width: 100%;
+  background: #07090e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.breadcrumb-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 1rem var(--container-pad);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.breadcrumb-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #9ba1b0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumb-link:hover {
+  color: #d4af37;
+}
+
+.breadcrumb-sep {
+  color: rgba(255, 255, 255, 0.15);
+  font-size: 0.72rem;
+}
+
+.breadcrumb-current {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #d4af37;
+  font-weight: 600;
+}
+
+.breadcrumb-meta {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .breadcrumb-meta {
+    display: flex;
+  }
+}
+
+.breadcrumb-meta .meta-item {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9ba1b0;
+}
+
+.breadcrumb-meta .meta-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #d4af37;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Hero Variants — Home, New Arrivals, Evening Luxury, Reviews, Contact
+   -------------------------------------------------------------------------- */
+.hero-base {
+  position: relative;
+  width: 100%;
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  background: #07090e;
+  margin-top: calc(-1 * var(--header-height));
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-media img,
+.hero-media .hero-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: scale(1.05);
+  filter: brightness(0.85) contrast(1.05);
+}
+
+.hero-scrim-left {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    #07090e 0%,
+    rgba(7, 9, 14, 0.85) 45%,
+    transparent 100%
+  );
+  z-index: 1;
+}
+
+.hero-scrim-bottom {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    #07090e 0%,
+    rgba(7, 9, 14, 0.5) 40%,
+    transparent 100%
+  );
+  z-index: 1;
+}
+
+.hero-scrim-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: linear-gradient(to bottom, rgba(7, 9, 14, 0.9), transparent);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 9rem var(--container-pad) 3rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.hero-eyebrow-line {
+  width: 32px;
+  height: 1px;
+  background: #d4af37;
+  flex-shrink: 0;
+}
+
+.hero-eyebrow-text {
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #d4af37;
+  font-weight: 600;
+}
+
+.hero-title {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: clamp(2.25rem, 5vw + 1rem, 4.5rem);
+  line-height: 1.05;
+  color: #f5f5f7;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+}
+
+.hero-title .hero-title-gradient {
+  background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #caa12c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 1.2vw + 0.5rem, 1.125rem);
+  color: rgba(245, 245, 247, 0.8);
+  max-width: 42rem;
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .hero-actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+  }
+}
+
+/* Hero variants — same base, can be customized per page */
+.hero-home { min-height: 100vh; }
+.hero-new-arrivals { min-height: 88vh; }
+.hero-evening-luxury { min-height: 92vh; }
+.hero-reviews { min-height: 70vh; align-items: flex-end; }
+.hero-contact { min-height: 70vh; align-items: flex-end; }
+
+/* --------------------------------------------------------------------------
+   4. Section Headers & Editorial Labels
+   -------------------------------------------------------------------------- */
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .section-header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.section-label-line {
+  width: 32px;
+  height: 1px;
+  background: #d4af37;
+  flex-shrink: 0;
+}
+
+.section-label-text {
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #d4af37;
+  font-weight: 600;
+}
+
+.section-title {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: clamp(1.75rem, 3vw + 0.5rem, 2.75rem);
+  line-height: 1.2;
+  color: #f5f5f7;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.section-subtitle {
+  font-size: 0.94rem;
+  color: #9ba1b0;
+  max-width: 28rem;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* --------------------------------------------------------------------------
+   5. Product Grid Layouts (Index / New Arrivals / Evening Luxury)
+   -------------------------------------------------------------------------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Editorial tiered layout used on New Arrivals */
+.product-grid-tiered {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .product-grid-tiered {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+  .product-grid-tiered .tier-7 { grid-column: span 7; }
+  .product-grid-tiered .tier-5 { grid-column: span 5; }
+  .product-grid-tiered .tier-6 { grid-column: span 6; }
+  .product-grid-tiered .tier-12 { grid-column: span 12; }
+}
+
+/* --------------------------------------------------------------------------
+   6. Filter Bar & Category Pills (Used across multiple pages)
+   -------------------------------------------------------------------------- */
+.category-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 3rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 8px;
+}
+
+.category-filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   7. Metrics / Social Proof Strip (Home & Reviews)
+   -------------------------------------------------------------------------- */
+.metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  background: #10131a;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 4rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 768px) {
+  .metrics-strip {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 2rem 1.5rem;
+  }
+}
+
+.metric-col {
+  text-align: center;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .metric-col:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.07);
+  }
+}
+
+.metric-value {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: 1.85rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.metric-value .gold-val {
+  color: #d4af37;
+}
+
+.metric-stars {
+  color: #d4af37;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+.metric-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9ba1b0;
+  margin-top: 4px;
+}
+
+.metric-sublabel {
+  font-size: 0.78rem;
+  color: #646a7a;
+  font-weight: 400;
+}
+
+/* --------------------------------------------------------------------------
+   8. Reviews Page Layout
+   -------------------------------------------------------------------------- */
+.reviews-hero {
+  position: relative;
+  padding: 4rem 0 5rem;
+  text-align: center;
+  background: linear-gradient(180deg, #0b0e15 0%, #07090e 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.reviews-hero-title {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
+  line-height: 1.15;
+  color: #f5f5f7;
+  margin-bottom: 1rem;
+}
+
+.reviews-hero-subtitle {
+  font-size: 0.95rem;
+  color: #9ba1b0;
+  max-width: 40rem;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* Reviews two-column layout */
+.reviews-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: flex-start;
+  padding: 4rem 0;
+}
+
+@media (min-width: 1024px) {
+  .reviews-layout {
+    grid-template-columns: 420px 1fr;
+    gap: 2.75rem;
+  }
+}
+
+.reviews-form-panel {
+  background: #151821;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 24px;
+  padding: 2.25rem;
+  position: sticky;
+  top: calc(var(--header-height) + 2rem);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+}
+
+@media (max-width: 1023px) {
+  .reviews-form-panel {
+    position: static;
+  }
+}
+
+.reviews-stream-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Reviews feed header */
+.feed-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.feed-header h3 {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: 1.35rem;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.feed-header span {
+  font-size: 0.78rem;
+  color: #9ba1b0;
+}
+
+/* --------------------------------------------------------------------------
+   9. Contact Page Layout
+   -------------------------------------------------------------------------- */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  padding: 4rem 0;
+}
+
+@media (min-width: 1024px) {
+  .contact-layout {
+    grid-template-columns: 5fr 7fr;
+    gap: 3rem;
+  }
+}
+
+.contact-info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact-info-header h2 {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem);
+  color: #fff;
+  margin: 1rem 0;
+}
+
+.contact-info-header p {
+  color: #9ba1b0;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.contact-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: #151821;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-card:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+  background: #191c26;
+  transform: translateY(-2px);
+}
+
+.contact-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d4af37;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+
+.contact-card:hover .contact-card-icon {
+  background: rgba(212, 175, 55, 0.22);
+}
+
+.contact-card-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.contact-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-card-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9ba1b0;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.contact-card-value {
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #f5f5f7;
+  display: block;
+  margin-bottom: 3px;
+  word-break: break-word;
+}
+
+.contact-card-desc {
+  font-size: 0.78rem;
+  color: #646a7a;
+  display: block;
+}
+
+.contact-form-panel {
+  background: #151821;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+}
+
+@media (max-width: 640px) {
+  .contact-form-panel {
+    padding: 1.75rem 1.25rem;
+  }
+}
+
+.contact-form-panel h3 {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: 1.75rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.contact-form-panel p {
+  font-size: 0.86rem;
+  color: #9ba1b0;
+  line-height: 1.55;
+  margin-bottom: 1.75rem;
+  font-weight: 300;
+}
+
+/* Social links row */
+.contact-socials {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 1.5rem;
+}
+
+.contact-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #151821;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: #9ba1b0;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-social-link:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  color: #d4af37;
+  transform: translateY(-2px);
+}
+
+.contact-social-link svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  transition: transform 0.3s;
+}
+
+.contact-social-link:hover svg {
+  transform: scale(1.15);
+}
+
+/* --------------------------------------------------------------------------
+   10. Philosophy / Quote Section
+   -------------------------------------------------------------------------- */
+.philosophy-section {
+  width: 100%;
+  background: #191c26;
+  padding: var(--section-padding-y) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.philosophy-section::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.philosophy-quote {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: clamp(1.35rem, 2vw + 0.75rem, 2.25rem);
+  line-height: 1.35;
+  color: #f5f5f7;
+  max-width: 56rem;
+  margin: 1rem auto 2rem;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 1;
+}
+
+.philosophy-attribution {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #d1c6a1;
+  position: relative;
+  z-index: 1;
+}
+
+.philosophy-attribution .line {
+  display: inline-block;
+  width: 48px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* --------------------------------------------------------------------------
+   11. Atelier Craft Spotlight (Used on multiple pages)
+   -------------------------------------------------------------------------- */
+.craft-spotlight {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+  padding: var(--section-padding-y) 0;
+}
+
+@media (min-width: 1024px) {
+  .craft-spotlight {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 3rem;
+  }
+  .craft-spotlight-visual { grid-column: span 6; position: relative; }
+  .craft-spotlight-content { grid-column: span 6; padding-left: 2rem; }
+}
+
+.craft-visual-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #151821;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+.craft-visual-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.05);
+}
+
+.craft-visual-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 60%, rgba(212, 175, 55, 0.1) 100%);
+  pointer-events: none;
+}
+
+.craft-badge-float {
+  position: absolute;
+  bottom: -1.5rem;
+  right: -1rem;
+  max-width: 320px;
+  padding: 1.5rem;
+  background: rgba(33, 37, 50, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 14px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+  z-index: 2;
+}
+
+.craft-badge-float .badge-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d4af37;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.craft-badge-float .badge-text {
+  font-size: 0.82rem;
+  color: #f5f5f7;
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+.craft-feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+@media (min-width: 640px) {
+  .craft-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.craft-feature {
+  padding: 1.25rem;
+  background: #151821;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.craft-feature:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  transform: translateY(-2px);
+}
+
+.craft-feature-icon {
+  color: #d4af37;
+  font-size: 28px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.craft-feature h4 {
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  color: #f5f5f7;
+  margin-bottom: 4px;
+}
+
+.craft-feature p {
+  font-size: 0.8rem;
+  color: #9ba1b0;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+/* --------------------------------------------------------------------------
+   12. Concierge Callout (Bottom of most pages)
+   -------------------------------------------------------------------------- */
+.concierge-callout {
+  width: 100%;
+  background: #191c26;
+  padding: var(--section-padding-y) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.concierge-callout::before,
+.concierge-callout::after {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.04);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.concierge-callout::before { top: -200px; left: -200px; }
+.concierge-callout::after { bottom: -200px; right: -200px; }
+
+.concierge-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 3rem;
+  background: #151821;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .concierge-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    padding: 3.5rem;
+  }
+}
+
+.concierge-copy {
+  max-width: 42rem;
+}
+
+.concierge-copy h2 {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: clamp(1.5rem, 2vw + 0.75rem, 2rem);
+  color: #fff;
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+}
+
+.concierge-copy p {
+  font-size: 0.92rem;
+  color: #9ba1b0;
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+.concierge-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .concierge-actions {
+    width: auto;
+    min-width: 260px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. Footer (Shared across all pages)
+   -------------------------------------------------------------------------- */
+.site-footer {
+  width: 100%;
+  background: #07090e;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  padding: var(--section-padding-y) 0 2rem;
+}
+
+.footer-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-brand-name {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: 1.35rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #f5f5f7;
+  font-weight: 400;
+}
+
+.footer-brand-name .brand-accent {
+  color: #d4af37;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  margin-left: 8px;
+}
+
+.footer-brand-tagline {
+  font-size: 0.82rem;
+  color: #9ba1b0;
+  max-width: 28rem;
+  font-weight: 300;
+  margin-top: 4px;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #646a7a;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.footer-social-link:hover {
+  color: #d4af37;
+  transform: translateY(-1px);
+}
+
+.footer-social-link svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  transition: transform 0.25s;
+}
+
+.footer-social-link:hover svg {
+  transform: scale(1.15);
+}
+
+.footer-divider {
+  width: 100%;
+  max-width: 42rem;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .footer-bottom {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+.footer-copyright {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(209, 198, 161, 0.6);
+}
+
+.footer-credit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(209, 198, 161, 0.7);
+}
+
+.footer-credit .credit-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: #d4af37;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.footer-credit .credit-name {
+  color: #d4af37;
+}
+
+/* --------------------------------------------------------------------------
+   14. SMOOTH MOBILE NAVIGATION — Page-Level Overrides
+   -------------------------------------------------------------------------- */
+
+/* Ensure body padding-top is applied so sticky header doesn't cover content */
+@media (max-width: 1024px) {
+  body {
+    padding-top: var(--header-height);
+  }
+
+  /* Hide desktop-only elements on mobile */
+  .desktop-only {
+    display: none !important;
+  }
+
+  /* Prevent body scroll when mobile menu is open */
+  body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+  }
+
+  /* Reduce hero padding on mobile */
+  .hero-content {
+    padding: 6rem var(--container-pad) 2.5rem;
+  }
+
+  /* Reduce section padding on mobile */
+  .section-block {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  /* Stack contact & reviews layouts */
+  .contact-layout,
+  .reviews-layout {
+    gap: 2rem;
+    padding: 2.5rem 0;
+  }
+
+  /* Ensure footer has space at bottom */
+  .site-footer {
+    padding-bottom: 4rem;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 480px) {
+  :root {
+    --container-pad: 1.25rem;
+  }
+
+  .hero-content {
+    padding: 5rem var(--container-pad) 2rem;
+  }
+
+  .metrics-strip {
+    padding: 1.5rem 1rem;
+    gap: 1rem;
+  }
+
+  .metric-value {
+    font-size: 1.5rem;
+  }
+
+  .concierge-inner {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .contact-form-panel,
+  .reviews-form-panel {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+/* Landscape mobile — compact vertical spacing */
+@media screen and (max-height: 520px) and (orientation: landscape) {
+  body {
+    padding-top: 64px;
+  }
+
+  .hero-content {
+    padding-top: 5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .hero-subtitle {
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   15. NAVIGATION LINKS — Page-Level Fine-Tuning
+   -------------------------------------------------------------------------- */
+
+/* Ensure active nav link uses the same gold across all pages */
+.nav-links a.active {
+  color: #d4af37;
+  position: relative;
+}
+
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: #d4af37;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.7);
+}
+
+/* Smooth transition for nav link color changes */
+.nav-links a {
+  transition: color 0.2s ease, letter-spacing 0.2s ease;
+}
+
+/* Mobile nav links inside the drawer */
+.mobile-menu-panel a {
+  color: #9ba1b0;
+  text-decoration: none;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.mobile-menu-panel a:hover,
+.mobile-menu-panel a.active {
+  color: #d4af37;
+  padding-left: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   16. Reduced Motion Support
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .breadcrumb-meta .meta-dot {
+    animation: none !important;
+  }
+
+  .hero-media img,
+  .hero-media .hero-bg {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .contact-card,
+  .contact-social-link,
+  .craft-feature,
+  .footer-social-link {
+    transition: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   17. Print — Clean Page Output
+   -------------------------------------------------------------------------- */
+@media print {
+  body {
+    padding-top: 0 !important;
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .breadcrumb-bar,
+  .hero-base,
+  .metrics-strip,
+  .concierge-callout,
+  .footer-socials,
+  .mobile-menu-panel,
+  .mobile-menu-toggle,
+  .mobile-menu-backdrop {
+    display: none !important;
+  }
+
+  .section-block {
+    padding: 1rem 0 !important;
+    page-break-inside: avoid;
+  }
+
+  .product-grid,
+  .reviews-layout,
+  .contact-layout {
+    display: block !important;
+  }
+
+  .contact-card,
+  .review-card,
+  .product-card,
+  .craft-visual-frame {
+    background: #fff !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    color: #000 !important;
+    page-break-inside: avoid;
+    margin-bottom: 1.5rem;
+  }
+
+  .philosophy-quote,
+  .section-title,
+  .hero-title,
+  .footer-brand-name,
+  h1, h2, h3, h4 {
+    color: #000 !important;
+  }
+}

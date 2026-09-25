@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+  <meta content="web_standard" name="shell-type">
+  <title>TETU COLLECTION — Quiet Opulence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="component.css">
+  <link rel="stylesheet" href="animation.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="responsive.css">
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+      ::-webkit-scrollbar { display: none; }
+    }
+    html { scroll-behavior: smooth; }
+    body.menu-open { overflow: hidden; }
+    .mobile-menu-backdrop { transition: opacity 0.3s ease, visibility 0.3s ease; }
+    .mobile-menu-backdrop.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .translate-x-0 { transform: translateX(0); }
+    .-translate-x-full { transform: translateX(-100%); }
+    #mobile-menu-panel { will-change: transform; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-tertiary": "#283046",
+            "on-primary-container": "#554300",
+            "inverse-surface": "#e1e2ec",
+            "secondary": "#d1c6a1",
+            "on-tertiary-fixed-variant": "#3e465e",
+            "on-secondary-fixed-variant": "#4e472a",
+            "surface-container": "#1d1f27",
+            "surface": "#10131a",
+            "on-primary": "#3c2f00",
+            "error-container": "#93000a",
+            "tertiary-fixed-dim": "#bec6e3",
+            "surface-bright": "#363941",
+            "on-secondary-fixed": "#211b04",
+            "primary-fixed-dim": "#e9c349",
+            "surface-dim": "#10131a",
+            "tertiary-fixed": "#dae2ff",
+            "on-primary-fixed": "#241a00",
+            "tertiary-container": "#aab2ce",
+            "tertiary": "#c6cdeb",
+            "surface-container-high": "#272a32",
+            "inverse-primary": "#735c00",
+            "secondary-fixed": "#eee2bc",
+            "surface-variant": "#32353d",
+            "on-error-container": "#ffdad6",
+            "secondary-container": "#4e472a",
+            "on-error": "#690005",
+            "surface-container-lowest": "#0b0e15",
+            "error": "#ffb4ab",
+            "surface-tint": "#e9c349",
+            "on-secondary": "#373016",
+            "primary-container": "#d4af37",
+            "on-primary-fixed-variant": "#574500",
+            "on-tertiary-container": "#3c445c",
+            "primary-fixed": "#ffe088",
+            "background": "#10131a",
+            "primary": "#f2ca50",
+            "on-secondary-container": "#bfb591",
+            "outline": "#99907c",
+            "outline-variant": "#4d4635",
+            "on-tertiary-fixed": "#131b30",
+            "inverse-on-surface": "#2d3038",
+            "surface-container-low": "#191b23",
+            "surface-container-highest": "#32353d",
+            "secondary-fixed-dim": "#d1c6a1",
+            "on-background": "#e1e2ec",
+            "on-surface-variant": "#d0c5af",
+            "on-surface": "#e1e2ec"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter": "1.5rem",
+            "space-xl": "3rem",
+            "space-md": "1rem",
+            "margin": "1.5rem",
+            "space-xs": "0.25rem",
+            "gutter-desktop": "2.5rem",
+            "space-2xl": "5rem",
+            "margin-tablet": "3rem",
+            "margin-desktop": "5rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.75rem"
+          },
+          fontFamily: {
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Bodoni Moda"],
+            "display": ["Bodoni Moda"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "title": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Bodoni Moda"],
+            "headline-lg": ["Bodoni Moda"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "display-mobile": ["Bodoni Moda"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-sm": ["Bodoni Moda"],
+            "label-md": ["Plus Jakarta Sans"]
+          },
+          fontSize: {
+            "body-md": ["0.9375rem", { lineHeight: "1.625rem", letterSpacing: "0.01em", fontWeight: "300" }],
+            "headline-md": ["2rem", { lineHeight: "2.5rem", letterSpacing: "0em", fontWeight: "500" }],
+            "display": ["4.5rem", { lineHeight: "5rem", letterSpacing: "-0.02em", fontWeight: "400" }],
+            "body-lg": ["1.125rem", { lineHeight: "1.875rem", letterSpacing: "0.01em", fontWeight: "300" }],
+            "title": ["1.125rem", { lineHeight: "1.75rem", letterSpacing: "0.04em", fontWeight: "500" }],
+            "label-lg": ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0.14em", fontWeight: "600" }],
+            "headline-lg-mobile": ["2rem", { lineHeight: "2.5rem", letterSpacing: "0em", fontWeight: "400" }],
+            "headline-lg": ["3rem", { lineHeight: "3.5rem", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "label-sm": ["0.6875rem", { lineHeight: "0.875rem", letterSpacing: "0.22em", fontWeight: "600" }],
+            "display-mobile": ["2.75rem", { lineHeight: "3.25rem", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "body-sm": ["0.8125rem", { lineHeight: "1.375rem", letterSpacing: "0.02em", fontWeight: "400" }],
+            "headline-sm": ["1.5rem", { lineHeight: "2rem", letterSpacing: "0.01em", fontWeight: "500" }],
+            "label-md": ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.18em", fontWeight: "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+
+<!-- HEADER -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-primary/20 transition-all duration-300">
+  <div class="h-20 max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between">
+    <a class="flex items-center space-x-2 z-50" data-path="home" href="#home">
+      <span class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-[0.25em] font-normal">TETU<span class="font-body-sm text-body-sm tracking-[0.35em] text-primary ml-2 uppercase">COLLECTION</span></span>
+    </a>
+
+    <nav class="hidden lg:flex items-center space-x-space-xl" data-active-classes="text-primary border-b border-primary">
+      <a aria-current="page" class="font-label-md transition-all duration-300 py-1 uppercase relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-300 text-primary border-b border-primary" data-path="home" href="#home">Home</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 py-1 uppercase relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-300" data-path="new-arrivals" href="new-arrival.html">New Arrivals</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 py-1 uppercase relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-300" data-path="evening-luxury" href="evening%20luxury.html">Evening Luxury</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 py-1 uppercase relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-300" data-path="reviews" href="review.html">Reviews</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 py-1 uppercase relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-300" data-path="contact" href="contact.html">Contact</a>
+    </nav>
+
+    <div class="flex items-center space-x-space-md">
+      <button aria-label="Search Archive" class="p-2 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center">
+        <span class="material-symbols-outlined text-[20px]">search</span>
+      </button>
+      <button aria-label="Bespoke Cart" class="p-2 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center relative">
+        <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+        <span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-primary rounded-full ring-2 ring-surface"></span>
+      </button>
+      <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+        <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+      </div>
+      <button id="mobile-menu-toggle" aria-label="Toggle navigation menu" class="lg:hidden p-2 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center">
+        <span class="material-symbols-outlined text-[24px]">menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAVIGATION OVERLAY -->
+<div id="mobile-menu-backdrop" class="mobile-menu-backdrop fixed inset-0 bg-surface-container-lowest/80 backdrop-blur-sm z-40 hidden lg:hidden"></div>
+<div id="mobile-menu-panel" class="fixed top-0 right-0 h-full w-64 bg-surface-container-low border-l border-primary/20 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col pt-24 px-6 space-y-6">
+  <a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors py-2 border-b border-outline-variant/30 uppercase tracking-wider" href="#home">Home</a>
+  <a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors py-2 border-b border-outline-variant/30 uppercase tracking-wider" href="new-arrival.html">New Arrivals</a>
+  <a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors py-2 border-b border-outline-variant/30 uppercase tracking-wider" href="evening%20luxury.html">Evening Luxury</a>
+  <a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors py-2 border-b border-outline-variant/30 uppercase tracking-wider" href="review.html">Reviews</a>
+  <a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors py-2 border-b border-outline-variant/30 uppercase tracking-wider" href="contact.html">Contact</a>
+  <a class="font-label-md text-label-md text-primary hover:text-secondary-fixed transition-colors py-2 uppercase tracking-wider flex items-center gap-2" href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer">
+    <span class="material-symbols-outlined text-[18px]">chat</span> WhatsApp
+  </a>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="w-full pt-20 bg-surface min-h-[calc(100vh-140px)]">
+  <div class="flex flex-col w-full relative overflow-hidden bg-surface-container-lowest">
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative w-full min-h-[92vh] lg:min-h-screen -mt-20 flex flex-col justify-between overflow-hidden">
+      <div class="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+        <div class="w-full h-full bg-cover bg-center md:bg-[center_top] scale-105 transition-transform duration-1000 ease-out" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDuXnomFl6X83rz6ZqqYiWTLdXSwVJR_G1FRo5O7HtGGafeG0tbP0kKOAYPZl2GdwVERc9zVrpFctqxypFRzXrAAe0f5WQDeZP-WkN-iPIssADYIub_uWi1XlNJ0tVuZ6aRz3QGiL34vV1ilsyrZiyfWObLGpneTZJLB1iF-XkPjth9DFN5-0G3wtLNTXWQS9CCIBgTLUYCqYSVBpXuhiA3aBu4gpE24abIqUoxoHNocmSe7S99SUTXtQ');"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest via-surface-container-lowest/80 to-transparent w-full md:w-3/4 lg:w-3/5 z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/50 to-transparent z-10"></div>
+        <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-surface-container-lowest/90 to-transparent z-10"></div>
+        <div class="absolute -top-32 right-1/4 w-96 h-96 rounded-full bg-primary/10 blur-[140px] pointer-events-none"></div>
+      </div>
+
+      <div class="absolute left-margin md:left-margin-tablet lg:left-margin-desktop top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-primary/20 to-transparent pointer-events-none hidden md:block"></div>
+      <div class="absolute right-margin md:right-margin-tablet lg:right-margin-desktop top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-primary/10 to-transparent pointer-events-none hidden lg:block"></div>
+
+      <div class="relative z-20 w-full max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop pt-36 md:pt-44 lg:pt-48 pb-12 flex-1 flex flex-col justify-center">
+        <div class="max-w-2xl lg:max-w-3xl">
+          <div class="flex items-center space-x-3 mb-6">
+            <span class="w-8 h-[1px] bg-primary"></span>
+            <span class="font-label-sm text-label-sm tracking-[0.35em] text-primary uppercase font-semibold">Autumn / Winter 2025 • The Haute Maroquinerie Edition</span>
+          </div>
+          <h1 class="font-headline-lg lg:font-display text-headline-lg lg:text-display text-on-surface uppercase tracking-tight mb-8">
+            The Art of <br>
+            <span class="bg-gradient-to-r from-secondary-fixed via-primary to-primary-fixed-dim bg-clip-text text-transparent italic font-normal">Quiet Opulence</span>
+          </h1>
+          <p class="font-body-lg text-body-lg text-secondary-fixed/80 max-w-xl mb-12 font-light leading-relaxed">Handcrafted Kenyan leather accessories and monogrammed footwear, sculpted in Nairobi for the modern collector and illuminated by architectural precision.</p>
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 pt-2">
+            <a class="group relative inline-flex items-center justify-center px-10 py-4 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-[0.2em] transition-all duration-500 hover:bg-secondary-fixed hover:shadow-[0_0_35px_rgba(242,202,80,0.35)] active:scale-[0.99] text-center" href="#handbags-section">
+              <span class="relative z-10 flex items-center gap-2">Shop New Arrivals <span class="material-symbols-outlined text-[18px] transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span></span>
+            </a>
+            <a class="group inline-flex items-center justify-center px-8 py-4 bg-surface/40 backdrop-blur-md text-on-surface font-label-md text-label-md uppercase tracking-[0.2em] transition-all duration-500 hover:text-primary hover:bg-surface-container-high/60 shadow-lg text-center" href="https://wa.me/254700309655" rel="noopener noreferrer" target="_blank">
+              <span class="flex items-center gap-3">
+                <svg class="w-4 h-4 fill-current text-primary transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+                Enquire on WhatsApp
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative z-20 w-full max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        <button class="flex items-center space-x-3 text-secondary-fixed/70 hover:text-primary transition-colors cursor-pointer group bg-surface-container-low/40 backdrop-blur-md px-4 py-2" id="campaign-audio-toggle">
+          <span class="material-symbols-outlined text-[18px] text-primary" id="audio-icon">volume_off</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-[0.25em]" id="audio-label">Atmosphere Sound</span>
+          <div class="flex items-center space-x-[2px] h-3 ml-2">
+            <span class="w-[2px] h-1.5 bg-primary/40 rounded-full transition-all group-hover:h-3"></span>
+            <span class="w-[2px] h-3 bg-primary rounded-full transition-all group-hover:h-2"></span>
+            <span class="w-[2px] h-2 bg-primary/60 rounded-full transition-all group-hover:h-3.5"></span>
+          </div>
+        </button>
+        <div class="flex items-center space-x-4 text-secondary-fixed/50">
+          <span class="font-label-sm text-label-sm uppercase tracking-[0.3em]">Explore Atelier</span>
+          <div class="w-12 h-[1px] bg-gradient-to-r from-primary to-transparent relative overflow-hidden">
+            <div class="absolute inset-0 bg-secondary-fixed animate-[pulse_2s_infinite]"></div>
+          </div>
+          <span class="material-symbols-outlined text-[16px] text-primary animate-bounce">expand_more</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HANDBAGS SECTION -->
+    <section id="handbags-section" class="relative w-full max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop pt-space-2xl pb-12">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl">
+        <div>
+          <div class="flex items-center space-x-3 mb-2">
+            <span class="w-8 h-[1px] bg-primary"></span>
+            <span class="font-label-sm text-label-sm uppercase tracking-[0.3em] text-primary">Maroquinerie d'Art</span>
+          </div>
+          <h2 class="font-headline-md text-headline-md text-on-surface uppercase tracking-wide">The Handbag &amp; Maroquinerie Collection</h2>
+        </div>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-md mt-4 md:mt-0 font-light">Sculpted Kenyan leather bags, artisanal totes, and crescent shoulder silhouettes designed for discerning collectors and handcrafted with timeless precision in Nairobi.</p>
+      </div>
+      <div class="flex items-center space-x-3 mb-12 overflow-x-auto pb-2">
+        <a href="#handbags-section" class="px-4 py-2 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-[0.2em] transition-all duration-300">All Handbags</a>
+        <a href="#footwear-section" class="px-4 py-2 bg-surface-container-low text-secondary hover:text-primary hover:bg-surface-container font-label-sm text-label-sm uppercase tracking-[0.2em] transition-all duration-300 border border-outline-variant/30">Footwear Series</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop">
+        <!-- Handbag 1 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9p00VJfXnZlxamo7pRPLhvM5Ul2P8mekJRkGegy9HLQQSeTaUpscYySq7RVg8blD_5N-IPHxWpKZ5CZhvY5FxKf7mTeV6fY2OyxlJoLw_t6brDeHFuXkONtlf-enurMQavQ03lcmR5CYWszpBVsHsmz3-rKyu_bR5qxM0L1tk0j7KXBdTInmbipeZljZ6hPQ01n4nMW0PEi1O8HsdEyjRm0sI9JYOgOfujiDSraA9TtscfpHslICBkY7MaBGefO01iT4" alt="The Alabaster Crescent Shoulder Bag">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Iconic Silhouette</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Shoulder Bag</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Alabaster Crescent Shoulder Bag</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Architecturally curved off-white leather body with sculpted contours, crimson interior trim, and polished gold hardware.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Alabaster%20Crescent%20Shoulder%20Bag" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Handbag 2 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR2ugqma1LVcIg6nHtSd4ZxRtJm61gXqvVCQtq1KasKf12qvechoy-L998tOZa7cM3LyaeO7wgRZgtjHrX0eOLhDMfZq7TQt0f6nIYkNyy8HgSjGSXWPhs93SM3iVpiSpkTlAvyO_qjNHNj5lsvR9-M12rmLcmbpKBxlm6ZIgCbGkyx5cuIGAuuW2fuGwlT3OYxOwsmvgoM608JGRxIBl6Qad7zVxt1vxEQC_xYNTD743KBDeOZ1a5uOxbddaCMrTdfyI" alt="The Croc-Embossed Crescent Set">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Curated Palette</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Crescent Suite</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Croc-Embossed Crescent Set</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Exotic embossed calfskin in vibrant jewel hues: emerald green, vivid magenta, obsidian black, and citrus orange.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Croc-Embossed%20Crescent%20Set" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Handbag 3 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_Q__8YL2aq1yv1JK0tMBqPTvTdl4viXHL2wZG0jBiMcWYNATdxbPEnkTAot8lEQVqtSRfPS8C-XJzigMHxgNOy8X7nR7yNl8ILv0s4UAYgsQhnYA_HH1YEDpqZacXS2ZenISXU0DP1ku1wrcJrOK7yVIXHaQ4c87y2yxqFdcGiz-rvLnW1VyJAYz2sW8sF_iHZ8X0TuITMkruruIUh8Av1Cn3JPlRY2kvd_uXtcTVaqZMU_4TK0SlUz-zcsL_fd5ektE" alt="The Pastel Nappa Hobo Suite">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Atelier Selection</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Hobo Collection</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Pastel Nappa Hobo Suite</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Ultra-soft pebble-grain calf leather shoulder bags rendered in caramel, blush pink, ivory, saddle, and onyx.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Pastel%20Nappa%20Hobo%20Suite" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Handbag 4 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuRGVpJk_YV_j69-R2U1UIdQsOBcg9l6Hmm0Km9iUfWWdMV9MAiu3MivLRsO-xTKQvBDKvXRZjDKinxE--UFb6RsZgw0kgK8PwfAPwOBNRmRbj5qh9cpX3I-KZf67HzdAKr17zReY_zjGcYBydUTrgt0MHxe_8Myl5f-rJvnlXPRj8JgnjDwjgu_ygoy01iNU_DG80bQ3rvb2o2OuNkgY1XuoDYwwnhPgq7456H5HhqBABTKQrERpuNfFFwIE1QCiyPZY" alt="The Distressed Denim Monogram Shoulder Bag">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Couture Textile</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Denim &amp; Chain</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Distressed Denim Monogram Bag</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Tactile frayed jacquard and star-check denim, detailed with polished chrome link chains and matching leather strap.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Distressed%20Denim%20Monogram%20Bag" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Handbag 5 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK46fB2N86N0f63w61oVC5ZDcyr4zlgnOpno1UrLEYQg3l8XT8pa2MBDr6qAzEFNsELKLSP73y0xIGZvxtXRBLabBft8tAr58T8zEEyNW_M-uL8wnUdPiBBJMx0I7YgGvkrej8UbmA3e0PDdPHKgqQlAM-Xlb9rxdE5xYI0fLILoidDst1-m_a6IoA5kqY34OzUff9H2siOQZQ1jjZt5G7KBNMiMte3xr2Mo9sLo4aw9Ubg__LcVnPw772-h2lZcGGhQk" alt="The Checkerboard Executive Tote &amp; Pouch">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Executive Suite</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Carryall &amp; Pochette</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Checkerboard Executive Tote &amp; Pouch</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Classic damier checkerboard motif in rich ebony and mocha calf leather, complete with detachable matching utility pochette.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Checkerboard%20Executive%20Tote" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Handbag 6 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2FR7k-hup2NtuwA5Ftm3YNhG8FmX24RRjS4hhJ7AdRJrRwgcean72atECW7Evn7kFy18xFnLkHO3l8i-X6JKKosC_O0sqc5s8jZDF6tSGMdMBoI6mRfb0xMRc7r_Ln_ICKMEmuVet0pQXEQkxwIDoK6BxC7CHwnJdO5WDEVrQS_AGB-8OYmh4tLqLAMS3pMe-uIiK0WxXTEs1pednwDGsRckR9BA-A6OdgjwxGQbqNuzf_776csobSm3GhzdWWilzTqs" alt="The Two-Tone Ivory &amp; Saddle Carryall">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Signature Charm</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Day Carryall</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Two-Tone Ivory &amp; Saddle Carryall</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Pristine alabaster grained leather framed by deep chocolate leather handles and a playful couture pompon charm.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Two-Tone%20Ivory%20Carryall" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Handbag 7 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs-UT4JGdEiBFXP3Sgr8k42OhpQb4faJouMXh6U6WrMaRFHcVB0mIG9dz7i6zhMZrlO3b6aadZddAtLGl7M1N6a-q8q8caf4mY5X2d-fOt-0XgKofkKbEwNpha1YtdXPN6YogH3edEIf7bz4Cojf73-WtQuJ4Dn0GYwokSywGFun8iiT-IyfdLt0mbKSDLXMcjfhd0_wj2k6fait7qs5UomCCWUwME6sEBr7rk0WB7WkUOLvxdqKkg2jGHhQgwG1oGcfI" alt="The Caramel Calfskin Shopper">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Everyday Grandeur</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Shoulder Tote</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Caramel Calfskin Shopper</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Sleek caramel brown full-grain leather tote with reinforced ergonomic twin handles and gold-sheen charm medallion.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Caramel%20Calfskin%20Shopper" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Handbag 8 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-Rf4a2E_0h0H71hsnP27TDdmhHd6f-BMQfU9kz_T8e9drwEJZPVjNeG_uy4fpI7MVmgwMsS1ZiLDt7ZdEz2Podi6j3vM3QFVCzE2kJ6ht7-e_hSgKHqi1zhDvWS8BFfpUx4Vl-YuEGcOtvEXGQP7FpdNkzCHX6dNmzjAO_B4DXt_XAjkQ2mZMrZELXZ1Wj8dSWySBeA3IdQHkjM25Fn33dh4hP6xG-wQEyUnfXWtAgjVXMuHw8eAn5Z00BsdJOSxh2C8" alt="The Artisan Heritage Woven Day Bag">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Heritage Textile</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Woven Day Bag</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Artisan Heritage Woven Day Bag</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Hand-loomed earth-tone chevron weave with amber, terracotta, and ochre stripes trimmed in crimson harness leather.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Artisan%20Heritage%20Woven%20Day%20Bag" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Handbag 9 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBzVrIWCws82YX9vSniT-3ZqT6FBt8jXDCmqVtUAK8PafBxkSDbuA-7CUFZF76TO0liE0eqosKSJp6_xlhobRuQX89MjNuAw8r5l4SNMMW_IsipkpabH2_ZDVv66tO3nfXj87jQR2Xg9jxvARFQMEo-rydoaN15AG4RfVN_H-f1vsyHMH9J3KU-Ojq6n5ETMB2ss-XmcAWNVXUNJqqBXh-7AI4QuambvpgQfWNkNUAW7m1ixlQlison-iBLxfFEZp-c5I" alt="The Noir Corduroy Atelier Tote">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Atelier Casual</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Atelier Tote</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Noir Corduroy Atelier Tote</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Textured ribbed jet-black corduroy casual bag featuring an embroidered signature botanical crest patch.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Noir%20Corduroy%20Atelier%20Tote" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTWEAR SECTION -->
+    <section id="footwear-section" class="relative w-full max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-space-2xl">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl">
+        <div>
+          <div class="flex items-center space-x-3 mb-2">
+            <span class="w-8 h-[1px] bg-primary"></span>
+            <span class="font-label-sm text-label-sm uppercase tracking-[0.3em] text-primary">Bespoke Footwear Series</span>
+          </div>
+          <h2 class="font-headline-md text-headline-md text-on-surface uppercase tracking-wide">The Handcrafted Slide Series</h2>
+        </div>
+        <div class="mt-4 md:mt-0 flex flex-col md:items-end gap-3">
+          <div class="flex items-center space-x-3 overflow-x-auto pb-1">
+            <a href="#handbags-section" class="px-4 py-2 bg-surface-container-low text-secondary hover:text-primary hover:bg-surface-container font-label-sm text-label-sm uppercase tracking-[0.2em] transition-all duration-300 border border-outline-variant/30">Handbag Collection</a>
+            <a href="#footwear-section" class="px-4 py-2 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-[0.2em] transition-all duration-300">All Footwear</a>
+          </div>
+          <p class="font-body-md text-body-md text-on-surface-variant max-w-md font-light text-left md:text-right">Artisanal silhouettes sculpted in our Nairobi atelier, featuring rich embossed calfskin, bespoke metallic chain accents, and architectural cutouts.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop">
+        <!-- Footwear Item 1 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy6QgLfuJrStG-TZWtqVCIts2trDKlVYMpD-TMnVimQnggc8GgrNBFmOE0kdLUEHIOhNAIJeHJlr99HjUjIbouKJzzmdVkw6hVn-la_-d6HOgcpStXItCm2Oc9naqsE9n97MxVCvOjNAx5IJvsDHxwSDZX2wy4ySd5jAvgGjwbqE-bO7AclbbaZ8E0IZhfC7gmmbS-6GLDSxc_NJneo9JnOTl9PKp1cMXNsVaTqgdkWp4BPD_-XMTQZ9O-Pp5NxBIt-xY" alt="The Monogram Chain Slide">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Signature Monograph</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Handcrafted Slide</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Monogram Chain Slide</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Imprinted emblem monogram leather crowned with sculpted 24k-sheen curb links.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Monogram%20Chain%20Slide" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footwear Item 2 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYOO1RpI-KpP8cNANYBK339i0Kkjx0GmOdiYZ_57CATd0lG1hrOuQSg06eU35PEW2jDQgiVVwFDJ6AnnOIEbVAsML9U2QOgGkQNM9fcKC_W0hyamWwMCPC0QCD0fHL-d4zLXquSpUEo6U7kV-z8GU4nDZbMQ-_0DriKHjtSJGuIgAWYx3cN87B2CVfTAFBmhi4XRJ4levQKgCZ_KgCtY2OwLPhFLTf0eAw66xKgMm9EVABjSO2IVStkSXA2C_7kfgCPTg" alt="The Noir Curb Slide">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Atelier Edition</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Kenyan Leatherwork</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Noir Curb Slide</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Sleek midnight calf leather fitted with dual-tone polished lacquer and gilded chain embellishment.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Noir%20Curb%20Slide" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footwear Item 3 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa_NB_B5qDIBldU1adanhccfREKdxgrrF6-I5ECyzjdJI3ah3CZo3WTeW_YDgQ_V_8Kv9XY6Llm2SfDDbN-zB4ZvFJwKZ9gwWU6lHQZdOag6PnBdf4RLkzj0hsFIDXIW7WJISYr9DGN7r_WkGtvvrjC-uWINywkYblbx5DwqngM5D2DYacM0v1dUqbBdvLD2TwK1ARQ7SAulYZwh08HuPmEYTKUAVa5hcgEWWCBgP67atmGke_9atewvtVVSYXInQS534" alt="The Gilded Python Slide">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Bespoke Foil</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Handcrafted Slide</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Gilded Python Slide</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Luminous gold scale-textured leather structured with an architectural double-band vamp.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Gilded%20Python%20Slide" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footwear Item 4 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl5L-KkG3wZCSXnzwdCWQS-k_-rrldxfolX5tL-YPrePJwBxnOGdgeM5iLJBpXqV7HFiN9bH-hh75xFjMLCWTDwD5sdh1sdzS518kz1l5JFGe3m53yDvh05gR0VfMPEAa0LENN04gnPgMg13mv2qOEDcIsRnrKr5v3CtSzsI1cojEDrfxXTIHrwGUBTwXK1PQI0c4v57FC2aFKLPkpHdfuvc1PJ3Al_zlJuVT-Qxn__0iVkmA0Nimzd_EZ37I10Dv2TOo" alt="The Chromatic Woven Slide">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Couture Weave</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Kenyan Leatherwork</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Chromatic Woven Slide</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Intricately interlocked metallic strands in fuchsia, citrus orange, platinum silver, and warm brass.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Chromatic%20Woven%20Slide" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footwear Item 5 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8H9gvtR5s4eZThEv9BaVY8GuVZ_knGfIQLQ6vKD9fTsc_Da7DaVFJ5BamWeTwGI2YWFGYBUxQhcMol2_-8OmOkZ4-5bKhprM1lPDJhDLIKMReOzcTl1mPPuJpHlv6PA1-f86pl0nY6m0F_wkI504H7DJztimEXn1qPdhKtzr45TTxv6A9cp8CJT5xwUhZorbOxVrxPPiVZvbBsV55rSvi8B067LE_Mblqxb6ywkAr8iWValpdLHUGkILPKuLSraswBeU" alt="The Imperial Rouge Slide">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Bold Palette</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Handcrafted Slide</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Imperial Rouge Slide</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Vivid carmine textured leather featuring sculpted geometric cutout bands and cushioned insole.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Imperial%20Rouge%20Slide" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footwear Item 6 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjwfZKxNhCoYMbtAvp4WaCM2QHBZeCYfvTKRA9_jTY6rOcgU00Yf5TdHC5pW30xB2QxRRbZXDT7NeFokKlNTArXXVYgdABWaeM_9pMrwx1Bm2b4HT-6p0W4JvbGuTP-EvOXnUnbvWrIqwwiU9KGlCcirluRAlANMeEU0Ke4SGztMLnkZtekRnfdotVJn9QsnJvklE1A4BZG0UqTA65gXUPK4-IgQkxcgnU85QTu4zllmLOPpScFqJB5FHaHO0lT6KHfoc" alt="The Solar Saffron Slide">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Summer High</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Kenyan Leatherwork</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Solar Saffron Slide</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Micro-pebbled luminous yellow leather with modern interlocking geometric H-strap motif.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Solar%20Saffron%20Slide" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footwear Item 7 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqUS7wzbPB7VzZkaNKTFBI-Ob1hWXxJVw69QLuumZ4Yelwi9tG3K3VO7OmukslAwVs6YUy4P9FBhtzse93QJ29ed7EPfjHv6E5FCCu7XBs2aLpChyNRiWZGBxdJVcQRwBpSqK3Pztbqq9k4NcASaFnEP1TUHHPwetCbiyUfgjKIDT6758zDjg6JNxy5ki0z2BR_9Q_029ABlCFlKZSLq04lXjl0F5Slacbrq8b_vXhUTcVNRjoRD6p0qw9d6-dzYTvCYE" alt="The Pearl Embellished Slide">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Evening Soirée</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Handcrafted Slide</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Pearl Embellished Slide</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Lustrous rose gold satin base encrusted with rows of ivory pearls and golden caviar beading.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Pearl%20Embellished%20Slide" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footwear Item 8 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJLbOacTpKv3H0j7eJ3bHFdsjopbEhmXmt_qn4KNU4mHY4QBs-OPomyQNihqlLFhUHP5doAaqrDVwVzsswwur-fW1gCxPgvMjKBOD-IMYj9bb-uCBooye4I-E5NapJqpMeLT--VTcD_ZXMVp__DRRe5F8v7dO1X24Ir4sIAzRo_NQDyzxN647PATBoiB6mc4GzcHQRGCtxhjGoSRfNv7510sN-g3-m6uyNRirQ1yewomr0x1ncVe8x5HwRtieTcgKJrR0" alt="The Dual Tan Cutout Slide">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Artisan Neutral</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Kenyan Leatherwork</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Dual Tan Cutout Slide</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Contrasting textured beige vamp set against a cognac sole with perimeter stitch craftsmanship.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Dual%20Tan%20Cutout%20Slide" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footwear Item 9 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj9-yxgjs0YyAe16BCvMPodI3nMu8-Fz4YK-I5GU9BZ7uFu5fUL5xQ43NP0W16y7AVgkkN203IqnvtCty7BUpMPq1Wzv54gPl3YzBL1OA7h9Db3Rgokm9Gr5yK_KOCDLl-vbiyQFFEKRcOk4_Ba__x5omJ9WOBsQmu19aLif7OuVACJpRCwZdyvHOn3G0KeYDy0g2eNV1GN4eGQeZ-Evyzl74OiErQuEJXiD3h8PrWYRTyjxCqniQqjxJ9K4RynXOHU3k" alt="The Obsidian Cross Slide">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Minimalist Form</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Kenyan Leatherwork</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Obsidian Cross Slide</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Intersecting matte black pebbled straps on a rich cognac footbed with artisanal saddle stitching.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Obsidian%20Cross%20Slide" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footwear Item 10 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo3nq7OttVkybRxb-vKrzVquPu4EXtbBPDqbgB15U3m8zDQiVEitbV0KGt5KapvOZjsQk4EbqceJTFXGODywa9IeRZWNsuNT-2V16FjWgpaVSt7BQWPqO7XO_v6dxZelLcVp5QWeMyfPICjFzVUQlx6YFYWDxP_4xisE2SdQJ9pjGEPNNUvcWTBe0-r8xVrIC3ZvYaBtaWWWTTBJ1L1XzZx4aRPuyq0C0KAg2DPT_-owXSN6uhPRhzkZ2uU2yZNSOJ8HI" alt="The Safari Sling Slide">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Atelier Classic</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Kenyan Leatherwork</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Safari Sling Slide</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Supple chestnut leather with sculpted multi-aperture cutouts and a comfort stretch heel band.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Safari%20Sling%20Slide" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footwear Item 11 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4XED7Psrw1bRCzQ07bwwk2OkAgcizNww0GOV0kB1RFZgzYmuc3RC4FFFXGtOoLtJDcSxi7IuR-9loM53oKzMDfJtlIOlcqcFPDNCi7NAdwUNO67dWVV1sg0WBmaRyE0gB-i2hESpX8eugqokdiNp8ygUkRZdUyp3UpOxBQ83CZdtuNEyOq8Z94DcV5yVuoaduTTcewBzOzGw9YdqG6_P9mAm50GXQaOCHMGKPoyBivYD7U3lt8XJVQeSrk_gEVCNwTvA" alt="The Ivory Monograph Slide">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Pristine Line</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Handcrafted Slide</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Ivory Monograph Slide</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Textured alabaster leather articulated with symmetry weaves and an ergonomic silhouette.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Ivory%20Monograph%20Slide" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footwear Item 12 -->
+        <div class="group relative flex flex-col bg-surface-container-low transition-all duration-700 hover:bg-surface-container hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85),0_0_35px_-5px_rgba(212,175,55,0.15)]">
+          <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-lowest">
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-12LuvEx0Y_31GSL4xUjLliqrENfSrbo5uMI0VYY5MQFkSmWMRwLNQA1DqWDw-hQpWFcVjr0WSknc4me1nkPnNer1cCmnw2UkSuPA2g6bG_0bqnfDJ1m-xyicvXhv3b0poZ5P0Td3C73Gu6mTXouSfd6VBNbbrQxitgtg4ScDDJ-mFXrBy74pI5aAVURQpBAVenaEEKrSDAZJ6vapGpczda5XKt0shTOzy1EohIhF3CEIcrbKiwiEfeh3-tkPzqFPtkA" alt="The Artisan Loop Slide">
+            <div class="absolute top-4 left-4 bg-surface/80 backdrop-blur-md px-3 py-1 font-label-sm text-label-sm uppercase tracking-widest text-primary">Craftsman Edition</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary/60">Kenyan Leatherwork</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-wide mt-1 group-hover:text-primary transition-colors">The Artisan Loop Slide</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 font-light">Full-grain amber calf leather with sculpted toe-loop architecture and hand-waxed edges.</p>
+            </div>
+            <div class="pt-6 mt-6 flex items-center justify-between border-t border-outline-variant/30">
+              <span class="font-label-sm text-label-sm text-secondary-fixed/80 tracking-widest uppercase">Price Upon Request</span>
+              <a class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="https://wa.me/254700309655?text=Inquiry%20regarding%20The%20Artisan%20Loop%20Slide" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp<span class="material-symbols-outlined text-[14px]">north_east</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHILOSOPHY / QUOTE SECTION -->
+    <section class="w-full bg-surface-container py-space-2xl relative overflow-hidden">
+      <div class="max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex flex-col items-center text-center">
+        <span class="font-label-sm text-label-sm uppercase tracking-[0.4em] text-primary mb-4">Philosophy of TETU</span>
+        <blockquote class="font-headline-md lg:font-headline-lg text-headline-md lg:text-headline-lg text-on-surface max-w-4xl tracking-tight leading-snug">"True luxury is not about showy excess, but the quiet pride of authentic Kenyan craft and timeless elegance."</blockquote>
+        <div class="mt-8 flex items-center space-x-4">
+          <span class="w-12 h-[1px] bg-outline-variant"></span>
+          <span class="font-label-md text-label-md text-secondary uppercase tracking-[0.25em]">Atelier Directory • Nairobi</span>
+          <span class="w-12 h-[1px] bg-outline-variant"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT ANCHOR (for navigation) -->
+    <div id="contact" class="w-full h-0"></div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="w-full bg-surface-container-lowest border-t border-primary/20 py-space-2xl">
+  <div class="max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex flex-col items-center justify-center text-center space-y-8">
+    <div class="flex flex-col items-center">
+      <span class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-[0.25em] font-normal">TETU<span class="font-body-sm text-body-sm tracking-[0.35em] text-primary ml-2 uppercase">COLLECTION</span></span>
+      <p class="font-body-sm text-body-sm text-on-surface-variant max-w-md mt-2 font-light">Bespoke Kenyan leathercraft &amp; artisanal evening luxury from Nairobi.</p>
+    </div>
+
+    <!-- Social Media Links -->
+    <div class="flex items-center gap-6 pt-2">
+      <a class="group flex items-center gap-2 text-secondary-fixed/60 hover:text-primary transition-colors duration-300" href="https://www.tiktok.com/@tetucollection?_r=1&_d=ec9145l8ih51jj&sec_uid=MS4wLjABAAAAkJCod8PPbU2JYWQWJAxcmEJQx8rNmAU6BltOCit7fhA61G-xjRPUIw9SC1lgw-kW&share_author_id=7635027922684609544&sharer_language=en&source=h5_m&u_code=f393lffkck5fi3&timestamp=1790184480&user_id=7635027922684609544&sec_user_id=MS4wLjABAAAAkJCod8PPbU2JYWQWJAxcmEJQx8rNmAU6BltOCit7fhA61G-xjRPUIw9SC1lgw-kW&item_author_type=1&utm_source=whatsapp&utm_campaign=client_share&utm_medium=android&share_iid=7665637160834336519&share_link_id=6024e564-913e-4088-835b-f3e469698981&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb7360&social_share_type=5&enable_checksum=1" target="_blank" rel="noopener noreferrer" aria-label="TETU COLLECTION on TikTok">
+        <svg class="w-5 h-5 fill-current transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+        <span class="font-label-sm text-label-sm uppercase tracking-widest">TikTok</span>
+      </a>
+      <a class="group flex items-center gap-2 text-secondary-fixed/60 hover:text-primary transition-colors duration-300" href="https://www.instagram.com/tetucollection?igsh=MXF2cDZ5b3FyZ3V1" target="_blank" rel="noopener noreferrer" aria-label="TETU COLLECTION on Instagram">
+        <svg class="w-5 h-5 fill-current transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        <span class="font-label-sm text-label-sm uppercase tracking-widest">Instagram</span>
+      </a>
+    </div>
+
+    <div>
+      <a class="group inline-flex items-center gap-3 px-8 py-3.5 bg-surface-container-low border border-primary/30 text-on-surface hover:text-primary hover:border-primary font-label-md text-label-md uppercase tracking-[0.2em] transition-all duration-300 hover:shadow-[0_0_25px_rgba(242,202,80,0.2)]" href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer">
+        <svg class="w-4 h-4 fill-current text-primary transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+        <span>Contact on WhatsApp: +254700309655</span>
+      </a>
+    </div>
+    <div class="w-full max-w-2xl h-[1px] bg-gradient-to-r from-transparent via-outline-variant/40 to-transparent"></div>
+    <div class="flex flex-col sm:flex-row items-center justify-between w-full gap-4 text-center sm:text-left">
+      <p class="font-label-sm text-label-sm text-secondary-fixed/70 uppercase tracking-widest">© 2026 TETU COLLECTION. All rights reserved.</p>
+      <div class="flex items-center gap-2">
+        <span class="w-6 h-6 rounded-full bg-primary/20 border border-primary/50 text-primary flex items-center justify-center font-headline-sm text-[12px] font-semibold select-none">B</span>
+        <span class="font-label-sm text-label-sm text-secondary-fixed/80 uppercase tracking-widest">Made by <span class="text-primary font-normal">Bossy designs</span></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- JAVASCRIPT: Mobile menu & Audio toggle -->
+<script>
+  (function() {
+    // Audio toggle
+    const audioToggle = document.getElementById('campaign-audio-toggle');
+    const audioIcon = document.getElementById('audio-icon');
+    const audioLabel = document.getElementById('audio-label');
+    let isPlaying = false;
+
+    if (audioToggle && audioIcon && audioLabel) {
+      audioToggle.addEventListener('click', function() {
+        isPlaying = !isPlaying;
+        if (isPlaying) {
+          audioIcon.textContent = 'volume_up';
+          audioLabel.textContent = 'Atmosphere Active';
+          audioToggle.classList.add('text-primary');
+        } else {
+          audioIcon.textContent = 'volume_off';
+          audioLabel.textContent = 'Atmosphere Sound';
+          audioToggle.classList.remove('text-primary');
+        }
+      });
+    }
+
+    // Mobile menu
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+    const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+    const body = document.body;
+
+    function openMenu() {
+      mobileMenuPanel.classList.remove('-translate-x-full');
+      mobileMenuPanel.classList.add('translate-x-0');
+      mobileMenuBackdrop.classList.remove('hidden');
+      body.classList.add('menu-open');
+    }
+
+    function closeMenu() {
+      mobileMenuPanel.classList.add('-translate-x-full');
+      mobileMenuPanel.classList.remove('translate-x-0');
+      mobileMenuBackdrop.classList.add('hidden');
+      body.classList.remove('menu-open');
+    }
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (mobileMenuPanel.classList.contains('-translate-x-full')) {
+          openMenu();
+        } else {
+          closeMenu();
+        }
+      });
+    }
+
+    if (mobileMenuBackdrop) {
+      mobileMenuBackdrop.addEventListener('click', closeMenu);
+    }
+
+    // Close mobile menu when clicking a link
+    const mobileLinks = mobileMenuPanel.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close menu on window resize if width becomes >= 1024px
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 1024) {
+        closeMenu();
+      }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  })();
+</script>
+<!-- 1. Config MUST load first — everything reads from window.TETU_CONFIG -->
+<script src="config.js"></script>
+
+<!-- 2. Core interactive modules (each one can run standalone) -->
+<script src="whatsapp.js"></script>
+<script src="cart.js"></script>
+<script src="search.js"></script>
+<script src="gallery.js"></script>
+
+<!-- 3. Motion & animation layer -->
+<script src="animation.js"></script>
+
+<!-- 4. Navigation chrome (reads config for breakpoint + selectors) -->
+<script src="navigation.js"></script>
+
+<!-- 5. Page-level logic (star rating, review form, audio toggle) -->
+<script src="main.js"></script>
+</body>
+</html>

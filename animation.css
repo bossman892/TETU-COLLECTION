@@ -1,0 +1,810 @@
+/* ==========================================================================
+   TETU COLLECTION — KEYFRAME & MOTION ANIMATION STYLESHEET (animation.css)
+   Brand: TETU COLLECTION
+   Atelier / Made by: Bossy designs
+   Concierge / Direct WhatsApp: +254700309655
+   Theme: Luxury Dark Noir & Brushed Warm Gold (#d4af37)
+   Description: Comprehensive CSS transitions, keyframes, gold glow pulses,
+                staggered entrance reveals, shimmer sheens, floating badges,
+                mobile nav drawer animations, navigation link motion, and
+                accessibility (prefers-reduced-motion) compliance.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design Tokens & Motion Foundations
+   -------------------------------------------------------------------------- */
+:root {
+  /* Timing Curves */
+  --ease-luxury-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-luxury-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* Standard Durations */
+  --duration-fast: 0.2s;
+  --duration-normal: 0.35s;
+  --duration-slow: 0.75s;
+  --duration-deliberate: 1.2s;
+
+  /* Atmospheric Color Variables */
+  --gold-glow-subtle: rgba(212, 175, 55, 0.18);
+  --gold-glow-medium: rgba(212, 175, 55, 0.35);
+  --gold-glow-vibrant: rgba(212, 175, 55, 0.65);
+}
+
+/* --------------------------------------------------------------------------
+   2. Core Entrance & Reveal Animations
+   -------------------------------------------------------------------------- */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.94) translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Utility Reveal Classes */
+.tc-fade-in {
+  animation: fadeIn var(--duration-slow) var(--ease-luxury-out) forwards;
+}
+
+.tc-fade-in-up {
+  animation: fadeInUp var(--duration-slow) var(--ease-luxury-out) forwards;
+}
+
+.tc-fade-in-down {
+  animation: fadeInDown var(--duration-slow) var(--ease-luxury-out) forwards;
+}
+
+.tc-fade-in-left {
+  animation: fadeInLeft var(--duration-slow) var(--ease-luxury-out) forwards;
+}
+
+.tc-fade-in-right {
+  animation: fadeInRight var(--duration-slow) var(--ease-luxury-out) forwards;
+}
+
+.tc-scale-up {
+  animation: scaleUp var(--duration-slow) var(--ease-luxury-out) forwards;
+}
+
+/* Scroll Triggered JavaScript Observer Classes (used by animation.js) */
+.tetu-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s var(--ease-luxury-out), transform 0.85s var(--ease-luxury-out);
+  will-change: opacity, transform;
+}
+
+.tetu-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tetu-reveal-scale {
+  opacity: 0;
+  transform: scale(0.95) translateY(20px);
+  transition: opacity 0.9s var(--ease-luxury-out), transform 0.9s var(--ease-luxury-out);
+  will-change: opacity, transform;
+}
+
+.tetu-reveal-scale.is-revealed {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.tetu-reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.85s var(--ease-luxury-out), transform 0.85s var(--ease-luxury-out);
+}
+
+.tetu-reveal-left.is-revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.tetu-reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.85s var(--ease-luxury-out), transform 0.85s var(--ease-luxury-out);
+}
+
+.tetu-reveal-right.is-revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stagger Delays for Grids & Product Collections */
+.stagger-1 { animation-delay: 0.08s; transition-delay: 0.08s; }
+.stagger-2 { animation-delay: 0.16s; transition-delay: 0.16s; }
+.stagger-3 { animation-delay: 0.24s; transition-delay: 0.24s; }
+.stagger-4 { animation-delay: 0.32s; transition-delay: 0.32s; }
+.stagger-5 { animation-delay: 0.40s; transition-delay: 0.40s; }
+.stagger-6 { animation-delay: 0.48s; transition-delay: 0.48s; }
+.stagger-7 { animation-delay: 0.56s; transition-delay: 0.56s; }
+.stagger-8 { animation-delay: 0.64s; transition-delay: 0.64s; }
+
+/* --------------------------------------------------------------------------
+   3. Ambient Warm Gold Pulses & Glow Effects
+   -------------------------------------------------------------------------- */
+@keyframes goldPulse {
+  0%, 100% {
+    box-shadow: 0 0 14px var(--gold-glow-subtle), 0 0 1px rgba(212, 175, 55, 0.4);
+    border-color: rgba(212, 175, 55, 0.28);
+  }
+  50% {
+    box-shadow: 0 0 28px var(--gold-glow-medium), 0 0 8px rgba(212, 175, 55, 0.6);
+    border-color: rgba(212, 175, 55, 0.7);
+  }
+}
+
+@keyframes goldDotPulse {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.5;
+    box-shadow: 0 0 4px #d4af37;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+    box-shadow: 0 0 12px #d4af37;
+  }
+}
+
+@keyframes whatsappPulse {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(37, 211, 102, 0.25), 0 4px 15px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 26px rgba(37, 211, 102, 0.55), 0 6px 22px rgba(37, 211, 102, 0.35);
+  }
+}
+
+.anim-pulse-gold {
+  animation: goldPulse 3.5s ease-in-out infinite;
+}
+
+.anim-dot-pulse {
+  animation: goldDotPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.anim-pulse-whatsapp {
+  animation: whatsappPulse 3s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   4. Luxury Metallic Shimmer & Light Sweep
+   -------------------------------------------------------------------------- */
+@keyframes goldShimmerSweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.gold-shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #caa12c 0%,
+    #d4af37 25%,
+    #fff2b2 50%,
+    #d4af37 75%,
+    #caa12c 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: goldShimmerSweep 6s linear infinite;
+  display: inline-block;
+}
+
+/* Card Surface Sheen Overlay */
+.card-sheen-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-sheen-sweep::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 42%,
+    rgba(212, 175, 55, 0.08) 50%,
+    transparent 58%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.card-sheen-sweep:hover::after {
+  opacity: 1;
+  animation: sheenSlide 1.2s var(--ease-luxury-out);
+}
+
+@keyframes sheenSlide {
+  0% {
+    transform: translate(-100%, -100%) rotate(25deg);
+  }
+  100% {
+    transform: translate(100%, 100%) rotate(25deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Floating & Gentle Levitation (For Atelier Emblems & Monograms)
+   -------------------------------------------------------------------------- */
+@keyframes floatSubtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes floatEmblem {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+.anim-float {
+  animation: floatSubtle 4.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.anim-float-emblem {
+  animation: floatEmblem 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   6. Luxury Interactive Hover Dynamics
+   -------------------------------------------------------------------------- */
+/* Elevated Hover with Deep Noir Shadow */
+.hover-luxury-lift {
+  transition: transform var(--duration-normal) var(--ease-luxury-out),
+              box-shadow var(--duration-normal) var(--ease-luxury-out),
+              border-color var(--duration-normal) var(--ease-luxury-out);
+}
+
+.hover-luxury-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 20px var(--gold-glow-subtle);
+  border-color: rgba(212, 175, 55, 0.45);
+}
+
+.hover-luxury-lift:active {
+  transform: translateY(-1px);
+}
+
+/* Product Visual Zoom In Frame */
+.hover-zoom-img {
+  overflow: hidden;
+}
+
+.hover-zoom-img img {
+  transition: transform 0.55s var(--ease-luxury-out), filter 0.55s var(--ease-luxury-out);
+}
+
+.hover-zoom-img:hover img {
+  transform: scale(1.06);
+}
+
+/* Magnetic Link Underline Drawing */
+.hover-draw-line {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-draw-line::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background-color: #d4af37;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  transition: width var(--duration-normal) var(--ease-luxury-out);
+}
+
+.hover-draw-line:hover::after,
+.hover-draw-line.active::after {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   7. Modal & Off-Canvas Drawer Transitions
+   -------------------------------------------------------------------------- */
+@keyframes modalBackdropIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes drawerSlideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.tc-modal-enter {
+  animation: modalBackdropIn 0.3s var(--ease-luxury-out) forwards;
+}
+
+.tc-modal-enter .tc-modal-window {
+  animation: modalContentIn 0.35s var(--ease-luxury-out) forwards;
+}
+
+.tc-drawer-enter {
+  animation: drawerSlideIn 0.35s var(--ease-luxury-out) forwards;
+}
+
+/* Toast Slide and Bounce Notification */
+@keyframes toastBounceIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 30px) scale(0.92);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -4px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+.anim-toast-enter {
+  animation: toastBounceIn 0.4s var(--ease-spring) forwards;
+}
+
+/* --------------------------------------------------------------------------
+   8. Subtle Continuous Rotations & Spinners
+   -------------------------------------------------------------------------- */
+@keyframes spinSlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.anim-spin-slow {
+  animation: spinSlow 24s linear infinite;
+}
+
+/* Loading Spinner with Warm Gold Accent */
+.tc-spinner {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid rgba(212, 175, 55, 0.15);
+  border-top-color: #d4af37;
+  animation: spinSlow 0.8s linear infinite;
+}
+
+/* --------------------------------------------------------------------------
+   9. SMOOTH MOBILE NAVIGATION ANIMATIONS
+   -------------------------------------------------------------------------- */
+
+/* Hamburger Toggle Icon Transition */
+.mobile-menu-toggle {
+  transition: transform var(--duration-normal) var(--ease-luxury-out),
+              color var(--duration-fast) ease;
+}
+
+.mobile-menu-toggle:hover,
+.mobile-menu-toggle:focus-visible {
+  transform: scale(1.05);
+}
+
+.mobile-menu-toggle.is-active {
+  transform: rotate(90deg);
+}
+
+.mobile-menu-toggle .material-symbols-outlined {
+  transition: transform var(--duration-normal) var(--ease-luxury-out);
+}
+
+/* Backdrop Fade Animation */
+.mobile-menu-backdrop {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ease-luxury-out),
+              visibility 0.3s var(--ease-luxury-out);
+}
+
+.mobile-menu-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Slide-In Panel Animation */
+.mobile-menu-panel {
+  transform: translateX(100%);
+  transition: transform 0.35s var(--ease-luxury-out);
+  will-change: transform;
+}
+
+.mobile-menu-panel.open {
+  transform: translateX(0);
+}
+
+/* Staggered Mobile Menu Link Entrance */
+.mobile-menu-panel a {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity var(--duration-normal) var(--ease-luxury-out),
+              transform var(--duration-normal) var(--ease-luxury-out),
+              color var(--duration-fast) ease,
+              padding-left var(--duration-fast) ease;
+}
+
+.mobile-menu-panel.open a {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Staggered delays for mobile menu links */
+.mobile-menu-panel.open a:nth-child(1) { transition-delay: 0.08s; }
+.mobile-menu-panel.open a:nth-child(2) { transition-delay: 0.14s; }
+.mobile-menu-panel.open a:nth-child(3) { transition-delay: 0.20s; }
+.mobile-menu-panel.open a:nth-child(4) { transition-delay: 0.26s; }
+.mobile-menu-panel.open a:nth-child(5) { transition-delay: 0.32s; }
+.mobile-menu-panel.open a:nth-child(6) { transition-delay: 0.38s; }
+
+/* WhatsApp Link Special Entrance */
+.mobile-menu-panel a.mobile-whatsapp-link {
+  transition: background var(--duration-normal) var(--ease-luxury-out),
+              color var(--duration-normal) var(--ease-luxury-out),
+              transform var(--duration-normal) var(--ease-luxury-out);
+}
+
+.mobile-menu-panel a.mobile-whatsapp-link:hover {
+  transform: translateX(4px);
+}
+
+/* --------------------------------------------------------------------------
+   10. NAVIGATION LINK ANIMATIONS
+   -------------------------------------------------------------------------- */
+
+/* Desktop Nav Link Base Transition */
+.nav-links a {
+  transition: color var(--duration-fast) ease,
+              font-size var(--duration-fast) ease,
+              letter-spacing var(--duration-fast) ease;
+  position: relative;
+}
+
+/* Gold Hover State */
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: #d4af37;
+}
+
+/* Animated Underline Draw (Hover) */
+.nav-links a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #d4af37 0%, #e5c158 50%, #d4af37 100%);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  transition: width var(--duration-normal) var(--ease-luxury-out);
+}
+
+.nav-links a:hover::before,
+.nav-links a:focus-visible::before {
+  width: 100%;
+}
+
+/* Active Page Indicator with Persistent Gold Underline */
+.nav-links a.active {
+  color: #d4af37;
+}
+
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: #d4af37;
+  box-shadow: 0 0 6px #d4af37;
+  animation: navUnderlineGlow 2.5s ease-in-out infinite;
+}
+
+.nav-links a.active::before {
+  width: 0;
+  animation: none;
+}
+
+@keyframes navUnderlineGlow {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(212, 175, 55, 0.6);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(212, 175, 55, 1);
+    opacity: 0.85;
+  }
+}
+
+/* Active Link Subtle Pulse */
+@keyframes navActivePulse {
+  0%, 100% {
+    color: #d4af37;
+  }
+  50% {
+    color: #e5c158;
+  }
+}
+
+.nav-links a.active:hover {
+  animation: navActivePulse 2s ease-in-out infinite;
+}
+
+/* Mobile Nav Link Hover Animation */
+.mobile-menu-panel a:hover,
+.mobile-menu-panel a.active {
+  color: #d4af37;
+  padding-left: 0.5rem;
+  transform: translateX(4px);
+}
+
+/* Mobile Nav Link Arrow Slide-In (Decor) */
+.mobile-menu-panel a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+  opacity: 0;
+  color: #d4af37;
+  font-size: 0.9rem;
+  transition: transform var(--duration-normal) var(--ease-luxury-out),
+              opacity var(--duration-normal) var(--ease-luxury-out);
+}
+
+.mobile-menu-panel a {
+  position: relative;
+}
+
+.mobile-menu-panel a:hover::after,
+.mobile-menu-panel a.active::after {
+  transform: translateY(-50%) translateX(0);
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   11. SMOOTH SCROLL BEHAVIOR
+   -------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Override for reduced motion users */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   12. Accessibility & Reduced Motion Preferences
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
+  }
+
+  .tetu-reveal,
+  .tetu-reveal-scale,
+  .tetu-reveal-left,
+  .tetu-reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .gold-shimmer-text {
+    background: #d4af37 !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    color: #d4af37 !important;
+    animation: none !important;
+  }
+
+  .anim-float,
+  .anim-float-emblem,
+  .anim-pulse-gold,
+  .anim-pulse-whatsapp,
+  .anim-dot-pulse,
+  .anim-spin-slow {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* Mobile nav links should be visible immediately */
+  .mobile-menu-panel a {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .mobile-menu-panel {
+    transition: none !important;
+  }
+
+  .mobile-menu-backdrop {
+    transition: none !important;
+  }
+
+  .nav-links a.active::after {
+    animation: none !important;
+  }
+
+  .nav-links a.active:hover {
+    animation: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. Touch Device Optimizations
+   -------------------------------------------------------------------------- */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover animation on touch (avoids sticky states) */
+  .nav-links a:hover::before {
+    width: 0;
+  }
+
+  .nav-links a.active::before {
+    width: 0;
+  }
+
+  .hover-luxury-lift:hover {
+    transform: none;
+  }
+
+  .hover-zoom-img:hover img {
+    transform: none;
+  }
+
+  .card-sheen-sweep:hover::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   14. Landscape Mobile Adjustments
+   -------------------------------------------------------------------------- */
+@media screen and (max-height: 520px) and (orientation: landscape) {
+  .mobile-menu-panel {
+    padding-top: 4rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .mobile-menu-panel a {
+    padding: 0.7rem 0;
+    font-size: 0.78rem;
+  }
+
+  .mobile-menu-panel a.mobile-whatsapp-link {
+    margin-top: 1rem;
+    padding: 0.7rem 1rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   15. Print — Disable All Motion
+   -------------------------------------------------------------------------- */
+@media print {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .mobile-menu-panel,
+  .mobile-menu-backdrop,
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+}

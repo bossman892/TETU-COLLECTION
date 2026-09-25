@@ -1,0 +1,1136 @@
+/* ==========================================================================
+   TETU COLLECTION — STYLESHEET (style.css)
+   Brand: TETU COLLECTION
+   Atelier / Made by: Bossy designs
+   Theme: Luxury Dark Noir & Brushed Warm Gold (#d4af37)
+   Typography: Bodoni Moda (Headings / Display), Plus Jakarta Sans / Inter (Body)
+   WhatsApp Direct: +254700309655
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Variables & Design Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand Palette */
+  --color-primary: #d4af37;             /* Regal Warm Gold */
+  --color-primary-hover: #e5c158;       /* Glowing Gold hover */
+  --color-primary-dim: rgba(212, 175, 55, 0.15);
+  --color-primary-border: rgba(212, 175, 55, 0.28);
+  --color-primary-glow: rgba(212, 175, 55, 0.4);
+
+  /* Backgrounds & Surfaces (Noir Midnight Spectrum) */
+  --color-surface-lowest: #07090e;      /* Deepest Obsidian Base */
+  --color-surface-dim: #0b0e15;         /* Standard Page Surface */
+  --color-surface: #10131a;             /* Elevated Noir */
+  --color-surface-card: #151821;        /* Card & Module Background */
+  --color-surface-container: #191c26;   /* Active / Focus surfaces */
+  --color-surface-high: #212532;        /* Highlight cards / headers */
+
+  /* Text & Typography Colors */
+  --color-text-main: #f5f5f7;           /* Crisp Luxury Off-White */
+  --color-text-muted: #9ba1b0;          /* Subtle Secondary Label */
+  --color-text-dim: #646a7a;            /* Footnotes, Borders & Timestamps */
+  --color-text-gold: #e6c56b;           /* Accent serif gold */
+
+  /* Borders & Dividers */
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-gold: rgba(212, 175, 55, 0.25);
+  --border-gold-focus: rgba(212, 175, 55, 0.6);
+
+  /* Typography Font Families */
+  --font-serif: 'Bodoni Moda', 'Playfair Display', Didot, 'Cinzel', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* Shadows & Atmospheric Radiance */
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 1px rgba(212, 175, 55, 0.15);
+  --shadow-gold-glow: 0 0 25px rgba(212, 175, 55, 0.18);
+  --shadow-gold-strong: 0 0 35px rgba(212, 175, 55, 0.35);
+
+  /* Border Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Global Reset & Base Setup
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--color-surface-dim);
+  color: var(--color-text-main);
+  /* Prevent horizontal overflow on mobile */
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-surface-dim);
+  color: var(--color-text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Prevent body scroll when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Atmospheric Grain Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.04) 0%, transparent 60%);
+  z-index: 0;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+}
+
+/* Hide default scrollbar for a cleaner luxury feel */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Typography Utilities
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, .font-serif, .brand-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: var(--color-text-main);
+}
+
+.text-gold {
+  color: var(--color-primary);
+}
+
+.text-italic {
+  font-style: italic;
+  font-family: var(--font-serif);
+}
+
+.eyebrow-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-primary-dim);
+  border: 1px solid var(--color-primary-border);
+}
+
+.eyebrow-badge::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  box-shadow: 0 0 8px var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   4. Header & Navigation Chrome
+   -------------------------------------------------------------------------- */
+.header-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 3.5rem;
+  background: rgba(11, 14, 21, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 110;
+}
+
+.brand-logo-emblem {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--color-primary-border);
+  background: radial-gradient(circle, #212532 0%, #10131a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.15);
+}
+
+.brand-names {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-names .name-primary {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #fff;
+}
+
+.brand-names .name-sub {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--color-primary);
+}
+
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--color-primary);
+  box-shadow: 0 0 6px var(--color-primary);
+}
+
+.nav-whatsapp-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary-border);
+  background: rgba(212, 175, 55, 0.04);
+  transition: all var(--transition-fast);
+}
+
+.nav-whatsapp-cta:hover {
+  background: var(--color-primary-dim);
+  border-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   4b. Mobile Menu Toggle & Panel (Smooth Navigation)
+   -------------------------------------------------------------------------- */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-text-main);
+  cursor: pointer;
+  padding: 8px;
+  z-index: 110;
+  transition: color var(--transition-fast);
+}
+
+.mobile-menu-toggle:hover {
+  color: var(--color-primary);
+}
+
+.mobile-menu-toggle svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Mobile Menu Backdrop */
+.mobile-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 9, 14, 0.8);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 90;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-menu-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile Menu Panel */
+.mobile-menu-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 280px;
+  max-width: 85vw;
+  background: var(--color-surface-card);
+  border-left: 1px solid var(--color-primary-border);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: 6rem 1.75rem 2rem;
+  gap: 1.25rem;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  overflow-y: auto;
+}
+
+.mobile-menu-panel.open {
+  transform: translateX(0);
+}
+
+.mobile-menu-panel a {
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: color var(--transition-fast), padding-left var(--transition-fast);
+}
+
+.mobile-menu-panel a:hover,
+.mobile-menu-panel a.active {
+  color: var(--color-primary);
+  padding-left: 0.5rem;
+}
+
+.mobile-menu-panel a.mobile-whatsapp-link {
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: none;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-primary-border);
+  border-radius: var(--radius-md);
+  justify-content: center;
+  background: var(--color-primary-dim);
+}
+
+.mobile-menu-panel a.mobile-whatsapp-link:hover {
+  background: var(--color-primary);
+  color: #0b0e15;
+  padding-left: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   5. Main Content Layout
+   -------------------------------------------------------------------------- */
+.main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3.5rem 2.5rem 6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.page-header h1 {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  margin: 1.25rem 0 1rem;
+  line-height: 1.15;
+}
+
+.page-header p.subtitle {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  max-width: 620px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+/* --------------------------------------------------------------------------
+   6. Metrics / Social Proof Stat Bar
+   -------------------------------------------------------------------------- */
+.metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  margin-bottom: 4rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.metric-col {
+  text-align: center;
+  position: relative;
+}
+
+.metric-col:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background: var(--border-subtle);
+}
+
+.metric-value {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.metric-value .gold-val {
+  color: var(--color-primary);
+}
+
+.metric-stars {
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+
+.metric-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+  margin-top: 6px;
+}
+
+.metric-sublabel {
+  font-size: 0.78rem;
+  color: var(--color-text-dim);
+  font-weight: 400;
+}
+
+/* --------------------------------------------------------------------------
+   7. Form & Reviews Grid Layout
+   -------------------------------------------------------------------------- */
+.feedback-grid {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 2.75rem;
+  align-items: start;
+}
+
+/* Card Shell */
+.atelier-card {
+  background: var(--color-surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+}
+
+.atelier-card.gold-trim {
+  border-color: rgba(212, 175, 55, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   8. Form Elements (Feedback & Concierge)
+   -------------------------------------------------------------------------- */
+.card-header-tag {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card-title {
+  font-size: 1.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.card-desc {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.75rem;
+  line-height: 1.5;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.45rem;
+  font-weight: 500;
+}
+
+.form-label .req {
+  color: var(--color-primary);
+}
+
+.form-control, .form-select, .form-textarea {
+  width: 100%;
+  background: var(--color-surface-lowest);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.15rem;
+  color: #fff;
+  font-size: 0.9rem;
+  transition: all var(--transition-fast);
+}
+
+.form-control:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+  background: #0f121a;
+}
+
+.form-control::placeholder, .form-textarea::placeholder {
+  color: #555b6a;
+  font-size: 0.85rem;
+}
+
+.form-textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+/* Custom Gold Star Picker */
+.star-rating-picker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0.5rem 0 1.25rem;
+  flex-wrap: wrap;
+}
+
+.star-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #3e4453;
+  cursor: pointer;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.star-btn.active, .star-btn:hover {
+  color: var(--color-primary);
+  transform: scale(1.15);
+}
+
+.star-rating-hint {
+  font-size: 0.8rem;
+  color: var(--color-primary);
+  margin-left: 8px;
+}
+
+/* Buttons */
+.btn-gold {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0.95rem 1.5rem;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #d4af37 0%, #caa12c 100%);
+  color: #0b0e15;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  transition: all var(--transition-fast);
+  margin-top: 0.5rem;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #e5c158 0%, #d4af37 100%);
+  box-shadow: var(--shadow-gold-strong);
+  transform: translateY(-1.5px);
+}
+
+.btn-outline-whatsapp {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text-main);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-top: 0.75rem;
+}
+
+.btn-outline-whatsapp:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-dim);
+}
+
+/* --------------------------------------------------------------------------
+   9. Right Column: Feed Filter & Reviews Stream
+   -------------------------------------------------------------------------- */
+.feed-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.feed-header-bar h2 {
+  font-size: 1.5rem;
+}
+
+.feed-header-bar .feed-subtitle {
+  font-size: 0.8rem;
+  color: var(--color-text-dim);
+}
+
+.filter-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--border-subtle);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.filter-btn.active {
+  background: var(--color-primary);
+  color: #0b0e15;
+  border-color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Empty State Container */
+.empty-reviews-card {
+  background: var(--color-surface-card);
+  border: 1px dashed rgba(212, 175, 55, 0.25);
+  border-radius: var(--radius-xl);
+  padding: 5rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-icon-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid var(--color-primary-border);
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 80%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.empty-reviews-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.65rem;
+}
+
+.empty-reviews-card p {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+/* Live Dynamic Review Card */
+.review-item-card {
+  background: var(--color-surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  margin-bottom: 1.25rem;
+  transition: transform var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.review-item-card:hover {
+  border-color: var(--color-primary-border);
+  transform: translateY(-2px);
+}
+
+.review-item-card .card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.review-client-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.client-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #212532;
+  border: 1px solid var(--color-primary-border);
+  color: var(--color-primary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.client-details .client-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.client-details .client-loc {
+  font-size: 0.75rem;
+  color: var(--color-text-dim);
+}
+
+.review-item-card .stars {
+  color: var(--color-primary);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+}
+
+.review-item-card .review-text {
+  font-size: 0.92rem;
+  color: #d1d5db;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.product-tag-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   10. Support Banner (WhatsApp Direct Concierge)
+   -------------------------------------------------------------------------- */
+.concierge-support-banner {
+  background: linear-gradient(135deg, #131722 0%, #10131a 100%);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.concierge-support-banner h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.concierge-support-banner p {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.btn-whatsapp-solid {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.85rem 1.65rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  color: #0b0e15;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-whatsapp-solid:hover {
+  background: var(--color-primary-hover);
+  box-shadow: var(--shadow-gold-strong);
+  transform: translateY(-1.5px);
+}
+
+/* --------------------------------------------------------------------------
+   11. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  border-top: 1px solid var(--border-subtle);
+  background: var(--color-surface-dim);
+  padding: 2.25rem 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-text-dim);
+  font-size: 0.8rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-muted);
+}
+
+.footer-contact a:hover {
+  color: var(--color-primary);
+}
+
+.footer-copyright {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-text-muted);
+}
+
+.footer-monogram {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--color-primary-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+}
+
+.footer-back-link {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.footer-back-link:hover {
+  color: var(--color-primary);
+}
+
+/* Social Media Links in Footer */
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.footer-socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.footer-socials a:hover {
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.footer-socials a svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  transition: transform var(--transition-fast);
+}
+
+.footer-socials a:hover svg {
+  transform: scale(1.15);
+}
+
+/* --------------------------------------------------------------------------
+   12. Responsive Media Queries — Smooth Mobile Navigation
+   -------------------------------------------------------------------------- */
+
+/* Tablet & Small Desktop */
+@media (max-width: 1024px) {
+  .feedback-grid {
+    grid-template-columns: 1fr;
+  }
+  .header-nav {
+    padding: 1.25rem 2rem;
+  }
+  .nav-links {
+    gap: 1.5rem;
+  }
+  .metrics-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .metric-col:nth-child(2)::after {
+    display: none;
+  }
+}
+
+/* Mobile Devices — Navigation collapses to hamburger */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+  .nav-whatsapp-cta {
+    display: none;
+  }
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 768px) {
+  .header-nav {
+    padding: 1rem 1.25rem;
+  }
+  .brand-names .name-primary {
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+  }
+  .brand-names .name-sub {
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+  }
+  .brand-logo-emblem {
+    width: 34px;
+    height: 34px;
+    font-size: 0.8rem;
+  }
+  .main-container {
+    padding: 2.5rem 1.25rem 4rem;
+  }
+  .page-header h1 {
+    font-size: clamp(1.9rem, 7vw, 2.6rem);
+  }
+  .metrics-strip {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1.75rem 1.25rem;
+  }
+  .metric-col::after {
+    display: none !important;
+  }
+  .feedback-grid {
+    gap: 2rem;
+  }
+  .atelier-card {
+    padding: 1.75rem 1.25rem;
+    border-radius: var(--radius-lg);
+  }
+  .concierge-support-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.25rem;
+    padding: 1.5rem 1.25rem;
+  }
+  .site-footer {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+    padding: 2rem 1.25rem;
+  }
+  .footer-copyright,
+  .footer-contact,
+  .footer-socials {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .review-item-card .card-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .review-item-card .stars {
+    margin-top: 0.25rem;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
+  .mobile-menu-panel {
+    width: 100%;
+    max-width: 100%;
+    padding: 5rem 1.5rem 2rem;
+  }
+  .eyebrow-badge {
+    font-size: 0.65rem;
+    padding: 5px 12px;
+    letter-spacing: 0.14em;
+  }
+  .btn-gold,
+  .btn-outline-whatsapp,
+  .btn-whatsapp-solid {
+    font-size: 0.75rem;
+    padding: 0.8rem 1.25rem;
+  }
+  .filter-pills {
+    width: 100%;
+    justify-content: center;
+  }
+  .filter-btn {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. Accessibility & Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus states for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
