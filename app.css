@@ -3,7 +3,7 @@
 
 /* style.css */
 ﻿/* ==========================================================================
-   TETU COLLECTION â€” STYLESHEET (style.css)
+   TETU COLLECTION — STYLESHEET (style.css)
    Brand: TETU COLLECTION
    Atelier / Made by: Bossy designs
    Theme: Luxury Dark Noir & Brushed Warm Gold (#d4af37)
@@ -129,9 +129,23 @@ button, input, select, textarea {
   outline: none;
 }
 
-/* Hide default scrollbar for a cleaner luxury feel */
 ::-webkit-scrollbar {
-  display: none;
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0e15;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6f5a1c;
+  border: 2px solid #0b0e15;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
 }
 
 /* --------------------------------------------------------------------------
@@ -984,7 +998,7 @@ h1, h2, h3, h4, .font-serif, .brand-title {
 }
 
 /* --------------------------------------------------------------------------
-   12. Responsive Media Queries â€” Smooth Mobile Navigation
+   12. Responsive Media Queries — Smooth Mobile Navigation
    -------------------------------------------------------------------------- */
 
 /* Tablet & Small Desktop */
@@ -1006,7 +1020,7 @@ h1, h2, h3, h4, .font-serif, .brand-title {
   }
 }
 
-/* Mobile Devices â€” Navigation collapses to hamburger */
+/* Mobile Devices — Navigation collapses to hamburger */
 @media (max-width: 900px) {
   .nav-links {
     display: none;
@@ -1142,7 +1156,7 @@ textarea:focus-visible {
 
 /* component.css */
 ﻿/* ==========================================================================
-  TETU COLLECTION â€” REUSABLE UI COMPONENTS STYLESHEET (component.css)
+  TETU COLLECTION — REUSABLE UI COMPONENTS STYLESHEET (component.css)
    Brand: TETU COLLECTION
    Atelier / Made by: Bossy designs
    Concierge / Direct WhatsApp: +254700309655
@@ -1996,7 +2010,7 @@ textarea:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
-   16. Mobile Navigation â€” Drawer, Backdrop, Toggle
+   16. Mobile Navigation — Drawer, Backdrop, Toggle
    -------------------------------------------------------------------------- */
 
 /* Brand logo asset */
@@ -2004,16 +2018,103 @@ textarea:focus-visible {
   display: block;
   width: 120px;
   height: 64px;
-  background-image: url("Refined%20Logo%20Design%20for%20Tetu%20Collection.png");
+  background-image: url("tetu-logo.webp");
   background-repeat: no-repeat;
   background-position: center 52%;
-  background-size: 180% auto;
+  background-size: contain;
 }
 
 footer .tetu-logo {
   width: 168px;
   height: 80px;
-  background-size: 170% auto;
+  background-size: contain;
+}
+
+.tetu-search-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: grid;
+  place-items: start center;
+  padding: 10vh 1rem 1rem;
+  background: rgba(7, 9, 14, 0.86);
+  backdrop-filter: blur(12px);
+}
+
+/* Product cards need full grid tracks; they are rendered without column spans. */
+[data-product-grid] {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)) !important;
+}
+
+.tetu-search-modal[hidden] {
+  display: none;
+}
+
+.tetu-search-dialog {
+  position: relative;
+  width: min(100%, 42rem);
+  max-height: 80vh;
+  overflow: auto;
+  padding: 2rem;
+  background: var(--color-surface-container-low, #151821);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+}
+
+.tetu-search-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--color-on-surface, #f5f5f7);
+  font-size: 1.75rem;
+}
+
+.tetu-search-input {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.85rem 1rem;
+  color: var(--color-on-surface, #f5f5f7);
+  background: var(--color-surface-container, #212532);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.tetu-search-results {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tetu-search-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem;
+  color: var(--color-on-surface, #f5f5f7);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.tetu-search-result:hover,
+.tetu-search-result:focus-visible {
+  color: var(--color-primary, #d4af37);
+}
+
+.tetu-search-result small {
+  color: var(--color-on-surface-variant, #e0e0e0);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Keep the drawer above the backdrop even when legacy utility rules are loaded. */
+#mobile-menu-panel {
+  z-index: 100;
+}
+
+#mobile-menu-backdrop {
+  z-index: 90;
 }
 
 /* Hide mobile toggle on desktop by default */
@@ -2061,7 +2162,7 @@ footer .tetu-logo {
   visibility: visible;
 }
 
-/* Mobile menu panel â€” smooth slide-in from right */
+/* Mobile menu panel — smooth slide-in from right */
 .mobile-menu-panel {
   position: fixed;
   top: 0;
@@ -2155,8 +2256,13 @@ footer .tetu-logo {
 /* Prevent body scroll when menu is open */
 body.menu-open {
   overflow: hidden;
-  position: fixed;
-  width: 100%;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  touch-action: pan-y;
 }
 
 /* Full-width drawer on very small phones */
@@ -2288,7 +2394,7 @@ body.menu-open {
 
 /* animation.css */
 ﻿/* ==========================================================================
-   TETU COLLECTION â€” KEYFRAME & MOTION ANIMATION STYLESHEET (animation.css)
+   TETU COLLECTION — KEYFRAME & MOTION ANIMATION STYLESHEET (animation.css)
    Brand: TETU COLLECTION
    Atelier / Made by: Bossy designs
    Concierge / Direct WhatsApp: +254700309655
@@ -3081,7 +3187,7 @@ html {
 }
 
 /* --------------------------------------------------------------------------
-   15. Print â€” Disable All Motion
+   15. Print — Disable All Motion
    -------------------------------------------------------------------------- */
 @media print {
   *,
@@ -3101,7 +3207,7 @@ html {
 
 /* page.css */
 ﻿/* ==========================================================================
-  TETU COLLECTION â€” PAGE-SPECIFIC STYLESHEET (page.css)
+  TETU COLLECTION — PAGE-SPECIFIC STYLESHEET (page.css)
    Brand: TETU COLLECTION
    Atelier / Made by: Bossy designs
    Concierge / Direct WhatsApp: +254700309655
@@ -3237,7 +3343,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   3. Hero Variants â€” Home, New Arrivals, Evening Luxury, Reviews, Contact
+   3. Hero Variants — Home, New Arrivals, Evening Luxury, Reviews, Contact
    -------------------------------------------------------------------------- */
 .hero-base {
   position: relative;
@@ -3379,7 +3485,7 @@ body {
   }
 }
 
-/* Hero variants â€” same base, can be customized per page */
+/* Hero variants — same base, can be customized per page */
 .hero-home { min-height: 100vh; }
 .hero-new-arrivals { min-height: 88vh; }
 .hero-evening-luxury { min-height: 92vh; }
@@ -4269,7 +4375,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   14. SMOOTH MOBILE NAVIGATION â€” Page-Level Overrides
+   14. SMOOTH MOBILE NAVIGATION — Page-Level Overrides
    -------------------------------------------------------------------------- */
 
 /* Ensure body padding-top is applied so sticky header doesn't cover content */
@@ -4344,7 +4450,7 @@ body {
   }
 }
 
-/* Landscape mobile â€” compact vertical spacing */
+/* Landscape mobile — compact vertical spacing */
 @media screen and (max-height: 520px) and (orientation: landscape) {
   body {
     padding-top: 64px;
@@ -4365,7 +4471,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   15. NAVIGATION LINKS â€” Page-Level Fine-Tuning
+   15. NAVIGATION LINKS — Page-Level Fine-Tuning
    -------------------------------------------------------------------------- */
 
 /* Ensure active nav link uses the same gold across all pages */
@@ -4426,7 +4532,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   17. Print â€” Clean Page Output
+   17. Print — Clean Page Output
    -------------------------------------------------------------------------- */
 @media print {
   body {
@@ -4481,17 +4587,17 @@ body {
 
 /* responsive.css */
 ﻿/* ==========================================================================
-   TETU COLLECTION â€” RESPONSIVE STYLESHEET (responsive.css)
+   TETU COLLECTION — RESPONSIVE STYLESHEET (responsive.css)
    Brand: TETU COLLECTION
    Atelier / Made by: Bossy designs
    Theme: Luxury Dark Noir & Brushed Warm Gold (#d4af37)
    Devices Covered:
      - Ultra-Wide / 4K Displays (>= 1600px)
-     - Desktop & Laptops (1200px â€“ 1599px)
-     - Small Desktops & Tablets Landscape (992px â€“ 1199px)
-     - Tablets Portrait & Large Foldables (768px â€“ 991px)
-     - Mobile Landscape & Phablets (576px â€“ 767px)
-     - Standard Mobile Devices (375px â€“ 575px)
+     - Desktop & Laptops (1200px ? 1599px)
+     - Small Desktops & Tablets Landscape (992px ? 1199px)
+     - Tablets Portrait & Large Foldables (768px ? 991px)
+     - Mobile Landscape & Phablets (576px ? 767px)
+     - Standard Mobile Devices (375px ? 575px)
      - Ultra-Compact Screens (< 375px)
      - Accessibility & Interaction Preferences (Touch, Reduced Motion, High Contrast)
    ========================================================================== */
@@ -4538,7 +4644,7 @@ body.menu-open {
 }
 
 /* --------------------------------------------------------------------------
-   3. Navigation Base â€” Ensures smooth transitions on all devices
+   3. Navigation Base — Ensures smooth transitions on all devices
    -------------------------------------------------------------------------- */
 .header-nav {
   transition: padding 0.3s ease, background 0.3s ease;
@@ -4755,7 +4861,7 @@ body.menu-open {
     visibility: visible;
   }
 
-  /* Mobile menu panel â€” smooth slide-in */
+  /* Mobile menu panel — smooth slide-in */
   .mobile-menu-panel {
     display: flex;
     flex-direction: column;
@@ -5350,7 +5456,10 @@ body.menu-open {
       body { overscroll-behavior: none; }
       main > :first-child { margin-top: 0 !important; }
       main > :last-child { margin-bottom: 0 !important; }
-      ::-webkit-scrollbar { display: none; }
+      ::-webkit-scrollbar { width: 10px; height: 10px; }
+      ::-webkit-scrollbar-track { background: #0b0e15; }
+      ::-webkit-scrollbar-thumb { background: #6f5a1c; border-radius: 999px; border: 2px solid #0b0e15; }
+      ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
     }
     html { scroll-behavior: smooth; }
     body.menu-open { overflow: hidden; }
@@ -5367,7 +5476,9 @@ body.menu-open {
       body { overscroll-behavior: none; }
       main > :first-child { margin-top: 0 !important; }
       main > :last-child { margin-bottom: 0 !important; }
-      ::-webkit-scrollbar { display: none; }
+      ::-webkit-scrollbar { width: 10px; height: 10px; }
+      ::-webkit-scrollbar-track { background: #0b0e15; }
+      ::-webkit-scrollbar-thumb { background: #6f5a1c; border-radius: 999px; border: 2px solid #0b0e15; }
     }
     html { scroll-behavior: smooth; }
     body.menu-open { overflow: hidden; }
@@ -5385,7 +5496,9 @@ body.menu-open {
       body { overscroll-behavior: none; }
       main > :first-child { margin-top: 0 !important; }
       main > :last-child { margin-bottom: 0 !important; }
-      ::-webkit-scrollbar { display: none; }
+      ::-webkit-scrollbar { width: 10px; height: 10px; }
+      ::-webkit-scrollbar-track { background: #0b0e15; }
+      ::-webkit-scrollbar-thumb { background: #6f5a1c; border-radius: 999px; border: 2px solid #0b0e15; }
     }
     html { scroll-behavior: smooth; }
     body.menu-open { overflow: hidden; }
@@ -5402,7 +5515,9 @@ body.menu-open {
       body { overscroll-behavior: none; }
       main > :first-child { margin-top: 0 !important; }
       main > :last-child { margin-bottom: 0 !important; }
-      ::-webkit-scrollbar { display: none; }
+      ::-webkit-scrollbar { width: 10px; height: 10px; }
+      ::-webkit-scrollbar-track { background: #0b0e15; }
+      ::-webkit-scrollbar-thumb { background: #6f5a1c; border-radius: 999px; border: 2px solid #0b0e15; }
     }
     html { scroll-behavior: smooth; }
     body.menu-open { overflow: hidden; }
@@ -5419,7 +5534,9 @@ body.menu-open {
       body { overscroll-behavior: none; }
       main > :first-child { margin-top: 0 !important; }
       main > :last-child { margin-bottom: 0 !important; }
-      ::-webkit-scrollbar { display: none; }
+      ::-webkit-scrollbar { width: 10px; height: 10px; }
+      ::-webkit-scrollbar-track { background: #0b0e15; }
+      ::-webkit-scrollbar-thumb { background: #6f5a1c; border-radius: 999px; border: 2px solid #0b0e15; }
     }
     html { scroll-behavior: smooth; }
     body.menu-open { overflow: hidden; }
