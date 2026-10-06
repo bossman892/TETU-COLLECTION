@@ -26,37 +26,59 @@
 
     let isOpen = false;
     const setOpen = (next) => {
-      isOpen = next;
-      panel.classList.toggle('translate-x-full', !next);
-      panel.classList.toggle('translate-x-0', next);
-      panel.classList.toggle('open', next);
-      panel.setAttribute('aria-hidden', String(!next));
-      toggle.setAttribute('aria-expanded', String(next));
-      toggle.classList.toggle('is-active', next);
+      isOpen = Boolean(next);
+      panel.classList.toggle('translate-x-full', !isOpen);
+      panel.classList.toggle('translate-x-0', isOpen);
+      panel.classList.toggle('open', isOpen);
+      panel.setAttribute('aria-hidden', String(!isOpen));
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.classList.toggle('is-active', isOpen);
+
       if (backdrop) {
-        backdrop.classList.toggle('hidden', !next);
-        backdrop.classList.toggle('open', next);
+        backdrop.classList.toggle('hidden', !isOpen);
+        backdrop.classList.toggle('open', isOpen);
       }
-      document.body.classList.toggle('menu-open', next);
-      document.body.style.overflow = next ? 'hidden' : '';
-      document.documentElement.style.overflow = next ? 'hidden' : '';
-      document.body.style.position = '';
-      document.body.style.width = '';
+
+      document.body.classList.toggle('menu-open', isOpen);
+      if (isOpen) {
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+      }
     };
 
     toggle.addEventListener('click', (event) => {
       event.preventDefault();
+      event.stopPropagation();
       setOpen(!isOpen);
     });
-    closeButton?.addEventListener('click', () => setOpen(false));
-    backdrop?.addEventListener('click', () => setOpen(false));
-    $$('#mobile-menu-panel a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
+
+    closeButton?.addEventListener('click', (event) => {
+      event.preventDefault();
+      setOpen(false);
+    });
+
+    backdrop?.addEventListener('click', (event) => {
+      event.preventDefault();
+      setOpen(false);
+    });
+
+    $$('#mobile-menu-panel a').forEach((link) => {
+      link.addEventListener('click', () => {
+        setOpen(false);
+      });
+    });
+
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && isOpen) setOpen(false);
     });
+
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 1024 && isOpen) setOpen(false);
     });
+
     setOpen(false);
   }
 
@@ -72,12 +94,16 @@
   }
 
   function initSmoothAnchors() {
-    $$('a[href^="#"]').forEach((link) => link.addEventListener('click', (event) => {
-      const target = $(link.getAttribute('href'));
-      if (!target) return;
-      event.preventDefault();
-      target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
-    }));
+    $$('a[href^="#"]').forEach((link) => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#') return;
+      link.addEventListener('click', (event) => {
+        const target = $(href);
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+      });
+    });
   }
 
   function productMatches(product, query) {
@@ -113,16 +139,19 @@
         ? matches.map((product) => `<a href="${product.link}" class="tetu-search-result"><span>${product.title}</span><small>${product.category}</small></a>`).join('')
         : '<p class="text-on-surface-variant">No pieces matched your search.</p>';
     };
+
     const close = () => {
       modal.hidden = true;
       input.value = '';
       trigger.focus();
     };
+
     trigger.addEventListener('click', () => {
       modal.hidden = false;
       renderResults();
       input.focus();
     });
+
     $('.tetu-search-close', modal).addEventListener('click', close);
     modal.addEventListener('click', (event) => { if (event.target === modal) close(); });
     input.addEventListener('input', renderResults);
