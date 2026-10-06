@@ -17,6 +17,44 @@
     return url;
   }
 
+  function initLogoAndFavicon() {
+    let favicon = $('link[rel="icon"]') || $('link[rel="shortcut icon"]');
+    if (!favicon) {
+      favicon = document.createElement('link');
+      favicon.rel = 'icon';
+      document.head.appendChild(favicon);
+    }
+    favicon.type = 'image/svg+xml';
+    favicon.href = 'favicon.svg';
+
+    let appleIcon = $('link[rel="apple-touch-icon"]');
+    if (!appleIcon) {
+      appleIcon = document.createElement('link');
+      appleIcon.rel = 'apple-touch-icon';
+      document.head.appendChild(appleIcon);
+    }
+    appleIcon.href = 'tetu-logo.webp';
+
+    $$('.tetu-logo').forEach((el) => {
+      if (!el.querySelector('img')) {
+        el.innerHTML = '<img src="tetu-logo.webp" alt="TETU COLLECTION" class="h-8 md:h-10 w-auto object-contain font-serif tracking-wider text-primary font-bold">';
+      }
+    });
+  }
+
+  function initImageFallbacks() {
+    document.addEventListener('error', (event) => {
+      if (event.target && event.target.tagName === 'IMG') {
+        const img = event.target;
+        if (!img.dataset.fallbackApplied) {
+          img.dataset.fallbackApplied = 'true';
+          img.removeAttribute('srcset');
+          img.src = 'IMG-20260923-WA0165.jpg';
+        }
+      }
+    }, true);
+  }
+
   function initMobileNavigation() {
     const toggle = $('#mobile-menu-toggle');
     const panel = $('#mobile-menu-panel');
@@ -226,6 +264,8 @@
     document.body.style.overflow = '';
     document.body.style.position = '';
     document.body.style.width = '';
+    initLogoAndFavicon();
+    initImageFallbacks();
     initMobileNavigation();
     initActiveNavigation();
     initSmoothAnchors();
