@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
   content: [
@@ -14,7 +15,7 @@ module.exports = {
         secondary: '#d1c6a1',
         'secondary-fixed': '#eee2bc',
         'secondary-fixed-dim': '#d1c6a1',
-        'surface': '#10131a',
+        surface: '#10131a',
         'surface-container': '#1d1f27',
         'surface-container-low': '#191b23',
         'surface-container-lowest': '#0b0e15',
