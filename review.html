@@ -58,12 +58,30 @@
     #mobile-menu {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      visibility: hidden;
       opacity: 0;
+      pointer-events: none;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0s linear 0.4s;
     }
     #mobile-menu.open {
-      max-height: 560px;
+      max-height: 80vh;
+      overflow-y: auto;
+      visibility: visible;
       opacity: 1;
+      pointer-events: auto;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    }
+    #mobile-menu .mobile-nav-link {
+      position: relative;
+      z-index: 1;
+      touch-action: manipulation;
+    }
+    @media (max-width: 767px) {
+      header {
+        background: #f4ede4 !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+      }
     }
     .star-btn {
       transition: transform 0.15s ease, color 0.15s ease;
@@ -111,7 +129,7 @@
   </div>
 
   <!-- HEADER -->
-  <header class="sticky top-0 z-50 w-full bg-[#f4ede4]/95 backdrop-blur-md border-b border-[#26211c]/10">
+  <header class="sticky top-0 z-50 w-full bg-[#f4ede4] md:bg-[#f4ede4]/95 md:backdrop-blur-md border-b border-[#26211c]/10">
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
       
       <!-- Logo -->
@@ -140,7 +158,7 @@
           <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
           <span class="absolute -top-0.5 -right-0.5 text-[9px] bg-[#d4af37] text-[#26211c] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
         </a>
-        <button id="mobile-toggle" type="button" class="md:hidden text-[#26211c] p-1 focus:outline-none" aria-label="Toggle navigation" aria-expanded="false">
+        <button id="mobile-toggle" type="button" class="md:hidden text-[#26211c] p-1 focus:outline-none" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
           <span class="material-symbols-outlined text-[26px]" id="mobile-toggle-icon">menu</span>
         </button>
       </div>
@@ -148,7 +166,7 @@
     </div>
 
     <!-- Mobile Drawer -->
-    <div id="mobile-menu" class="md:hidden bg-[#ede5dc] border-t border-[#26211c]/10">
+    <div id="mobile-menu" class="md:hidden bg-[#ede5dc] border-t border-[#26211c]/10" aria-hidden="true">
       <div class="px-6 py-5 flex flex-col gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#26211c]">
         <a href="index.html" class="mobile-nav-link py-1 border-b border-[#26211c]/5">Homepage</a>
         <a href="shoes.html" class="mobile-nav-link py-1 border-b border-[#26211c]/5">Shoes</a>
@@ -435,6 +453,41 @@
     </div>
   </footer>
 
+  <script>
+    (function () {
+      const toggle = document.getElementById('mobile-toggle');
+      const menu = document.getElementById('mobile-menu');
+      const toggleIcon = document.getElementById('mobile-toggle-icon');
+
+      if (!toggle || !menu) return;
+
+      function setMenuOpen(isOpen) {
+        menu.classList.toggle('open', isOpen);
+        menu.setAttribute('aria-hidden', String(!isOpen));
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        if (toggleIcon) toggleIcon.textContent = isOpen ? 'close' : 'menu';
+      }
+
+      toggle.addEventListener('click', function () {
+        setMenuOpen(toggle.getAttribute('aria-expanded') !== 'true');
+      });
+
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          setMenuOpen(false);
+        });
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') setMenuOpen(false);
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 768) setMenuOpen(false);
+      });
+    })();
+  </script>
+
   <!-- SCRIPT LOGIC: FIREBASE FIRESTORE LIVE DATABASE & UI CONTROLLER -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
@@ -501,52 +554,6 @@
       updateDbStatus('local');
       console.info('TETU COLLECTION: Firebase keys not set yet in review.html. Running in local fallback mode.');
     }
-
-    // ====================== MOBILE MENU ======================
-    const toggle = document.getElementById('mobile-toggle');
-    const menu = document.getElementById('mobile-menu');
-    const toggleIcon = document.getElementById('mobile-toggle-icon');
-
-    function openMenu() {
-      if (!menu || !toggle) return;
-      menu.classList.add('open');
-      toggle.setAttribute('aria-expanded', 'true');
-      if (toggleIcon) toggleIcon.textContent = 'close';
-    }
-
-    function closeMenu() {
-      if (!menu || !toggle) return;
-      menu.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      if (toggleIcon) toggleIcon.textContent = 'menu';
-    }
-
-    if (toggle && menu) {
-      toggle.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (menu.classList.contains('open')) closeMenu();
-        else openMenu();
-      });
-    }
-
-    document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
-      link.addEventListener('click', function () {
-        setTimeout(closeMenu, 150);
-      });
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && menu && menu.classList.contains('open')) {
-        closeMenu();
-      }
-    });
-
-    window.addEventListener('resize', function () {
-      if (window.innerWidth >= 768 && menu && menu.classList.contains('open')) {
-        closeMenu();
-      }
-    });
 
     // ====================== REVIEWS STATE ======================
     let reviews = [];
