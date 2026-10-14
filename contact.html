@@ -3,20 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
-  <meta content="web_standard" name="shell-type">
   <title>Contact &amp; Concierge — TETU COLLECTION</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="utilities.css">
-  <link rel="stylesheet" href="components.css">
-  <link rel="stylesheet" href="animation.css">
-  <link rel="stylesheet" href="pages.css">
-  <link rel="stylesheet" href="responsive.css">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -27,13 +19,10 @@
           colors: {
             primary: '#d4af37',
             'primary-hover': '#e5c158',
-            'primary-container': 'rgba(212, 175, 55, 0.15)',
-            'on-primary': '#07090e',
-            'surface-dim': '#0b0e15',
-            'surface': '#10131a',
-            'surface-card': '#151821',
-            'surface-container': '#191c26',
-            'cream-header': '#f5ede3'
+            'bg-cream': '#f4ede4',
+            'bg-cream-card': '#ece2d5',
+            'text-espresso': '#26211c',
+            'border-subtle': 'rgba(38, 33, 28, 0.12)'
           },
           fontFamily: {
             serif: ['"Bodoni Moda"', 'serif'],
@@ -46,9 +35,10 @@
 
   <style>
     :root {
-      --color-primary: #d4af37;
       --bg-cream: #f4ede4;
+      --bg-card: #ece2d5;
       --text-espresso: #26211c;
+      --gold-accent: #d4af37;
     }
     html { scroll-behavior: smooth; }
     body.menu-open { overflow: hidden; position: fixed; width: 100%; }
@@ -63,18 +53,20 @@
       color: var(--text-espresso);
       border-top: 1px solid rgba(212, 175, 55, 0.25);
     }
-    .input-noir {
-      background: #0b0e15;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+
+    .form-input-cream {
+      background: #faf6f0;
+      border: 1px solid rgba(38, 33, 28, 0.15);
+      color: #26211c;
       transition: all 0.2s ease;
     }
-    .input-noir:focus {
+    .form-input-cream:focus {
       border-color: #d4af37;
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-      background: #10131a;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
+      outline: none;
     }
 
-    /* Smooth mobile nav drawer */
     #mobile-nav {
       max-height: 0;
       overflow: hidden;
@@ -94,37 +86,77 @@
       visibility: hidden;
       pointer-events: none;
     }
+
+    section[id], div[id] { scroll-margin-top: 96px; }
+
+    /* Thumb-scroll & Touch Improvements */
+    html, body {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+    }
+    .mobile-nav-link,
+    .filter-btn {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      #mobile-nav {
+        transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                    opacity 0.35s ease;
+      }
+    }
   </style>
 </head>
 
-<body class="bg-[#0b0e15] font-sans text-[#f5f5f7] antialiased selection:bg-[#d4af37] selection:text-[#07090e]">
+<body class="bg-[#f4ede4] font-sans text-[#26211c] antialiased selection:bg-[#d4af37] selection:text-[#07090e]">
 
-  <!-- HEADER -->
+  <!-- ============================= TOP ANNOUNCEMENT BAR ============================= -->
+  <div class="bg-[#ebdccb] border-b border-[#d4af37]/20 text-[11px] font-semibold tracking-widest uppercase text-[#5a4f43] py-2 px-6">
+    <div class="max-w-[1440px] mx-auto flex items-center justify-between">
+      <span class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse"></span>
+        Quality Imported Fashion &amp; Everyday Slides
+      </span>
+      <span class="hidden md:inline-block tracking-[0.2em]">Thoughtfully chosen. Effortlessly you.</span>
+      <span class="flex items-center gap-1 font-bold text-[#8c7322]">
+        Based in Kenya 📍
+      </span>
+    </div>
+  </div>
+
+  <!-- ============================= HEADER ============================= -->
   <header class="header-cream-theme sticky top-0 z-50 w-full backdrop-blur-md shadow-sm">
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
 
-      <!-- Logo -->
-      <a href="index.html" class="flex items-center gap-3 z-10">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUDlWVhYWxi0LWV_3yeeHnI2DgQ_ZYGdrLra_hDpaJDP8jcRr2mrAFuIkF2tEHOe-0VqVYT1gPtKk1iUNHozhcJdMpM4aPWMzc7htJDp6FR9uWp9eJvk54UgvRwIwadNwZ00NzQtB2B48_qbAiScXkeZlNHWxf6elycZEZT2seQof_sI2GkJZRiOmUaGDg0YLvlSSeSfJqf79TKTtAh4MRQee7DPShqzJR_o2yyQnd931KquJ9LX1UOkIfLs8TNe5dHco"
+      <!-- Official Logo -->
+      <a href="index.html" class="flex items-center gap-3 z-10" aria-label="TETU COLLECTION Home">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6HKX_MHcfw2VdHKRRIud-m9yHhaB6mJOJT8o6rvSPGNHn-bEszNlIiGafH0mVuOY_H95ZgQ1EFZr-m4UTO4Q7KHcsbp7BczjKgol_DkCVuR8ygHcQZsV_A7tJLfTZhp0SFDBKS3s6Myk8N9YBNO_Xyg982PoMMdlrnL1aAs8hw-2eZJPfNOYfdjdl0ZVarfmuHdJJJjunDVErhQExhUTYkfTDcKvM5Eqoe0M1t14CVqh4wKPDTLEn9wB5Q-ZseTOhzy4"
              alt="TETU COLLECTION"
-             class="h-10 w-auto object-contain">
+             class="h-12 md:h-14 w-auto object-contain">
       </a>
 
       <!-- Desktop Nav -->
-      <nav class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-[0.2em] text-[#3e3831]">
-        <a href="index.html" class="hover:text-[#8c7322] transition-colors py-1">Home</a>
-        <a href="bags.html" class="hover:text-[#8c7322] transition-colors py-1">Bags Collection</a>
-        <a href="shoes.html" class="hover:text-[#8c7322] transition-colors py-1">Shoes Collection</a>
+      <nav class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-[0.2em] text-[#3e3831]" aria-label="Primary Navigation">
+        <a href="index.html" class="hover:text-[#8c7322] transition-colors py-1">Homepage</a>
+        <a href="shoes.html" class="hover:text-[#8c7322] transition-colors py-1">Shoes</a>
+        <a href="bags.html" class="hover:text-[#8c7322] transition-colors py-1">Bags</a>
+        <a href="about.html" class="hover:text-[#8c7322] transition-colors py-1">About</a>
         <a href="review.html" class="hover:text-[#8c7322] transition-colors py-1">Reviews</a>
         <a href="contact.html" class="text-[#8c7322] border-b-2 border-[#8c7322] py-1" aria-current="page">Contact</a>
       </nav>
 
-      <!-- Right Action -->
+      <!-- Right Action Icons & Mobile Hamburger -->
       <div class="flex items-center gap-4">
-        <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20your%20bespoke%20handcrafted%20creations."
+        <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer"
+           class="p-2 text-[#26211c] hover:text-[#8c7322] transition-colors" aria-label="Search or Chat">
+          <span class="material-symbols-outlined text-[22px]">search</span>
+        </a>
+        <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20would%20like%20to%20make%20an%20order."
            target="_blank" rel="noopener noreferrer"
-           class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#8c7322] text-[#26211c] text-xs font-bold uppercase tracking-wider hover:bg-[#8c7322] hover:text-white transition-all shadow-sm">
-          WhatsApp: +254700309655
+           class="p-2 text-[#26211c] hover:text-[#8c7322] transition-colors relative" aria-label="Bag Inquiries">
+          <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+          <span class="absolute top-1 right-1 w-3.5 h-3.5 bg-[#8c7322] text-white text-[9px] font-bold rounded-full flex items-center justify-center">0</span>
         </a>
         <button id="mobile-menu-toggle" type="button"
                 class="md:hidden p-2 text-[#26211c] hover:text-[#8c7322] transition-colors focus:outline-none"
@@ -136,99 +168,97 @@
       </div>
     </div>
 
-    <!-- Mobile backdrop -->
-    <div id="mobile-nav-backdrop" class="fixed inset-0 bg-[#0b0e15]/60 backdrop-blur-sm z-40 md:hidden hidden" aria-hidden="true"></div>
+    <!-- Mobile Backdrop -->
+    <div id="mobile-nav-backdrop" class="fixed inset-0 bg-[#0b0e15]/40 backdrop-blur-sm z-40 md:hidden hidden" aria-hidden="true"></div>
 
     <!-- Mobile Nav Drawer -->
     <div id="mobile-nav" class="md:hidden bg-[#f4ede4] border-t border-[#d4af37]/20">
       <div class="px-6 pb-6 pt-4 flex flex-col gap-3 text-xs font-bold uppercase tracking-widest text-[#26211c]">
-        <a href="index.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Home</a>
-        <a href="bags.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Bags Collection</a>
-        <a href="shoes.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Shoes Collection</a>
+        <a href="index.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Homepage</a>
+        <a href="shoes.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Shoes</a>
+        <a href="bags.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Bags</a>
+        <a href="about.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">About</a>
         <a href="review.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Reviews</a>
         <a href="contact.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10 text-[#8c7322]">Contact</a>
         <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer"
-           class="mobile-nav-link py-2 text-[#8c7322]">WhatsApp: +254700309655</a>
+           class="mobile-nav-link py-2 text-[#8c7322] flex items-center gap-2">
+          WhatsApp: +254 700 309 655
+        </a>
       </div>
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- ============================= MAIN CONTENT ============================= -->
   <main class="w-full relative overflow-hidden">
 
     <!-- HERO HEADER -->
-    <section class="relative py-20 px-6 lg:px-12 max-w-[1440px] mx-auto text-center border-b border-[#212532]">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/30 text-[#d4af37] text-xs uppercase tracking-[0.25em] font-semibold mb-6">
-        Bespoke Enquiries &amp; Orders
+    <section class="py-16 md:py-20 px-6 lg:px-12 max-w-[1440px] mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-5 py-1.5 rounded-full bg-[#ebdccb] border border-[#d4af37]/35 text-[#8c7322] text-xs uppercase tracking-[0.25em] font-semibold mb-6">
+        Direct Customer Support &amp; Orders
       </div>
-      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-white uppercase tracking-tight mb-4">
-        ENQUIRE &amp; <span class="text-[#d4af37] italic font-normal">CONNECT</span>
+      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#26211c] tracking-tight mb-4 uppercase">
+        Enquire &amp; <span class="italic font-normal text-[#8c7322]">Connect</span>
       </h1>
-      <p class="text-[#9ba1b0] text-sm sm:text-base max-w-xl mx-auto font-light leading-relaxed">
-        Connect directly with TETU COLLECTION on WhatsApp for custom orders, sizing requests, bespoke leather finishes, or general enquiries.
+      <p class="text-[#5a4f43] text-sm sm:text-base max-w-xl mx-auto font-light leading-relaxed">
+        Connect directly with Tetu Collection on WhatsApp for sizing confirmation, order details, color availability, or style assistance.
       </p>
     </section>
 
-    <!-- CONTACT DETAILS & FORM SECTION -->
-    <section class="py-16 px-6 lg:px-12 max-w-[1440px] mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+    <!-- CONTACT DETAILS & WHATSAPP FORM -->
+    <section class="pb-20 px-6 lg:px-12 max-w-[1440px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
 
-        <!-- Left Column: Direct Atelier Information -->
+        <!-- Left Column: Direct Contact Info Cards -->
         <div class="lg:col-span-5 space-y-6">
-          <div class="space-y-3">
-            <span class="text-xs uppercase tracking-[0.25em] text-[#d4af37] font-semibold block">Direct Channels</span>
-            <h2 class="font-serif text-2xl sm:text-3xl text-white uppercase tracking-tight">Direct Contact</h2>
-            <p class="text-sm text-[#9ba1b0] font-light leading-relaxed">
-              We respond quickly on WhatsApp during Nairobi business hours. Voice notes, custom photos, and design questions are always welcome.
+          <div class="space-y-2">
+            <span class="text-xs uppercase tracking-[0.25em] text-[#8c7322] font-semibold block">Quick Contacts</span>
+            <h2 class="font-serif text-2xl sm:text-3xl text-[#26211c] tracking-tight">Direct Channels</h2>
+            <p class="text-sm text-[#5a4f43] font-light leading-relaxed">
+              We respond promptly on WhatsApp. Send photos of the style you like, your preferred shoe size, or any questions.
             </p>
           </div>
 
-          <!-- Cards Stack -->
+          <!-- Contact Cards -->
           <div class="space-y-4 pt-2">
 
             <!-- WhatsApp Card -->
-            <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20would%20like%20to%20enquire%20about%20your%20handcrafted%20leather%20collection."
+            <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20would%20like%20to%20enquire%20about%20your%20collection."
                target="_blank" rel="noopener noreferrer"
-               class="group flex items-start gap-4 p-5 bg-[#151821] hover:bg-[#191c26] border border-white/10 hover:border-[#d4af37]/60 rounded-2xl transition-all duration-300 hover:-translate-y-0.5 shadow-lg">
-              <div class="w-12 h-12 rounded-full bg-[#d4af37]/15 border border-[#d4af37]/40 flex items-center justify-center flex-shrink-0 group-hover:bg-[#d4af37]/25 transition-colors">
-                <svg class="w-6 h-6 fill-current text-[#d4af37]" viewBox="0 0 24 24">
+               class="group flex items-start gap-4 p-6 bg-[#ece2d5] hover:bg-[#e4d8c8] border border-[#d4af37]/30 hover:border-[#8c7322] rounded-2xl transition-all duration-300 hover:-translate-y-0.5 shadow-sm">
+              <div class="w-12 h-12 rounded-full bg-[#d4af37]/20 border border-[#d4af37]/40 flex items-center justify-center flex-shrink-0 group-hover:bg-[#d4af37]/30 transition-colors">
+                <svg class="w-6 h-6 fill-current text-[#8c7322]" viewBox="0 0 24 24">
                   <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path>
                 </svg>
               </div>
               <div class="flex-1">
-                <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold block">Direct WhatsApp</span>
-                <span class="text-base font-bold text-white group-hover:text-[#d4af37] transition-colors block mt-0.5">+254 700 309 655</span>
-                <span class="text-xs text-[#9ba1b0] mt-1 block font-light">Fastest response • Tap to chat directly</span>
+                <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold block">Official WhatsApp</span>
+                <span class="text-base font-bold text-[#26211c] group-hover:text-[#8c7322] transition-colors block mt-0.5">+254 700 309 655</span>
+                <span class="text-xs text-[#6b6257] mt-1 block font-light">Fastest response • Tap to chat on WhatsApp</span>
               </div>
-              <span class="text-[#d4af37] text-lg font-bold group-hover:translate-x-1 transition-transform">↗</span>
+              <span class="text-[#8c7322] text-lg font-bold group-hover:translate-x-1 transition-transform">↗</span>
             </a>
 
             <!-- Location Card -->
-            <div class="flex items-start gap-4 p-5 bg-[#151821] border border-white/10 rounded-2xl shadow-lg">
-              <div class="w-12 h-12 rounded-full bg-[#d4af37]/15 border border-[#d4af37]/40 flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6 text-[#d4af37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                </svg>
+            <div class="flex items-start gap-4 p-6 bg-[#ece2d5] border border-[#d4af37]/30 rounded-2xl shadow-sm">
+              <div class="w-12 h-12 rounded-full bg-[#d4af37]/20 border border-[#d4af37]/40 flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-[#8c7322] text-[24px]">location_on</span>
               </div>
               <div class="flex-1">
-                <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold block">Location</span>
-                <span class="text-base font-bold text-white block mt-0.5">Nairobi, Kenya</span>
-                <span class="text-xs text-[#9ba1b0] mt-1 block font-light">Local handcrafted leathercraft • Made in Kenya</span>
+                <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold block">Location</span>
+                <span class="text-base font-bold text-[#26211c] block mt-0.5">Nairobi, Kenya</span>
+                <span class="text-xs text-[#6b6257] mt-1 block font-light">Online dispatch across Nairobi &amp; Kenya nationwide</span>
               </div>
             </div>
 
-            <!-- Working Hours Card -->
-            <div class="flex items-start gap-4 p-5 bg-[#151821] border border-white/10 rounded-2xl shadow-lg">
-              <div class="w-12 h-12 rounded-full bg-[#d4af37]/15 border border-[#d4af37]/40 flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6 text-[#d4af37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
+            <!-- Hours Card -->
+            <div class="flex items-start gap-4 p-6 bg-[#ece2d5] border border-[#d4af37]/30 rounded-2xl shadow-sm">
+              <div class="w-12 h-12 rounded-full bg-[#d4af37]/20 border border-[#d4af37]/40 flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-[#8c7322] text-[24px]">schedule</span>
               </div>
               <div class="flex-1">
-                <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold block">Working Hours</span>
-                <span class="text-base font-bold text-white block mt-0.5">Mon – Sat: 8:00 AM – 7:00 PM</span>
-                <span class="text-xs text-[#9ba1b0] mt-1 block font-light">EAT (East Africa Time) • Online support daily</span>
+                <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold block">Operating Hours</span>
+                <span class="text-base font-bold text-[#26211c] block mt-0.5">8:00 AM – 9:00 PM EAT</span>
+                <span class="text-xs text-[#6b6257] mt-1 block font-light">Customer inquiries processed daily</span>
               </div>
             </div>
 
@@ -236,77 +266,72 @@
 
           <!-- Social Channels -->
           <div class="pt-4 space-y-3">
-            <span class="text-[11px] uppercase tracking-widest text-[#9ba1b0] font-semibold block">Follow Us</span>
+            <span class="text-[11px] uppercase tracking-widest text-[#6b6257] font-semibold block">Follow Tetu Collection</span>
             <div class="flex items-center gap-4 flex-wrap">
               <a href="https://instagram.com/tetucollection" target="_blank" rel="noopener noreferrer"
-                 class="flex items-center gap-2 px-5 py-2.5 bg-[#151821] hover:bg-[#191c26] border border-white/10 hover:border-[#d4af37]/50 rounded-xl text-xs font-semibold uppercase tracking-wider text-white hover:text-[#d4af37] transition-all">
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"></path>
-                </svg>
-                <span>Instagram</span>
+                 class="flex items-center gap-2 px-5 py-2.5 bg-[#ece2d5] hover:bg-[#e4d8c8] border border-[#d4af37]/30 hover:border-[#8c7322] rounded-xl text-xs font-semibold uppercase tracking-wider text-[#26211c] hover:text-[#8c7322] transition-all">
+                <span>Instagram: @tetucollection</span>
               </a>
               <a href="https://tiktok.com/@tetucollection" target="_blank" rel="noopener noreferrer"
-                 class="flex items-center gap-2 px-5 py-2.5 bg-[#151821] hover:bg-[#191c26] border border-white/10 hover:border-[#d4af37]/50 rounded-xl text-xs font-semibold uppercase tracking-wider text-white hover:text-[#d4af37] transition-all">
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"></path>
-                </svg>
-                <span>TikTok</span>
+                 class="flex items-center gap-2 px-5 py-2.5 bg-[#ece2d5] hover:bg-[#e4d8c8] border border-[#d4af37]/30 hover:border-[#8c7322] rounded-xl text-xs font-semibold uppercase tracking-wider text-[#26211c] hover:text-[#8c7322] transition-all">
+                <span>TikTok: @tetucollection</span>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Right Column: Interactive WhatsApp Form -->
+        <!-- Right Column: Pre-Filled WhatsApp Inquiry Form -->
         <div class="lg:col-span-7">
-          <div class="bg-[#151821] border border-white/10 hover:border-[#d4af37]/40 rounded-3xl p-8 sm:p-10 shadow-2xl transition-all">
-            <div class="space-y-3 mb-8">
-              <span class="text-xs uppercase tracking-[0.25em] text-[#d4af37] font-semibold block">Bespoke Message</span>
-              <h2 class="font-serif text-2xl sm:text-3xl text-white uppercase tracking-tight">Send an Enquiry</h2>
-              <p class="text-sm text-[#9ba1b0] font-light leading-relaxed">
-                Fill in the details below to generate a pre-filled WhatsApp message directly to our atelier team.
+          <div class="bg-[#ece2d5] border border-[#d4af37]/35 rounded-3xl p-8 sm:p-10 shadow-md">
+            <div class="space-y-2 mb-8">
+              <span class="text-xs uppercase tracking-[0.25em] text-[#8c7322] font-semibold block">Direct Order Form</span>
+              <h2 class="font-serif text-2xl sm:text-3xl text-[#26211c] tracking-tight">Send an Enquiry</h2>
+              <p class="text-sm text-[#5a4f43] font-light leading-relaxed">
+                Fill in what you need below to immediately open WhatsApp with your pre-filled inquiry.
               </p>
             </div>
 
             <form id="enquiry-form" class="space-y-5">
               <div class="space-y-2">
-                <label for="client-name" class="block text-xs uppercase tracking-wider text-[#9ba1b0] font-medium">Your Name <span class="text-[#d4af37]">*</span></label>
-                <input type="text" id="client-name" required placeholder="e.g. Wanjiku Muthoni" class="input-noir w-full px-4 py-3 rounded-xl text-sm text-white placeholder-[#555b6a] outline-none">
+                <label for="client-name" class="block text-xs uppercase tracking-wider text-[#5a4f43] font-semibold">Your Name <span class="text-[#8c7322]">*</span></label>
+                <input type="text" id="client-name" required placeholder="e.g. Wanjiku Muthoni" class="form-input-cream w-full px-4 py-3 rounded-xl text-sm placeholder-[#8d8276]">
               </div>
 
               <div class="space-y-2">
-                <label for="item-interest" class="block text-xs uppercase tracking-wider text-[#9ba1b0] font-medium">Interested In <span class="text-[#d4af37]">*</span></label>
-                <select id="item-interest" required class="input-noir w-full px-4 py-3 rounded-xl text-sm text-white outline-none cursor-pointer">
+                <label for="item-interest" class="block text-xs uppercase tracking-wider text-[#5a4f43] font-semibold">Interested In <span class="text-[#8c7322]">*</span></label>
+                <select id="item-interest" required class="form-input-cream w-full px-4 py-3 rounded-xl text-sm cursor-pointer">
                   <option value="" disabled selected>Select a product or category</option>
-                  <option value="Handcrafted Bags Collection">Handcrafted Bags Collection</option>
-                  <option value="Handcrafted Shoes Collection">Handcrafted Shoes Collection</option>
-                  <option value="White Sculpted Crescent Bag">White Sculpted Crescent Bag</option>
-                  <option value="Monogram Gold Chain Slide">Monogram Gold Chain Slide</option>
-                  <option value="Hazelnut Leather Shoulder Tote">Hazelnut Leather Shoulder Tote</option>
-                  <option value="Noir Gold Chain Evening Slide">Noir Gold Chain Evening Slide</option>
-                  <option value="Custom Sizing / Bespoke Commission">Custom Sizing / Bespoke Commission</option>
-                  <option value="General Question / Other">General Question / Other</option>
+                  <option value="Handbags &amp; Totes Collection">Handbags &amp; Totes Collection</option>
+                  <option value="Shoes &amp; Slides Collection">Shoes &amp; Slides Collection</option>
+                  <option value="White Curved Shoulder Bag">White Curved Shoulder Bag</option>
+                  <option value="Cream &amp; Brown Tote Bag">Cream &amp; Brown Tote Bag</option>
+                  <option value="Brown Leather Tote Bag">Brown Leather Tote Bag</option>
+                  <option value="Gold Chain Monogram Slide">Gold Chain Monogram Slide</option>
+                  <option value="Classic Tan H-Slide">Classic Tan H-Slide</option>
+                  <option value="Pearl Strap Slide">Pearl Strap Slide</option>
+                  <option value="General Order Enquiry / Custom Question">General Order Enquiry / Custom Question</option>
                 </select>
               </div>
 
               <div class="space-y-2">
-                <label for="size-pref" class="block text-xs uppercase tracking-wider text-[#9ba1b0] font-medium">Preferred Shoe Size or Color (Optional)</label>
-                <input type="text" id="size-pref" placeholder="e.g. EU 39, Black leather, or Tan" class="input-noir w-full px-4 py-3 rounded-xl text-sm text-white placeholder-[#555b6a] outline-none">
+                <label for="size-pref" class="block text-xs uppercase tracking-wider text-[#5a4f43] font-semibold">Shoe Size or Preferred Colour (Optional)</label>
+                <input type="text" id="size-pref" placeholder="e.g. Size 39, Brown, White, Black" class="form-input-cream w-full px-4 py-3 rounded-xl text-sm placeholder-[#8d8276]">
               </div>
 
               <div class="space-y-2">
-                <label for="message-text" class="block text-xs uppercase tracking-wider text-[#9ba1b0] font-medium">Your Message / Questions <span class="text-[#d4af37]">*</span></label>
-                <textarea id="message-text" rows="4" required placeholder="Please describe what you are looking for, pricing enquiry, or custom requirements..." class="input-noir w-full px-4 py-3 rounded-xl text-sm text-white placeholder-[#555b6a] outline-none resize-none"></textarea>
+                <label for="message-text" class="block text-xs uppercase tracking-wider text-[#5a4f43] font-semibold">Your Message / Questions <span class="text-[#8c7322]">*</span></label>
+                <textarea id="message-text" rows="4" required placeholder="Let us know what you would like to order or ask about..." class="form-input-cream w-full px-4 py-3 rounded-xl text-sm placeholder-[#8d8276] resize-none"></textarea>
               </div>
 
-              <button type="submit" class="w-full inline-flex items-center justify-center gap-3 py-4 px-8 rounded-full bg-[#d4af37] hover:bg-[#e5c158] text-[#07090e] font-bold text-xs uppercase tracking-[0.2em] transition-all shadow-lg hover:-translate-y-0.5 cursor-pointer mt-2">
+              <button type="submit" class="w-full inline-flex items-center justify-center gap-3 py-4 px-8 rounded-full bg-[#d4af37] hover:bg-[#e5c158] text-[#07090e] font-bold text-xs uppercase tracking-[0.2em] transition-all shadow-md hover:-translate-y-0.5 cursor-pointer mt-2">
                 <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                   <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path>
                 </svg>
-                <span>Send Enquiry on WhatsApp (+254700309655)</span>
+                <span>Send on WhatsApp (+254 700 309 655)</span>
               </button>
 
-              <p class="text-center text-[11px] text-[#646a7a] mt-3 font-light">
-                Clicking opens WhatsApp with your pre-filled enquiry. No registration required.
+              <p class="text-center text-[11px] text-[#786e63] mt-3 font-light">
+                Opens directly in WhatsApp with your message ready. Quick and straightforward.
               </p>
             </form>
           </div>
@@ -315,72 +340,75 @@
       </div>
     </section>
 
-    <!-- BESPOKE ASSURANCE BANNER -->
-    <section class="w-full bg-[#151821] border-y border-[#212532] py-16 px-6 lg:px-12">
-      <div class="max-w-[1000px] mx-auto text-center flex flex-col items-center">
-        <span class="text-[11px] text-[#d4af37] uppercase tracking-[0.3em] font-semibold mb-3">Custom Leathercraft</span>
-        <h2 class="font-serif text-2xl sm:text-3xl text-white uppercase tracking-tight mb-4">
-          Need a Specific Shoe Size or Custom Color?
-        </h2>
-        <p class="text-sm text-[#9ba1b0] max-w-lg mb-8 leading-relaxed font-light">
-          All our sandals and bags are handcrafted locally in Nairobi. We accommodate bespoke sizing (EU 36–45), wide-fit preferences, and personalized leather shades upon request.
+    <!-- ASSISTANCE BANNER -->
+    <section class="max-w-[1440px] mx-auto px-6 lg:px-12 mb-20">
+      <div class="bg-[#ece2d5] border border-[#d4af37]/30 rounded-3xl p-8 md:p-12 text-center max-w-4xl mx-auto shadow-sm">
+        <span class="text-[11px] text-[#8c7322] uppercase tracking-[0.25em] font-semibold mb-2 block">Direct Assistance</span>
+        <h3 class="font-serif text-2xl md:text-3xl text-[#26211c] mb-3">Looking for a specific shoe size or bag color?</h3>
+        <p class="text-sm text-[#5a4f43] max-w-lg mx-auto mb-6 font-light leading-relaxed">
+          We can help you find or order your preferred style and colourway. Chat directly with us on WhatsApp.
         </p>
-        <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20would%20like%20to%20request%20a%20custom%20order."
+        <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20looking%20for%20a%20specific%20style%20and%20colorway."
            target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center gap-3 px-8 py-3.5 bg-[#d4af37] hover:bg-[#e5c158] text-[#07090e] font-bold text-xs uppercase tracking-[0.2em] rounded-full transition-all shadow-lg hover:-translate-y-0.5">
-          <span>Message on WhatsApp (+254700309655)</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-          </svg>
+           class="inline-flex items-center gap-2 px-8 py-3.5 bg-[#d4af37] hover:bg-[#e5c158] text-[#07090e] font-bold text-xs uppercase tracking-widest rounded-full transition-all shadow-md hover:-translate-y-0.5">
+          Chat on WhatsApp (+254 700 309 655) ↗
         </a>
       </div>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer-cream-theme py-14 px-6 lg:px-12 w-full text-center">
-    <div class="max-w-[1440px] mx-auto flex flex-col items-center justify-center space-y-6">
+  <!-- ============================= FOOTER ============================= -->
+  <footer class="footer-cream-theme py-12 px-6 lg:px-12 w-full">
+    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
 
-      <div class="flex flex-col items-center">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUDlWVhYWxi0LWV_3yeeHnI2DgQ_ZYGdrLra_hDpaJDP8jcRr2mrAFuIkF2tEHOe-0VqVYT1gPtKk1iUNHozhcJdMpM4aPWMzc7htJDp6FR9uWp9eJvk54UgvRwIwadNwZ00NzQtB2B48_qbAiScXkeZlNHWxf6elycZEZT2seQof_sI2GkJZRiOmUaGDg0YLvlSSeSfJqf79TKTtAh4MRQee7DPShqzJR_o2yyQnd931KquJ9LX1UOkIfLs8TNe5dHco"
-             alt="TETU COLLECTION"
-             class="h-12 w-auto object-contain">
-        <p class="text-xs text-[#6b6257] mt-2 tracking-wider font-light">
-          Bespoke Kenyan leathercraft &amp; artisanal luxury crafted in Nairobi.
+      <!-- Left: Logo & Philosophy -->
+      <div class="flex flex-col items-center md:items-start text-center md:text-left space-y-2 max-w-sm">
+        <a href="index.html" aria-label="TETU COLLECTION Home">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6HKX_MHcfw2VdHKRRIud-m9yHhaB6mJOJT8o6rvSPGNHn-bEszNlIiGafH0mVuOY_H95ZgQ1EFZr-m4UTO4Q7KHcsbp7BczjKgol_DkCVuR8ygHcQZsV_A7tJLfTZhp0SFDBKS3s6Myk8N9YBNO_Xyg982PoMMdlrnL1aAs8hw-2eZJPfNOYfdjdl0ZVarfmuHdJJJjunDVErhQExhUTYkfTDcKvM5Eqoe0M1t14CVqh4wKPDTLEn9wB5Q-ZseTOhzy4"
+               alt="TETU COLLECTION"
+               class="h-10 md:h-12 w-auto object-contain">
+        </a>
+        <p class="text-xs text-[#5a4f43] leading-relaxed pt-1">
+          Curated everyday imported fashion bags and comfortable slides made for everyday wear. Thoughtfully chosen, effortlessly you.
         </p>
+        <span class="text-[11px] font-bold tracking-widest uppercase text-[#8c7322]">NAIROBI, KENYA</span>
       </div>
 
-      <div class="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs font-semibold uppercase tracking-wider text-[#3e3831]">
-        <a href="https://instagram.com/tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322] transition-colors">Instagram</a>
-        <span class="text-[#b5a99a]">•</span>
-        <a href="https://tiktok.com/@tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322] transition-colors">TikTok</a>
-        <span class="text-[#b5a99a]">•</span>
-        <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322] font-bold transition-colors">WhatsApp: +254700309655</a>
-      </div>
-
-      <div class="w-full max-w-xl h-[1px] bg-[#d4af37]/30 my-2"></div>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 text-xs text-[#524a40]">
-        <span>Copyright 2026 Tetu Collection.</span>
-        <span class="hidden sm:inline text-[#b5a99a]">•</span>
-        <div class="flex items-center gap-2">
-          <span>Website designed &amp; crafted by <strong class="text-[#26211c]">Bossy designs</strong></span>
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnZdr0g9MopVULz0psdf7svpIA9brmb3Lqs5i-orbNUyFN5B4V2RjIrVmW2yeFNo8kF51jSlJvtB1Ky5UAs9zYsccZPO3Unx574oIabveAXk5Sc3Jjo-ePndf6QxhtTDrpnwU3UZErGU_AwolCQqCC_ZVlxLsEvrn8f02uTb7HjoSTwRPtv2t-uKg6yQjD0u2-I_rfuIAy2vKU75gkyTnz_6crceaSquirj852AUpROVZHJt7BVIxu7zoC0DJgNIfD9-I"
-               alt="Bossy designs"
-               class="h-5 w-auto object-contain inline-block rounded shadow-sm">
+      <!-- Right: Official Contact & Social Aligned Far Right -->
+      <div class="flex flex-col items-center md:items-end text-center md:text-right space-y-2">
+        <span class="text-[11px] uppercase tracking-[0.2em] text-[#26211c] font-bold">Official Contact &amp; Social</span>
+        <div class="space-y-1 text-xs text-[#5a4f43]">
+          <div>WhatsApp: <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer" class="font-bold text-[#8c7322] hover:underline">+254 700 309 655</a></div>
+          <div>Instagram: <a href="https://instagram.com/tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322]">@tetucollection</a></div>
+          <div>TikTok: <a href="https://tiktok.com/@tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322]">@tetucollection</a></div>
+          <div class="text-[10px] text-[#786e63] pt-1">Inquiries processed 8:00 AM - 9:00 PM EAT daily.</div>
         </div>
       </div>
 
     </div>
+
+    <!-- Bottom Line -->
+    <div class="max-w-[1440px] mx-auto mt-10 pt-6 border-t border-[#d4af37]/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#6b6257]">
+      <div>
+        Copyright 2026 Tetu Collection • All rights reserved.
+      </div>
+      <div class="flex items-center gap-2">
+        <span>Website designed &amp; crafted by</span>
+        <strong class="text-[#26211c]">Bossy designs</strong>
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD288kyLpQeaS4d17MUkX2Fe0Xwn6CxL6FcWhIiCOc5aR6yRSbe7PU8eOlcKwxVIp9qBJ4q3zmbU_yzLYtFHNM-CjDR9nXAOPopuCQw7bPJHxiSU5oFwTI4-UYaCTjM3D3dvRrZ5oEgVilwU33hs2BIPuFDLYzxXUYupudK9cIYBAZZljRs4qRvui7P2jLBXAJzu3Z1XVPxUfFmtFzjhTYZ3MshNXGRXqUBlwTd66n1rK23ClQYOMlP122dkJAMBKAHMVY"
+             alt="Bossy Design"
+             class="h-5 w-auto object-contain inline-block rounded">
+      </div>
+    </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- ============================= SCRIPTS ============================= -->
   <script>
     (function () {
       'use strict';
 
-      /* Mobile navigation toggle — smooth slide-down */
+      /* Mobile nav toggle */
       const toggleBtn = document.getElementById('mobile-menu-toggle');
       const mobileNav = document.getElementById('mobile-nav');
       const mobileBackdrop = document.getElementById('mobile-nav-backdrop');
@@ -413,9 +441,7 @@
         });
       }
 
-      if (mobileBackdrop) {
-        mobileBackdrop.addEventListener('click', closeMenu);
-      }
+      if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMenu);
 
       document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
         link.addEventListener('click', function () {
@@ -429,15 +455,13 @@
         }
       });
 
-      let resizeTimer;
       window.addEventListener('resize', function () {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function () {
-          if (window.innerWidth >= 768) closeMenu();
-        }, 150);
+        if (window.innerWidth >= 768 && mobileNav && mobileNav.classList.contains('open')) {
+          closeMenu();
+        }
       });
 
-      /* Interactive WhatsApp message pre-fill */
+      /* Interactive WhatsApp form submission */
       const enquiryForm = document.getElementById('enquiry-form');
       if (enquiryForm) {
         enquiryForm.addEventListener('submit', function (e) {
@@ -450,11 +474,11 @@
           if (!name || !interest || !message) return;
 
           let text = `Hello TETU COLLECTION (+254700309655),\n\n`;
-          text += `I would like to enquire about your handcrafted collection:\n`;
+          text += `I would like to enquire about:\n`;
           text += `• Name: ${name}\n`;
           text += `• Interested In: ${interest}\n`;
           if (sizePref) {
-            text += `• Preferred Size/Color: ${sizePref}\n`;
+            text += `• Size / Colour: ${sizePref}\n`;
           }
           text += `• Message: ${message}\n\n`;
           text += `(Via tetucollection.com • Designed by Bossy designs)`;
@@ -463,6 +487,8 @@
           window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
         });
       }
+
+      console.log('✅ TETU contact.html loaded');
     })();
   </script>
 

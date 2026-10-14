@@ -1,0 +1,936 @@
+/* ==========================================================================
+   TETU COLLECTION — REUSABLE UI COMPONENTS STYLESHEET (components.css)
+   Brand: TETU COLLECTION
+   Theme: Warm Editorial Cream, Deep Espresso & Brushed Gold (#d4af37)
+   Atelier / Made by: Bossy designs
+   Contact / WhatsApp Concierge: +254 700 309 655
+   Typography: Bodoni Moda (Display/Serif), Plus Jakarta Sans (Body/Sans)
+   Description: Modular, reusable production UI components harmonized with the
+                warm cream interface across all live pages (index.html, shoes.html,
+                bags.html, about.html, contact.html, reviews.html, thank-you.html, 404.html).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Brand Badge & Pill Micro-Indicators
+   -------------------------------------------------------------------------- */
+.tc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill, 9999px);
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  background-color: var(--bg-surface, #ede5dc);
+  color: var(--text-muted, #736b63);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  width: fit-content;
+  white-space: nowrap;
+}
+
+.tc-badge-pulse::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-gold, #d4af37);
+  box-shadow: 0 0 6px var(--color-gold, #d4af37);
+  animation: tcPulseDot 2s infinite ease-in-out;
+}
+
+@keyframes tcPulseDot {
+  0%, 100% { opacity: 0.45; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+
+.tc-badge-gold {
+  background-color: rgba(212, 175, 55, 0.14);
+  color: var(--text-espresso, #26211c);
+  border: 1px solid var(--border-gold, rgba(212, 175, 55, 0.45));
+}
+
+.tc-badge-white {
+  background-color: rgba(255, 255, 255, 0.85);
+  color: var(--text-espresso, #26211c);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* --------------------------------------------------------------------------
+   2. Brand Hallmarks & Watermarks
+   -------------------------------------------------------------------------- */
+/* Watermark overlay on catalog photos */
+.brand-watermark-overlay {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-color: rgba(244, 237, 228, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-gold-subtle, rgba(212, 175, 55, 0.25));
+  border-radius: var(--radius-sm, 6px);
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(38, 33, 28, 0.04));
+}
+
+.brand-watermark-overlay img {
+  height: 18px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Circular Monogram / Emblem Circle */
+.tc-monogram-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border-gold, rgba(212, 175, 55, 0.45));
+  background-color: var(--bg-surface, #ede5dc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-espresso, #26211c);
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(38, 33, 28, 0.04));
+  flex-shrink: 0;
+}
+
+.tc-monogram-circle.sm {
+  width: 32px;
+  height: 32px;
+  font-size: 11px;
+}
+
+.tc-monogram-circle.lg {
+  width: 56px;
+  height: 56px;
+  font-size: 18px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Buttons & Interactive Action Controls
+   -------------------------------------------------------------------------- */
+/* Primary Brushed Gold Button */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill, 9999px);
+  background-color: var(--color-gold, #d4af37);
+  color: var(--text-espresso, #26211c);
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(38, 33, 28, 0.04));
+  transition: all var(--transition-fast, 0.2s cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.btn-gold:hover {
+  background-color: var(--color-gold-hover, #c49f2b);
+  transform: translateY(-1.5px);
+  box-shadow: var(--shadow-gold, 0 4px 18px rgba(212, 175, 55, 0.25));
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+/* Outline Secondary Cream Action */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: var(--radius-pill, 9999px);
+  background-color: var(--bg-cream, #f4ede4);
+  color: var(--text-espresso, #26211c);
+  border: 1px solid var(--border-medium, rgba(38, 33, 28, 0.15));
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-fast, 0.2s cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.btn-outline:hover {
+  background-color: var(--bg-card-hover, #e6dcce);
+  border-color: var(--color-gold, #d4af37);
+  color: var(--text-espresso, #26211c);
+}
+
+/* Direct WhatsApp CTA Button */
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-pill, 9999px);
+  background-color: var(--bg-surface, #ede5dc);
+  color: var(--text-espresso, #26211c);
+  border: 1px solid var(--border-gold, rgba(212, 175, 55, 0.45));
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-fast, 0.2s cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.btn-whatsapp:hover {
+  background-color: var(--color-gold, #d4af37);
+  border-color: var(--color-gold, #d4af37);
+  transform: translateY(-1.5px);
+  box-shadow: var(--shadow-gold, 0 4px 18px rgba(212, 175, 55, 0.25));
+}
+
+/* Full Width Card Action */
+.btn-block {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   4. Catalog & Product Cards
+   -------------------------------------------------------------------------- */
+.catalog-item-card {
+  background-color: var(--bg-surface, #ede5dc);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  border-radius: var(--radius-lg, 16px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-smooth, 0.35s cubic-bezier(0.16, 1, 0.3, 1));
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(38, 33, 28, 0.04));
+  position: relative;
+}
+
+.catalog-item-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-gold, rgba(212, 175, 55, 0.45));
+  box-shadow: var(--shadow-hover, 0 8px 30px rgba(38, 33, 28, 0.1));
+}
+
+.catalog-item-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--bg-cream, #f4ede4);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.catalog-item-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.catalog-item-card:hover .catalog-item-visual img {
+  transform: scale(1.04);
+}
+
+.catalog-item-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.catalog-item-category {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-gold, #d4af37);
+  margin-bottom: 4px;
+}
+
+.catalog-item-title {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--text-espresso, #26211c);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.catalog-item-desc {
+  font-size: 13px;
+  color: var(--text-muted, #736b63);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   5. Filter Tabs & Category Pills
+   -------------------------------------------------------------------------- */
+.filter-pills-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.filter-pills-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-pill {
+  padding: 7px 16px;
+  border-radius: var(--radius-pill, 9999px);
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background-color: var(--bg-cream, #f4ede4);
+  color: var(--text-muted, #736b63);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast, 0.2s cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.filter-pill:hover {
+  border-color: var(--border-gold, rgba(212, 175, 55, 0.45));
+  color: var(--text-espresso, #26211c);
+}
+
+.filter-pill.active {
+  background-color: var(--color-gold, #d4af37);
+  color: var(--text-espresso, #26211c);
+  border-color: var(--color-gold, #d4af37);
+  font-weight: 700;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(38, 33, 28, 0.04));
+}
+
+/* --------------------------------------------------------------------------
+   6. Form Components & Review Pickers
+   -------------------------------------------------------------------------- */
+.tc-form-card {
+  background-color: var(--bg-surface, #ede5dc);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  border-radius: var(--radius-xl, 24px);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(38, 33, 28, 0.04));
+}
+
+.tc-form-group {
+  margin-bottom: 1.25rem;
+}
+
+.tc-form-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted, #736b63);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.tc-form-label .req {
+  color: var(--color-gold, #d4af37);
+  margin-left: 2px;
+}
+
+.tc-input,
+.tc-select,
+.tc-textarea {
+  width: 100%;
+  background-color: var(--bg-cream, #f4ede4);
+  border: 1px solid var(--border-medium, rgba(38, 33, 28, 0.15));
+  border-radius: var(--radius-md, 12px);
+  padding: 12px 16px;
+  color: var(--text-espresso, #26211c);
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 14px;
+  transition: all var(--transition-fast, 0.2s cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.tc-input:focus,
+.tc-select:focus,
+.tc-textarea:focus {
+  border-color: var(--color-gold, #d4af37);
+  background-color: var(--bg-elevated, #faf6f0);
+  box-shadow: 0 0 0 3px var(--color-gold-dim, rgba(212, 175, 55, 0.14));
+  outline: none;
+}
+
+.tc-input::placeholder,
+.tc-textarea::placeholder {
+  color: var(--text-dim, #9a9187);
+  font-size: 13px;
+}
+
+.tc-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Interactive Star Rating Widget */
+.tc-star-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.star-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--color-gold, #d4af37);
+  cursor: pointer;
+  padding: 2px 4px;
+  line-height: 1;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.star-btn:hover {
+  transform: scale(1.2);
+}
+
+.star-btn.inactive {
+  color: var(--text-dim, #9a9187);
+}
+
+.tc-star-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-espresso, #26211c);
+  margin-left: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   7. Customer Reviews & Testimonial Feed Cards
+   -------------------------------------------------------------------------- */
+.review-item-card {
+  background-color: var(--bg-surface, #ede5dc);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  border-radius: var(--radius-lg, 16px);
+  padding: 1.5rem;
+  transition: all var(--transition-smooth, 0.35s cubic-bezier(0.16, 1, 0.3, 1));
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(38, 33, 28, 0.04));
+  position: relative;
+}
+
+.review-item-card:hover {
+  border-color: var(--border-gold, rgba(212, 175, 55, 0.45));
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card, 0 4px 20px rgba(38, 33, 28, 0.06));
+}
+
+.review-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+
+.review-client-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.review-avatar-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--bg-cream, #f4ede4);
+  border: 1px solid var(--border-gold-subtle, rgba(212, 175, 55, 0.25));
+  color: var(--color-gold, #d4af37);
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-client-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-espresso, #26211c);
+}
+
+.review-client-location {
+  font-size: 11px;
+  color: var(--text-muted, #736b63);
+}
+
+.review-stars-display {
+  color: var(--color-gold, #d4af37);
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.review-body-text {
+  font-size: 13px;
+  color: var(--text-espresso, #26211c);
+  line-height: 1.6;
+  margin-bottom: 0.85rem;
+  font-style: italic;
+}
+
+.review-product-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm, 6px);
+  font-size: 11px;
+  background-color: var(--bg-cream, #f4ede4);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  color: var(--text-muted, #736b63);
+}
+
+.review-product-tag strong {
+  color: var(--text-espresso, #26211c);
+}
+
+/* --------------------------------------------------------------------------
+   8. Direct WhatsApp Assistance / Support Banner
+   -------------------------------------------------------------------------- */
+.support-banner-card {
+  background-color: var(--bg-surface, #ede5dc);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  border-radius: var(--radius-xl, 24px);
+  padding: 1.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(38, 33, 28, 0.04));
+}
+
+.support-banner-title {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: 1.25rem;
+  color: var(--text-espresso, #26211c);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.support-banner-desc {
+  font-size: 12px;
+  color: var(--text-muted, #736b63);
+  line-height: 1.5;
+  max-width: 480px;
+}
+
+@media (max-width: 640px) {
+  .support-banner-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. Clean Zero-State / Empty Feed Placeholder
+   -------------------------------------------------------------------------- */
+.empty-feed-card {
+  background-color: var(--bg-surface, #ede5dc);
+  border: 2px dashed rgba(38, 33, 28, 0.15);
+  border-radius: var(--radius-xl, 24px);
+  padding: 3.5rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-feed-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--bg-cream, #f4ede4);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold, #d4af37);
+  font-size: 24px;
+  margin-bottom: 1rem;
+}
+
+.empty-feed-title {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: 1.35rem;
+  color: var(--text-espresso, #26211c);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.empty-feed-desc {
+  font-size: 13px;
+  color: var(--text-muted, #736b63);
+  max-width: 360px;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   10. Toast Notification Pill
+   -------------------------------------------------------------------------- */
+.tc-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(24px);
+  background-color: var(--bg-surface, #ede5dc);
+  border: 1px solid var(--border-gold, rgba(212, 175, 55, 0.45));
+  color: var(--text-espresso, #26211c);
+  padding: 12px 24px;
+  border-radius: var(--radius-pill, 9999px);
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: var(--shadow-hover, 0 8px 30px rgba(38, 33, 28, 0.1)), var(--shadow-gold, 0 4px 18px rgba(212, 175, 55, 0.25));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 100200;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tc-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   11. HEADER & NAVIGATION COMPONENTS (Smooth Mobile Drawer + Nav Links)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   11.1 Site Header Shell
+   -------------------------------------------------------------------------- */
+.tc-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  background-color: rgba(244, 237, 228, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(38, 33, 28, 0.04));
+}
+
+.tc-header-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .tc-header-inner {
+    padding: 0 3rem;
+  }
+}
+
+.tc-header-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   11.2 Desktop Navigation Links
+   -------------------------------------------------------------------------- */
+.tc-nav-desktop {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .tc-nav-desktop {
+    display: flex;
+  }
+}
+
+.tc-nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 4px 0;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--text-espresso, #26211c);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.tc-nav-link:hover,
+.tc-nav-link:focus {
+  color: var(--color-gold, #d4af37);
+}
+
+/* Active page indicator — subtle underline */
+.tc-nav-link.active {
+  color: var(--text-espresso, #26211c);
+  font-weight: 700;
+}
+
+.tc-nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-espresso, #26211c);
+}
+
+.tc-nav-link.active:hover {
+  color: var(--color-gold, #d4af37);
+}
+
+.tc-nav-link.active:hover::after {
+  background-color: var(--color-gold, #d4af37);
+}
+
+/* --------------------------------------------------------------------------
+   11.3 Header Action Icons (Search / Bag / Hamburger)
+   -------------------------------------------------------------------------- */
+.tc-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.tc-icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  color: var(--text-espresso, #26211c);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.tc-icon-btn:hover,
+.tc-icon-btn:focus {
+  color: var(--color-gold, #d4af37);
+}
+
+.tc-icon-btn:active {
+  transform: scale(0.94);
+}
+
+.tc-icon-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background-color: var(--color-gold, #d4af37);
+  color: var(--text-espresso, #26211c);
+  font-size: 9px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   11.4 Mobile Menu Toggle (Hamburger)
+   -------------------------------------------------------------------------- */
+.tc-mobile-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  color: var(--text-espresso, #26211c);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.tc-mobile-toggle:hover {
+  color: var(--color-gold, #d4af37);
+}
+
+.tc-mobile-toggle:active {
+  transform: scale(0.94);
+}
+
+@media (min-width: 768px) {
+  .tc-mobile-toggle {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11.5 Mobile Navigation Drawer (Smooth Slide + Fade)
+   -------------------------------------------------------------------------- */
+.tc-mobile-drawer {
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  background-color: var(--bg-surface, #ede5dc);
+  border-top: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  transition:
+    max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease;
+  will-change: max-height, opacity;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.tc-mobile-drawer::-webkit-scrollbar {
+  display: none;
+}
+
+.tc-mobile-drawer.open {
+  max-height: 560px;
+  opacity: 1;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .tc-mobile-drawer,
+  .tc-mobile-drawer.open {
+    display: none;
+  }
+}
+
+.tc-mobile-drawer-inner {
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   11.6 Mobile Nav Links (Smooth tap feedback)
+   -------------------------------------------------------------------------- */
+.tc-mobile-link {
+  display: block;
+  padding: 10px 0;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-espresso, #26211c);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(38, 33, 28, 0.05);
+  transition:
+    color 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+.tc-mobile-link:hover,
+.tc-mobile-link:focus {
+  color: var(--color-gold, #d4af37);
+}
+
+.tc-mobile-link:active {
+  color: var(--color-gold, #d4af37);
+  padding-left: 0.5rem;
+}
+
+.tc-mobile-link.active {
+  color: var(--color-gold, #d4af37);
+  font-weight: 700;
+}
+
+.tc-mobile-link-whatsapp {
+  color: var(--text-espresso, #26211c);
+  font-weight: 700;
+  border-bottom: none;
+  padding-top: 12px;
+}
+
+.tc-mobile-link-whatsapp:hover {
+  color: var(--color-gold, #d4af37);
+}
+
+/* --------------------------------------------------------------------------
+   11.7 Mobile Backdrop Overlay
+   -------------------------------------------------------------------------- */
+.tc-mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(11, 14, 21, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 40;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.tc-mobile-backdrop.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .tc-mobile-backdrop {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11.8 Body Scroll Lock When Drawer Is Open
+   -------------------------------------------------------------------------- */
+body.tc-menu-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}

@@ -11,12 +11,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="utilities.css">
-  <link rel="stylesheet" href="components.css">
-  <link rel="stylesheet" href="animation.css">
-  <link rel="stylesheet" href="pages.css">
-  <link rel="stylesheet" href="responsive.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animation.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/responsive.css">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -30,13 +30,13 @@
             'primary-container': 'rgba(212, 175, 55, 0.15)',
             'on-primary': '#07090e',
             'surface-dim': '#0b0e15',
-            surface: '#10131a',
+            'surface': '#10131a',
             'surface-card': '#151821',
             'surface-container': '#191c26',
-            'cream-header': '#f5ede3'
+            'cream-header': '#f4ede4'
           },
           fontFamily: {
-            serif: ['"Bodoni Moda"', 'serif'],
+            serif: ['"Bodoni Moda"', 'Georgia', 'serif'],
             sans: ['"Plus Jakarta Sans"', 'sans-serif']
           }
         }
@@ -64,7 +64,6 @@
       border-top: 1px solid rgba(212, 175, 55, 0.25);
     }
 
-    /* Smooth mobile nav drawer */
     #mobile-nav {
       max-height: 0;
       overflow: hidden;
@@ -85,40 +84,78 @@
       pointer-events: none;
     }
 
-    /* Shoe cards: visible by default, hidden only when filtered out */
     .shoe-card { display: flex !important; }
     .shoe-card.hidden-card { display: none !important; }
 
     section[id] { scroll-margin-top: 96px; }
+
+    /* ===================================================== */
+    /* Thumb-Scroll & Touch Improvements (newly added)        */
+    /* ===================================================== */
+    html, body {
+      -webkit-overflow-scrolling: touch; /* Smooth momentum scroll on iOS */
+      overscroll-behavior-y: contain;    /* Prevent pull-to-refresh bounce */
+    }
+
+    /* Bigger, easier tap targets for thumbs */
+    .filter-pill,
+    .mobile-nav-link {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    /* Smoother drawer animation for slower phones */
+    @media (prefers-reduced-motion: no-preference) {
+      #mobile-nav {
+        transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                    opacity 0.35s ease;
+      }
+    }
   </style>
 </head>
 
-<body class="bg-[#0b0e15] font-sans text-[#f5f5f7] antialiased selection:bg-[#d4af37] selection:text-[#07090e]">
+<body class="bg-[#ece5d8] font-sans text-[#26211c] antialiased selection:bg-[#d4af37] selection:text-[#07090e]">
+
+  <!-- ============================= TOP ANNOUNCEMENT BAR ============================= -->
+  <div class="bg-[#e2d9ca] text-[#524a40] text-[11px] tracking-wider border-b border-[#26211c]/10 py-2 px-6">
+    <div class="max-w-[1440px] mx-auto flex items-center justify-between">
+      <span class="flex items-center gap-2">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-[#8c7322]"></span>
+        NAIROBI • IMPORTED FASHION BAGS &amp; SLIDES
+      </span>
+      <span class="hidden md:inline text-xs tracking-widest uppercase font-medium text-[#736657]">THOUGHTFULLY CHOSEN. EFFORTLESSLY YOU.</span>
+      <span class="text-[11px] text-[#8c7322] font-semibold">BASED IN KENYA 📍</span>
+    </div>
+  </div>
 
   <!-- ============================= HEADER ============================= -->
   <header class="header-cream-theme sticky top-0 z-50 w-full backdrop-blur-md shadow-sm">
-    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-24 flex items-center justify-between">
 
       <a href="index.html" class="flex items-center gap-3 z-10" aria-label="TETU COLLECTION Home">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqfltif_WwKFA7Rsqvct8s8X0MBs77A5uyJfVRPdUaDfkTERpGD_QqwPYilAbe4nMZPD_EXFAJU07Ve8GQfXiwDj6UqeX5kYJ4zCs6MZakazyc2_FjN6AwS1cMIgz0OjB5FPbG2OAmpaqQzSmtKxJdw7FLlW62_QVMr7Xpdm6_bBTcJpOq9RevrUnzzUMbHjzVPFnUnmWbGhtez5a117WVpMUOlvc0nO94elGJraGG56NpAzrhnVhh8ZFG3cGIH2Ae_Dk"
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwL2N39GWthOZHvAgHNR1ZcUPnzA-u4z68QW_ig_1kRNROi-U3PbPI4SDfWCmi4NYjywRcdo2gSYM9tCItzWXwPfLm4HqxFGcJx7Qb5b0Z4Sj8hrEBsXad3rKF8l3V9KZ3APFMZm3jhI6gbcPfHXK9RMFEkms4yFyGKjD4tA77aTYZIzu4bkjelV6zlqV47mDgeogY3IznrSPThnRwyGtIW01CZymqdFlztJsZbvTTERE3i1yG4VT5z-XdOSjVo_Do8-8"
              alt="TETU COLLECTION"
-             class="h-10 w-auto object-contain">
+             class="h-14 sm:h-16 md:h-16 max-h-16 w-auto object-contain">
       </a>
 
-      <nav class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-[0.2em] text-[#3e3831]" aria-label="Primary">
-        <a href="index.html" class="hover:text-[#8c7322] transition-colors py-1">Home</a>
-        <a href="bags.html" class="hover:text-[#8c7322] transition-colors py-1">Bags Collection</a>
-        <a href="shoes.html" class="text-[#8c7322] border-b-2 border-[#8c7322] py-1" aria-current="page">Shoes Collection</a>
+      <nav class="hidden md:flex items-center gap-10 text-xs font-semibold uppercase tracking-[0.22em] text-[#3e3831]" aria-label="Primary Navigation">
+        <a href="index.html" class="hover:text-[#8c7322] transition-colors py-1">Homepage</a>
+        <a href="shoes.html" class="text-[#8c7322] border-b-2 border-[#8c7322] py-1" aria-current="page">Shoes</a>
+        <a href="bags.html" class="hover:text-[#8c7322] transition-colors py-1">Bags</a>
+        <a href="about.html" class="hover:text-[#8c7322] transition-colors py-1">About</a>
         <a href="review.html" class="hover:text-[#8c7322] transition-colors py-1">Reviews</a>
-        <a href="contact.html" class="hover:text-[#8c7322] transition-colors py-1">Contact</a>
       </nav>
 
-      <div class="flex items-center gap-4">
-        <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20your%20handcrafted%20leather%20footwear."
-           target="_blank" rel="noopener noreferrer"
-           class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#8c7322] text-[#26211c] text-xs font-bold uppercase tracking-wider hover:bg-[#8c7322] hover:text-white transition-all shadow-sm">
-          WhatsApp: +254700309655
+      <div class="flex items-center gap-5">
+        <button type="button" aria-label="Search Collection" class="text-[#26211c] hover:text-[#8c7322] transition-colors p-1">
+          <span class="material-symbols-outlined text-[22px]">search</span>
+        </button>
+        <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer" aria-label="Acquisition Enquiries" class="text-[#26211c] hover:text-[#8c7322] transition-colors p-1 flex items-center gap-1">
+          <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+          <span class="text-xs font-semibold">0</span>
         </a>
+
         <button id="mobile-menu-toggle" type="button"
                 class="md:hidden p-2 text-[#26211c] hover:text-[#8c7322] transition-colors focus:outline-none"
                 aria-label="Toggle Navigation Menu"
@@ -133,62 +170,68 @@
 
     <div id="mobile-nav" class="md:hidden bg-[#f4ede4] border-t border-[#d4af37]/20">
       <div class="px-6 pb-6 pt-4 flex flex-col gap-3 text-xs font-bold uppercase tracking-widest text-[#26211c]">
-        <a href="index.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Home</a>
-        <a href="bags.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Bags Collection</a>
-        <a href="shoes.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10 text-[#8c7322]">Shoes Collection</a>
+        <a href="index.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Homepage</a>
+        <a href="shoes.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10 text-[#8c7322]">Shoes</a>
+        <a href="bags.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Bags</a>
+        <a href="about.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">About</a>
         <a href="review.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Reviews</a>
-        <a href="contact.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Contact</a>
         <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer"
            class="mobile-nav-link py-2 text-[#8c7322] flex items-center gap-2">
-          WhatsApp: +254700309655
+          WhatsApp: +254 700 309 655
         </a>
       </div>
     </div>
   </header>
 
-  <!-- ============================= MAIN ============================= -->
+  <!-- ============================= MAIN CONTENT ============================= -->
   <main class="w-full relative overflow-hidden">
 
-    <!-- HERO -->
-    <section class="py-20 px-6 lg:px-12 max-w-[1440px] mx-auto text-center border-b border-[#212532]">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/30 text-[#d4af37] text-xs uppercase tracking-[0.25em] font-semibold mb-6">
-        Handcrafted in Nairobi
+    <!-- HERO HEADER -->
+    <section class="py-16 px-6 lg:px-12 max-w-[1440px] mx-auto text-center border-b border-[#26211c]/10">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d4af37]/15 border border-[#8c7322]/30 text-[#8c7322] text-xs uppercase tracking-[0.25em] font-semibold mb-6">
+        Handcrafted &amp; Imported Footwear
       </div>
-      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-white uppercase tracking-tight mb-4">
-        HANDCRAFTED <span class="text-[#d4af37] italic font-normal">SHOES</span>
+      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#26211c] uppercase tracking-tight mb-4">
+        STYLISH <span class="text-[#8c7322] italic font-normal">SLIDES</span> &amp; SANDALS
       </h1>
-      <p class="text-[#9ba1b0] text-sm sm:text-base max-w-xl mx-auto font-light leading-relaxed">
-        Bespoke Kenyan leather slides, sandals, cutout silhouettes, and gilded evening footwear crafted in Nairobi. Inquire directly on WhatsApp to order or request your exact shoe size.
+      <p class="text-[#524a40] text-sm sm:text-base max-w-xl mx-auto font-normal leading-relaxed">
+        Curated everyday imported footwear and handcrafted slides. Comfortable, modern, and made for effortless wear. Order easily or chat with us directly on WhatsApp.
       </p>
 
       <div class="flex items-center justify-center gap-3 mt-10 overflow-x-auto pb-2 -mx-2 px-2">
         <button type="button" class="filter-pill active px-5 py-2 rounded-full bg-[#d4af37] text-[#07090e] text-xs font-bold uppercase tracking-wider shadow-md whitespace-nowrap transition-colors" data-filter="all">All Footwear (14)</button>
-        <button type="button" class="filter-pill px-5 py-2 rounded-full bg-[#151821] text-[#9ba1b0] hover:text-[#d4af37] border border-white/10 text-xs font-medium uppercase tracking-wider whitespace-nowrap transition-colors" data-filter="cutout">Cutout &amp; H-Strap</button>
-        <button type="button" class="filter-pill px-5 py-2 rounded-full bg-[#151821] text-[#9ba1b0] hover:text-[#d4af37] border border-white/10 text-xs font-medium uppercase tracking-wider whitespace-nowrap transition-colors" data-filter="evening">Chain &amp; Evening</button>
+        <button type="button" class="filter-pill px-5 py-2 rounded-full bg-[#f4ede4] text-[#524a40] hover:text-[#8c7322] border border-[#26211c]/15 text-xs font-medium uppercase tracking-wider whitespace-nowrap transition-colors" data-filter="cutout">Cutout &amp; H-Strap</button>
+        <button type="button" class="filter-pill px-5 py-2 rounded-full bg-[#f4ede4] text-[#524a40] hover:text-[#8c7322] border border-[#26211c]/15 text-xs font-medium uppercase tracking-wider whitespace-nowrap transition-colors" data-filter="evening">Chain &amp; Evening</button>
       </div>
     </section>
 
-    <!-- SHOES GRID -->
+    <!-- SHOES PRODUCT GRID -->
     <section id="all-shoes" class="py-16 px-6 lg:px-12 max-w-[1440px] mx-auto">
       <div id="shoes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
         <!-- Shoe 1 — Monogram Gold Chain -->
-        <div class="shoe-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="evening">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw-O9ajCfFYtm0OUMC7L3hwnki-ck3K0NAYxTefghIlA3oLpSwZvx1BW7kzxnn4gc3pld83FFXcqy1MYMad3KwGllUIyRgVhQUy4PCSse9x8DBlR_eoNr51d38e6nmsiJyU1BKIem9HrDVExkrZmWj71eWEW5Um-G7wgw0CYXy1_k-Qle-wV7VRqC1Yd4Ee__b0hkK-Odm00N0nGusA27h3FgnpDJnD_HXWGCZ-BmVDjM4s4B_pJqHjliPRRJaCiIsBb8"
+        <div class="shoe-card group bg-[#faf6f0] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shadow-sm" data-category="evening">
+          <div class="aspect-square bg-[#ece5d8] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4sbXrEVqCGfkuFYod5fSfCYGACTioV7TPxTESpOYZkCGbr2nJq4pstP4bOA-84q0eGUBDDC9rR8OPfq4Gv9s150evN7YhM0lAgQHD_SAsXFGQJqqMseiQHblPCV6ycBuswgaR-LKR0DoeH7BWufuL72gfCJKZHJVVvoO6_vocrgB4gNBfDQCIJyXO5ZuR-Ge222B9NZT89tgRbhE2IyQ-CnnUKsq9zDrihCYOgn5qrCQrU4KjV3G0acFyt9CalTWRlEk"
                  alt="Monogram Gold Chain Slide"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Signature</span>
+            <span class="absolute top-4 left-4 px-3 py-1 bg-[#faf6f0]/90 backdrop-blur-md border border-[#8c7322]/30 text-[#8c7322] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Signature</span>
+            <div class="absolute bottom-3 right-3 z-10 pointer-events-none bg-[#faf6f0]/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#8c7322]/40 shadow-md flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbSnyT0PNBbu_MBcXHGzl2gpVttZi_EvzQ4uIGScDV7Vyo77ifu0CL6r2gasg1Tw118CV8GpaBDgnpvHVnIvxVC_utHny15gzC9FP_aiCqzL3hZi6IdhGrXBqAloOxEehrdXxwgstJRF6E1HMvXhD1WSAv4mgUDrSNGbrZIpy30M7YioGKBZ8EkPwMmt52Td4PogCyeos5C2gdQPWD7ClvJkCyfA7_gJxsK_VhY7vhd9RPD-p2_IlA-ryK9AhLgTsHQA"
+                   alt="TETU COLLECTION"
+                   class="h-10 sm:h-11 w-auto object-contain"
+                   loading="lazy">
+            </div>
           </div>
           <div class="p-6 flex flex-col justify-between flex-1">
             <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Chain Series</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Monogram Gold Chain Slide</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Patterned monogram leather slide accented with chunky polished gold curb chain links.</p>
+              <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold">Chain Series</span>
+              <h3 class="font-serif text-xl text-[#26211c] mt-1 group-hover:text-[#8c7322] transition-colors">Monogram Gold Chain Slide</h3>
+              <p class="text-xs text-[#524a40] mt-2 font-normal leading-relaxed">Patterned monogram leather slide accented with polished gold curb chain links.</p>
             </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
+            <div class="mt-6 pt-5 border-t border-[#26211c]/10 flex items-center justify-between gap-3 flex-wrap">
+              <span class="text-[11px] text-[#736657] uppercase tracking-wider font-medium">Inquire for pricing</span>
               <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Monogram%20Gold%20Chain%20Slide."
                  target="_blank" rel="noopener noreferrer"
                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
@@ -199,22 +242,28 @@
         </div>
 
         <!-- Shoe 2 — Noir Gold Chain Evening -->
-        <div class="shoe-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="evening">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXwtIE8d-3LhmVkvotqX1EXzvwf1yQBtheopKgQ61apNJj7KKznmOFm9u1QsrQPLTKADowhUfo_RkbzTUCK4yZLLFWs0Pq5righJuxv_iMZkINq3nTQIf29o8_wfSP8uWtST21Zb5n9v14XyUH4f3IfmGDVSd3437x01YUT1Fm7LhoMmiFS57co9YbEAlLP2IgQnB9NkIJOk3hJ5ZTgmivTccKFRIfmHdMxz9sN660OildGm3kf9af0uKja0-2Ul5eV-4"
+        <div class="shoe-card group bg-[#faf6f0] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shadow-sm" data-category="evening">
+          <div class="aspect-square bg-[#ece5d8] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0rm5VFWzzpKlIiX9xQ7O0Cs9N_b4kJq-R1ixHcM98y8CNzTIUakhaoJOQIeH0iERynGUN7tilBxe2pHdpfda0OKtZqvJajNH1tCzhgKh47Ha3J2QK2HZ4zPVZj5RTrPuczN_9fhTjjhE0flcyV3hfh4nnLPreBs7579-cXWzTMd7EhiVWquRf0euDQzYRSPo-jlopsoIpG89jzgmeefWQF4VymOhBdjfn6eiaj6cUdHHTlFUrWsVLwJ1yCP8OFUs8ISs"
                  alt="Noir Gold Chain Evening Slide"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Evening Noir</span>
+            <span class="absolute top-4 left-4 px-3 py-1 bg-[#faf6f0]/90 backdrop-blur-md border border-[#8c7322]/30 text-[#8c7322] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Evening Noir</span>
+            <div class="absolute bottom-3 right-3 z-10 pointer-events-none bg-[#faf6f0]/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#8c7322]/40 shadow-md flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbSnyT0PNBbu_MBcXHGzl2gpVttZi_EvzQ4uIGScDV7Vyo77ifu0CL6r2gasg1Tw118CV8GpaBDgnpvHVnIvxVC_utHny15gzC9FP_aiCqzL3hZi6IdhGrXBqAloOxEehrdXxwgstJRF6E1HMvXhD1WSAv4mgUDrSNGbrZIpy30M7YioGKBZ8EkPwMmt52Td4PogCyeos5C2gdQPWD7ClvJkCyfA7_gJxsK_VhY7vhd9RPD-p2_IlA-ryK9AhLgTsHQA"
+                   alt="TETU COLLECTION"
+                   class="h-10 sm:h-11 w-auto object-contain"
+                   loading="lazy">
+            </div>
           </div>
           <div class="p-6 flex flex-col justify-between flex-1">
             <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Noir Series</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Noir Gold Chain Evening Slide</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Jet black leather slide crowned with dual-tone polished gold and enamel chain links.</p>
+              <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold">Noir Series</span>
+              <h3 class="font-serif text-xl text-[#26211c] mt-1 group-hover:text-[#8c7322] transition-colors">Noir Gold Chain Evening Slide</h3>
+              <p class="text-xs text-[#524a40] mt-2 font-normal leading-relaxed">Jet black slide crowned with polished gold and enamel chain embellishments.</p>
             </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
+            <div class="mt-6 pt-5 border-t border-[#26211c]/10 flex items-center justify-between gap-3 flex-wrap">
+              <span class="text-[11px] text-[#736657] uppercase tracking-wider font-medium">Inquire for pricing</span>
               <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Noir%20Gold%20Chain%20Evening%20Slide."
                  target="_blank" rel="noopener noreferrer"
                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
@@ -225,23 +274,29 @@
         </div>
 
         <!-- Shoe 3 — Dual Tan Cutout -->
-        <div class="shoe-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="cutout">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzxPJ5qAGpyVgLy9uSDTI3WkNyTuksxBKzt5ufTjDTbTU1IjAvH6tVVzpqpemCG6F5_vICcsVGMlZxsx7OkYghLK4EirAVUhYtNhZznisLCIXWjV5xCldI4gJhqs5uZPhpe4C_R9Bb5xhNt3zJNLkY-UxvWgkK5EigPaSJBhGT0jqq_rVqyDCZeqGCNc4qSWthw2-ZO0SfPNdJ5Il01_75xZLOkGmGhieX_-kzzJ1TG9Jsb4x2pVXk9B_tUj7voV1-Jzw"
+        <div class="shoe-card group bg-[#faf6f0] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shadow-sm" data-category="cutout">
+          <div class="aspect-square bg-[#ece5d8] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuACR6KMLYNkfRgrd7x8mSAAHI9POH6dsr-pG5Rlh7Mi4WMsnkLD0LmUrOY8wigw2edCtu99P-U_cJddEKfdMRvRsj-iEKeVGrUvKwvN-yAO-8g2AFwm27pCS7p8ZI4DHzcSNI8zz5O7UjVK8uHyDP2jgwuLB4Eu_Jq1NfZjdtrFR_EGFKKmy_KedKZJAUF5AA6tH4xaMcBrRpSIL7F7XxrioAfc-khORvtaS7j7fJjjwVAOen7EI9mwb_zjz5EQ8Hkom-I"
                  alt="Dual Tan Cutout Leather Slide"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Genuine Leather</span>
+            <span class="absolute top-4 left-4 px-3 py-1 bg-[#faf6f0]/90 backdrop-blur-md border border-[#8c7322]/30 text-[#8c7322] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Classic Slide</span>
+            <div class="absolute bottom-3 right-3 z-10 pointer-events-none bg-[#faf6f0]/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#8c7322]/40 shadow-md flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbSnyT0PNBbu_MBcXHGzl2gpVttZi_EvzQ4uIGScDV7Vyo77ifu0CL6r2gasg1Tw118CV8GpaBDgnpvHVnIvxVC_utHny15gzC9FP_aiCqzL3hZi6IdhGrXBqAloOxEehrdXxwgstJRF6E1HMvXhD1WSAv4mgUDrSNGbrZIpy30M7YioGKBZ8EkPwMmt52Td4PogCyeos5C2gdQPWD7ClvJkCyfA7_gJxsK_VhY7vhd9RPD-p2_IlA-ryK9AhLgTsHQA"
+                   alt="TETU COLLECTION"
+                   class="h-10 sm:h-11 w-auto object-contain"
+                   loading="lazy">
+            </div>
           </div>
           <div class="p-6 flex flex-col justify-between flex-1">
             <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Architectural Series</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Dual Tan Cutout Leather Slide</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Sculptural geometric cutout strap in warm textured tan leather with contrast perimeter stitching.</p>
+              <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold">Cutout Series</span>
+              <h3 class="font-serif text-xl text-[#26211c] mt-1 group-hover:text-[#8c7322] transition-colors">Dual Tan Cutout Slide</h3>
+              <p class="text-xs text-[#524a40] mt-2 font-normal leading-relaxed">Sculptural geometric cutout strap in warm textured tan leather with clean perimeter stitching.</p>
             </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
-              <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Dual%20Tan%20Cutout%20Leather%20Slide."
+            <div class="mt-6 pt-5 border-t border-[#26211c]/10 flex items-center justify-between gap-3 flex-wrap">
+              <span class="text-[11px] text-[#736657] uppercase tracking-wider font-medium">Inquire for pricing</span>
+              <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Dual%20Tan%20Cutout%20Slide."
                  target="_blank" rel="noopener noreferrer"
                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
                 Enquire on WhatsApp ↗
@@ -251,22 +306,28 @@
         </div>
 
         <!-- Shoe 4 — Noir Textured Cutout -->
-        <div class="shoe-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="cutout">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf8pnWM_phG3TVt2dv0czAsvEQ9C7ir5oiNt4ME2QKOIAmm7KOJkJ2yQHAsTMVCK8gXWg1iP5JwTygEA6nw1KWHW2SUn3qrdmyMSd480J7RKFt0gkl76fW8n90t6VzQHhrHrVVl3YvfVoTo2kvdZLrm_V6fA4mTZAe7G9Z1Cz0sxxtv8i7uMDeaaD2TZpmKsSTF76hRE2XXuHY4ZPchSrQVH5lr8vn_2xSbeyswvs0CoBVwJ2gvgFRx5LxTUVhxNIJjdA"
+        <div class="shoe-card group bg-[#faf6f0] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shadow-sm" data-category="cutout">
+          <div class="aspect-square bg-[#ece5d8] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4e3GPYwIQaNr90TdZk76nQPe_QjueocSuKF0EfxG-01M6wgWSsoi-D0kGkOoa1qiFyls8UPNvxLKTErN6KATrf7bOzNGrCIOteJRDRT-Ac5KhEu5cQo53VWlJAZ_MHZIYt_YlKsw0vUkRzFV_IOnPlg7-CDVLMbdcBrgbkQovJvviTYLS3gl0lMVQkrsvuoClMNjSBrL9zFa_XcSGCCiyaS63JWQwSjOi1xAMH9HwCY-e1od0lUj0FGVhdBuUcpj9RZM"
                  alt="Noir Textured Cutout Slide"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Noir Series</span>
+            <span class="absolute top-4 left-4 px-3 py-1 bg-[#faf6f0]/90 backdrop-blur-md border border-[#8c7322]/30 text-[#8c7322] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Noir Series</span>
+            <div class="absolute bottom-3 right-3 z-10 pointer-events-none bg-[#faf6f0]/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#8c7322]/40 shadow-md flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbSnyT0PNBbu_MBcXHGzl2gpVttZi_EvzQ4uIGScDV7Vyo77ifu0CL6r2gasg1Tw118CV8GpaBDgnpvHVnIvxVC_utHny15gzC9FP_aiCqzL3hZi6IdhGrXBqAloOxEehrdXxwgstJRF6E1HMvXhD1WSAv4mgUDrSNGbrZIpy30M7YioGKBZ8EkPwMmt52Td4PogCyeos5C2gdQPWD7ClvJkCyfA7_gJxsK_VhY7vhd9RPD-p2_IlA-ryK9AhLgTsHQA"
+                   alt="TETU COLLECTION"
+                   class="h-10 sm:h-11 w-auto object-contain"
+                   loading="lazy">
+            </div>
           </div>
           <div class="p-6 flex flex-col justify-between flex-1">
             <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Cutout Series</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Noir Textured Cutout Slide</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Micro-pebble textured black leather cutouts resting on a suede-toned ergonomic footbed.</p>
+              <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold">Cutout Series</span>
+              <h3 class="font-serif text-xl text-[#26211c] mt-1 group-hover:text-[#8c7322] transition-colors">Noir Textured Cutout Slide</h3>
+              <p class="text-xs text-[#524a40] mt-2 font-normal leading-relaxed">Micro-pebble textured black cutouts resting on a soft ergonomic footbed.</p>
             </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
+            <div class="mt-6 pt-5 border-t border-[#26211c]/10 flex items-center justify-between gap-3 flex-wrap">
+              <span class="text-[11px] text-[#736657] uppercase tracking-wider font-medium">Inquire for pricing</span>
               <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Noir%20Textured%20Cutout%20Slide."
                  target="_blank" rel="noopener noreferrer"
                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
@@ -277,22 +338,28 @@
         </div>
 
         <!-- Shoe 5 — Amber Cognac Sling -->
-        <div class="shoe-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="cutout">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcqCYgzaY5mhdyvuocNcJwpUpn6__S5hA1oDmCDEnm9pKYuvN1Zc73NUBrtilQmmd8bpR_isVdePzCH3O37Q83pmtDYnecmCAZ-i4DxVR_RG49wAWhdKTDXGn5NzWG25JLSzhaAoroIre8ckhxK6c_WPAzvn28AyTI7HKpwDA_zgUyEA-sCMdfy96Ww2jhB4IRpmCtxwrT0ZvuInq84Q--6AT13foZjhVVdax4PtacVuQnZHHPYOE3QTOnZzfrCFX7IPI"
+        <div class="shoe-card group bg-[#faf6f0] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shadow-sm" data-category="cutout">
+          <div class="aspect-square bg-[#ece5d8] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu8W__kt_4RaGiLJF2QHU10VWKU22vvKa47xqLXCg2JTKnE9Arzjn_hK_x2T22oyEgHV6bh2fOGNDHrjyJnKQbHjsdkrL4J4aBR0ZpCVqdPq-K7-50tqynNGgkjUmdpH96ElWCkUYlOgfx5NLneTXFm6zijZeNHyK0znJ-QxMpHwuDzsrV_DPlXF-iX-CGNxKBX_X5glln_8N4kEOOKpu93-9ozdPDSVtPm59ag1dOA6yj2fXbKC9HgBkQ6Ox7RCZxMgo"
                  alt="Amber Cognac Sling Sandal"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Sling Series</span>
+            <span class="absolute top-4 left-4 px-3 py-1 bg-[#faf6f0]/90 backdrop-blur-md border border-[#8c7322]/30 text-[#8c7322] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Sling Series</span>
+            <div class="absolute bottom-3 right-3 z-10 pointer-events-none bg-[#faf6f0]/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#8c7322]/40 shadow-md flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbSnyT0PNBbu_MBcXHGzl2gpVttZi_EvzQ4uIGScDV7Vyo77ifu0CL6r2gasg1Tw118CV8GpaBDgnpvHVnIvxVC_utHny15gzC9FP_aiCqzL3hZi6IdhGrXBqAloOxEehrdXxwgstJRF6E1HMvXhD1WSAv4mgUDrSNGbrZIpy30M7YioGKBZ8EkPwMmt52Td4PogCyeos5C2gdQPWD7ClvJkCyfA7_gJxsK_VhY7vhd9RPD-p2_IlA-ryK9AhLgTsHQA"
+                   alt="TETU COLLECTION"
+                   class="h-10 sm:h-11 w-auto object-contain"
+                   loading="lazy">
+            </div>
           </div>
           <div class="p-6 flex flex-col justify-between flex-1">
             <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Artisan Sandals</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Amber Cognac Sling Sandal</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Grained rich cognac leather sandal with tailored toe loop and adjustable slingback strap.</p>
+              <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold">Artisan Sandals</span>
+              <h3 class="font-serif text-xl text-[#26211c] mt-1 group-hover:text-[#8c7322] transition-colors">Amber Cognac Sling Sandal</h3>
+              <p class="text-xs text-[#524a40] mt-2 font-normal leading-relaxed">Grained rich cognac sandal with tailored toe loop and secure slingback support.</p>
             </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
+            <div class="mt-6 pt-5 border-t border-[#26211c]/10 flex items-center justify-between gap-3 flex-wrap">
+              <span class="text-[11px] text-[#736657] uppercase tracking-wider font-medium">Inquire for pricing</span>
               <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Amber%20Cognac%20Sling%20Sandal."
                  target="_blank" rel="noopener noreferrer"
                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
@@ -303,22 +370,28 @@
         </div>
 
         <!-- Shoe 6 — Caramel Cross Toe-Loop -->
-        <div class="shoe-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="cutout">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgyqppJFbD7u9pbv6dw7gGIXcixGYsyw0sytvSKJIjKx-tFYOi3A32398tFIYxqI4kHCo2hxd5HJ35yIlEKtMiHHFBuFx9qEeyqqfWt9g5pqayKj06SAzFX0Owr4d0SSIIU5ac6RztJ9Dytftq9pdTxDWV_1g_D04R2E17C0jw-dcz90Vd9eK7flZMUzr3giSb3uR82WWUcETr-rFBgZW8A_UFJesMQssQNAvpUHmnTezxWyqkOkI8PtJ-v0ujYn3btks"
+        <div class="shoe-card group bg-[#faf6f0] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shadow-sm" data-category="cutout">
+          <div class="aspect-square bg-[#ece5d8] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcWThIAiuz7seg4O2-yVnpiYWMvnJLqEItGbgVpcaSTuCRGlvGdBaKnRvJ0bmafTJD1wil6UQF8B-NpAMK3KoGx4KY-QB-4KL7P_1tteWmDsizwhFRXkVgHWt4IBGOFMXmXv9SEI7SqjU83PbCAfzK41HZHXpn-Foo4148jz7Lijem36rphblXHGtakK25pJ6gcfEMuJKAuqi3RDlzr3GNwpiDEEpF1xeYU7YAevkaVyVUKbsDJWAenspL_VZv8WF-cFM"
                  alt="Caramel Cross Toe-Loop Slide"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Toe-Loop</span>
+            <span class="absolute top-4 left-4 px-3 py-1 bg-[#faf6f0]/90 backdrop-blur-md border border-[#8c7322]/30 text-[#8c7322] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Toe-Loop</span>
+            <div class="absolute bottom-3 right-3 z-10 pointer-events-none bg-[#faf6f0]/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#8c7322]/40 shadow-md flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbSnyT0PNBbu_MBcXHGzl2gpVttZi_EvzQ4uIGScDV7Vyo77ifu0CL6r2gasg1Tw118CV8GpaBDgnpvHVnIvxVC_utHny15gzC9FP_aiCqzL3hZi6IdhGrXBqAloOxEehrdXxwgstJRF6E1HMvXhD1WSAv4mgUDrSNGbrZIpy30M7YioGKBZ8EkPwMmt52Td4PogCyeos5C2gdQPWD7ClvJkCyfA7_gJxsK_VhY7vhd9RPD-p2_IlA-ryK9AhLgTsHQA"
+                   alt="TETU COLLECTION"
+                   class="h-10 sm:h-11 w-auto object-contain"
+                   loading="lazy">
+            </div>
           </div>
           <div class="p-6 flex flex-col justify-between flex-1">
             <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Artisan Sandals</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Caramel Cross Toe-Loop Slide</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Supple caramel calf leather with crossover asymmetrical straps and soft cushioned sole.</p>
+              <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold">Artisan Sandals</span>
+              <h3 class="font-serif text-xl text-[#26211c] mt-1 group-hover:text-[#8c7322] transition-colors">Caramel Cross Toe-Loop Slide</h3>
+              <p class="text-xs text-[#524a40] mt-2 font-normal leading-relaxed">Supple caramel leather with crossover asymmetrical straps and soft cushioned sole.</p>
             </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
+            <div class="mt-6 pt-5 border-t border-[#26211c]/10 flex items-center justify-between gap-3 flex-wrap">
+              <span class="text-[11px] text-[#736657] uppercase tracking-wider font-medium">Inquire for pricing</span>
               <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Caramel%20Cross%20Toe-Loop%20Slide."
                  target="_blank" rel="noopener noreferrer"
                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
@@ -329,22 +402,28 @@
         </div>
 
         <!-- Shoe 7 — Sky & Lavender -->
-        <div class="shoe-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="cutout">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_FmUkzgZYyGvCsiI42J8wjNIgTAtPcysb2WNe61tjQ2ijvNnv8uu3OKAoqaYidfqler_kxu8oB3yxpjS8Tnf6b2HoWrJJAnroyjoC0xCjEVd7UO2zyKiNyteVNnMPjRyRz_1B2ujQ5tIlCS9liRMhXJc-qHhhJlrj5ARopbkcRbQ2zcaNtJSF0PGliHh4EGq2IeMnhD8KCn0q7b9Uaiy-axmXWM36sOEo5wUNmxmsC2_H_u6ui60nASQ95H2Ur9cgutI"
+        <div class="shoe-card group bg-[#faf6f0] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shadow-sm" data-category="cutout">
+          <div class="aspect-square bg-[#ece5d8] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5Wa6kc2yQefhwor-v4lfpERN1Byxbcedq1a6I8JJYCu6tFf00zGI8_ogUTZWeTqusZvDQCkBirPc3Ey7ubRgJQvo92640X0CGX4qtpDeV3WfQTiYuHpM8oWeF_Gh9md-z5nvxROXne-LruePgZukbyTNif8sOmfhm8iPvdb4NKIUCj8OYxpIiHBO2G-SvV7yV685dPo-vzjblWSj5Nd-l1TmdF73PeG96Earl3hnhXH36A7lwpyjP__UEfdLftDPD54s"
                  alt="Sky Blue &amp; Lavender Slide"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Pastel Edition</span>
+            <span class="absolute top-4 left-4 px-3 py-1 bg-[#faf6f0]/90 backdrop-blur-md border border-[#8c7322]/30 text-[#8c7322] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Pastel Edition</span>
+            <div class="absolute bottom-3 right-3 z-10 pointer-events-none bg-[#faf6f0]/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#8c7322]/40 shadow-md flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbSnyT0PNBbu_MBcXHGzl2gpVttZi_EvzQ4uIGScDV7Vyo77ifu0CL6r2gasg1Tw118CV8GpaBDgnpvHVnIvxVC_utHny15gzC9FP_aiCqzL3hZi6IdhGrXBqAloOxEehrdXxwgstJRF6E1HMvXhD1WSAv4mgUDrSNGbrZIpy30M7YioGKBZ8EkPwMmt52Td4PogCyeos5C2gdQPWD7ClvJkCyfA7_gJxsK_VhY7vhd9RPD-p2_IlA-ryK9AhLgTsHQA"
+                   alt="TETU COLLECTION"
+                   class="h-10 sm:h-11 w-auto object-contain"
+                   loading="lazy">
+            </div>
           </div>
           <div class="p-6 flex flex-col justify-between flex-1">
             <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Resort Series</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Sky Blue &amp; Lavender Slide</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Playful resort colorblock featuring soft sky-blue wide straps paired with lavender accents.</p>
+              <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold">Resort Series</span>
+              <h3 class="font-serif text-xl text-[#26211c] mt-1 group-hover:text-[#8c7322] transition-colors">Sky Blue &amp; Lavender Slide</h3>
+              <p class="text-xs text-[#524a40] mt-2 font-normal leading-relaxed">Playful resort colorblock featuring soft sky-blue wide straps paired with lavender accents.</p>
             </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
+            <div class="mt-6 pt-5 border-t border-[#26211c]/10 flex items-center justify-between gap-3 flex-wrap">
+              <span class="text-[11px] text-[#736657] uppercase tracking-wider font-medium">Inquire for pricing</span>
               <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Sky%20Blue%20and%20Lavender%20Slide."
                  target="_blank" rel="noopener noreferrer"
                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
@@ -355,22 +434,28 @@
         </div>
 
         <!-- Shoe 8 — Noir Minimalist Cross Band -->
-        <div class="shoe-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="cutout">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfwEn7aZNX2V-yvh88SnUYQECJRccXJId8a3WTPXN0y2OLhV29zrdC4MKyQ_pXDB7EJbEi2SFcmuN29K1HMDbevj3b9bZV7THg4zVlnUfiNv_52ZnGnQUpHdc3Go_P1FUZJGIqJLvWeZyOrPIW9i_X_aQy2aTqYRH9DMTK6AfjvXnKI_pjQJvQWykIcjuN3c4dY4I0YDBzeFdrmJLTFbzGcg6Whd0aVs8lFqMDpphIHT6MJi6J_e14MnsMZMh0OlRLfYA"
+        <div class="shoe-card group bg-[#faf6f0] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shadow-sm" data-category="cutout">
+          <div class="aspect-square bg-[#ece5d8] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAGxwSNpXOarSunrhBD2IEnrRiE7jq4mxhsUJ2ekHYIxprzNemA1DthCKaPC5TV1pTziu9r5EYPUSHtoz2rYZ8DkXIxGfBfssIt7wQI2CaVZYeEegD4Rt474k_zZwVCVTyKNyEPb6GojbliprGeo68mb04cqsyRqWupVjQgyh8d_cm92MM5DcA0sc83XOHNKlpu_jvPAK3rAnFDruC26WLh_--DMgWT5i1cXgG2fMGv1wNbKLjyzvpYu41sYHjOCSLMCo"
                  alt="Noir Minimalist Cross Band Slide"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Everyday Noir</span>
+            <span class="absolute top-4 left-4 px-3 py-1 bg-[#faf6f0]/90 backdrop-blur-md border border-[#8c7322]/30 text-[#8c7322] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Everyday Noir</span>
+            <div class="absolute bottom-3 right-3 z-10 pointer-events-none bg-[#faf6f0]/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#8c7322]/40 shadow-md flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbSnyT0PNBbu_MBcXHGzl2gpVttZi_EvzQ4uIGScDV7Vyo77ifu0CL6r2gasg1Tw118CV8GpaBDgnpvHVnIvxVC_utHny15gzC9FP_aiCqzL3hZi6IdhGrXBqAloOxEehrdXxwgstJRF6E1HMvXhD1WSAv4mgUDrSNGbrZIpy30M7YioGKBZ8EkPwMmt52Td4PogCyeos5C2gdQPWD7ClvJkCyfA7_gJxsK_VhY7vhd9RPD-p2_IlA-ryK9AhLgTsHQA"
+                   alt="TETU COLLECTION"
+                   class="h-10 sm:h-11 w-auto object-contain"
+                   loading="lazy">
+            </div>
           </div>
           <div class="p-6 flex flex-col justify-between flex-1">
             <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Minimalist Series</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Noir Minimalist Cross Band Slide</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Matte black dual crossover leather bands mounted on warm saddle brown leather sole.</p>
+              <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold">Minimalist Series</span>
+              <h3 class="font-serif text-xl text-[#26211c] mt-1 group-hover:text-[#8c7322] transition-colors">Noir Minimalist Cross Band Slide</h3>
+              <p class="text-xs text-[#524a40] mt-2 font-normal leading-relaxed">Matte black dual crossover bands mounted on a comfortable saddle brown footbed.</p>
             </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
+            <div class="mt-6 pt-5 border-t border-[#26211c]/10 flex items-center justify-between gap-3 flex-wrap">
+              <span class="text-[11px] text-[#736657] uppercase tracking-wider font-medium">Inquire for pricing</span>
               <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Noir%20Minimalist%20Cross%20Band%20Slide."
                  target="_blank" rel="noopener noreferrer"
                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
@@ -381,22 +466,28 @@
         </div>
 
         <!-- Shoe 9 — Rose Gold Pearl Slide -->
-        <div class="shoe-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="evening">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFM9OQly-T2oLgNkve8pHD0S4Xt6-7COyxgJOOaRei1w6-vtIXZBVpvKn73cq4xRqSPa0ls8S9qjtCYpUDvUjd_Lfw-Ii6Byd789Nf4y134jNEmxajUv0TvMuPQU9K3CfnqaRc9pzS5bnUooSCc4rIpIARkJ_6sP5twy_1HT9XLw_qC8-q3n450wBvqJZM_TfauNN1eG2wPg4dKyPyEYa2gh3BxQ2SfhBbb10hAUOdILjXu_zSbjACHDoXSY2qWG_kadU"
+        <div class="shoe-card group bg-[#faf6f0] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shadow-sm" data-category="evening">
+          <div class="aspect-square bg-[#ece5d8] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBakunIGjkcJQdQnzRa0R8Kxw6JvrArR9jv9o2Xgk6YmjDmjnujjmKCBVuTYdFFRhe2lbT7R2cMtf2v11XB1G4ANlRVlmowwcHNgr1BYjCCF41YS_dK0Zkc00qqYkOARQBAVYQ0CBBO9JQVNvJyXKJ7rSK7HbnbP9_F7Tikz4cgrbPLi3lHmFH68NsjyPkr0cudeUBRxcT6e41LAu2qNdG-sxBzASNIcV52y0FrIFBX33LruMqIr-2o6sRHTwxBSYgTz70"
                  alt="Rose Gold Beaded Pearl Slide"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Pearl &amp; Bead</span>
+            <span class="absolute top-4 left-4 px-3 py-1 bg-[#faf6f0]/90 backdrop-blur-md border border-[#8c7322]/30 text-[#8c7322] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Pearl &amp; Bead</span>
+            <div class="absolute bottom-3 right-3 z-10 pointer-events-none bg-[#faf6f0]/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#8c7322]/40 shadow-md flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbSnyT0PNBbu_MBcXHGzl2gpVttZi_EvzQ4uIGScDV7Vyo77ifu0CL6r2gasg1Tw118CV8GpaBDgnpvHVnIvxVC_utHny15gzC9FP_aiCqzL3hZi6IdhGrXBqAloOxEehrdXxwgstJRF6E1HMvXhD1WSAv4mgUDrSNGbrZIpy30M7YioGKBZ8EkPwMmt52Td4PogCyeos5C2gdQPWD7ClvJkCyfA7_gJxsK_VhY7vhd9RPD-p2_IlA-ryK9AhLgTsHQA"
+                   alt="TETU COLLECTION"
+                   class="h-10 sm:h-11 w-auto object-contain"
+                   loading="lazy">
+            </div>
           </div>
           <div class="p-6 flex flex-col justify-between flex-1">
             <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Evening Gilded</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Rose Gold Beaded Pearl Slide</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Shimmering metallic rose gold slide hand-embroidered with luminous rows of pearls and gold beads.</p>
+              <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold">Evening Gilded</span>
+              <h3 class="font-serif text-xl text-[#26211c] mt-1 group-hover:text-[#8c7322] transition-colors">Rose Gold Beaded Pearl Slide</h3>
+              <p class="text-xs text-[#524a40] mt-2 font-normal leading-relaxed">Shimmering metallic rose gold slide hand-beaded with luminous pearls and golden beads.</p>
             </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
+            <div class="mt-6 pt-5 border-t border-[#26211c]/10 flex items-center justify-between gap-3 flex-wrap">
+              <span class="text-[11px] text-[#736657] uppercase tracking-wider font-medium">Inquire for pricing</span>
               <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Rose%20Gold%20Beaded%20Pearl%20Slide."
                  target="_blank" rel="noopener noreferrer"
                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
@@ -407,22 +498,28 @@
         </div>
 
         <!-- Shoe 10 — Gilded Python -->
-        <div class="shoe-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="evening">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn2COQVbZ2ayfXbqurKVb_GhPQ-eg0gWi7eQelx7JJgPjSFv3AsWPTh3MMsqF2InwKOGFXWN3UkLJ-EGHAKyS9GOYH0H5ATWAFiW3lPWDO5bzDF06kj56N8-0u94UKTSh31aBfLQbKQBMMc93GTyqw0U0KKlHVSXlquBczc9p7ExCXt5N4ZxENRLCUp8c0hKZRLkHlX2vO0hQJKlQTQ2oxPvK-7tf4MA0fRyZVi0jDoZK9KaFPL7xixgbA7o4WWxXGd_8"
+        <div class="shoe-card group bg-[#faf6f0] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shadow-sm" data-category="evening">
+          <div class="aspect-square bg-[#ece5d8] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn0pcTWEEUHq_DK6zrNI8cReHXzN1HYkUjsuWug-Uy7O5vOfvkjBlh6ByOcYfEs2eMR5lNa5Ifw72LhGC0F_9EMlwNsJtaZCcuh4ba4TyYRzU9IGahJx3JnNNNc_k7AvgabaUBmupQBDmqYqXmpxctDZtBupyQg1xAdNWaUIJb1sr-78ZdG0zoigch2xUbqu4D1SbrcPRbowimh6Fz8JmPFyaSj8ZhXYEkR0XCPiQouk3_Trn4Q8xp_s9C_NbgI9aWkU4"
                  alt="Gilded Python Cutout Slide"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Metallic Gold</span>
+            <span class="absolute top-4 left-4 px-3 py-1 bg-[#faf6f0]/90 backdrop-blur-md border border-[#8c7322]/30 text-[#8c7322] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Metallic Gold</span>
+            <div class="absolute bottom-3 right-3 z-10 pointer-events-none bg-[#faf6f0]/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#8c7322]/40 shadow-md flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbSnyT0PNBbu_MBcXHGzl2gpVttZi_EvzQ4uIGScDV7Vyo77ifu0CL6r2gasg1Tw118CV8GpaBDgnpvHVnIvxVC_utHny15gzC9FP_aiCqzL3hZi6IdhGrXBqAloOxEehrdXxwgstJRF6E1HMvXhD1WSAv4mgUDrSNGbrZIpy30M7YioGKBZ8EkPwMmt52Td4PogCyeos5C2gdQPWD7ClvJkCyfA7_gJxsK_VhY7vhd9RPD-p2_IlA-ryK9AhLgTsHQA"
+                   alt="TETU COLLECTION"
+                   class="h-10 sm:h-11 w-auto object-contain"
+                   loading="lazy">
+            </div>
           </div>
           <div class="p-6 flex flex-col justify-between flex-1">
             <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Gilded Collection</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Gilded Python Cutout Slide</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Radiant 24k gold python-embossed leather with geometric multi-strap cutout design.</p>
+              <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold">Gilded Collection</span>
+              <h3 class="font-serif text-xl text-[#26211c] mt-1 group-hover:text-[#8c7322] transition-colors">Gilded Python Cutout Slide</h3>
+              <p class="text-xs text-[#524a40] mt-2 font-normal leading-relaxed">Radiant gold textured pattern with geometric multi-strap cutout design.</p>
             </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
+            <div class="mt-6 pt-5 border-t border-[#26211c]/10 flex items-center justify-between gap-3 flex-wrap">
+              <span class="text-[11px] text-[#736657] uppercase tracking-wider font-medium">Inquire for pricing</span>
               <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Gilded%20Python%20Cutout%20Slide."
                  target="_blank" rel="noopener noreferrer"
                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
@@ -433,22 +530,28 @@
         </div>
 
         <!-- Shoe 11 — Chromatic Woven Metallic -->
-        <div class="shoe-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="evening">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ-NpMkaCN4ZJpQm1VouvyGFPx2rNxiXccSEmwKA0QkTW55fc7Kkcxxfzv9XgthCt2NTluAMkGv7xhXDL0s-OnaluJAjmYrDsR00x3QUw8DS4eFYAIYbGnDtPAMHiMl9pF2Gef1tFUawFqLGkAhZJTY9QhW6iwC22yNRDJkt1IHr8XdmU0AJ-oRZcO49MXrMMfR-B0EMJRR8YVNW6h8zs_35WL_yns8gpYLcfKWxitjy_Pan-GUDTaud6qFFs_Zv8nV6c"
+        <div class="shoe-card group bg-[#faf6f0] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shadow-sm" data-category="evening">
+          <div class="aspect-square bg-[#ece5d8] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlQu3G53KeRIi_Vbgj9BlrULXXkSU9uvBxkVFCDF2AAdU_ML3-8pvttt_woDuzuICKmIXEbG6K8MnnWKDOp73LUKww2iBsLYWeXb8V0vg-fOVaNErP87-e2F04LH1l9S8ljpUXmKQ3YdUtlU9ULonG82_HS5VdaYky6FF-0vD2p13OXvaFTwkl4TmUV24ZtmNVkAVp0pJLTK2v07Fo9vNBen2YhyAD1KGJJrIEUMa5jKZEieCQ24McnkdKAmFqQwWCqNY"
                  alt="Chromatic Woven Metallic Slide"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Artisan Weave</span>
+            <span class="absolute top-4 left-4 px-3 py-1 bg-[#faf6f0]/90 backdrop-blur-md border border-[#8c7322]/30 text-[#8c7322] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Artisan Weave</span>
+            <div class="absolute bottom-3 right-3 z-10 pointer-events-none bg-[#faf6f0]/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#8c7322]/40 shadow-md flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbSnyT0PNBbu_MBcXHGzl2gpVttZi_EvzQ4uIGScDV7Vyo77ifu0CL6r2gasg1Tw118CV8GpaBDgnpvHVnIvxVC_utHny15gzC9FP_aiCqzL3hZi6IdhGrXBqAloOxEehrdXxwgstJRF6E1HMvXhD1WSAv4mgUDrSNGbrZIpy30M7YioGKBZ8EkPwMmt52Td4PogCyeos5C2gdQPWD7ClvJkCyfA7_gJxsK_VhY7vhd9RPD-p2_IlA-ryK9AhLgTsHQA"
+                   alt="TETU COLLECTION"
+                   class="h-10 sm:h-11 w-auto object-contain"
+                   loading="lazy">
+            </div>
           </div>
           <div class="p-6 flex flex-col justify-between flex-1">
             <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Chromatic Series</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Chromatic Woven Metallic Slide</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Hand-interwoven metallic ribbons of fuchsia pink, burnt orange, silver, and burnished gold.</p>
+              <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold">Chromatic Series</span>
+              <h3 class="font-serif text-xl text-[#26211c] mt-1 group-hover:text-[#8c7322] transition-colors">Chromatic Woven Metallic Slide</h3>
+              <p class="text-xs text-[#524a40] mt-2 font-normal leading-relaxed">Interwoven vibrant metallic ribbons of fuchsia pink, burnt orange, silver, and gold.</p>
             </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
+            <div class="mt-6 pt-5 border-t border-[#26211c]/10 flex items-center justify-between gap-3 flex-wrap">
+              <span class="text-[11px] text-[#736657] uppercase tracking-wider font-medium">Inquire for pricing</span>
               <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Chromatic%20Woven%20Metallic%20Slide."
                  target="_blank" rel="noopener noreferrer"
                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
@@ -459,22 +562,28 @@
         </div>
 
         <!-- Shoe 12 — Imperial Scarlet Red -->
-        <div class="shoe-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="cutout">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyDcpuquHCAnPViO2CsKbWv8OPWHmQFFiskNpQMc_Sr-S76GK3iouOf8RrhBa8JfBpfPbZJuWmNmBjxm7BpmWzi6zIOZKZixppdyusCh6qMyzXclKRgr6m48Pbgqhe_TDv6xtgwU0XTnJWqVYmd86JHFI8a0vz4pulUICDpAehRrvL-Do9ZvRonG6U99jEoW9LEz6dC332nlh3CLv5oIC3V6F2mk3XiLeCVOy87IlQ-Z154LX-bQ8LdBoJcO01WB-GXwU"
+        <div class="shoe-card group bg-[#faf6f0] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shadow-sm" data-category="cutout">
+          <div class="aspect-square bg-[#ece5d8] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt8i4pqanN4DTEQW1BhDzGqNrlLkJXMkzrWKTCyyKzL5wNsWdl_3mpBjPhSP5K02aXKJQuShPgqOBc_Po20xtYUl-G4-oZez47GLnWG5-aG7x1YXaRt-9JN0GmbiW6WSZ2riS--7KLwGbU4la2sJ5fkRa-p_t5pVknGvVl2oFyXog3RGNsMf_zJ8T2IWd0ZynUWUdY2VkM7UjN7VKkGmZtV2tiuFmQ5G2lxBCaRuT_yDrnLTk0lAwNFI6tfRzll23VvBg"
                  alt="Imperial Scarlet Red Cutout Slide"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Bold Crimson</span>
+            <span class="absolute top-4 left-4 px-3 py-1 bg-[#faf6f0]/90 backdrop-blur-md border border-[#8c7322]/30 text-[#8c7322] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Bold Red</span>
+            <div class="absolute bottom-3 right-3 z-10 pointer-events-none bg-[#faf6f0]/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#8c7322]/40 shadow-md flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbSnyT0PNBbu_MBcXHGzl2gpVttZi_EvzQ4uIGScDV7Vyo77ifu0CL6r2gasg1Tw118CV8GpaBDgnpvHVnIvxVC_utHny15gzC9FP_aiCqzL3hZi6IdhGrXBqAloOxEehrdXxwgstJRF6E1HMvXhD1WSAv4mgUDrSNGbrZIpy30M7YioGKBZ8EkPwMmt52Td4PogCyeos5C2gdQPWD7ClvJkCyfA7_gJxsK_VhY7vhd9RPD-p2_IlA-ryK9AhLgTsHQA"
+                   alt="TETU COLLECTION"
+                   class="h-10 sm:h-11 w-auto object-contain"
+                   loading="lazy">
+            </div>
           </div>
           <div class="p-6 flex flex-col justify-between flex-1">
             <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Scarlet Series</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Imperial Scarlet Red Cutout Slide</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Statement scarlet textured leather slide with signature geometric H-cutout upper band.</p>
+              <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold">Scarlet Series</span>
+              <h3 class="font-serif text-xl text-[#26211c] mt-1 group-hover:text-[#8c7322] transition-colors">Imperial Scarlet Red Cutout Slide</h3>
+              <p class="text-xs text-[#524a40] mt-2 font-normal leading-relaxed">Statement scarlet red slide with signature geometric H-cutout upper strap.</p>
             </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
+            <div class="mt-6 pt-5 border-t border-[#26211c]/10 flex items-center justify-between gap-3 flex-wrap">
+              <span class="text-[11px] text-[#736657] uppercase tracking-wider font-medium">Inquire for pricing</span>
               <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Imperial%20Scarlet%20Red%20Cutout%20Slide."
                  target="_blank" rel="noopener noreferrer"
                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
@@ -485,22 +594,28 @@
         </div>
 
         <!-- Shoe 13 — Sunburst Canary Yellow -->
-        <div class="shoe-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="cutout">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvMfSd9VKUrcQCt5QVqvInkyq6XehcuQzf1Ian31SZ0MxkFrkZg_tDppxeylVIdmLzSu8d-THm5sL-CiZ9wkg06DbiXEYQ6a2kW3oDJtElXGQgDmTbbNN7abdM52ENyC4s-RP5f4dAkPEqOf0MBI47yRLRL0_XPpnuDjEQalhf3PfUY1rL1PHYLOXhJytShLtpvIfF2S8zqs8gERlOz3e-RZCkfc7UyY1PbvmvkkJIigIclxYIz9qpJhg5F_E1UH-Itkk"
+        <div class="shoe-card group bg-[#faf6f0] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shadow-sm" data-category="cutout">
+          <div class="aspect-square bg-[#ece5d8] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk9Bq7y4Ugeop_e-faElXjZhQ_BleBnFvgXursOIbHKmWAIf24fn-dqwHumVaepCxINmwRUil2aMXqUyBoSWubfi6tBjcpnQEi7yUqejlle1Vpv21Qw-lXeNfkXsyhEuLKHn32Cpp3RJ2b756nWkME_loMeuKRVLZRGA-5Ntjo2t8wE0UkEq-RyNc3HEtu0qujvpL9Y4OMFq3ToOaBeu3eKX_Dd3yaaTP2EYmq5z6IbDKU1jnIUrtfsS80XiCWjHZ7E3E"
                  alt="Sunburst Canary Yellow Slide"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Canary Yellow</span>
+            <span class="absolute top-4 left-4 px-3 py-1 bg-[#faf6f0]/90 backdrop-blur-md border border-[#8c7322]/30 text-[#8c7322] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Canary Yellow</span>
+            <div class="absolute bottom-3 right-3 z-10 pointer-events-none bg-[#faf6f0]/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#8c7322]/40 shadow-md flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbSnyT0PNBbu_MBcXHGzl2gpVttZi_EvzQ4uIGScDV7Vyo77ifu0CL6r2gasg1Tw118CV8GpaBDgnpvHVnIvxVC_utHny15gzC9FP_aiCqzL3hZi6IdhGrXBqAloOxEehrdXxwgstJRF6E1HMvXhD1WSAv4mgUDrSNGbrZIpy30M7YioGKBZ8EkPwMmt52Td4PogCyeos5C2gdQPWD7ClvJkCyfA7_gJxsK_VhY7vhd9RPD-p2_IlA-ryK9AhLgTsHQA"
+                   alt="TETU COLLECTION"
+                   class="h-10 sm:h-11 w-auto object-contain"
+                   loading="lazy">
+            </div>
           </div>
           <div class="p-6 flex flex-col justify-between flex-1">
             <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Resort Colors</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Sunburst Canary Yellow Slide</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Vibrant sunshine textured leather sandal handcrafted with architectural cutout lines.</p>
+              <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold">Resort Colors</span>
+              <h3 class="font-serif text-xl text-[#26211c] mt-1 group-hover:text-[#8c7322] transition-colors">Sunburst Canary Yellow Slide</h3>
+              <p class="text-xs text-[#524a40] mt-2 font-normal leading-relaxed">Vibrant sunshine yellow textured slide handcrafted with architectural cutout lines.</p>
             </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
+            <div class="mt-6 pt-5 border-t border-[#26211c]/10 flex items-center justify-between gap-3 flex-wrap">
+              <span class="text-[11px] text-[#736657] uppercase tracking-wider font-medium">Inquire for pricing</span>
               <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Sunburst%20Canary%20Yellow%20Slide."
                  target="_blank" rel="noopener noreferrer"
                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
@@ -511,22 +626,28 @@
         </div>
 
         <!-- Shoe 14 — Ivory Textured Cross Weave -->
-        <div class="shoe-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="cutout">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1XY2lea6xXk5L0tSKXtcPJGtjJ-9Vg3vhoHPuFQJB1VBII6qqNe5aVonv942P5VTUVYFJWFVZi20ZtzzjqZTTbiim_258i1v1Fi6E9NCKKERhbKJg6YZZRPS3mDaB5I55dJxaVSUPAmflCe0deJv2LHHQe931VovT0HD-qSBSfmzo02fIgOf4PgC83eroXjKs9KuJZZwb3SDljD-4qSEAhmeL84Czig7ffbsBCV1qomPBYwc47lSCshTnGExASjDLqlU"
+        <div class="shoe-card group bg-[#faf6f0] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shadow-sm" data-category="cutout">
+          <div class="aspect-square bg-[#ece5d8] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB_bNixnU11IMyZj9KnTUyJyh4qjINiDq8zoyJRSwPtAoSfYQsQFXqnL0v04lNm8t6lBqtlOmuBOPF4EIxVG7mCUg-HjDuuZjXB_chW7vs4Nxxnw7kKqlYeDeC-QDf5iVBswAptqZ3OJVxinur2jfHDULcw8e0mWwrdwD-qqcleuraLBO9g-TFdTdGGfpxl2TL3LEAz16aQdt2LpnHuAq6au5tIGHlCCw0y3RB782gg_9uEPtmrrmUN_42X8mp4aUKDY0"
                  alt="Ivory Textured Cross Weave Slide"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Ivory Neutral</span>
+            <span class="absolute top-4 left-4 px-3 py-1 bg-[#faf6f0]/90 backdrop-blur-md border border-[#8c7322]/30 text-[#8c7322] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Ivory Neutral</span>
+            <div class="absolute bottom-3 right-3 z-10 pointer-events-none bg-[#faf6f0]/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#8c7322]/40 shadow-md flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbSnyT0PNBbu_MBcXHGzl2gpVttZi_EvzQ4uIGScDV7Vyo77ifu0CL6r2gasg1Tw118CV8GpaBDgnpvHVnIvxVC_utHny15gzC9FP_aiCqzL3hZi6IdhGrXBqAloOxEehrdXxwgstJRF6E1HMvXhD1WSAv4mgUDrSNGbrZIpy30M7YioGKBZ8EkPwMmt52Td4PogCyeos5C2gdQPWD7ClvJkCyfA7_gJxsK_VhY7vhd9RPD-p2_IlA-ryK9AhLgTsHQA"
+                   alt="TETU COLLECTION"
+                   class="h-10 sm:h-11 w-auto object-contain"
+                   loading="lazy">
+            </div>
           </div>
           <div class="p-6 flex flex-col justify-between flex-1">
             <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Ivory Series</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Ivory Textured Cross Weave Slide</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Pebbled off-white cross straps with square toe contour and cushioned leather insole.</p>
+              <span class="text-[11px] uppercase tracking-widest text-[#8c7322] font-semibold">Ivory Series</span>
+              <h3 class="font-serif text-xl text-[#26211c] mt-1 group-hover:text-[#8c7322] transition-colors">Ivory Textured Cross Weave Slide</h3>
+              <p class="text-xs text-[#524a40] mt-2 font-normal leading-relaxed">Pebbled off-white cross straps with square toe contour and cushioned insole.</p>
             </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
+            <div class="mt-6 pt-5 border-t border-[#26211c]/10 flex items-center justify-between gap-3 flex-wrap">
+              <span class="text-[11px] text-[#736657] uppercase tracking-wider font-medium">Inquire for pricing</span>
               <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Ivory%20Textured%20Cross%20Weave%20Slide."
                  target="_blank" rel="noopener noreferrer"
                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
@@ -540,67 +661,132 @@
     </section>
 
     <!-- CUSTOM SIZING BANNER -->
-    <section class="w-full bg-[#151821] border-y border-[#212532] py-16 px-6 lg:px-12">
+    <section class="w-full bg-[#f4ede4] border-y border-[#26211c]/10 py-16 px-6 lg:px-12">
       <div class="max-w-[1000px] mx-auto text-center flex flex-col items-center">
-        <span class="text-[11px] text-[#d4af37] uppercase tracking-[0.3em] font-semibold mb-3">Custom Footwear &amp; Sizing</span>
-        <h2 class="font-serif text-2xl sm:text-3xl text-white uppercase tracking-tight mb-4">Need a Specific Shoe Size or Colorway?</h2>
-        <p class="text-sm text-[#9ba1b0] max-w-lg mb-8 leading-relaxed font-light">
-          All our sandals and slides are handcrafted locally in Nairobi. We accommodate bespoke sizing (EU 36–45), wide-fit preferences, and personalized leather shades upon request.
+        <span class="text-[11px] text-[#8c7322] uppercase tracking-[0.3em] font-semibold mb-3">Custom Footwear &amp; Sizing</span>
+        <h2 class="font-serif text-2xl sm:text-3xl text-[#26211c] uppercase tracking-tight mb-4">Need a Specific Shoe Size or Colorway?</h2>
+        <p class="text-sm text-[#524a40] max-w-lg mb-8 leading-relaxed font-normal">
+          We accommodate sizing (EU 36–45), wide-fit preferences, and personalized leather shades upon request. Chat directly with us on WhatsApp.
         </p>
         <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20would%20like%20to%20order%20shoes%20in%20a%20custom%20size/color."
            target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center gap-3 px-8 py-3.5 bg-[#d4af37] hover:bg-[#e5c158] text-[#07090e] font-bold text-xs uppercase tracking-[0.2em] rounded-full transition-all shadow-lg hover:-translate-y-0.5">
-          Message on WhatsApp (+254700309655)
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-          </svg>
+           class="inline-flex items-center gap-3 px-8 py-3.5 bg-[#d4af37] hover:bg-[#e5c158] text-[#07090e] font-bold text-xs uppercase tracking-[0.2em] rounded-full transition-all shadow-md hover:-translate-y-0.5">
+          Message on WhatsApp (+254 700 309 655)
+          <span class="material-symbols-outlined text-base">arrow_outward</span>
         </a>
+      </div>
+    </section>
+
+    <!-- ============================= CONTACT SECTION ============================= -->
+    <section id="contact" class="w-full bg-[#faf6f0] border-t border-[#26211c]/10 py-20 px-6 lg:px-12">
+      <div class="max-w-[1200px] mx-auto">
+
+        <div class="text-center mb-14">
+          <span class="text-[11px] text-[#8c7322] uppercase tracking-[0.3em] font-semibold mb-3 block">We're Here to Help</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-[#26211c] uppercase tracking-tight mb-4">
+            Get in <span class="text-[#8c7322] italic font-normal">Touch</span>
+          </h2>
+          <p class="text-sm text-[#524a40] max-w-lg mx-auto leading-relaxed font-normal">
+            Whether you have a question about sizing, pricing, custom orders, or just want to say hello — we'd love to hear from you.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <!-- WhatsApp Card -->
+          <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20have%20an%20enquiry."
+             target="_blank" rel="noopener noreferrer"
+             class="group bg-[#f4ede4] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl p-8 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div class="w-16 h-16 rounded-full bg-[#d4af37]/15 border border-[#8c7322]/30 flex items-center justify-center mb-5 group-hover:bg-[#d4af37]/25 transition-colors">
+              <span class="material-symbols-outlined text-[28px] text-[#8c7322]">chat</span>
+            </div>
+            <h3 class="font-serif text-xl text-[#26211c] mb-2 group-hover:text-[#8c7322] transition-colors">WhatsApp Chat</h3>
+            <p class="text-xs text-[#524a40] leading-relaxed mb-4">Fastest response — typically within minutes during business hours.</p>
+            <span class="text-xs font-bold text-[#8c7322] tracking-wider">+254 700 309 655 →</span>
+          </a>
+
+          <!-- Instagram Card -->
+          <a href="https://instagram.com/tetucollection"
+             target="_blank" rel="noopener noreferrer"
+             class="group bg-[#f4ede4] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl p-8 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div class="w-16 h-16 rounded-full bg-[#d4af37]/15 border border-[#8c7322]/30 flex items-center justify-center mb-5 group-hover:bg-[#d4af37]/25 transition-colors">
+              <span class="material-symbols-outlined text-[28px] text-[#8c7322]">photo_camera</span>
+            </div>
+            <h3 class="font-serif text-xl text-[#26211c] mb-2 group-hover:text-[#8c7322] transition-colors">Instagram DMs</h3>
+            <p class="text-xs text-[#524a40] leading-relaxed mb-4">Browse our latest arrivals, style inspiration, and behind-the-scenes.</p>
+            <span class="text-xs font-bold text-[#8c7322] tracking-wider">@tetucollection →</span>
+          </a>
+
+          <!-- Business Hours Card -->
+          <div class="group bg-[#f4ede4] border border-[#26211c]/10 hover:border-[#8c7322]/50 rounded-2xl p-8 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div class="w-16 h-16 rounded-full bg-[#d4af37]/15 border border-[#8c7322]/30 flex items-center justify-center mb-5 group-hover:bg-[#d4af37]/25 transition-colors">
+              <span class="material-symbols-outlined text-[28px] text-[#8c7322]">schedule</span>
+            </div>
+            <h3 class="font-serif text-xl text-[#26211c] mb-2 group-hover:text-[#8c7322] transition-colors">Business Hours</h3>
+            <p class="text-xs text-[#524a40] leading-relaxed mb-4">We're available to assist you every day.</p>
+            <span class="text-xs font-bold text-[#8c7322] tracking-wider">8:00 AM – 9:00 PM EAT</span>
+          </div>
+
+        </div>
+
+        <!-- Location Strip -->
+        <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 text-xs text-[#524a40]">
+          <span class="material-symbols-outlined text-[18px] text-[#8c7322]">location_on</span>
+          <span class="font-medium tracking-wider uppercase">Nairobi, Kenya • Nationwide Delivery Available</span>
+        </div>
+
       </div>
     </section>
 
   </main>
 
   <!-- ============================= FOOTER ============================= -->
-  <footer class="footer-cream-theme py-14 px-6 lg:px-12 w-full text-center">
-    <div class="max-w-[1440px] mx-auto flex flex-col items-center justify-center space-y-6">
+  <footer class="footer-cream-theme py-14 px-6 lg:px-12 w-full">
+    <div class="max-w-[1440px] mx-auto">
 
-      <div class="flex flex-col items-center">
-        <a href="index.html" class="inline-block mb-3" aria-label="TETU COLLECTION Home">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqfltif_WwKFA7Rsqvct8s8X0MBs77A5uyJfVRPdUaDfkTERpGD_QqwPYilAbe4nMZPD_EXFAJU07Ve8GQfXiwDj6UqeX5kYJ4zCs6MZakazyc2_FjN6AwS1cMIgz0OjB5FPbG2OAmpaqQzSmtKxJdw7FLlW62_QVMr7Xpdm6_bBTcJpOq9RevrUnzzUMbHjzVPFnUnmWbGhtez5a117WVpMUOlvc0nO94elGJraGG56NpAzrhnVhh8ZFG3cGIH2Ae_Dk"
-             alt="TETU COLLECTION"
-             class="h-20 md:h-24 w-auto object-contain mx-auto filter drop-shadow-sm">
-        </a>
-        <p class="text-xs text-[#6b6257] mt-2 tracking-wider font-light">
-          Bespoke Kenyan leathercraft &amp; artisanal luxury crafted in Nairobi.
-        </p>
-      </div>
+      <div class="flex flex-col md:flex-row items-start justify-between gap-10 pb-10 border-b border-[#26211c]/10">
 
-      <div class="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs font-semibold uppercase tracking-wider text-[#3e3831]">
-        <a href="https://instagram.com/tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322] transition-colors">Instagram</a>
-        <span class="text-[#b5a99a]">•</span>
-        <a href="https://tiktok.com/@tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322] transition-colors">TikTok</a>
-        <span class="text-[#b5a99a]">•</span>
-        <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322] font-bold transition-colors">WhatsApp: +254700309655</a>
-      </div>
-
-      <div class="w-full max-w-xl h-[1px] bg-[#d4af37]/30 my-2"></div>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 text-xs text-[#524a40]">
-        <div class="flex flex-wrap items-center justify-center gap-2">
-          <span class="w-6 h-6 rounded-full bg-[#26211c] text-[#f4ede4] flex items-center justify-center text-xs font-semibold select-none">T</span>
-          <span>Copyright 2026 Tetu Collection.</span>
+        <div class="flex flex-col items-start max-w-md">
+          <a href="index.html" class="inline-block mb-4" aria-label="TETU COLLECTION Home">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwL2N39GWthOZHvAgHNR1ZcUPnzA-u4z68QW_ig_1kRNROi-U3PbPI4SDfWCmi4NYjywRcdo2gSYM9tCItzWXwPfLm4HqxFGcJx7Qb5b0Z4Sj8hrEBsXad3rKF8l3V9KZ3APFMZm3jhI6gbcPfHXK9RMFEkms4yFyGKjD4tA77aTYZIzu4bkjelV6zlqV47mDgeogY3IznrSPThnRwyGtIW01CZymqdFlztJsZbvTTERE3i1yG4VT5z-XdOSjVo_Do8-8"
+                 alt="TETU COLLECTION"
+                 class="h-28 md:h-32 w-auto object-contain"
+                 loading="lazy">
+          </a>
+          <p class="text-xs text-[#524a40] leading-relaxed mb-3">
+            Curated everyday imported fashion bags and comfortable slides made for everyday wear. Thoughtfully chosen, effortlessly you.
+          </p>
+          <span class="text-[11px] font-semibold tracking-wider text-[#736657] uppercase">NAIROBI, KENYA</span>
         </div>
-        <span class="hidden sm:inline text-[#b5a99a]">•</span>
-        <div class="flex items-center gap-2">
-          <span>
-            Website designed &amp; crafted by
-            <a href="#" class="inline-flex items-center gap-1.5 text-[#8c7322] hover:text-[#26211c] font-semibold underline underline-offset-4 decoration-[#8c7322] transition-colors" aria-label="Bossy Design">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0PJVQFXbjXFF8tqWiJTRWa88XZKLj1we2tJ3FiB7Y4YuLh4C_5TsnXtoy4SIL6lI-TH3dJYcNrzgu6I2uRe8eaD5fr84eY4uzc3TTJ585yycZPgTCwQh0WVNncKL2CMbxlDJyTXYZvWyx77don_YJmBncJd647Hau9ZmM-5gmwUqmKu99aXzIPb2lP19Yn0Ay5oWJ4m49nlq08yqYAAgWb1A1RfMy51m-78uw4BPr7WDwOACZca8--nK01WQq6tAlkK4"
-                   alt="Bossy Design"
-                   class="h-6 w-auto object-contain rounded inline-block align-middle">
-              <span>Bossy designs</span>
+
+        <div class="flex flex-col items-start md:items-end text-left md:text-right">
+          <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-[#26211c] mb-3">OFFICIAL CONTACT &amp; SOCIAL</h4>
+          <div class="flex flex-col gap-1.5 text-xs text-[#453e35]">
+            <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322] font-semibold transition-colors">
+              WhatsApp: <span class="font-bold text-[#26211c]">+254 700 309 655</span>
             </a>
+            <a href="https://instagram.com/tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322] transition-colors">
+              Instagram: @tetucollection
+            </a>
+            <a href="https://tiktok.com/@tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322] transition-colors">
+              TikTok: @tetucollection
+            </a>
+          </div>
+          <span class="text-[11px] text-[#736657] mt-3">
+            Inquiries processed 8:00 AM - 9:00 PM EAT daily.
           </span>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#524a40]">
+        <div>Copyright 2026 Tetu Collection • All rights reserved.</div>
+        <div class="flex items-center gap-2">
+          <span>Website designed &amp; crafted by <strong>Bossy designs</strong></span>
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl0kak3H6tLnXLd2fDIRKjN5tJ1_dGoaATcklqBvwh0DRAwSF7vNb45fGBef9KYWTp79w2Y42QWdacBORG8aNxbYjk3WIjxifajcZQrKBeNfSYHoPdgQywrDhJrq3hwnqoB3w0kweO8F9auHMk9Bud2g3JKvO8P60lIOsITlXvE9OQMemW1dTpYSPp8wGULD_Bba53d1zlrcMyWVnHEWRYv7JEGLBjem9WEABidGoYG1YJxqJozOTq8qPnMDjDnRTpvbQ"
+               alt="Bossy designs logo"
+               class="h-5 w-auto object-contain inline-block align-middle rounded-sm"
+               loading="lazy">
         </div>
       </div>
 
@@ -683,9 +869,9 @@
       function setActivePill(activePill) {
         pills.forEach(function (p) {
           p.classList.remove('active', 'bg-[#d4af37]', 'text-[#07090e]', 'font-bold', 'shadow-md');
-          p.classList.add('bg-[#151821]', 'text-[#9ba1b0]', 'border', 'border-white/10', 'font-medium');
+          p.classList.add('bg-[#f4ede4]', 'text-[#524a40]', 'border', 'border-[#26211c]/15', 'font-medium');
         });
-        activePill.classList.remove('bg-[#151821]', 'text-[#9ba1b0]', 'border', 'border-white/10', 'font-medium');
+        activePill.classList.remove('bg-[#f4ede4]', 'text-[#524a40]', 'border', 'border-[#26211c]/15', 'font-medium');
         activePill.classList.add('active', 'bg-[#d4af37]', 'text-[#07090e]', 'font-bold', 'shadow-md');
       }
 
@@ -699,7 +885,7 @@
 
       applyFilter('all');
 
-      /* ---------- SMOOTH SCROLL for anchor links ---------- */
+      /* ---------- SMOOTH SCROLL ---------- */
       const HEADER_OFFSET = 96;
       document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         anchor.addEventListener('click', function (e) {
@@ -715,7 +901,7 @@
         });
       });
 
-      console.log('✅ TETU shoes.html loaded — Total shoes:', cards.length);
+      console.log('✅ TETU shoes.html synchronized — Total footwear pieces:', cards.length);
     })();
   </script>
 

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>About — TETU COLLECTION</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#d4af37',
+            'primary-hover': '#e5c158',
+            'bg-cream': '#f4ede4',
+            'bg-cream-card': '#ece2d5',
+            'text-espresso': '#26211c',
+            'border-subtle': 'rgba(38, 33, 28, 0.12)'
+          },
+          fontFamily: {
+            serif: ['"Bodoni Moda"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --bg-cream: #f4ede4;
+      --bg-card: #ece2d5;
+      --text-espresso: #26211c;
+      --gold-accent: #d4af37;
+    }
+    html { scroll-behavior: smooth; }
+    body.menu-open { overflow: hidden; position: fixed; width: 100%; }
+
+    .header-cream-theme {
+      background-color: var(--bg-cream);
+      color: var(--text-espresso);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+    }
+    .footer-cream-theme {
+      background-color: var(--bg-cream);
+      color: var(--text-espresso);
+      border-top: 1px solid rgba(212, 175, 55, 0.25);
+    }
+
+    .form-input-cream {
+      background: #faf6f0;
+      border: 1px solid rgba(38, 33, 28, 0.15);
+      color: #26211c;
+      transition: all 0.2s ease;
+    }
+    .form-input-cream:focus {
+      border-color: #d4af37;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
+      outline: none;
+    }
+
+    #mobile-nav {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      opacity: 0;
+    }
+    #mobile-nav.open {
+      max-height: 560px;
+      opacity: 1;
+      overflow-y: auto;
+    }
+    #mobile-nav-backdrop {
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    #mobile-nav-backdrop.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Smooth mobile nav link interactions */
+    .mobile-nav-link {
+      transition: color 0.2s ease, padding-left 0.2s ease;
+    }
+    .mobile-nav-link:active {
+      color: #8c7322;
+      padding-left: 0.5rem;
+    }
+
+    /* Material icon alignment */
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+
+    /* About page specific */
+    .about-hero-bg {
+      background: linear-gradient(135deg, #f4ede4 0%, #ece2d5 100%);
+    }
+  </style>
+</head>
+<body class="bg-[#f4ede4] font-sans text-[#26211c] antialiased selection:bg-[#d4af37] selection:text-[#07090e]">
+
+  <!-- ============================= TOP ANNOUNCEMENT BAR ============================= -->
+  <div class="bg-[#ebdccb] border-b border-[#d4af37]/20 text-[11px] font-semibold tracking-widest uppercase text-[#5a4f43] py-2 px-6">
+    <div class="max-w-[1440px] mx-auto flex items-center justify-between">
+      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse"></span> Quality Fashion Bags &amp; Everyday Slides</span>
+      <span class="hidden md:inline-block tracking-[0.2em]">Thoughtfully chosen. Effortlessly you.</span>
+      <span class="flex items-center gap-1 font-bold text-[#8c7322]">Based in Kenya 📍</span>
+    </div>
+  </div>
+
+  <!-- ============================= HEADER ============================= -->
+  <header class="header-cream-theme sticky top-0 z-50 w-full backdrop-blur-md shadow-sm">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+      <!-- Official Logo -->
+      <a aria-label="TETU COLLECTION Home" class="flex items-center gap-3 z-10" href="index.html">
+        <img alt="TETU COLLECTION" class="h-12 md:h-14 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6HKX_MHcfw2VdHKRRIud-m9yHhaB6mJOJT8o6rvSPGNHn-bEszNlIiGafH0mVuOY_H95ZgQ1EFZr-m4UTO4Q7KHcsbp7BczjKgol_DkCVuR8ygHcQZsV_A7tJLfTZhp0SFDBKS3s6Myk8N9YBNO_Xyg982PoMMdlrnL1aAs8hw-2eZJPfNOYfdjdl0ZVarfmuHdJJJjunDVErhQExhUTYkfTDcKvM5Eqoe0M1t14CVqh4wKPDTLEn9wB5Q-ZseTOhzy4">
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav aria-label="Primary Navigation" class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-[0.2em] text-[#3e3831]">
+        <a class="hover:text-[#8c7322] transition-colors py-1" href="index.html">Homepage</a>
+        <a class="hover:text-[#8c7322] transition-colors py-1" href="shoes.html">Shoes</a>
+        <a class="hover:text-[#8c7322] transition-colors py-1" href="bags.html">Bags</a>
+        <a aria-current="page" class="hover:text-[#8c7322] transition-colors py-1 font-bold text-[#8c7322]" href="about.html">About</a>
+        <a class="hover:text-[#8c7322] transition-colors py-1" href="review.html">Reviews</a>
+        <a class="hover:text-[#8c7322] transition-colors py-1" href="contact.html">Contact</a>
+      </nav>
+
+      <!-- Right Action Icons & Mobile Hamburger -->
+      <div class="flex items-center gap-4">
+        <a aria-label="Search or Chat" class="p-2 text-[#26211c] hover:text-[#8c7322] transition-colors" href="https://wa.me/254700309655" rel="noopener noreferrer" target="_blank">
+          <span class="material-symbols-outlined text-[22px]">search</span>
+        </a>
+        <a aria-label="Bag Inquiries" class="p-2 text-[#26211c] hover:text-[#8c7322] transition-colors relative" href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20would%20like%20to%20make%20an%20order." rel="noopener noreferrer" target="_blank">
+          <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+          <span class="absolute top-1 right-1 w-3.5 h-3.5 bg-[#8c7322] text-white text-[9px] font-bold rounded-full flex items-center justify-center">0</span>
+        </a>
+        <button aria-controls="mobile-nav" aria-expanded="false" aria-label="Toggle Navigation Menu" class="md:hidden p-2 text-[#26211c] hover:text-[#8c7322] transition-colors focus:outline-none" id="mobile-menu-toggle" type="button">
+          <span class="material-symbols-outlined text-[26px]" id="mobile-menu-icon">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Backdrop -->
+    <div aria-hidden="true" class="fixed inset-0 bg-[#0b0e15]/40 backdrop-blur-sm z-40 md:hidden hidden" id="mobile-nav-backdrop"></div>
+
+    <!-- Mobile Nav Drawer -->
+    <div class="md:hidden bg-[#f4ede4] border-t border-[#d4af37]/20" id="mobile-nav">
+      <div class="px-6 pb-6 pt-4 flex flex-col gap-3 text-xs font-bold uppercase tracking-widest text-[#26211c]">
+        <a class="mobile-nav-link py-2 border-b border-[#d4af37]/10" href="index.html">Homepage</a>
+        <a class="mobile-nav-link py-2 border-b border-[#d4af37]/10" href="shoes.html">Shoes</a>
+        <a class="mobile-nav-link py-2 border-b border-[#d4af37]/10" href="bags.html">Bags</a>
+        <a aria-current="page" class="mobile-nav-link py-2 border-b border-[#d4af37]/10 font-bold text-[#8c7322]" href="about.html">About</a>
+        <a class="mobile-nav-link py-2 border-b border-[#d4af37]/10" href="review.html">Reviews</a>
+        <a class="mobile-nav-link py-2 border-b border-[#d4af37]/10" href="contact.html">Contact</a>
+        <a class="mobile-nav-link py-2 text-[#8c7322] flex items-center gap-2" href="https://wa.me/254700309655" rel="noopener noreferrer" target="_blank">
+          WhatsApp: +254 700 309 655
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================= MAIN CONTENT ============================= -->
+  <main class="w-full relative overflow-hidden">
+    <div class="flex flex-col w-full text-text-espresso">
+
+      <!-- HERO SECTION: About Introduction -->
+      <section class="about-hero-bg px-6 lg:px-12 py-20 md:py-28">
+        <div class="max-w-[1440px] mx-auto text-center">
+          <span class="font-label-sm text-label-sm uppercase tracking-widest text-[#8c7322] font-semibold block mb-4">OUR STORY</span>
+          <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-text-espresso tracking-tight leading-tight max-w-3xl mx-auto">
+            Thoughtfully Chosen.<br class="hidden sm:block"> Effortlessly You.
+          </h1>
+          <p class="font-body-md text-body-md text-[#5a4f43] max-w-2xl mx-auto mt-6 leading-relaxed">
+            Tetu Collection was born from a simple belief: every Kenyan woman deserves access to stylish, high-quality bags and comfortable slides without the hassle. We're your personal curators, based right here in Nairobi.
+          </p>
+        </div>
+      </section>
+
+      <!-- BRAND ETHOS: 3 Core Pillars -->
+      <section class="px-6 lg:px-12 py-16 bg-[#eee4d6] relative">
+        <div class="max-w-[1440px] mx-auto">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-[#8c7322] font-semibold block mb-2">FOUNDATIONAL PROMISES</span>
+              <h2 class="font-serif text-3xl md:text-4xl text-text-espresso">The Tetu Standard</h2>
+            </div>
+            <p class="font-body-md text-body-md text-[#5a4f43] max-w-md mt-4 md:mt-0">
+              We strip away seasonal excess to bring you timeless silhouettes made for Nairobi workdays, weekend retreats, and evening gatherings.
+            </p>
+          </div>
+
+          <!-- 3 Pillars Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="p-8 rounded-lg bg-bg-cream shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+              <div>
+                <div class="w-12 h-12 rounded-full bg-bg-cream-card flex items-center justify-center text-[#8c7322] mb-6">
+                  <span class="material-symbols-outlined text-2xl">diamond</span>
+                </div>
+                <h3 class="font-serif text-xl md:text-2xl text-text-espresso mb-3">Quality You Can Trust</h3>
+                <p class="font-body-md text-body-md text-[#5a4f43] leading-relaxed">Every bag and pair of slides is checked by hand for durable material, clean finish, and all-day comfort.</p>
+              </div>
+              <div class="mt-6 pt-4">
+                <span class="font-label-sm text-label-sm text-[#8c7322] uppercase tracking-widest font-semibold flex items-center gap-1">
+                  Refined Materials <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="p-8 rounded-lg bg-bg-cream shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+              <div>
+                <div class="w-12 h-12 rounded-full bg-bg-cream-card flex items-center justify-center text-[#8c7322] mb-6">
+                  <span class="material-symbols-outlined text-2xl">local_shipping</span>
+                </div>
+                <h3 class="font-serif text-xl md:text-2xl text-text-espresso mb-3">Kenyan Heart, Nairobi Dispatch</h3>
+                <p class="font-body-md text-body-md text-[#5a4f43] leading-relaxed">
+                  Rooted right in Nairobi with rapid, insured, and dependable nationwide parcel delivery to your residence or preferred pickup station across Kenya.
+                </p>
+              </div>
+              <div class="mt-6 pt-4">
+                <span class="font-label-sm text-label-sm text-[#8c7322] uppercase tracking-widest font-semibold flex items-center gap-1">
+                  Swift Logistics <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="p-8 rounded-lg bg-bg-cream shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+              <div>
+                <div class="w-12 h-12 rounded-full bg-bg-cream-card flex items-center justify-center text-[#8c7322] mb-6">
+                  <span class="material-symbols-outlined text-2xl">chat</span>
+                </div>
+                <h3 class="font-serif text-xl md:text-2xl text-text-espresso mb-3">Direct WhatsApp Support</h3>
+                <p class="font-body-md text-body-md text-[#5a4f43] leading-relaxed">Friendly assistance on +254 700 309 655 for quick shoe sizing, live photos or videos, color advice, and easy ordering.</p>
+              </div>
+              <div class="mt-6 pt-4">
+                <a class="font-label-sm text-label-sm text-[#8c7322] uppercase tracking-widest font-semibold flex items-center gap-1 hover:underline" href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20would%20like%20sizing%20guidance." rel="noopener noreferrer" target="_blank">
+                  Instant Chat <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDITORIAL SHOWCASE: Asymmetric Gallery & Narrative -->
+      <section class="px-6 lg:px-12 py-20 bg-bg-cream relative">
+        <div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Left Editorial Visual -->
+          <div class="lg:col-span-6 relative">
+            <div class="relative overflow-hidden rounded-xl shadow-lg bg-bg-cream-card">
+              <img alt="Handcrafted White Crescent luxury bag from Tetu Collection" class="w-full h-[520px] object-cover object-center transform hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlj2HYTcY2ytjB1X8mOpP0SbWyxNvRDy_xJ-d9Svq_dzMD9OfPeYEOCx7mjtl1LWj97K00KtPi88K-R0Fz_ir_VuqMr1C5O6Ubi2szwDat0Da-O7cVMYpBnEEi4J2fthv_ULb7VFeprzPzQRr7HeHxAZvw1H25LD7kEesderBUDd1KcPcUR_ERu1oKWeZn3Z2S0ZOOHYK7c1v_IPv22lfS1xeL0MI_f2Z_NeKi8Ano3zgC8XNp3bv5PhoJc4xOcAe0S0A">
+              <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#26211c]/80 via-[#26211c]/30 to-transparent p-6 text-white flex justify-between items-end">
+                <div>
+                  <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary block mb-1">Featured Silhouette</span>
+                  <p class="font-serif text-lg md:text-xl text-white">The Crescent Shoulder Bag in Ivory</p>
+                </div>
+                <a class="px-4 py-2 bg-primary text-[#26211c] font-label-sm text-label-sm uppercase tracking-wider font-semibold hover:bg-white transition-colors rounded" href="bags.html">
+                  View Bag
+                </a>
+              </div>
+            </div>
+            <!-- Decorative Overlapping Card -->
+            <div class="hidden sm:block absolute -bottom-6 -right-6 p-6 rounded-lg bg-[#faf6f0] shadow-xl max-w-xs z-20">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="material-symbols-outlined text-[#8c7322]">verified</span>
+                <span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-text-espresso">Inspected in Nairobi</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-[#5a4f43]">
+                Every stitch, hardware lock, and lining is personally verified before packaging.
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Editorial Story & Quote -->
+          <div class="lg:col-span-6 flex flex-col justify-center space-y-6 lg:pl-6">
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-[#8c7322] font-semibold">ABOUT TETU COLLECTION</span>
+            <h2 class="font-serif text-3xl md:text-4xl text-text-espresso tracking-tight leading-tight">
+              Stylish, Comfortable Pieces Made for Everyday Life
+            </h2>
+            <p class="font-body-md text-body-md text-[#5a4f43] leading-relaxed">
+              Tetu Collection was started with one goal: making it easy for Kenyan women to find chic handbags and comfortable slides without the stress. We personally inspect each item so you get stylish pieces that last and feel great all day.
+            </p>
+            <!-- Quote Block -->
+            <div class="p-6 rounded-lg bg-bg-cream-card shadow-sm mt-4">
+              <p class="font-serif text-xl md:text-2xl italic text-text-espresso leading-snug">
+                “Style isn’t about excess; it’s about finding pieces that make you feel confident every single day.”
+              </p>
+              <div class="mt-4 flex items-center justify-between">
+                <span class="font-label-sm text-label-sm uppercase tracking-widest text-[#8c7322] font-bold">— OUR PROMISE</span>
+                <span class="material-symbols-outlined text-[#8c7322]/40 text-3xl">format_quote</span>
+              </div>
+            </div>
+            <div class="pt-4 flex flex-wrap gap-4">
+              <a class="px-6 py-3 bg-primary text-text-espresso font-label-md text-label-md uppercase tracking-wider font-semibold rounded hover:bg-white shadow-sm transition-all duration-200" href="shoes.html">
+                Explore Footwear
+              </a>
+              <a class="px-6 py-3 bg-bg-cream-card text-text-espresso font-label-md text-label-md uppercase tracking-wider font-semibold rounded hover:bg-[#ebdccb] shadow-sm transition-all duration-200" href="bags.html">
+                Explore Handbags
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW WE WORK: The Ordering Experience (4 Steps) -->
+      <section class="px-6 lg:px-12 py-20 bg-[#ebdccb]">
+        <div class="max-w-[1440px] mx-auto">
+          <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-[#8c7322] font-semibold block mb-2">EFFORTLESS JOURNEY</span>
+            <h2 class="font-serif text-3xl md:text-4xl text-text-espresso">How To Order</h2>
+            <p class="font-body-md text-body-md text-[#5a4f43] mt-3">Simple, fast, and personal. Just 4 easy steps to get your order delivered.</p>
+          </div>
+
+          <!-- 4 Numbered Steps Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Step 01 -->
+            <div class="p-6 rounded-lg bg-[#faf6f0] shadow-sm flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+              <div>
+                <span class="font-serif text-4xl text-[#8c7322]/30 font-bold block mb-4">01</span>
+                <h3 class="font-serif text-lg md:text-xl text-text-espresso font-semibold mb-2">Browse &amp; Select</h3>
+                <p class="font-body-sm text-body-sm text-[#5a4f43] leading-relaxed">Choose your favorite bag or pair of slides from our catalog.</p>
+              </div>
+              <div class="mt-6 flex items-center gap-2 text-[#8c7322] font-label-sm text-label-sm uppercase tracking-wider">
+                <span class="material-symbols-outlined text-base">view_carousel</span> Step 1 of 4
+              </div>
+            </div>
+            <!-- Step 02 -->
+            <div class="p-6 rounded-lg bg-[#faf6f0] shadow-sm flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+              <div>
+                <span class="font-serif text-4xl text-[#8c7322]/30 font-bold block mb-4">02</span>
+                <h3 class="font-serif text-lg md:text-xl text-text-espresso font-semibold mb-2">Tap to Enquire</h3>
+                <p class="font-body-sm text-body-sm text-[#5a4f43] leading-relaxed">Click Enquire on WhatsApp to send us a direct message with the item you like.</p>
+              </div>
+              <div class="mt-6 flex items-center gap-2 text-[#8c7322] font-label-sm text-label-sm uppercase tracking-wider">
+                <span class="material-symbols-outlined text-base">touch_app</span> Step 2 of 4
+              </div>
+            </div>
+            <!-- Step 03 -->
+            <div class="p-6 rounded-lg bg-[#faf6f0] shadow-sm flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+              <div>
+                <span class="font-serif text-4xl text-[#8c7322]/30 font-bold block mb-4">03</span>
+                <h3 class="font-serif text-lg md:text-xl text-text-espresso font-semibold mb-2">Confirm Sizing &amp; Color</h3>
+                <p class="font-body-sm text-body-sm text-[#5a4f43] leading-relaxed">We help you pick your exact shoe size, answer any questions, and confirm your delivery location.</p>
+              </div>
+              <div class="mt-6 flex items-center gap-2 text-[#8c7322] font-label-sm text-label-sm uppercase tracking-wider">
+                <span class="material-symbols-outlined text-base">straighten</span> Step 3 of 4
+              </div>
+            </div>
+            <!-- Step 04 -->
+            <div class="p-6 rounded-lg bg-[#faf6f0] shadow-sm flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+              <div>
+                <span class="font-serif text-4xl text-[#8c7322]/30 font-bold block mb-4">04</span>
+                <h3 class="font-serif text-lg md:text-xl text-text-espresso font-semibold mb-2">Nationwide Dispatch</h3>
+                <p class="font-body-sm text-body-sm text-[#5a4f43] leading-relaxed">We pack your order carefully and deliver it straight to your doorstep or pickup station anywhere in Kenya.</p>
+              </div>
+              <div class="mt-6 flex items-center gap-2 text-[#8c7322] font-label-sm text-label-sm uppercase tracking-wider">
+                <span class="material-symbols-outlined text-base">package_2</span> Step 4 of 4
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIRECT WHATSAPP CONCIERGE CALLOUT BANNER -->
+      <section class="px-6 lg:px-12 py-16 bg-bg-cream">
+        <div class="max-w-[1440px] mx-auto">
+          <div class="relative overflow-hidden rounded-2xl bg-bg-cream-card p-8 md:p-14 shadow-md flex flex-col md:flex-row items-center justify-between gap-8">
+            <!-- Ambient Gold accent inside banner -->
+            <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-primary/20 blur-3xl pointer-events-none"></div>
+            <div class="space-y-4 max-w-2xl text-center md:text-left z-10">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#faf6f0] shadow-sm">
+                <span class="material-symbols-outlined text-base text-[#8c7322]">support_agent</span>
+                <span class="font-label-sm text-label-sm uppercase tracking-widest text-[#8c7322] font-bold">NEED HELP CHOOSING?</span>
+              </div>
+              <h2 class="font-serif text-2xl md:text-3xl text-text-espresso font-normal">
+                Looking for a specific shoe size or bag color?
+              </h2>
+              <p class="font-body-md text-body-md text-[#5a4f43] leading-relaxed">Chat with us directly on WhatsApp (+254 700 309 655). We are ready to send live photos, size guides, and answer your questions.</p>
+            </div>
+            <div class="z-10 flex flex-col sm:flex-row gap-4 w-full md:w-auto shrink-0 justify-center">
+              <a class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-text-espresso font-label-md text-label-md uppercase tracking-wider font-bold rounded shadow-md hover:bg-white hover:shadow-lg transition-all duration-200" href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20looking%20for%20a%20specific%20size/color." rel="noopener noreferrer" target="_blank">
+                <span class="material-symbols-outlined text-xl">chat</span>
+                <span>Chat on WhatsApp</span>
+              </a>
+              <a class="inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#faf6f0] text-text-espresso font-label-md text-label-md uppercase tracking-wider font-semibold rounded shadow-sm hover:bg-white transition-all duration-200" href="contact.html">
+                <span>Message Us</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ============================= FOOTER ============================= -->
+  <footer class="footer-cream-theme py-12 px-6 lg:px-12 w-full">
+    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+      <!-- Left: Logo & Philosophy -->
+      <div class="flex flex-col items-center md:items-start text-center md:text-left space-y-2 max-w-sm">
+        <a aria-label="TETU COLLECTION Home" href="index.html">
+          <img alt="TETU COLLECTION" class="h-10 md:h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6HKX_MHcfw2VdHKRRIud-m9yHhaB6mJOJT8o6rvSPGNHn-bEszNlIiGafH0mVuOY_H95ZgQ1EFZr-m4UTO4Q7KHcsbp7BczjKgol_DkCVuR8ygHcQZsV_A7tJLfTZhp0SFDBKS3s6Myk8N9YBNO_Xyg982PoMMdlrnL1aAs8hw-2eZJPfNOYfdjdl0ZVarfmuHdJJJjunDVErhQExhUTYkfTDcKvM5Eqoe0M1t14CVqh4wKPDTLEn9wB5Q-ZseTOhzy4">
+        </a>
+        <p class="text-xs text-[#5a4f43] leading-relaxed pt-1">Quality fashion bags and comfortable slides for everyday wear. Thoughtfully chosen, effortlessly you.</p>
+        <span class="text-[11px] font-bold tracking-widest uppercase text-[#8c7322]">NAIROBI, KENYA</span>
+      </div>
+
+      <nav aria-label="Footer Navigation" class="flex flex-col items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#5a4f43]">
+        <span class="text-[11px] tracking-[0.2em] text-[#26211c]">Explore</span>
+        <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
+          <a class="hover:text-[#8c7322] transition-colors" href="index.html">Homepage</a>
+          <a class="hover:text-[#8c7322] transition-colors" href="shoes.html">Shoes</a>
+          <a class="hover:text-[#8c7322] transition-colors" href="bags.html">Bags</a>
+          <a aria-current="page" class="font-bold text-[#8c7322]" href="about.html">About</a>
+          <a class="hover:text-[#8c7322] transition-colors" href="review.html">Reviews</a>
+          <a class="hover:text-[#8c7322] transition-colors" href="contact.html">Contact</a>
+        </div>
+      </nav>
+
+      <!-- Right: Official Contact & Social Aligned Far Right -->
+      <div class="flex flex-col items-center md:items-end text-center md:text-right space-y-2">
+        <span class="text-[11px] uppercase tracking-[0.2em] text-[#26211c] font-bold">Official Contact &amp; Social</span>
+        <div class="space-y-1 text-xs text-[#5a4f43]">
+          <div>WhatsApp: <a class="font-bold text-[#8c7322] hover:underline" href="https://wa.me/254700309655" rel="noopener noreferrer" target="_blank">+254 700 309 655</a></div>
+          <div>Instagram: <a class="hover:text-[#8c7322]" href="https://instagram.com/tetucollection" rel="noopener noreferrer" target="_blank">@tetucollection</a></div>
+          <div>TikTok: <a class="hover:text-[#8c7322]" href="https://tiktok.com/@tetucollection" rel="noopener noreferrer" target="_blank">@tetucollection</a></div>
+          <div class="text-[10px] text-[#786e63] pt-1">Inquiries processed 8:00 AM - 9:00 PM EAT daily.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Line -->
+    <div class="max-w-[1440px] mx-auto mt-10 pt-6 border-t border-[#d4af37]/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#6b6257]">
+      <div>Copyright 2026 Tetu Collection • All rights reserved.</div>
+      <div class="flex items-center gap-2">
+        <span>Website designed &amp; crafted by</span>
+        <strong class="text-[#26211c]">Bossy designs</strong>
+        <img alt="Bossy Design" class="h-5 w-auto object-contain inline-block rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD288kyLpQeaS4d17MUkX2Fe0Xwn6CxL6FcWhIiCOc5aR6yRSbe7PU8eOlcKwxVIp9qBJ4q3zmbU_yzLYtFHNM-CjDR9nXAOPopuCQw7bPJHxiSU5oFwTI4-UYaCTjM3D3dvRrZ5oEgVilwU33hs2BIPuFDLYzxXUYupudK9cIYBAZZljRs4qRvui7P2jLBXAJzu3Z1XVPxUfFmtFzjhTYZ3MshNXGRXqUBlwTd66n1rK23ClQYOMlP122dkJAMBKAHMVY">
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================= SCRIPTS ============================= -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* Mobile nav toggle */
+      const toggleBtn = document.getElementById('mobile-menu-toggle');
+      const mobileNav = document.getElementById('mobile-nav');
+      const mobileBackdrop = document.getElementById('mobile-nav-backdrop');
+      const mobileIcon = document.getElementById('mobile-menu-icon');
+
+      function openMenu() {
+        if (!toggleBtn || !mobileNav) return;
+        mobileNav.classList.add('open');
+        if (mobileBackdrop) mobileBackdrop.classList.remove('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        if (mobileIcon) mobileIcon.textContent = 'close';
+        document.body.classList.add('menu-open');
+      }
+
+      function closeMenu() {
+        if (!toggleBtn || !mobileNav) return;
+        mobileNav.classList.remove('open');
+        if (mobileBackdrop) mobileBackdrop.classList.add('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        if (mobileIcon) mobileIcon.textContent = 'menu';
+        document.body.classList.remove('menu-open');
+      }
+
+      if (toggleBtn && mobileNav) {
+        toggleBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (mobileNav.classList.contains('open')) closeMenu();
+          else openMenu();
+        });
+      }
+
+      if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMenu);
+
+      document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          setTimeout(closeMenu, 150);
+        });
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && mobileNav && mobileNav.classList.contains('open')) {
+          closeMenu();
+        }
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 768 && mobileNav && mobileNav.classList.contains('open')) {
+          closeMenu();
+        }
+      });
+
+      /* Interactive WhatsApp form submission (if form exists on this page) */
+      const enquiryForm = document.getElementById('enquiry-form');
+      if (enquiryForm) {
+        enquiryForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const name = document.getElementById('client-name').value.trim();
+          const interest = document.getElementById('item-interest').value;
+          const sizePref = document.getElementById('size-pref').value.trim();
+          const message = document.getElementById('message-text').value.trim();
+
+          if (!name || !interest || !message) return;
+
+          let text = `Hello TETU COLLECTION (+254700309655),\n\n`;
+          text += `I would like to enquire about:\n`;
+          text += `• Name: ${name}\n`;
+          text += `• Interested In: ${interest}\n`;
+          if (sizePref) {
+            text += `• Size / Colour: ${sizePref}\n`;
+          }
+          text += `• Message: ${message}\n\n`;
+          text += `(Via tetucollection.com • Designed by Bossy designs)`;
+
+          const whatsappUrl = `https://wa.me/254700309655?text=${encodeURIComponent(text)}`;
+          window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+  <title>404 — Page Not Found | TETU COLLECTION</title>
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cream: '#f4ede4',
+              surface: '#ede5dc',
+              card: '#ece3d8',
+              cardHover: '#e6dcce',
+              border: 'rgba(38, 33, 28, 0.08)',
+              borderGold: 'rgba(212, 175, 55, 0.45)',
+              gold: '#d4af37',
+              goldHover: '#c49f2b',
+              espresso: '#26211c',
+              muted: '#736b63',
+              dim: '#9a9187'
+            }
+          },
+          fontFamily: {
+            serif: ['"Bodoni Moda"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-cream: #f4ede4;
+      --text-espresso: #26211c;
+      --color-gold: #d4af37;
+    }
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-espresso);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-bodoni {
+      font-family: 'Bodoni Moda', serif;
+    }
+
+    /* Smooth mobile nav transitions */
+    #mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      opacity: 0;
+    }
+    #mobile-menu.open {
+      max-height: 560px;
+      opacity: 1;
+    }
+
+    /* Mobile link tap feedback */
+    .mobile-nav-link {
+      transition: color 0.2s ease, padding-left 0.2s ease;
+    }
+    .mobile-nav-link:active {
+      color: #d4af37;
+      padding-left: 0.5rem;
+    }
+
+    /* Card entrance animation */
+    .scale-card-in {
+      animation: popIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Gold gradient text for the "0" in 404 */
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #d4af37 0%, #e2be4c 50%, #b89326 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .material-symbols-outlined {
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body class="bg-[#f4ede4] text-[#26211c] antialiased selection:bg-[#d4af37] selection:text-[#26211c] min-h-screen flex flex-col justify-between">
+
+  <!-- TOP RIBBON -->
+  <div class="w-full bg-[#ede5dc] border-b border-[#26211c]/10 text-[11px] uppercase tracking-[0.18em] text-[#736b63] py-2.5 px-6">
+    <div class="max-w-[1440px] mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span>
+        <span>Quality Fashion Bags &amp; Everyday Slides</span>
+      </div>
+      <div class="hidden md:block font-medium text-[#26211c]/70 tracking-[0.2em]">
+        Thoughtfully chosen. Effortlessly you.
+      </div>
+      <div class="flex items-center gap-1.5 font-semibold text-[#26211c]">
+        <span>Based in Kenya</span>
+        <span class="text-xs">📍</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 w-full bg-[#f4ede4]/95 backdrop-blur-md border-b border-[#26211c]/10">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-3" aria-label="TETU COLLECTION Home">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD01wDPHrp4VvUp6mktMxVv372mJcrY5Q80BYNIdsny7zY8Jn-RXNwRR5dRadm_4aEQhLfV_z2w3C-soQ9ZCW8gexUnoV5JwIpXXFsrV0Vy0d2_oJtIGimUpq2ssODMSI_zHCo7AGShHvpc_HVvMQtHp_rF1swEC-hPbgvvY7lJP3qYaWpMOWL2RSDLtczHlCpZqiL_60w8FIYu8NZSfwGxcQsoPPFPMJHPsxH-zbDPM4GPAyaqciITTcoQ8kCf8VCJPSA" 
+             alt="TETU COLLECTION" 
+             class="h-10 w-auto object-contain">
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#26211c]" aria-label="Primary Navigation">
+        <a href="index.html" class="hover:text-[#d4af37] transition-colors py-1">Homepage</a>
+        <a href="shoes.html" class="hover:text-[#d4af37] transition-colors py-1">Shoes</a>
+        <a href="bags.html" class="hover:text-[#d4af37] transition-colors py-1">Bags</a>
+        <a href="about.html" class="hover:text-[#d4af37] transition-colors py-1">About</a>
+        <a href="review.html" class="hover:text-[#d4af37] transition-colors py-1">Reviews</a>
+        <a href="contact.html" class="hover:text-[#d4af37] transition-colors py-1">Contact</a>
+      </nav>
+
+      <!-- Right Action Icons -->
+      <div class="flex items-center gap-5">
+        <a href="contact.html" class="text-[#26211c] hover:text-[#d4af37] transition-colors p-1" aria-label="Search">
+          <span class="material-symbols-outlined text-[22px]">search</span>
+        </a>
+        <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer" class="relative text-[#26211c] hover:text-[#d4af37] transition-colors p-1" aria-label="WhatsApp Enquiries">
+          <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+          <span class="absolute -top-0.5 -right-0.5 text-[9px] bg-[#d4af37] text-[#26211c] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+        </a>
+        <button id="mobile-toggle" type="button" class="md:hidden text-[#26211c] p-1 focus:outline-none" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="material-symbols-outlined text-[26px]" id="mobile-toggle-icon">menu</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="md:hidden bg-[#ede5dc] border-t border-[#26211c]/10">
+      <div class="px-6 py-5 flex flex-col gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#26211c]">
+        <a href="index.html" class="mobile-nav-link py-1 border-b border-[#26211c]/5">Homepage</a>
+        <a href="shoes.html" class="mobile-nav-link py-1 border-b border-[#26211c]/5">Shoes</a>
+        <a href="bags.html" class="mobile-nav-link py-1 border-b border-[#26211c]/5">Bags</a>
+        <a href="about.html" class="mobile-nav-link py-1 border-b border-[#26211c]/5">About</a>
+        <a href="review.html" class="mobile-nav-link py-1 border-b border-[#26211c]/5">Reviews</a>
+        <a href="contact.html" class="mobile-nav-link py-1 border-b border-[#26211c]/5">Contact</a>
+        <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer" class="mobile-nav-link py-1 text-[#26211c] font-bold">WhatsApp: +254 700 309 655</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN 404 CONTENT -->
+  <main class="max-w-[1440px] mx-auto px-6 lg:px-12 py-12 lg:py-20 flex-1 flex flex-col items-center justify-center">
+
+    <div class="max-w-2xl w-full scale-card-in">
+
+      <!-- MAIN ERROR CARD -->
+      <div class="bg-[#ede5dc] border border-[#26211c]/10 rounded-3xl p-8 sm:p-12 text-center shadow-sm relative overflow-hidden">
+        
+        <!-- Large Stylized 404 Display -->
+        <div class="font-bodoni text-6xl sm:text-7xl lg:text-8xl tracking-tight font-normal text-[#26211c] mb-3 select-none">
+          4<span class="gold-gradient-text italic">0</span>4
+        </div>
+
+        <!-- Eyebrow Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f4ede4] border border-[#26211c]/10 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#736b63] mb-4">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span>
+          <span>Page Not Found</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="font-bodoni text-2xl sm:text-3xl lg:text-4xl uppercase tracking-tight text-[#26211c] mb-4">
+          This Piece Is No Longer Here
+        </h1>
+
+        <!-- Subtitle Body Copy -->
+        <p class="text-[#736b63] text-sm sm:text-base leading-relaxed mb-8 max-w-lg mx-auto font-normal">
+          The link you followed may have moved, expired, or been updated. Let us help you find the comfortable slides or fashion bag you were looking for.
+        </p>
+
+        <!-- HELPFUL EXPLORATION ROADMAP -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 bg-[#f4ede4] border border-[#26211c]/10 rounded-2xl mb-8 text-left">
+          
+          <div class="p-3">
+            <span class="text-[10px] font-bold text-[#d4af37] uppercase tracking-wider block mb-0.5">Option 01</span>
+            <div class="font-semibold text-xs text-[#26211c]">Slide Collection</div>
+            <p class="text-[11px] text-[#736b63] mt-0.5 leading-snug">Browse all 14 everyday slides &amp; sandals.</p>
+          </div>
+
+          <div class="p-3 border-t sm:border-t-0 sm:border-l border-[#26211c]/10">
+            <span class="text-[10px] font-bold text-[#d4af37] uppercase tracking-wider block mb-0.5">Option 02</span>
+            <div class="font-semibold text-xs text-[#26211c]">Bag Collection</div>
+            <p class="text-[11px] text-[#736b63] mt-0.5 leading-snug">View classic totes &amp; shoulder handbags.</p>
+          </div>
+
+          <div class="p-3 border-t sm:border-t-0 sm:border-l border-[#26211c]/10">
+            <span class="text-[10px] font-bold text-[#d4af37] uppercase tracking-wider block mb-0.5">Option 03</span>
+            <div class="font-semibold text-xs text-[#26211c]">WhatsApp Chat</div>
+            <p class="text-[11px] text-[#736b63] mt-0.5 leading-snug">Ask us directly for immediate help.</p>
+          </div>
+
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+          <a href="index.html" 
+             class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#d4af37] hover:bg-[#c49f2b] text-[#26211c] font-bold text-xs uppercase tracking-[0.2em] transition-all shadow-sm flex items-center justify-center gap-2">
+            <span>Back to Homepage</span>
+            <span class="text-sm">→</span>
+          </a>
+
+          <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20was%20looking%20for%20a%20product%20on%20your%20website%20and%20reached%20a%20missing%20page." 
+             target="_blank" rel="noopener noreferrer"
+             class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#f4ede4] hover:bg-[#e8ded1] border border-[#26211c]/15 text-[#26211c] font-semibold text-xs uppercase tracking-[0.18em] transition-all flex items-center justify-center gap-2">
+            <span>Ask on WhatsApp</span>
+            <span class="text-sm">↗</span>
+          </a>
+        </div>
+
+        <!-- QUICK REASSURANCE -->
+        <div class="mt-8 pt-6 border-t border-[#26211c]/10 text-xs text-[#736b63] flex flex-wrap items-center justify-center gap-4">
+          <span class="flex items-center gap-1.5 font-medium text-[#26211c]">
+            <span class="text-xs">⚡</span> WhatsApp hotline: &lt; 10 min response
+          </span>
+          <span>•</span>
+          <span>Phone: <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer" class="font-bold text-[#26211c] hover:text-[#d4af37] transition-colors">+254 700 309 655</a></span>
+        </div>
+
+      </div>
+
+      <!-- SECONDARY LINK CARDS (Continue Shopping) -->
+      <div class="grid grid-cols-2 gap-4 mt-6">
+        <a href="shoes.html" class="p-5 rounded-2xl bg-[#ede5dc] hover:bg-[#e6dcce] border border-[#26211c]/10 transition-all flex items-center justify-between group shadow-sm">
+          <div>
+            <span class="text-[10px] uppercase tracking-wider text-[#d4af37] font-bold block">Catalog</span>
+            <h3 class="font-bodoni text-base text-[#26211c] uppercase tracking-tight group-hover:text-[#d4af37] transition-colors">Explore Shoes</h3>
+          </div>
+          <span class="material-symbols-outlined text-lg text-[#26211c] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </a>
+
+        <a href="bags.html" class="p-5 rounded-2xl bg-[#ede5dc] hover:bg-[#e6dcce] border border-[#26211c]/10 transition-all flex items-center justify-between group shadow-sm">
+          <div>
+            <span class="text-[10px] uppercase tracking-wider text-[#d4af37] font-bold block">Catalog</span>
+            <h3 class="font-bodoni text-base text-[#26211c] uppercase tracking-tight group-hover:text-[#d4af37] transition-colors">Explore Bags</h3>
+          </div>
+          <span class="material-symbols-outlined text-lg text-[#26211c] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </a>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-[#f4ede4] border-t border-[#26211c]/10 py-12 px-6 lg:px-12 mt-12">
+    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10">
+      
+      <!-- Brand & Summary -->
+      <div class="space-y-3 max-w-md">
+        <a href="index.html" class="inline-block" aria-label="TETU COLLECTION Home">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD01wDPHrp4VvUp6mktMxVv372mJcrY5Q80BYNIdsny7zY8Jn-RXNwRR5dRadm_4aEQhLfV_z2w3C-soQ9ZCW8gexUnoV5JwIpXXFsrV0Vy0d2_oJtIGimUpq2ssODMSI_zHCo7AGShHvpc_HVvMQtHp_rF1swEC-hPbgvvY7lJP3qYaWpMOWL2RSDLtczHlCpZqiL_60w8FIYu8NZSfwGxcQsoPPFPMJHPsxH-zbDPM4GPAyaqciITTcoQ8kCf8VCJPSA" 
+               alt="TETU COLLECTION" 
+               class="h-8 w-auto object-contain">
+        </a>
+        <p class="text-xs text-[#736b63] leading-relaxed">
+          Quality fashion bags and comfortable slides for everyday wear.<br>
+          Thoughtfully chosen, effortlessly you.
+        </p>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-[#26211c]">
+          NAIROBI, KENYA
+        </div>
+      </div>
+
+      <!-- Official Contact & Social (Far Right) -->
+      <div class="text-left md:text-right space-y-2">
+        <span class="text-[11px] font-bold uppercase tracking-[0.22em] text-[#26211c] block">
+          Official Contact &amp; Social
+        </span>
+        <div class="text-xs text-[#736b63] space-y-1">
+          <div>WhatsApp: <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer" class="font-bold text-[#26211c] hover:text-[#d4af37] transition-colors">+254 700 309 655</a></div>
+          <div>Instagram: <a href="https://instagram.com/tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#26211c] transition-colors">@tetucollection</a></div>
+          <div>TikTok: <a href="https://tiktok.com/@tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#26211c] transition-colors">@tetucollection</a></div>
+          <div class="text-[11px] text-[#9a9187] pt-1">Inquiries processed 8:00 AM – 9:00 PM EAT daily.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Attribution Row -->
+    <div class="max-w-[1440px] mx-auto pt-6 border-t border-[#26211c]/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#736b63]">
+      <div>Copyright 2026 Tetu Collection • All rights reserved.</div>
+      <div class="flex items-center gap-2">
+        <span>Website designed &amp; crafted by <strong class="text-[#26211c]">Bossy designs</strong></span>
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmxUk9dLf8yPYYZnJuSgns0TDEFBbNn3BAGNWG5TDj_N_84mxT6BgrFKKz0qFeybRkkqdkLEkAx5DusAnvABtvVJMlEVoYpx0Gbu5OdDA_B4sowO2W6QZi8M_CLZoBff_gI17Jneg8iBrWkWj0QlwkEG_f7ag3IaXU-OSFveeiG1vq69GlSZziMK3PIvwHyfY2WRHT_wh-bSOqSgereMD6ld4ZJRBpto7KkGQ3VeODnP2TZ87Ma_HjOelmdqahkWdnu8E" 
+             alt="Bossy Design" 
+             class="h-4 w-auto object-contain inline-block">
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ====================== MOBILE MENU ======================
+      const toggle = document.getElementById('mobile-toggle');
+      const menu = document.getElementById('mobile-menu');
+      const toggleIcon = document.getElementById('mobile-toggle-icon');
+
+      function openMenu() {
+        if (!menu || !toggle) return;
+        menu.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+        if (toggleIcon) toggleIcon.textContent = 'close';
+      }
+
+      function closeMenu() {
+        if (!menu || !toggle) return;
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        if (toggleIcon) toggleIcon.textContent = 'menu';
+      }
+
+      if (toggle && menu) {
+        toggle.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (menu.classList.contains('open')) closeMenu();
+          else openMenu();
+        });
+      }
+
+      // Close menu when a mobile nav link is clicked
+      document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          setTimeout(closeMenu, 150);
+        });
+      });
+
+      // Close menu on Escape key
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && menu && menu.classList.contains('open')) {
+          closeMenu();
+        }
+      });
+
+      // Close menu when resizing to desktop
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 768 && menu && menu.classList.contains('open')) {
+          closeMenu();
+        }
+      });
+
+      console.log('404.html initialized — smooth mobile navigation active');
+    })();
+  </script>
+
+</body>
+</html>

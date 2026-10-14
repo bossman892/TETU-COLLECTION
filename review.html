@@ -1,43 +1,39 @@
 <!DOCTYPE html>
-<html class="dark scroll-smooth" lang="en">
+<html class="scroll-smooth" lang="en">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
-  <meta content="web_standard" name="shell-type">
-  <title>Reviews &amp; Client Stories — TETU COLLECTION</title>
+  <title>Reviews — TETU COLLECTION</title>
 
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="utilities.css">
-  <link rel="stylesheet" href="components.css">
-  <link rel="stylesheet" href="animation.css">
-  <link rel="stylesheet" href="pages.css">
-  <link rel="stylesheet" href="responsive.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            primary: '#d4af37',
-            'primary-hover': '#e5c158',
-            'primary-container': 'rgba(212, 175, 55, 0.15)',
-            'on-primary': '#07090e',
-            'surface-dim': '#0b0e15',
-            'surface': '#10131a',
-            'surface-card': '#151821',
-            'surface-container': '#191c26',
-            'cream-header': '#f5ede3'
+            brand: {
+              cream: '#f4ede4',
+              surface: '#ede5dc',
+              card: '#ece3d8',
+              cardHover: '#e6dcce',
+              border: 'rgba(38, 33, 28, 0.08)',
+              borderGold: 'rgba(212, 175, 55, 0.45)',
+              gold: '#d4af37',
+              goldHover: '#c49f2b',
+              espresso: '#26211c',
+              muted: '#736b63',
+              dim: '#9a9187'
+            }
           },
           fontFamily: {
-            serif: ['"Bodoni Moda"', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+            serif: ['"Bodoni Moda"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif']
           }
         }
       }
@@ -46,648 +42,866 @@
 
   <style>
     :root {
-      --color-primary: #d4af37;
       --bg-cream: #f4ede4;
       --text-espresso: #26211c;
+      --color-gold: #d4af37;
     }
-    html { scroll-behavior: smooth; }
-    body.menu-open { overflow: hidden; position: fixed; width: 100%; }
-
-    .header-cream-theme {
+    body {
       background-color: var(--bg-cream);
       color: var(--text-espresso);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    .footer-cream-theme {
-      background-color: var(--bg-cream);
-      color: var(--text-espresso);
-      border-top: 1px solid rgba(212, 175, 55, 0.25);
+    .font-bodoni {
+      font-family: 'Bodoni Moda', serif;
     }
-    .gold-gradient-text {
-      background: linear-gradient(135deg, #d4af37 0%, #f3df95 50%, #caa12c 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .gold-border-glow {
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 1px rgba(212, 175, 55, 0.25);
-    }
-
-    /* Smooth mobile nav drawer */
-    #mobile-nav {
+    /* Mobile nav transition — smooth */
+    #mobile-menu {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
       opacity: 0;
     }
-    #mobile-nav.open {
+    #mobile-menu.open {
       max-height: 560px;
       opacity: 1;
-      overflow-y: auto;
     }
-    #mobile-nav-backdrop {
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+    .star-btn {
+      transition: transform 0.15s ease, color 0.15s ease;
     }
-    #mobile-nav-backdrop.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
+    .star-btn:hover {
+      transform: scale(1.18);
+    }
+    .review-card-enter {
+      animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Smooth mobile link interactions */
+    .mobile-nav-link {
+      transition: color 0.2s ease, padding-left 0.2s ease;
+    }
+    .mobile-nav-link:active {
+      color: #d4af37;
+      padding-left: 0.5rem;
+    }
+    .material-symbols-outlined {
+      vertical-align: middle;
     }
   </style>
 </head>
+<body class="bg-[#f4ede4] text-[#26211c] antialiased selection:bg-[#d4af37] selection:text-[#26211c]">
 
-<body class="bg-[#0b0e15] font-sans text-[#f5f5f7] antialiased selection:bg-[#d4af37] selection:text-[#07090e]">
+  <!-- TOP RIBBON -->
+  <div class="w-full bg-[#ede5dc] border-b border-[#26211c]/10 text-[11px] uppercase tracking-[0.18em] text-[#736b63] py-2.5 px-6">
+    <div class="max-w-[1440px] mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span>
+        <span>Quality Fashion Bags &amp; Everyday Slides</span>
+      </div>
+      <div class="hidden md:block font-medium text-[#26211c]/70 tracking-[0.2em]">
+        Thoughtfully chosen. Effortlessly you.
+      </div>
+      <div class="flex items-center gap-1.5 font-semibold text-[#26211c]">
+        <span>Based in Kenya</span>
+        <span class="text-xs">📍</span>
+      </div>
+    </div>
+  </div>
 
   <!-- HEADER -->
-  <header class="header-cream-theme sticky top-0 z-50 w-full backdrop-blur-md shadow-sm">
+  <header class="sticky top-0 z-50 w-full bg-[#f4ede4]/95 backdrop-blur-md border-b border-[#26211c]/10">
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
-
-      <a href="index.html" class="flex items-center gap-3 z-10">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD01wDPHrp4VvUp6mktMxVv372mJcrY5Q80BYNIdsny7zY8Jn-RXNwRR5dRadm_4aEQhLfV_z2w3C-soQ9ZCW8gexUnoV5JwIpXXFsrV0Vy0d2_oJtIGimUpq2ssODMSI_zHCo7AGShHvpc_HVvMQtHp_rF1swEC-hPbgvvY7lJP3qYaWpMOWL2RSDLtczHlCpZqiL_60w8FIYu8NZSfwGxcQsoPPFPMJHPsxH-zbDPM4GPAyaqciITTcoQ8kCf8VCJPSA"
-             alt="TETU COLLECTION"
+      
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3" aria-label="TETU COLLECTION Home">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCwYUJSjRDEXLnCuW96bo4X2A4AKXOTDjbOkEUcMpNbedcUufOUZribBJgeLNs68xnoVkgk8Dtn-iyqXZmij721x-TPQQuLbxQ6_88zUL_52qfdHuTHIcTIsyevykVfztR_8k2iLtDknCuFlJDaNYvoJUcAfB1XTTaMKbZuWPJ3tyf4pximWqz1wsOem4kUvD_Eodmw60pyaI-_OFQK22RSykVgwgS420zCfi0qg_Lg_PbeY1rhxuAbo6essZYzUz-OBI" 
+             alt="Tetu Collection" 
              class="h-10 w-auto object-contain">
       </a>
 
-      <nav class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-[0.2em] text-[#3e3831]">
-        <a href="index.html" class="hover:text-[#8c7322] transition-colors py-1">Home</a>
-        <a href="bags.html" class="hover:text-[#8c7322] transition-colors py-1">Bags Collection</a>
-        <a href="shoes.html" class="hover:text-[#8c7322] transition-colors py-1">Shoes Collection</a>
-        <a href="review.html" class="text-[#8c7322] border-b-2 border-[#8c7322] py-1" aria-current="page">Reviews</a>
-        <a href="contact.html" class="hover:text-[#8c7322] transition-colors py-1">Contact</a>
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#26211c]" aria-label="Primary Navigation">
+        <a href="index.html" class="hover:text-[#d4af37] transition-colors py-1">Homepage</a>
+        <a href="shoes.html" class="hover:text-[#d4af37] transition-colors py-1">Shoes</a>
+        <a href="bags.html" class="hover:text-[#d4af37] transition-colors py-1">Bags</a>
+        <a href="about.html" class="hover:text-[#d4af37] transition-colors py-1">About</a>
+        <a href="review.html" class="text-[#26211c] font-bold border-b-2 border-[#26211c] py-1" aria-current="page">Reviews</a>
+        <a href="contact.html" class="hover:text-[#d4af37] transition-colors py-1">Contact</a>
       </nav>
 
-      <div class="flex items-center gap-4">
-        <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20would%20like%20to%20enquire%20about%20your%20collection."
-           target="_blank" rel="noopener noreferrer"
-           class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#8c7322] text-[#26211c] text-xs font-bold uppercase tracking-wider hover:bg-[#8c7322] hover:text-white transition-all shadow-sm">
-          WhatsApp: +254700309655
+      <!-- Right Action Icons -->
+      <div class="flex items-center gap-5">
+        <a href="contact.html" class="text-[#26211c] hover:text-[#d4af37] transition-colors p-1" aria-label="Search">
+          <span class="material-symbols-outlined text-[22px]">search</span>
         </a>
-        <button id="mobile-menu-toggle" type="button"
-                class="md:hidden p-2 text-[#26211c] hover:text-[#8c7322] transition-colors focus:outline-none"
-                aria-label="Toggle Navigation Menu"
-                aria-expanded="false"
-                aria-controls="mobile-nav">
-          <span class="material-symbols-outlined text-[26px]" id="mobile-menu-icon">menu</span>
+        <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer" class="relative text-[#26211c] hover:text-[#d4af37] transition-colors p-1" aria-label="Shopping bag enquiries">
+          <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+          <span class="absolute -top-0.5 -right-0.5 text-[9px] bg-[#d4af37] text-[#26211c] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+        </a>
+        <button id="mobile-toggle" type="button" class="md:hidden text-[#26211c] p-1 focus:outline-none" aria-label="Toggle navigation" aria-expanded="false">
+          <span class="material-symbols-outlined text-[26px]" id="mobile-toggle-icon">menu</span>
         </button>
       </div>
+
     </div>
 
-    <!-- Mobile backdrop -->
-    <div id="mobile-nav-backdrop" class="fixed inset-0 bg-[#0b0e15]/60 backdrop-blur-sm z-40 md:hidden hidden" aria-hidden="true"></div>
-
-    <!-- Mobile Nav Drawer -->
-    <div id="mobile-nav" class="md:hidden bg-[#f4ede4] border-t border-[#d4af37]/20">
-      <div class="px-6 pb-6 pt-4 flex flex-col gap-3 text-xs font-bold uppercase tracking-widest text-[#26211c]">
-        <a href="index.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Home</a>
-        <a href="bags.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Bags Collection</a>
-        <a href="shoes.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Shoes Collection</a>
-        <a href="review.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10 text-[#8c7322]">Reviews</a>
-        <a href="contact.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Contact</a>
-        <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer"
-           class="mobile-nav-link py-2 text-[#8c7322]">WhatsApp: +254700309655</a>
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="md:hidden bg-[#ede5dc] border-t border-[#26211c]/10">
+      <div class="px-6 py-5 flex flex-col gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#26211c]">
+        <a href="index.html" class="mobile-nav-link py-1 border-b border-[#26211c]/5">Homepage</a>
+        <a href="shoes.html" class="mobile-nav-link py-1 border-b border-[#26211c]/5">Shoes</a>
+        <a href="bags.html" class="mobile-nav-link py-1 border-b border-[#26211c]/5">Bags</a>
+        <a href="about.html" class="mobile-nav-link py-1 border-b border-[#26211c]/5">About</a>
+        <a href="review.html" class="mobile-nav-link py-1 border-b border-[#26211c]/5 font-bold text-[#d4af37]">Reviews</a>
+        <a href="contact.html" class="mobile-nav-link py-1 border-b border-[#26211c]/5">Contact</a>
+        <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer" class="mobile-nav-link py-1 text-[#26211c] font-bold">WhatsApp: +254 700 309 655</a>
       </div>
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
-  <main id="main-content" class="w-full relative overflow-hidden bg-[#0b0e15] min-h-[calc(100vh-140px)]">
+  <!-- MAIN PAGE CONTENT -->
+  <main class="max-w-[1440px] mx-auto px-6 lg:px-12 py-12 lg:py-16">
 
-    <!-- Top Breadcrumb & Status Bar -->
-    <section class="w-full bg-[#10131a] border-b border-[#212532]">
-      <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-3.5 flex flex-wrap items-center justify-between gap-4">
-        <nav aria-label="Breadcrumb" class="flex items-center space-x-3 text-xs uppercase tracking-widest">
-          <a class="text-[#9ba1b0] hover:text-[#d4af37] transition-colors flex items-center gap-1.5" href="index.html">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-            Return to Home
-          </a>
-          <span class="text-[#646a7a]">/</span>
-          <span class="text-[#d4af37] font-semibold">Client Reviews &amp; Testimonials</span>
-        </nav>
-        <div class="hidden sm:flex items-center gap-3 text-xs uppercase tracking-wider text-[#9ba1b0]">
-          <span>Nairobi Atelier • 2026</span>
-          <span class="inline-block w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse"></span>
-          <span class="text-[#d4af37] font-medium">Verified Feedback Live</span>
+    <!-- PAGE HERO HEADER -->
+    <section class="text-center mb-12 lg:mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ede5dc] border border-[#26211c]/10 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#736b63] mb-4">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span>
+        <span>Client Experiences &amp; Stories</span>
+      </div>
+      <h1 class="font-bodoni text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-[#26211c] mb-3">
+        Client Reviews &amp; Ratings
+      </h1>
+      <p class="text-[#736b63] text-sm sm:text-base max-w-xl mx-auto font-normal leading-relaxed">
+        Read genuine feedback from women across Kenya on our fashion bags and comfortable slides, or share your own review below.
+      </p>
+    </section>
+
+    <!-- METRICS SUMMARY STRIP -->
+    <section class="bg-[#ede5dc] border border-[#26211c]/10 rounded-2xl p-6 sm:p-8 mb-12 shadow-sm">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="p-2 border-r border-[#26211c]/10 last:border-none">
+          <div class="font-bodoni text-2xl lg:text-3xl text-[#26211c] font-bold" id="stat-avg">5.0 / 5.0</div>
+          <div class="text-[#d4af37] text-xs my-1" id="stat-stars">★★★★★</div>
+          <div class="text-[11px] uppercase tracking-wider text-[#736b63]" id="stat-count">0 Reviews</div>
+        </div>
+        <div class="p-2 border-r border-[#26211c]/10 last:border-none">
+          <div class="font-bodoni text-2xl lg:text-3xl text-[#26211c] font-bold">100%</div>
+          <div class="text-xs text-[#d4af37] font-semibold my-1">Quality Check</div>
+          <div class="text-[11px] uppercase tracking-wider text-[#736b63]">Hand Inspected</div>
+        </div>
+        <div class="p-2 border-r border-[#26211c]/10 last:border-none">
+          <div class="font-bodoni text-2xl lg:text-3xl text-[#26211c] font-bold">Nairobi</div>
+          <div class="text-xs text-[#d4af37] font-semibold my-1">Fast Dispatch</div>
+          <div class="text-[11px] uppercase tracking-wider text-[#736b63]">Kenya Nationwide</div>
+        </div>
+        <div class="p-2">
+          <div class="font-bodoni text-2xl lg:text-3xl text-[#26211c] font-bold">&lt; 10 min</div>
+          <div class="text-xs text-[#d4af37] font-semibold my-1">Direct Chat</div>
+          <div class="text-[11px] uppercase tracking-wider text-[#736b63]">WhatsApp Support</div>
         </div>
       </div>
     </section>
 
-    <!-- HERO SECTION -->
-    <section class="relative py-16 lg:py-20 px-6 lg:px-12 text-center border-b border-[#212532] bg-[#0b0e15]">
-      <div class="max-w-4xl mx-auto relative z-10">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#d4af37]/30 bg-[#151821] mb-5">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse"></span>
-          <span class="text-[11px] tracking-[0.25em] text-[#d4af37] uppercase font-semibold">Verified Client Feedback &amp; Experiences</span>
+    <!-- TWO-COLUMN WORKSPACE: FORM + STREAM -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+
+      <!-- LEFT COLUMN: LEAVE A REVIEW FORM -->
+      <div class="lg:col-span-5 bg-[#ede5dc] border border-[#26211c]/10 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="mb-6">
+          <span class="text-[11px] uppercase tracking-[0.22em] text-[#d4af37] font-bold block mb-1">Your Voice Matters</span>
+          <h2 class="font-bodoni text-2xl text-[#26211c] uppercase tracking-tight">Share Your Experience</h2>
+          <p class="text-xs text-[#736b63] mt-1 font-normal leading-relaxed">
+            Bought a pair of slides or a handbag from us? Tell us about the sizing, finish, and comfort!
+          </p>
         </div>
 
-        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight uppercase mb-4">
-          CLIENT <span class="gold-gradient-text italic font-normal">TESTIMONIALS</span> &amp; REVIEWS
-        </h1>
+        <form id="review-form" class="space-y-4">
+          
+          <div>
+            <label for="client-name" class="block text-xs uppercase tracking-wider text-[#736b63] font-semibold mb-1.5">
+              Your Name <span class="text-[#d4af37]">*</span>
+            </label>
+            <input type="text" id="client-name" required placeholder="e.g. Wanjiku Muthoni"
+                   class="w-full bg-[#f4ede4] border border-[#26211c]/15 rounded-xl px-4 py-3 text-sm text-[#26211c] placeholder-[#9a9187] focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition-all">
+          </div>
 
-        <p class="text-[#9ba1b0] text-sm sm:text-base max-w-2xl mx-auto font-light leading-relaxed mb-10">
-          Read genuine reviews from our esteemed clients in Kenya and beyond on our handcrafted footwear, evening bags, and bespoke atelier service.
-        </p>
+          <div>
+            <label for="client-location" class="block text-xs uppercase tracking-wider text-[#736b63] font-semibold mb-1.5">
+              City / County
+            </label>
+            <input type="text" id="client-location" placeholder="e.g. Nairobi, Westlands"
+                   class="w-full bg-[#f4ede4] border border-[#26211c]/15 rounded-xl px-4 py-3 text-sm text-[#26211c] placeholder-[#9a9187] focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition-all">
+          </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl bg-[#151821] border border-white/10 max-w-3xl mx-auto shadow-xl">
-          <div class="text-center p-3 border-r border-white/5 last:border-0">
-            <div class="font-serif text-2xl lg:text-3xl text-[#d4af37] mb-1" id="stat-avg-rating">— / 5.0</div>
-            <div class="flex justify-center gap-1 text-[#d4af37]/40 text-xs mb-1" id="stat-stars-preview">★★★★★</div>
-            <div class="text-[11px] uppercase tracking-widest text-[#9ba1b0]" id="stat-review-count">0 Reviews</div>
+          <div>
+            <label for="client-piece" class="block text-xs uppercase tracking-wider text-[#736b63] font-semibold mb-1.5">
+              Product Bought <span class="text-[#d4af37]">*</span>
+            </label>
+            <select id="client-piece" required
+                    class="w-full bg-[#f4ede4] border border-[#26211c]/15 rounded-xl px-4 py-3 text-sm text-[#26211c] focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition-all cursor-pointer">
+              <option value="" disabled selected>Select what you bought</option>
+              <optgroup label="Bags &amp; Totes">
+                <option value="White Curved Shoulder Bag">White Curved Shoulder Bag</option>
+                <option value="Cream & Brown Tote Bag">Cream &amp; Brown Tote Bag</option>
+                <option value="Brown Leather Tote Bag">Brown Leather Tote Bag</option>
+                <option value="Ivory Tote Bag with Pouch">Ivory Tote Bag with Pouch</option>
+                <option value="Small Shoulder Handbag">Small Shoulder Handbag</option>
+                <option value="Croc Pattern Shoulder Bag">Croc Pattern Shoulder Bag</option>
+                <option value="Denim Star Shoulder Bag">Denim Star Shoulder Bag</option>
+                <option value="Checkered Travel Tote">Checkered Travel Tote</option>
+                <option value="Woven Pattern Day Tote">Woven Pattern Day Tote</option>
+              </optgroup>
+              <optgroup label="Footwear &amp; Slides">
+                <option value="Tan H-Cut Leather Slides">Tan H-Cut Leather Slides</option>
+                <option value="Monogram Gold Chain Slides">Monogram Gold Chain Slides</option>
+                <option value="Soft Amber Toe-Loop Sandals">Soft Amber Toe-Loop Sandals</option>
+                <option value="Black Double-Band Slides">Black Double-Band Slides</option>
+                <option value="Ivory Textured Cross Slides">Ivory Textured Cross Slides</option>
+                <option value="Rose Gold Beaded Pearl Slides">Rose Gold Beaded Pearl Slides</option>
+                <option value="Sun Yellow Cutout Slides">Sun Yellow Cutout Slides</option>
+                <option value="Bright Crimson Cutout Slides">Bright Crimson Cutout Slides</option>
+                <option value="Sky Blue & Lilac Cross Slides">Sky Blue &amp; Lilac Cross Slides</option>
+              </optgroup>
+              <option value="Other Item / Custom Enquiry">Other Item / Custom Enquiry</option>
+            </select>
           </div>
-          <div class="text-center p-3 border-r border-white/5 last:border-0">
-            <div class="font-serif text-2xl lg:text-3xl text-white mb-1">100%</div>
-            <div class="text-xs text-[#d4af37] mb-1">Handmade Quality</div>
-            <div class="text-[11px] uppercase tracking-widest text-[#9ba1b0]">Satisfaction Rate</div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-[#736b63] font-semibold mb-1.5">
+              Your Rating <span class="text-[#d4af37]">*</span>
+            </label>
+            <div class="flex items-center gap-1.5" id="star-picker">
+              <button type="button" data-val="1" class="star-btn p-1 text-2xl text-[#d4af37] focus:outline-none" aria-label="1 star">★</button>
+              <button type="button" data-val="2" class="star-btn p-1 text-2xl text-[#d4af37] focus:outline-none" aria-label="2 stars">★</button>
+              <button type="button" data-val="3" class="star-btn p-1 text-2xl text-[#d4af37] focus:outline-none" aria-label="3 stars">★</button>
+              <button type="button" data-val="4" class="star-btn p-1 text-2xl text-[#d4af37] focus:outline-none" aria-label="4 stars">★</button>
+              <button type="button" data-val="5" class="star-btn p-1 text-2xl text-[#d4af37] focus:outline-none" aria-label="5 stars">★</button>
+              <span id="rating-desc" class="text-xs font-semibold text-[#26211c] ml-2">5 Stars (Excellent)</span>
+            </div>
           </div>
-          <div class="text-center p-3 border-r border-white/5 last:border-0">
-            <div class="font-serif text-2xl lg:text-3xl text-white mb-1">Bespoke</div>
-            <div class="text-xs text-[#d4af37] mb-1">Nairobi &amp; Beyond</div>
-            <div class="text-[11px] uppercase tracking-widest text-[#9ba1b0]">Happy Clients</div>
+
+          <div>
+            <label for="client-message" class="block text-xs uppercase tracking-wider text-[#736b63] font-semibold mb-1.5">
+              Your Review <span class="text-[#d4af37]">*</span>
+            </label>
+            <textarea id="client-message" rows="3" required placeholder="How do you like the material, fit, and delivery speed?"
+                      class="w-full bg-[#f4ede4] border border-[#26211c]/15 rounded-xl px-4 py-3 text-sm text-[#26211c] placeholder-[#9a9187] focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition-all resize-none"></textarea>
           </div>
-          <div class="text-center p-3">
-            <div class="font-serif text-2xl lg:text-3xl text-[#d4af37] mb-1">100%</div>
-            <div class="text-xs text-[#9ba1b0] mb-1">Genuine Craft</div>
-            <div class="text-[11px] uppercase tracking-widest text-[#9ba1b0]">Bossy Designs</div>
+
+          <div class="pt-2 space-y-2.5">
+            <button type="submit" id="btn-submit-review"
+                    class="w-full py-3.5 px-6 rounded-full bg-[#d4af37] hover:bg-[#c49f2b] disabled:opacity-60 disabled:cursor-not-allowed text-[#26211c] font-bold text-xs uppercase tracking-[0.2em] transition-all shadow-sm flex items-center justify-center gap-2">
+              <span id="submit-btn-text">Submit Review</span>
+              <span id="submit-btn-icon" class="text-sm">✓</span>
+            </button>
+
+            <button type="button" id="btn-whatsapp-review"
+                    class="w-full py-3 px-6 rounded-full border border-[#26211c]/20 hover:border-[#d4af37] bg-transparent text-[#26211c] font-semibold text-xs uppercase tracking-[0.18em] transition-all flex items-center justify-center gap-2">
+              <span>Send Review via WhatsApp</span>
+              <span class="text-sm">↗</span>
+            </button>
           </div>
-        </div>
+
+          <p id="submit-notice" class="hidden text-xs text-center text-[#26211c] bg-[#d4af37]/20 border border-[#d4af37]/40 rounded-xl p-3 font-medium">
+            Thank you! Your review has been recorded.
+          </p>
+          <p id="error-notice" class="hidden text-xs text-center text-red-800 bg-red-100/90 border border-red-300 rounded-xl p-3 font-medium">
+          </p>
+
+        </form>
       </div>
-    </section>
 
-    <!-- REVIEWS WORKSPACE -->
-    <section class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <!-- RIGHT COLUMN: FEED & FILTER -->
+      <div class="lg:col-span-7 space-y-6">
 
-        <!-- LEFT COLUMN: Submit Review Form -->
-        <div class="lg:col-span-5">
-          <div class="lg:sticky lg:top-28 p-8 rounded-3xl bg-[#151821] border border-[#d4af37]/30 gold-border-glow">
-            <div class="mb-6">
-              <span class="text-[10px] tracking-[0.25em] text-[#d4af37] uppercase font-bold block mb-2">Share Your Experience</span>
-              <h2 class="font-serif text-2xl text-white font-normal mb-2">Leave Feedback &amp; Rating</h2>
-              <p class="text-xs text-[#9ba1b0] leading-relaxed font-light">
-                Your feedback helps our artisans refine every stitch. You can also send your photo wearing TETU COLLECTION directly via WhatsApp.
-              </p>
-            </div>
-
-            <form class="space-y-4" id="review-form">
-              <div>
-                <label class="block text-xs uppercase tracking-wider text-[#d1d5db] font-medium mb-1.5" for="reviewer-name">
-                  Your Full Name <span class="text-[#d4af37]">*</span>
-                </label>
-                <input class="w-full bg-[#0b0e15] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-[#555b6a] focus:outline-none focus:border-[#d4af37] transition-colors"
-                       id="reviewer-name" placeholder="e.g. Wanjiku Muthoni" required type="text">
-              </div>
-
-              <div>
-                <label class="block text-xs uppercase tracking-wider text-[#d1d5db] font-medium mb-1.5" for="reviewer-location">
-                  City / Location
-                </label>
-                <input class="w-full bg-[#0b0e15] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-[#555b6a] focus:outline-none focus:border-[#d4af37] transition-colors"
-                       id="reviewer-location" placeholder="e.g. Nairobi, Kilimani" type="text">
-              </div>
-
-              <div>
-                <label class="block text-xs uppercase tracking-wider text-[#d1d5db] font-medium mb-1.5" for="reviewer-piece">
-                  Piece Owned / Reviewed
-                </label>
-                <select class="w-full bg-[#0b0e15] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#d4af37] transition-colors cursor-pointer" id="reviewer-piece">
-                  <option value="Handcrafted Leather Slides">Handcrafted Leather Slides</option>
-                  <option value="Chain Accent Monogram Slide">Chain Accent Monogram Slide</option>
-                  <option value="Dual Tan Cutout Leather Slide">Dual Tan Cutout Leather Slide</option>
-                  <option value="White Sculpted Crescent Bag">White Sculpted Crescent Bag</option>
-                  <option value="Hazelnut Leather Shoulder Tote">Hazelnut Leather Shoulder Tote</option>
-                  <option value="Croc-Embossed Vibrant Crescents">Croc-Embossed Vibrant Crescents</option>
-                  <option value="Woven Amber Chevron Day Tote">Woven Amber Chevron Day Tote</option>
-                  <option value="Bespoke Evening Collection">Bespoke Evening Collection</option>
-                  <option value="Other Custom Order">Other Custom Order</option>
-                </select>
-              </div>
-
-              <div>
-                <label class="block text-xs uppercase tracking-wider text-[#d1d5db] font-medium mb-2">
-                  Your Rating <span class="text-[#d4af37]">*</span>
-                </label>
-                <div class="flex items-center gap-2" id="star-container">
-                  <button aria-label="1 Star" class="star-btn p-1 text-[#4b5563] hover:text-[#d4af37] transition-transform hover:scale-110" data-val="1" onclick="setRating(1)" type="button">
-                    <svg class="w-7 h-7 stroke-current fill-none" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                  </button>
-                  <button aria-label="2 Stars" class="star-btn p-1 text-[#4b5563] hover:text-[#d4af37] transition-transform hover:scale-110" data-val="2" onclick="setRating(2)" type="button">
-                    <svg class="w-7 h-7 stroke-current fill-none" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                  </button>
-                  <button aria-label="3 Stars" class="star-btn p-1 text-[#4b5563] hover:text-[#d4af37] transition-transform hover:scale-110" data-val="3" onclick="setRating(3)" type="button">
-                    <svg class="w-7 h-7 stroke-current fill-none" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                  </button>
-                  <button aria-label="4 Stars" class="star-btn p-1 text-[#4b5563] hover:text-[#d4af37] transition-transform hover:scale-110" data-val="4" onclick="setRating(4)" type="button">
-                    <svg class="w-7 h-7 stroke-current fill-none" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                  </button>
-                  <button aria-label="5 Stars" class="star-btn p-1 text-[#4b5563] hover:text-[#d4af37] transition-transform hover:scale-110" data-val="5" onclick="setRating(5)" type="button">
-                    <svg class="w-7 h-7 stroke-current fill-none" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                  </button>
-                </div>
-                <div class="text-xs text-[#d4af37] font-medium mt-1.5" id="rating-label">5 Stars (Exceptional Luxury)</div>
-                <input id="selected-rating" type="hidden" value="5">
-              </div>
-
-              <div>
-                <label class="block text-xs uppercase tracking-wider text-[#d1d5db] font-medium mb-1.5" for="reviewer-message">
-                  Your Review / Experience <span class="text-[#d4af37]">*</span>
-                </label>
-                <textarea class="w-full bg-[#0b0e15] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-[#555b6a] focus:outline-none focus:border-[#d4af37] transition-colors resize-none"
-                          id="reviewer-message" placeholder="How was the leather finish, comfort, fit, and delivery service?" required rows="4"></textarea>
-              </div>
-
-              <div class="space-y-3 pt-2">
-                <button id="btn-submit-review"
-                        class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#caa12c] text-[#07090e] font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-lg shadow-[#d4af37]/20 flex items-center justify-center gap-2"
-                        type="submit">
-                  <span>Submit Client Review</span>
-                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                </button>
-
-                <button id="btn-send-whatsapp" onclick="sendReviewViaWhatsApp()"
-                        class="w-full py-3 px-6 rounded-xl border border-[#d4af37]/40 bg-[#191c26] text-[#d4af37] hover:bg-[#d4af37] hover:text-[#07090e] font-semibold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2"
-                        type="button">
-                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path>
-                  </svg>
-                  <span>Send Directly via WhatsApp ↗</span>
-                </button>
-              </div>
-
-              <p class="hidden text-center text-xs text-[#d4af37] bg-[#d4af37]/10 border border-[#d4af37]/40 rounded-xl p-3" id="submission-confirmation">
-                ✓ Thank you! Your review has been published in real-time.
-              </p>
-            </form>
-          </div>
-        </div>
-
-        <!-- RIGHT COLUMN: Filter Tabs & Reviews Stream -->
-        <div class="lg:col-span-7 space-y-6">
-
-          <div class="flex items-center justify-between flex-wrap gap-4 border-b border-white/10 pb-4">
-            <div>
-              <h3 class="font-serif text-xl text-white font-medium">Recent Customer Reviews</h3>
-              <div class="flex items-center gap-2 mt-1">
-                <span class="text-xs text-[#9ba1b0]">Showing verified client feedback</span>
-                <span class="inline-flex items-center gap-1.5 text-[11px] text-[#d4af37] uppercase tracking-wider font-semibold">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse"></span>
-                  Live Feed
-                </span>
-              </div>
-            </div>
-
+        <!-- Controls Bar -->
+        <div class="flex items-center justify-between flex-wrap gap-4 bg-[#ede5dc] border border-[#26211c]/10 rounded-2xl p-4 sm:p-5">
+          <div>
             <div class="flex items-center gap-2 flex-wrap">
-              <button class="review-filter-btn px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#d4af37] text-[#07090e] transition-colors"
-                      data-filter="all" id="tab-all" onclick="filterReviews('all')">All (0)</button>
-              <button class="review-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#151821] text-[#9ba1b0] hover:text-[#d4af37] border border-white/10 transition-colors"
-                      data-filter="footwear" id="tab-footwear" onclick="filterReviews('footwear')">Footwear (0)</button>
-              <button class="review-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#151821] text-[#9ba1b0] hover:text-[#d4af37] border border-white/10 transition-colors"
-                      data-filter="bags" id="tab-bags" onclick="filterReviews('bags')">Bags (0)</button>
+              <h3 class="font-bodoni text-lg text-[#26211c] uppercase tracking-tight">Verified Client Feedback</h3>
+              <span id="live-db-badge" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-800 border border-emerald-500/25">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                <span id="live-db-text">Live Database</span>
+              </span>
             </div>
+            <span class="text-xs text-[#736b63]">Real-time live feed from genuine customers</span>
           </div>
-
-          <div class="space-y-4" id="reviews-feed">
-
-            <div class="p-12 text-center rounded-3xl bg-[#151821] border border-dashed border-[#d4af37]/30" id="empty-state">
-              <div class="w-14 h-14 mx-auto mb-4 rounded-full border border-[#d4af37]/40 flex items-center justify-center bg-[#191c26] text-[#d4af37]">
-                <svg class="w-6 h-6 stroke-current fill-[#d4af37]/20" viewBox="0 0 24 24">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-              </div>
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#d4af37]/30 bg-[#10131a] text-[10px] tracking-[0.2em] text-[#d4af37] uppercase font-semibold mb-3">
-                Awaiting First Feedback
-              </div>
-              <h4 class="font-serif text-xl text-white font-normal mb-2">No Reviews Yet</h4>
-              <p class="text-xs text-[#9ba1b0] max-w-md mx-auto leading-relaxed font-light">
-                No reviews yet. Be the first esteemed client to leave your feedback and rating above!
-              </p>
-            </div>
-
+          
+          <!-- Category Filter Pills -->
+          <div class="flex items-center gap-2">
+            <button type="button" data-filter="all" class="filter-pill px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#d4af37] text-[#26211c] transition-colors">
+              All (<span id="count-all">0</span>)
+            </button>
+            <button type="button" data-filter="shoes" class="filter-pill px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#f4ede4] text-[#736b63] hover:text-[#26211c] transition-colors">
+              Shoes (<span id="count-shoes">0</span>)
+            </button>
+            <button type="button" data-filter="bags" class="filter-pill px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#f4ede4] text-[#736b63] hover:text-[#26211c] transition-colors">
+              Bags (<span id="count-bags">0</span>)
+            </button>
           </div>
+        </div>
 
-          <div class="p-8 rounded-3xl bg-gradient-to-r from-[#151821] via-[#191c26] to-[#151821] border border-[#d4af37]/30 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
-            <div>
-              <span class="text-[10px] tracking-[0.25em] text-[#d4af37] uppercase font-bold block mb-1">Direct Artisan Support</span>
-              <h4 class="font-serif text-lg text-white font-medium">Need Assistance or Custom Sizing?</h4>
-              <p class="text-xs text-[#9ba1b0] max-w-md mt-1 font-light leading-relaxed">
-                Connect with our team on WhatsApp for instant replies, order updates, or custom leatherwork commissions.
-              </p>
+        <!-- REVIEWS FEED CONTAINER -->
+        <div id="reviews-feed" class="space-y-4 min-h-[320px]">
+          
+          <!-- CLEAN ZERO-STATE PLACEHOLDER -->
+          <div id="empty-state" class="bg-[#ede5dc] border-2 border-dashed border-[#26211c]/15 rounded-2xl p-12 text-center flex flex-col items-center justify-center">
+            <div class="w-14 h-14 rounded-full bg-[#f4ede4] border border-[#26211c]/10 flex items-center justify-center text-[#d4af37] mb-4">
+              <span class="material-symbols-outlined text-2xl">rate_review</span>
             </div>
-            <a class="whitespace-nowrap px-6 py-3.5 rounded-full bg-[#d4af37] text-[#07090e] font-bold text-xs uppercase tracking-widest hover:bg-[#e5c158] transition-all flex items-center gap-2 shadow-lg shadow-[#d4af37]/20"
-               href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20have%20a%20question%20regarding%20my%20order/sizing."
-               rel="noopener noreferrer" target="_blank">
-              <span>WhatsApp Us Now</span>
-              <span>↗</span>
+            <span class="inline-block px-3 py-1 rounded-full bg-[#f4ede4] border border-[#26211c]/10 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#736b63] mb-2">
+              Clean Feed • Ready for Reviews
+            </span>
+            <h4 class="font-bodoni text-xl text-[#26211c] uppercase tracking-tight mb-2">No Reviews Yet</h4>
+            <p class="text-xs text-[#736b63] max-w-sm leading-relaxed mb-6 font-normal">
+              Be the first client to leave a review! Use the form on the left or send us a message directly on WhatsApp.
+            </p>
+            <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#d4af37] hover:bg-[#c49f2b] text-[#26211c] text-xs font-bold uppercase tracking-wider transition-colors shadow-sm">
+              <span>Chat on WhatsApp</span>
+              <span class="text-xs">↗</span>
             </a>
           </div>
 
         </div>
+
+        <!-- WHATSAPP DIRECT ASSURANCE STRIP -->
+        <div class="bg-[#ede5dc] border border-[#26211c]/10 rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-sm">
+          <div>
+            <h4 class="font-bodoni text-lg text-[#26211c] uppercase tracking-tight">Need Help Choosing?</h4>
+            <p class="text-xs text-[#736b63] max-w-md mt-1 leading-relaxed">
+              Looking for a specific shoe size or bag color? Chat with us directly on WhatsApp (+254 700 309 655).
+            </p>
+          </div>
+          <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer"
+             class="whitespace-nowrap px-6 py-3 rounded-full bg-[#d4af37] hover:bg-[#c49f2b] text-[#26211c] font-bold text-xs uppercase tracking-widest transition-all shadow-sm flex items-center gap-2">
+            <span>Chat on WhatsApp</span>
+            <span>↗</span>
+          </a>
+        </div>
+
       </div>
-    </section>
+
+    </div>
 
   </main>
 
   <!-- FOOTER -->
-  <footer class="footer-cream-theme py-14 px-6 lg:px-12 w-full text-center">
-    <div class="max-w-[1440px] mx-auto flex flex-col items-center justify-center space-y-6">
-
-      <div class="flex flex-col items-center">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD01wDPHrp4VvUp6mktMxVv372mJcrY5Q80BYNIdsny7zY8Jn-RXNwRR5dRadm_4aEQhLfV_z2w3C-soQ9ZCW8gexUnoV5JwIpXXFsrV0Vy0d2_oJtIGimUpq2ssODMSI_zHCo7AGShHvpc_HVvMQtHp_rF1swEC-hPbgvvY7lJP3qYaWpMOWL2RSDLtczHlCpZqiL_60w8FIYu8NZSfwGxcQsoPPFPMJHPsxH-zbDPM4GPAyaqciITTcoQ8kCf8VCJPSA"
-             alt="TETU COLLECTION"
-             class="h-12 w-auto object-contain">
-        <p class="text-xs text-[#6b6257] mt-2 tracking-wider font-light">
-          Bespoke Kenyan leathercraft &amp; artisanal luxury crafted in Nairobi.
+  <footer class="w-full bg-[#f4ede4] border-t border-[#26211c]/10 py-12 px-6 lg:px-12 mt-12">
+    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10">
+      
+      <!-- Brand & Summary -->
+      <div class="space-y-3 max-w-md">
+        <a href="index.html" class="inline-block" aria-label="TETU COLLECTION Home">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCwYUJSjRDEXLnCuW96bo4X2A4AKXOTDjbOkEUcMpNbedcUufOUZribBJgeLNs68xnoVkgk8Dtn-iyqXZmij721x-TPQQuLbxQ6_88zUL_52qfdHuTHIcTIsyevykVfztR_8k2iLtDknCuFlJDaNYvoJUcAfB1XTTaMKbZuWPJ3tyf4pximWqz1wsOem4kUvD_Eodmw60pyaI-_OFQK22RSykVgwgS420zCfi0qg_Lg_PbeY1rhxuAbo6essZYzUz-OBI" 
+               alt="Tetu Collection" 
+               class="h-8 w-auto object-contain">
+        </a>
+        <p class="text-xs text-[#736b63] leading-relaxed">
+          Quality fashion bags and comfortable slides for everyday wear.<br>
+          Thoughtfully chosen, effortlessly you.
         </p>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-[#26211c]">
+          NAIROBI, KENYA
+        </div>
       </div>
 
-      <div class="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs font-semibold uppercase tracking-wider text-[#3e3831]">
-        <a href="https://instagram.com/tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322] transition-colors">Instagram</a>
-        <span class="text-[#b5a99a]">•</span>
-        <a href="https://tiktok.com/@tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322] transition-colors">TikTok</a>
-        <span class="text-[#b5a99a]">•</span>
-        <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322] font-bold transition-colors">WhatsApp: +254700309655</a>
-      </div>
-
-      <div class="w-full max-w-xl h-[1px] bg-[#d4af37]/30 my-2"></div>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 text-xs text-[#524a40]">
-        <span>Copyright 2026 Tetu Collection.</span>
-        <span class="hidden sm:inline text-[#b5a99a]">•</span>
-        <div class="flex items-center gap-2">
-          <span>Website designed &amp; crafted by <strong class="text-[#26211c]">Bossy designs</strong></span>
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmxUk9dLf8yPYYZnJuSgns0TDEFBbNn3BAGNWG5TDj_N_84mxT6BgrFKKz0qFeybRkkqdkLEkAx5DusAnvABtvVJMlEVoYpx0Gbu5OdDA_B4sowO2W6QZi8M_CLZoBff_gI17Jneg8iBrWkWj0QlwkEG_f7ag3IaXU-OSFveeiG1vq69GlSZziMK3PIvwHyfY2WRHT_wh-bSOqSgereMD6ld4ZJRBpto7KkGQ3VeODnP2TZ87Ma_HjOelmdqahkWdnu8E"
-               alt="Bossy Design"
-               class="h-5 w-auto object-contain inline-block rounded shadow-sm">
+      <!-- Official Contact & Social -->
+      <div class="text-left md:text-right space-y-2">
+        <span class="text-[11px] font-bold uppercase tracking-[0.22em] text-[#26211c] block">
+          Official Contact &amp; Social
+        </span>
+        <div class="text-xs text-[#736b63] space-y-1">
+          <div>WhatsApp: <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer" class="font-bold text-[#26211c] hover:text-[#d4af37] transition-colors">+254 700 309 655</a></div>
+          <div>Instagram: <a href="https://instagram.com/tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#26211c] transition-colors">@tetucollection</a></div>
+          <div>TikTok: <a href="https://tiktok.com/@tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#26211c] transition-colors">@tetucollection</a></div>
+          <div class="text-[11px] text-[#9a9187] pt-1">Inquiries processed 8:00 AM – 9:00 PM EAT daily.</div>
         </div>
       </div>
 
     </div>
+
+    <!-- Bottom Attribution Row -->
+    <div class="max-w-[1440px] mx-auto pt-6 border-t border-[#26211c]/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#736b63]">
+      <div>Copyright 2026 Tetu Collection • All rights reserved.</div>
+      <div class="flex items-center gap-2">
+        <span>Website designed &amp; crafted by <strong class="text-[#26211c]">Bossy designs</strong></span>
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuh0q5A62ilbNq-a5MiHf8K3zwYZ2YmJnIRjzklFcnFuCLT0RgeO2HRqeDZ8ihgZiJRy9Gwgm61mCHj6bqvRrJALJNY9-3lbmo9NzafvVNL-vVtv1K8ZMENS70sODY74B8BLqwyTVd0NR5LNDeRi1frDngkKGSTX0RcC1D2IBRF6o-temR7b4TLKhHPiXYUTDSPlw9nQgODkh1y2PcRobStHvMiYfpEQTC4FAdj1QObE3UWtcDzOiE0UqgzEFQw6L09_A" 
+             alt="Bossy Design" 
+             class="h-4 w-auto object-contain inline-block">
+      </div>
+    </div>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script>
-    (function () {
-      'use strict';
+  <!-- SCRIPT LOGIC: FIREBASE FIRESTORE LIVE DATABASE & UI CONTROLLER -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import { 
+      getFirestore, 
+      collection, 
+      addDoc, 
+      onSnapshot, 
+      query, 
+      serverTimestamp 
+    } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-      /* ---------- MOBILE NAVIGATION ---------- */
-      const toggleBtn = document.getElementById('mobile-menu-toggle');
-      const mobileNav = document.getElementById('mobile-nav');
-      const mobileBackdrop = document.getElementById('mobile-nav-backdrop');
-      const mobileIcon = document.getElementById('mobile-menu-icon');
+    // =========================================================================
+    // 1. FIREBASE CONFIGURATION
+    // Paste your Firebase web app config from Firebase Console:
+    // Firebase Console -> Project Settings -> General -> Your apps -> Web app </>
+    // =========================================================================
+       const firebaseConfig = {
+      apiKey: "AIzaSy...",
+      authDomain: "your-project-id.firebaseapp.com",
+      projectId: "your-project-id",
+      storageBucket: "your-project-id.appspot.com",
+      messagingSenderId: "123456789012",
+      appId: "1:123456789012:web:abcdef..."
+    };
 
-      function openMenu() {
-        if (!toggleBtn || !mobileNav) return;
-        mobileNav.classList.add('open');
-        if (mobileBackdrop) mobileBackdrop.classList.remove('hidden');
-        toggleBtn.setAttribute('aria-expanded', 'true');
-        if (mobileIcon) mobileIcon.textContent = 'close';
-        document.body.classList.add('menu-open');
+    // ====================== DATABASE INITIALIZATION ======================
+    const isFirebaseConfigured = Boolean(
+      firebaseConfig.apiKey && 
+      !firebaseConfig.apiKey.includes('YOUR_') &&
+      firebaseConfig.projectId &&
+      !firebaseConfig.projectId.includes('YOUR_')
+    );
+
+    let db = null;
+    const badge = document.getElementById('live-db-badge');
+    const badgeText = document.getElementById('live-db-text');
+
+    function updateDbStatus(status) {
+      if (!badge) return;
+      if (status === 'connected') {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-800 border border-emerald-500/25';
+        if (badgeText) badgeText.textContent = 'Live Database';
+      } else if (status === 'local') {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-500/10 text-amber-800 border border-amber-500/25';
+        if (badgeText) badgeText.textContent = 'Local Mode (Add Keys)';
+      } else if (status === 'error') {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-red-500/10 text-red-800 border border-red-500/25';
+        if (badgeText) badgeText.textContent = 'Permissions Locked';
       }
+    }
 
-      function closeMenu() {
-        if (!toggleBtn || !mobileNav) return;
-        mobileNav.classList.remove('open');
-        if (mobileBackdrop) mobileBackdrop.classList.add('hidden');
-        toggleBtn.setAttribute('aria-expanded', 'false');
-        if (mobileIcon) mobileIcon.textContent = 'menu';
-        document.body.classList.remove('menu-open');
+    if (isFirebaseConfigured) {
+      try {
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        updateDbStatus('connected');
+        console.log('TETU COLLECTION: Cloud Firestore initialized successfully.');
+      } catch (err) {
+        console.error('Firebase initialization error:', err);
+        updateDbStatus('local');
       }
+    } else {
+      updateDbStatus('local');
+      console.info('TETU COLLECTION: Firebase keys not set yet in review.html. Running in local fallback mode.');
+    }
 
-      if (toggleBtn && mobileNav) {
-        toggleBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          if (mobileNav.classList.contains('open')) closeMenu();
-          else openMenu();
-        });
+    // ====================== MOBILE MENU ======================
+    const toggle = document.getElementById('mobile-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const toggleIcon = document.getElementById('mobile-toggle-icon');
+
+    function openMenu() {
+      if (!menu || !toggle) return;
+      menu.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+      if (toggleIcon) toggleIcon.textContent = 'close';
+    }
+
+    function closeMenu() {
+      if (!menu || !toggle) return;
+      menu.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      if (toggleIcon) toggleIcon.textContent = 'menu';
+    }
+
+    if (toggle && menu) {
+      toggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (menu.classList.contains('open')) closeMenu();
+        else openMenu();
+      });
+    }
+
+    document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
+      link.addEventListener('click', function () {
+        setTimeout(closeMenu, 150);
+      });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu && menu.classList.contains('open')) {
+        closeMenu();
       }
+    });
 
-      if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMenu);
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 768 && menu && menu.classList.contains('open')) {
+        closeMenu();
+      }
+    });
 
-      document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
-        link.addEventListener('click', function () {
-          setTimeout(closeMenu, 150);
-        });
-      });
+    // ====================== REVIEWS STATE ======================
+    let reviews = [];
+    let selectedRating = 5;
+    let activeFilter = 'all';
 
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && mobileNav && mobileNav.classList.contains('open')) closeMenu();
-      });
+    const ratingTexts = {
+      1: '1 Star (Needs Improvement)',
+      2: '2 Stars (Fair)',
+      3: '3 Stars (Good Quality)',
+      4: '4 Stars (Very Good)',
+      5: '5 Stars (Excellent)'
+    };
 
-      let resizeTimer;
-      window.addEventListener('resize', function () {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function () {
-          if (window.innerWidth >= 768) closeMenu();
-        }, 150);
-      });
+    // ====================== STAR PICKER ======================
+    const starBtns = document.querySelectorAll('#star-picker .star-btn');
+    const ratingDesc = document.getElementById('rating-desc');
 
-      /* ---------- REVIEWS STATE ---------- */
-      let currentRating = 5;
-      let submittedReviews = [];
-      let currentFilter = 'all';
-
-      const ratingLabels = {
-        1: '1 Star (Needs Improvement)',
-        2: '2 Stars (Fair)',
-        3: '3 Stars (Good Quality)',
-        4: '4 Stars (Very Good)',
-        5: '5 Stars (Exceptional Luxury)'
-      };
-
-      window.setRating = function (rating) {
-        currentRating = rating;
-        const selectedInput = document.getElementById('selected-rating');
-        const ratingLabel = document.getElementById('rating-label');
-        if (selectedInput) selectedInput.value = rating;
-        if (ratingLabel) ratingLabel.textContent = ratingLabels[rating];
-
-        const starButtons = document.querySelectorAll('.star-btn');
-        starButtons.forEach(function (btn, idx) {
-          const svg = btn.querySelector('svg');
-          if (!svg) return;
-          if (idx < rating) {
-            svg.classList.add('fill-[#d4af37]', 'text-[#d4af37]');
-            svg.classList.remove('fill-none', 'text-[#4b5563]');
-          } else {
-            svg.classList.remove('fill-[#d4af37]', 'text-[#d4af37]');
-            svg.classList.add('fill-none', 'text-[#4b5563]');
-          }
-        });
-      };
-
-      window.setRating(5);
-
-      function updateMetricsAndCounters() {
-        const total = submittedReviews.length;
-        const footwearCount = submittedReviews.filter(function (r) { return r.category === 'footwear'; }).length;
-        const bagsCount = submittedReviews.filter(function (r) { return r.category === 'bags'; }).length;
-
-        const tabAll = document.getElementById('tab-all');
-        const tabFootwear = document.getElementById('tab-footwear');
-        const tabBags = document.getElementById('tab-bags');
-
-        if (tabAll) tabAll.textContent = 'All (' + total + ')';
-        if (tabFootwear) tabFootwear.textContent = 'Footwear (' + footwearCount + ')';
-        if (tabBags) tabBags.textContent = 'Bags (' + bagsCount + ')';
-
-        const statAvgRating = document.getElementById('stat-avg-rating');
-        const statStarsPreview = document.getElementById('stat-stars-preview');
-        const statReviewCount = document.getElementById('stat-review-count');
-
-        if (!statAvgRating || !statStarsPreview || !statReviewCount) return;
-
-        if (total === 0) {
-          statAvgRating.textContent = '— / 5.0';
-          statStarsPreview.className = 'flex justify-center gap-1 text-[#d4af37]/40 text-xs mb-1';
-          statReviewCount.textContent = '0 Reviews';
+    function updateStarUI(val) {
+      selectedRating = val;
+      starBtns.forEach(btn => {
+        const btnVal = parseInt(btn.getAttribute('data-val'), 10);
+        if (btnVal <= val) {
+          btn.classList.add('text-[#d4af37]');
+          btn.classList.remove('text-[#9a9187]');
         } else {
-          const sum = submittedReviews.reduce(function (acc, curr) { return acc + curr.rating; }, 0);
-          const avg = (sum / total).toFixed(1);
-          statAvgRating.textContent = avg + ' / 5.0';
-          statStarsPreview.className = 'flex justify-center gap-1 text-[#d4af37] text-xs mb-1';
-          statReviewCount.textContent = total + ' ' + (total === 1 ? 'Review' : 'Reviews');
+          btn.classList.remove('text-[#d4af37]');
+          btn.classList.add('text-[#9a9187]');
+        }
+      });
+      if (ratingDesc) {
+        ratingDesc.textContent = ratingTexts[val] || `${val} Stars`;
+      }
+    }
+
+    starBtns.forEach(btn => {
+      btn.addEventListener('click', function () {
+        const val = parseInt(this.getAttribute('data-val'), 10);
+        updateStarUI(val);
+      });
+    });
+
+    // ====================== HELPERS ======================
+    function sanitize(str) {
+      return String(str || '').replace(/[&<>"']/g, function (s) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s];
+      });
+    }
+
+    function formatTimestamp(ts) {
+      if (!ts) return 'Just now';
+      try {
+        const date = ts.toDate ? ts.toDate() : new Date(ts);
+        const now = new Date();
+        const diffSec = Math.floor((now - date) / 1000);
+        if (isNaN(diffSec) || diffSec < 45) return 'Just now';
+        if (diffSec < 3600) return `${Math.floor(diffSec / 60)}m ago`;
+        if (diffSec < 86400) return `${Math.floor(diffSec / 3600)}h ago`;
+        if (diffSec < 604800) return `${Math.floor(diffSec / 86400)}d ago`;
+        return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      } catch (err) {
+        return 'Recently';
+      }
+    }
+
+    // ====================== METRICS ======================
+    function refreshMetrics() {
+      const total = reviews.length;
+      const shoeCount = reviews.filter(r => r.category === 'shoes').length;
+      const bagCount = reviews.filter(r => r.category === 'bags').length;
+
+      const countAll = document.getElementById('count-all');
+      const countShoes = document.getElementById('count-shoes');
+      const countBags = document.getElementById('count-bags');
+
+      if (countAll) countAll.textContent = total;
+      if (countShoes) countShoes.textContent = shoeCount;
+      if (countBags) countBags.textContent = bagCount;
+
+      const statAvg = document.getElementById('stat-avg');
+      const statCount = document.getElementById('stat-count');
+      const statStars = document.getElementById('stat-stars');
+
+      if (total === 0) {
+        if (statAvg) statAvg.textContent = '— / 5.0';
+        if (statCount) statCount.textContent = '0 Reviews';
+        if (statStars) {
+          statStars.textContent = '☆☆☆☆☆';
+          statStars.classList.add('opacity-40');
+        }
+      } else {
+        const avg = (reviews.reduce((acc, r) => acc + (Number(r.rating) || 5), 0) / total).toFixed(1);
+        if (statAvg) statAvg.textContent = `${avg} / 5.0`;
+        if (statCount) statCount.textContent = `${total} ${total === 1 ? 'Review' : 'Reviews'}`;
+        if (statStars) {
+          const rounded = Math.round(Number(avg));
+          statStars.textContent = '★'.repeat(rounded) + '☆'.repeat(5 - rounded);
+          statStars.classList.remove('opacity-40');
         }
       }
+    }
 
-      function escapeHtml(string) {
-        return String(string).replace(/[&<>"']/g, function (s) {
-          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s];
-        });
+    // ====================== RENDER CARD ======================
+    function renderReviewCard(r) {
+      const initials = (r.name || 'TC').split(' ').filter(Boolean).map(w => w[0]).join('').slice(0, 2).toUpperCase() || 'TC';
+      const ratingVal = Math.min(5, Math.max(1, Number(r.rating) || 5));
+      const stars = '★'.repeat(ratingVal) + '☆'.repeat(5 - ratingVal);
+      const dateText = formatTimestamp(r.createdAt);
+
+      const card = document.createElement('article');
+      card.className = 'review-card-enter bg-[#ede5dc] border border-[#26211c]/10 rounded-2xl p-5 sm:p-6 shadow-sm transition-all hover:border-[#d4af37]';
+      card.setAttribute('data-category', r.category || 'shoes');
+
+      card.innerHTML = `
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#f4ede4] border border-[#d4af37]/50 flex items-center justify-center font-bodoni text-[#d4af37] font-bold text-sm">
+              ${sanitize(initials)}
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-[#26211c]">${sanitize(r.name)}</h4>
+              <div class="flex items-center gap-2 text-xs text-[#736b63]">
+                <span>${sanitize(r.location || 'Kenya')}</span>
+                <span>•</span>
+                <span class="text-[#d4af37] font-semibold text-[11px]">Verified Buyer</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-[#d4af37] text-sm tracking-wider" aria-label="${ratingVal} out of 5 stars">${stars}</div>
+            <span class="text-[10px] text-[#9a9187]">${sanitize(dateText)}</span>
+          </div>
+        </div>
+        <p class="text-xs text-[#26211c]/90 leading-relaxed mb-3">"${sanitize(r.message)}"</p>
+        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#f4ede4] text-[11px] text-[#736b63] border border-[#26211c]/10">
+          <span>Item: <strong class="text-[#26211c]">${sanitize(r.piece)}</strong></span>
+        </div>
+      `;
+      return card;
+    }
+
+    // ====================== RENDER FEED ======================
+    const feed = document.getElementById('reviews-feed');
+    const emptyState = document.getElementById('empty-state');
+
+    function renderFeed() {
+      if (!feed) return;
+
+      const filtered = reviews.filter(r => {
+        if (activeFilter === 'all') return true;
+        return r.category === activeFilter;
+      });
+
+      if (filtered.length === 0) {
+        feed.innerHTML = '';
+        if (emptyState) {
+          emptyState.style.display = 'flex';
+          const emptyTitle = emptyState.querySelector('h4');
+          const emptyDesc = emptyState.querySelector('p');
+          if (reviews.length > 0) {
+            if (emptyTitle) emptyTitle.textContent = `No ${activeFilter} reviews yet`;
+            if (emptyDesc) emptyDesc.textContent = `No reviews found in the ${activeFilter} category. Try selecting "All" or submit your experience!`;
+          } else {
+            if (emptyTitle) emptyTitle.textContent = 'No Reviews Yet';
+            if (emptyDesc) emptyDesc.textContent = 'Be the first client to leave a review! Use the form on the left or send us a message directly on WhatsApp.';
+          }
+          feed.appendChild(emptyState);
+        }
+        return;
       }
 
-      const reviewForm = document.getElementById('review-form');
-      if (reviewForm) {
-        reviewForm.addEventListener('submit', function (e) {
-          e.preventDefault();
+      if (emptyState && emptyState.parentNode) {
+        emptyState.remove();
+      }
 
-          const name = document.getElementById('reviewer-name').value.trim();
-          const location = document.getElementById('reviewer-location').value.trim() || 'Kenya';
-          const piece = document.getElementById('reviewer-piece').value;
-          const message = document.getElementById('reviewer-message').value.trim();
+      feed.innerHTML = '';
+      filtered.forEach(r => {
+        feed.appendChild(renderReviewCard(r));
+      });
+    }
 
-          if (!name || !message) return;
+    // ====================== REAL-TIME FIRESTORE LISTENER ======================
+    function initLiveFeed() {
+      if (db) {
+        try {
+          const q = query(collection(db, "reviews"));
+          onSnapshot(q, (snapshot) => {
+            const items = [];
+            snapshot.forEach((doc) => {
+              items.push({ id: doc.id, ...doc.data() });
+            });
 
-          const isBag = piece.toLowerCase().includes('bag') || piece.toLowerCase().includes('tote');
-          const category = isBag ? 'bags' : 'footwear';
+            // Sort newest first
+            items.sort((a, b) => {
+              const timeA = a.createdAt?.toMillis ? a.createdAt.toMillis() : (a.createdAt ? new Date(a.createdAt).getTime() : 0);
+              const timeB = b.createdAt?.toMillis ? b.createdAt.toMillis() : (b.createdAt ? new Date(b.createdAt).getTime() : 0);
+              return timeB - timeA;
+            });
 
-          submittedReviews.unshift({
-            name: name,
-            location: location,
-            piece: piece,
-            message: message,
-            rating: currentRating,
-            category: category
+            reviews = items;
+            updateDbStatus('connected');
+            renderFeed();
+            refreshMetrics();
+          }, (error) => {
+            console.error("Firestore live feed error:", error);
+            if (error.code === 'permission-denied') {
+              updateDbStatus('error');
+              const errBox = document.getElementById('error-notice');
+              if (errBox) {
+                errBox.textContent = "Firestore Permission Denied: Please update your Cloud Firestore rules from 'allow read, write: if false;' to allow access to reviews.";
+                errBox.classList.remove('hidden');
+              }
+            }
           });
-
-          const emptyState = document.getElementById('empty-state');
-          if (emptyState) emptyState.remove();
-
-          const words = name.split(/\s+/).filter(Boolean);
-          let initials = 'TC';
-          if (words.length >= 2) {
-            initials = (words[0][0] + words[words.length - 1][0]).toUpperCase();
-          } else if (words.length === 1 && words[0].length > 0) {
-            initials = words[0].substring(0, 2).toUpperCase();
-          }
-
-          const ratingStars = '★'.repeat(currentRating) + '☆'.repeat(5 - currentRating);
-
-          const feed = document.getElementById('reviews-feed');
-          const newCard = document.createElement('article');
-          newCard.className = 'review-item p-6 rounded-2xl bg-[#151821] border border-[#d4af37]/40 transition-all shadow-lg hover:border-[#d4af37]';
-          newCard.setAttribute('data-category', category);
-          newCard.innerHTML =
-            '<div class="flex items-start justify-between gap-4 mb-3">' +
-              '<div class="flex items-center gap-3">' +
-                '<div class="w-10 h-10 rounded-full bg-[#d4af37]/20 border border-[#d4af37] flex items-center justify-center font-serif text-[#d4af37] font-bold text-sm">' + escapeHtml(initials) + '</div>' +
-                '<div>' +
-                  '<h4 class="text-sm font-semibold text-white">' + escapeHtml(name) + '</h4>' +
-                  '<div class="flex items-center gap-2 text-xs text-[#9ba1b0]">' +
-                    '<span>' + escapeHtml(location) + '</span>' +
-                    '<span>•</span>' +
-                    '<span class="text-[#d4af37] font-mono text-[11px]">Just now • Verified Client</span>' +
-                  '</div>' +
-                '</div>' +
-              '</div>' +
-              '<div class="text-right">' +
-                '<div class="text-[#d4af37] text-sm tracking-wider">' + ratingStars + '</div>' +
-                '<span class="text-[10px] text-[#9ba1b0]">Today</span>' +
-              '</div>' +
-            '</div>' +
-            '<p class="text-xs text-[#d1d5db] leading-relaxed mb-3">"' + escapeHtml(message) + '"</p>' +
-            '<div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#191c26] text-[11px] text-[#d4af37] border border-[#d4af37]/20">' +
-              '<span>Piece: ' + escapeHtml(piece) + '</span>' +
-            '</div>';
-
-          feed.insertBefore(newCard, feed.firstChild);
-
-          if (currentFilter !== 'all' && category !== currentFilter) {
-            newCard.classList.add('hidden');
-          }
-
-          updateMetricsAndCounters();
-
-          const confirmation = document.getElementById('submission-confirmation');
-          if (confirmation) confirmation.classList.remove('hidden');
-
-          document.getElementById('reviewer-name').value = '';
-          document.getElementById('reviewer-location').value = '';
-          document.getElementById('reviewer-message').value = '';
-          window.setRating(5);
-
-          setTimeout(function () {
-            if (confirmation) confirmation.classList.add('hidden');
-          }, 7000);
-        });
+        } catch (e) {
+          console.error("Could not attach Firestore listener:", e);
+        }
+      } else {
+        // Fallback to localStorage if unconfigured
+        try {
+          const stored = localStorage.getItem('tetu_collection_reviews_local');
+          if (stored) reviews = JSON.parse(stored);
+        } catch (e) {}
+        renderFeed();
+        refreshMetrics();
       }
+    }
 
-      window.sendReviewViaWhatsApp = function () {
-        const name = (document.getElementById('reviewer-name').value || '').trim() || 'A valued client';
-        const location = (document.getElementById('reviewer-location').value || '').trim() || 'Kenya';
-        const piece = document.getElementById('reviewer-piece').value;
-        const message = (document.getElementById('reviewer-message').value || '').trim() || 'Exceptional craftsmanship and attentive atelier service.';
-        const ratingStars = '★'.repeat(currentRating);
+    // ====================== FORM SUBMIT ======================
+    const form = document.getElementById('review-form');
+    const notice = document.getElementById('submit-notice');
+    const errorNotice = document.getElementById('error-notice');
+    const btnSubmit = document.getElementById('btn-submit-review');
+    const btnText = document.getElementById('submit-btn-text');
+    const btnIcon = document.getElementById('submit-btn-icon');
 
-        const text =
-          '*CLIENT REVIEW - TETU COLLECTION*\n\n' +
-          '*Name:* ' + name + '\n' +
-          '*Location:* ' + location + '\n' +
-          '*Product Reviewed:* ' + piece + '\n' +
-          '*Rating:* ' + currentRating + '/5 Stars (' + ratingStars + ')\n\n' +
-          '*Feedback & Experience:*\n"' + message + '"\n\n' +
-          '_Submitted to TETU COLLECTION - Made by Bossy designs_';
+    if (form) {
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
 
-        const url = 'https://wa.me/254700309655?text=' + encodeURIComponent(text);
-        window.open(url, '_blank', 'noopener,noreferrer');
-      };
+        const name = document.getElementById('client-name').value.trim();
+        const location = document.getElementById('client-location').value.trim() || 'Nairobi, Kenya';
+        const piece = document.getElementById('client-piece').value;
+        const message = document.getElementById('client-message').value.trim();
 
-      window.filterReviews = function (category) {
-        currentFilter = category;
-        const buttons = document.querySelectorAll('.review-filter-btn');
-        buttons.forEach(function (btn) {
-          if (btn.getAttribute('data-filter') === category) {
-            btn.classList.remove('bg-[#151821]', 'text-[#9ba1b0]', 'font-semibold');
-            btn.classList.add('bg-[#d4af37]', 'text-[#07090e]', 'font-bold');
+        if (!name || !piece || !message) return;
+
+        const isBag = piece.toLowerCase().includes('bag') || piece.toLowerCase().includes('tote');
+        const category = isBag ? 'bags' : 'shoes';
+
+        const reviewObj = {
+          name,
+          location,
+          piece,
+          message,
+          rating: selectedRating,
+          category
+        };
+
+        // UI Loading state
+        if (btnSubmit) btnSubmit.disabled = true;
+        if (btnText) btnText.textContent = 'Publishing...';
+        if (btnIcon) btnIcon.textContent = '⏳';
+        if (errorNotice) errorNotice.classList.add('hidden');
+
+        try {
+          if (db) {
+            // Write directly to Cloud Firestore
+            await addDoc(collection(db, "reviews"), {
+              ...reviewObj,
+              createdAt: serverTimestamp()
+            });
           } else {
-            btn.classList.remove('bg-[#d4af37]', 'text-[#07090e]', 'font-bold');
-            btn.classList.add('bg-[#151821]', 'text-[#9ba1b0]', 'font-semibold');
+            // Fallback for local testing
+            reviewObj.createdAt = new Date().toISOString();
+            reviews.unshift(reviewObj);
+            try {
+              localStorage.setItem('tetu_collection_reviews_local', JSON.stringify(reviews));
+            } catch (err) {}
+            renderFeed();
+            refreshMetrics();
           }
-        });
 
-        const cards = document.querySelectorAll('.review-item');
-        cards.forEach(function (card) {
-          if (category === 'all' || card.getAttribute('data-category') === category) {
-            card.classList.remove('hidden');
-          } else {
-            card.classList.add('hidden');
+          form.reset();
+          updateStarUI(5);
+
+          if (notice) {
+            notice.textContent = "Thank you! Your review has been recorded & published live.";
+            notice.classList.remove('hidden');
+            setTimeout(() => notice.classList.add('hidden'), 5000);
           }
+        } catch (err) {
+          console.error("Error submitting review:", err);
+          if (errorNotice) {
+            if (err.code === 'permission-denied') {
+              errorNotice.textContent = "Permission Denied: Your Firestore rules are set to 'allow read, write: if false;'. Please update your rules in the Firebase console.";
+            } else {
+              errorNotice.textContent = "Unable to post review: " + (err.message || "Network issue");
+            }
+            errorNotice.classList.remove('hidden');
+          }
+        } finally {
+          if (btnSubmit) btnSubmit.disabled = false;
+          if (btnText) btnText.textContent = 'Submit Review';
+          if (btnIcon) btnIcon.textContent = '✓';
+        }
+      });
+    }
+
+    // ====================== WHATSAPP REVIEW ======================
+    const btnWA = document.getElementById('btn-whatsapp-review');
+    if (btnWA) {
+      btnWA.addEventListener('click', function () {
+        const name = (document.getElementById('client-name').value || '').trim() || 'Valued Client';
+        const location = (document.getElementById('client-location').value || '').trim() || 'Kenya';
+        const piece = document.getElementById('client-piece').value || 'Tetu Collection Piece';
+        const message = (document.getElementById('client-message').value || '').trim() || 'Great quality and fast delivery!';
+        const starText = '★'.repeat(selectedRating);
+
+        const text = 
+`*CLIENT REVIEW — TETU COLLECTION*
+
+*Name:* ${name}
+*Location:* ${location}
+*Item Bought:* ${piece}
+*Rating:* ${selectedRating}/5 (${starText})
+
+*Review:*
+"${message}"
+
+(Sent via tetucollection.com)`;
+
+        window.open(`https://wa.me/254700309655?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+      });
+    }
+
+    // ====================== FILTER PILLS ======================
+    const filterBtns = document.querySelectorAll('.filter-pill');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function () {
+        activeFilter = this.getAttribute('data-filter');
+
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-[#d4af37]', 'text-[#26211c]', 'font-bold');
+          b.classList.add('bg-[#f4ede4]', 'text-[#736b63]', 'font-semibold');
         });
-      };
+        this.classList.remove('bg-[#f4ede4]', 'text-[#736b63]', 'font-semibold');
+        this.classList.add('bg-[#d4af37]', 'text-[#26211c]', 'font-bold');
 
-      updateMetricsAndCounters();
+        renderFeed();
+      });
+    });
 
-      console.log('✅ TETU reviews.html loaded');
-    })();
+    // Start Real-Time Live Feed
+    initLiveFeed();
   </script>
-
 </body>
 </html>

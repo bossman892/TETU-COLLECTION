@@ -1,0 +1,39 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ==========================================================
+    // TETU COLLECTION — Live Client Reviews Security Rules
+    // ==========================================================
+    // Allows any public visitor to:
+    // 1. Read published reviews in real time
+    // 2. Submit a new review with valid fields
+    // Protects existing reviews from being edited or deleted by visitors.
+    // ==========================================================
+    match /reviews/{reviewId} {
+      // Anyone can read reviews
+      allow read: if true;
+
+      // Anyone can submit a review with basic validation
+      allow create: if request.resource.data.name is string
+                    && request.resource.data.name.size() > 0
+                    && request.resource.data.name.size() <= 100
+                    && request.resource.data.message is string
+                    && request.resource.data.message.size() > 0
+                    && request.resource.data.message.size() <= 2000
+                    && request.resource.data.rating is number
+                    && request.resource.data.rating >= 1
+                    && request.resource.data.rating <= 5;
+
+      // Prevent visitors from tampering with, editing, or deleting reviews
+      allow update, delete: if false;
+    }
+
+    // Default: Lockdown for any other documents or collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+

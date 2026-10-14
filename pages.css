@@ -1,0 +1,873 @@
+/* ==========================================================================
+   TETU COLLECTION — PAGE-SPECIFIC ARCHITECTURE STYLESHEET (pages.css)
+   Brand: TETU COLLECTION
+   Theme: Warm Editorial Cream (#f4ede4), Deep Espresso (#26211c) & Brushed Gold (#d4af37)
+   Atelier / Made by: Bossy designs
+   Contact / WhatsApp Concierge: +254 700 309 655
+   Typography: Bodoni Moda (Display/Serif), Plus Jakarta Sans (Body/Sans)
+   Description: Modular, page-specific layout rules, unique hero arrangements,
+                catalog showcase grids, review forms, about timelines, contact
+                cards, and thank-you/404 states across index.html, shoes.html,
+                bags.html, about.html, contact.html, reviews.html, thank-you.html,
+                and 404.html.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Shared Page Foundations & Viewport Envelopes
+   -------------------------------------------------------------------------- */
+.page-container {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 3.5vw, 3.5rem);
+  padding-right: clamp(1.25rem, 3.5vw, 3.5rem);
+  width: 100%;
+}
+
+.page-header-band {
+  padding-top: clamp(2.5rem, 5vw, 5rem);
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+  text-align: center;
+}
+
+.page-header-band .page-headline {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  letter-spacing: -0.02em;
+  color: var(--text-espresso, #26211c);
+  line-height: 1.15;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.page-header-band .page-subheadline {
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  color: var(--text-muted, #736b63);
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   1.1 Shared Page Shell — Main + Header / Footer Integration
+   -------------------------------------------------------------------------- */
+.page-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.page-main {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   1.2 Shared Navigation Integration On Every Page
+   -------------------------------------------------------------------------- */
+.page-nav-desktop {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .page-nav-desktop {
+    display: flex;
+  }
+}
+
+.page-nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 4px 0;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--text-espresso, #26211c);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.page-nav-link:hover,
+.page-nav-link:focus {
+  color: var(--color-gold, #d4af37);
+}
+
+.page-nav-link.active {
+  color: var(--text-espresso, #26211c);
+  font-weight: 700;
+}
+
+.page-nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-espresso, #26211c);
+}
+
+.page-nav-link.active:hover {
+  color: var(--color-gold, #d4af37);
+}
+
+.page-nav-link.active:hover::after {
+  background-color: var(--color-gold, #d4af37);
+}
+
+/* Mobile nav link — shared across all pages */
+.page-mobile-link {
+  display: block;
+  padding: 10px 0;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-espresso, #26211c);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(38, 33, 28, 0.05);
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.page-mobile-link:hover,
+.page-mobile-link:focus {
+  color: var(--color-gold, #d4af37);
+}
+
+.page-mobile-link:active {
+  color: var(--color-gold, #d4af37);
+  padding-left: 0.5rem;
+}
+
+.page-mobile-link.active {
+  color: var(--color-gold, #d4af37);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   2. Homepage (index.html) Architecture
+   -------------------------------------------------------------------------- */
+.page-home .hero-stage-card {
+  position: relative;
+  background-color: var(--bg-surface, #ede5dc);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  border-radius: var(--radius-2xl, 32px);
+  overflow: hidden;
+  padding: clamp(2.5rem, 6vw, 5.5rem) clamp(1.5rem, 4vw, 4rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  margin-bottom: 3.5rem;
+  box-shadow: var(--shadow-card, 0 4px 20px rgba(38, 33, 28, 0.06));
+}
+
+@media (min-width: 1024px) {
+  .page-home .hero-stage-card {
+    grid-template-columns: 1.15fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.page-home .hero-copy-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 2;
+}
+
+.page-home .hero-title-group h1 {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: clamp(2.5rem, 5.5vw, 4.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-espresso, #26211c);
+  margin-top: 1rem;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
+
+.page-home .hero-summary-text {
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  color: var(--text-muted, #736b63);
+  line-height: 1.65;
+  margin-bottom: 2.25rem;
+  max-width: 520px;
+}
+
+.page-home .hero-visual-column {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-xl, 24px);
+  overflow: hidden;
+  background-color: var(--bg-cream, #f4ede4);
+  box-shadow: var(--shadow-hover, 0 8px 30px rgba(38, 33, 28, 0.1));
+  border: 1px solid var(--border-gold-subtle, rgba(212, 175, 55, 0.25));
+}
+
+.page-home .hero-visual-column img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-editorial, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.page-home .hero-visual-column:hover img {
+  transform: scale(1.03);
+}
+
+/* Homepage Quick Category Gateway */
+.page-home .category-gateway-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .page-home .category-gateway-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.page-home .gateway-tile {
+  background-color: var(--bg-surface, #ede5dc);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  border-radius: var(--radius-xl, 24px);
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s var(--ease-editorial, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.page-home .gateway-tile:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-gold, rgba(212, 175, 55, 0.45));
+  box-shadow: var(--shadow-hover, 0 8px 30px rgba(38, 33, 28, 0.1));
+}
+
+/* --------------------------------------------------------------------------
+   3. Shoes Collection Page (shoes.html) Architecture
+   -------------------------------------------------------------------------- */
+.page-shoes .catalog-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+}
+
+.page-shoes .shoes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  margin-bottom: 4.5rem;
+}
+
+@media (min-width: 640px) {
+  .page-shoes .shoes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-shoes .shoes-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1360px) {
+  .page-shoes .shoes-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.page-shoes .shoes-card {
+  background-color: var(--bg-surface, #ede5dc);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  border-radius: var(--radius-lg, 16px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s var(--ease-editorial, cubic-bezier(0.16, 1, 0.3, 1));
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(38, 33, 28, 0.04));
+  position: relative;
+}
+
+.page-shoes .shoes-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-gold, rgba(212, 175, 55, 0.45));
+  box-shadow: var(--shadow-hover, 0 8px 30px rgba(38, 33, 28, 0.1));
+}
+
+.page-shoes .shoes-card-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--bg-cream, #f4ede4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.page-shoes .shoes-card-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s var(--ease-editorial, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.page-shoes .shoes-card:hover .shoes-card-visual img {
+  transform: scale(1.05);
+}
+
+.page-shoes .shoes-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.page-shoes .shoes-card-title {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: 1.25rem;
+  color: var(--text-espresso, #26211c);
+  line-height: 1.3;
+  margin-bottom: 0.45rem;
+}
+
+.page-shoes .shoes-card-desc {
+  font-size: 13px;
+  color: var(--text-muted, #736b63);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   4. Bags & Maroquinerie Page (bags.html) Architecture
+   -------------------------------------------------------------------------- */
+.page-bags .bags-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  margin-bottom: 4.5rem;
+}
+
+@media (min-width: 640px) {
+  .page-bags .bags-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-bags .bags-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.page-bags .bag-card {
+  background-color: var(--bg-surface, #ede5dc);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  border-radius: var(--radius-lg, 16px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s var(--ease-editorial, cubic-bezier(0.16, 1, 0.3, 1));
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(38, 33, 28, 0.04));
+  position: relative;
+}
+
+.page-bags .bag-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-gold, rgba(212, 175, 55, 0.45));
+  box-shadow: var(--shadow-hover, 0 8px 30px rgba(38, 33, 28, 0.1));
+}
+
+.page-bags .bag-card-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--bg-cream, #f4ede4);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-bags .bag-card-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s var(--ease-editorial, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.page-bags .bag-card:hover .bag-card-visual img {
+  transform: scale(1.05);
+}
+
+.page-bags .bag-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.page-bags .bag-card-title {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: 1.25rem;
+  color: var(--text-espresso, #26211c);
+  line-height: 1.3;
+  margin-bottom: 0.45rem;
+}
+
+.page-bags .bag-card-desc {
+  font-size: 13px;
+  color: var(--text-muted, #736b63);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   5. About Us Page (about.html) Architecture
+   -------------------------------------------------------------------------- */
+.page-about .about-content-card {
+  background-color: var(--bg-surface, #ede5dc);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  border-radius: var(--radius-2xl, 32px);
+  padding: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 3.5rem;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(38, 33, 28, 0.04));
+}
+
+.page-about .pillars-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .page-about .pillars-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.page-about .pillar-box {
+  background-color: var(--bg-cream, #f4ede4);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  border-radius: var(--radius-xl, 24px);
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all 0.3s var(--ease-editorial, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.page-about .pillar-box:hover {
+  border-color: var(--border-gold, rgba(212, 175, 55, 0.45));
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card, 0 4px 20px rgba(38, 33, 28, 0.06));
+}
+
+.page-about .pillar-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--bg-surface, #ede5dc);
+  border: 1px solid var(--border-gold-subtle, rgba(212, 175, 55, 0.25));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold, #d4af37);
+  margin-bottom: 1.25rem;
+}
+
+.page-about .pillar-title {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: 1.25rem;
+  color: var(--text-espresso, #26211c);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.page-about .pillar-desc {
+  font-size: 13px;
+  color: var(--text-muted, #736b63);
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   6. Contact & Concierge Page (contact.html) Architecture
+   -------------------------------------------------------------------------- */
+.page-contact .contact-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .page-contact .contact-layout-grid {
+    grid-template-columns: 420px 1fr;
+  }
+}
+
+.page-contact .contact-channels-card {
+  background-color: var(--bg-surface, #ede5dc);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  border-radius: var(--radius-2xl, 32px);
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(38, 33, 28, 0.04));
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.page-contact .channel-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 1rem 1.25rem;
+  background-color: var(--bg-cream, #f4ede4);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  border-radius: var(--radius-lg, 16px);
+  transition: all 0.2s var(--ease-editorial, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.page-contact .channel-row:hover {
+  border-color: var(--border-gold, rgba(212, 175, 55, 0.45));
+  transform: translateY(-1.5px);
+}
+
+.page-contact .channel-icon-pill {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--bg-surface, #ede5dc);
+  border: 1px solid var(--border-gold-subtle, rgba(212, 175, 55, 0.25));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold, #d4af37);
+  flex-shrink: 0;
+}
+
+.page-contact .channel-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted, #736b63);
+  margin-bottom: 2px;
+}
+
+.page-contact .channel-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-espresso, #26211c);
+}
+
+/* --------------------------------------------------------------------------
+   7. Reviews & Ratings Page (reviews.html) Architecture
+   -------------------------------------------------------------------------- */
+.page-reviews .reviews-split-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.75rem;
+  align-items: flex-start;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .page-reviews .reviews-split-grid {
+    grid-template-columns: 460px 1fr;
+  }
+}
+
+.page-reviews .feedback-form-panel {
+  position: sticky;
+  top: 100px;
+}
+
+.page-reviews .reviews-stream-panel {
+  width: 100%;
+}
+
+.page-reviews .feed-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.page-reviews .reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   8. Thank You Page (thank-you.html) Architecture
+   -------------------------------------------------------------------------- */
+.page-thank-you .thank-you-stage {
+  min-height: calc(100vh - 280px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4rem) 1.5rem;
+}
+
+.page-thank-you .confirmation-card {
+  max-width: 640px;
+  width: 100%;
+  background-color: var(--bg-surface, #ede5dc);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  border-radius: var(--radius-2xl, 32px);
+  padding: clamp(2rem, 6vw, 4rem);
+  text-align: center;
+  box-shadow: var(--shadow-card, 0 4px 20px rgba(38, 33, 28, 0.06));
+}
+
+.page-thank-you .success-icon-seal {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: var(--bg-cream, #f4ede4);
+  border: 2px solid var(--color-gold, #d4af37);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold, #d4af37);
+  font-size: 32px;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-gold, 0 4px 18px rgba(212, 175, 55, 0.25));
+}
+
+/* --------------------------------------------------------------------------
+   9. 404 Error Page (404.html) Architecture
+   -------------------------------------------------------------------------- */
+.page-404 .error-stage {
+  min-height: calc(100vh - 280px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4rem) 1.5rem;
+}
+
+.page-404 .error-box-card {
+  max-width: 680px;
+  width: 100%;
+  background-color: var(--bg-surface, #ede5dc);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  border-radius: var(--radius-2xl, 32px);
+  padding: clamp(2rem, 6vw, 4rem);
+  text-align: center;
+  box-shadow: var(--shadow-card, 0 4px 20px rgba(38, 33, 28, 0.06));
+}
+
+.page-404 .numeral-404 {
+  font-family: var(--font-serif, 'Bodoni Moda', serif);
+  font-size: clamp(4.5rem, 10vw, 7.5rem);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--text-espresso, #26211c);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.03em;
+}
+
+.page-404 .options-trio-box {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  background-color: var(--bg-cream, #f4ede4);
+  border: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  border-radius: var(--radius-xl, 24px);
+  padding: 1.25rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  .page-404 .options-trio-box {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .page-404 .options-trio-item:not(:first-child) {
+    border-left: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+    padding-left: 1rem;
+  }
+}
+
+/* ==========================================================================
+   10. MOBILE NAVIGATION — PAGE-LEVEL DRAWER INTEGRATION
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   10.1 Page Shell Header Offset
+   -------------------------------------------------------------------------- */
+.page-shell > header,
+.page-shell .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   10.2 Mobile Drawer Body Slot
+   -------------------------------------------------------------------------- */
+.page-mobile-drawer {
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  background-color: var(--bg-surface, #ede5dc);
+  border-top: 1px solid var(--border-subtle, rgba(38, 33, 28, 0.08));
+  transition:
+    max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease;
+  will-change: max-height, opacity;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.page-mobile-drawer::-webkit-scrollbar {
+  display: none;
+}
+
+.page-mobile-drawer.open {
+  max-height: 560px;
+  opacity: 1;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .page-mobile-drawer,
+  .page-mobile-drawer.open {
+    display: none;
+  }
+}
+
+.page-mobile-drawer-inner {
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   10.3 Mobile Menu Toggle Button Per Page
+   -------------------------------------------------------------------------- */
+.page-mobile-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  color: var(--text-espresso, #26211c);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.page-mobile-toggle:hover {
+  color: var(--color-gold, #d4af37);
+}
+
+.page-mobile-toggle:active {
+  transform: scale(0.94);
+}
+
+@media (min-width: 768px) {
+  .page-mobile-toggle {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10.4 Mobile Backdrop Per Page
+   -------------------------------------------------------------------------- */
+.page-mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(11, 14, 21, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 40;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.page-mobile-backdrop.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .page-mobile-backdrop {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10.5 Body Scroll Lock — Per Page
+   -------------------------------------------------------------------------- */
+body.page-menu-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   10.6 Page-Level Responsive Breakpoints For Nav
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .page-header-band {
+    padding-top: 2.25rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .page-nav-desktop {
+    display: none;
+  }
+
+  .page-container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header-band .page-headline {
+    font-size: 1.85rem;
+  }
+
+  .page-404 .numeral-404 {
+    font-size: 3.75rem;
+  }
+}

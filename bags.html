@@ -3,20 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
-  <meta content="web_standard" name="shell-type">
-  <title>Bags Collection — TETU COLLECTION</title>
+  <title>TETU COLLECTION — Handcrafted &amp; Imported Bags</title>
 
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="utilities.css">
-  <link rel="stylesheet" href="components.css">
-  <link rel="stylesheet" href="animation.css">
-  <link rel="stylesheet" href="pages.css">
-  <link rel="stylesheet" href="responsive.css">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -25,15 +18,25 @@
       theme: {
         extend: {
           colors: {
-            primary: '#d4af37',
-            'primary-hover': '#e5c158',
-            'primary-container': 'rgba(212, 175, 55, 0.15)',
-            'on-primary': '#07090e',
-            'surface-dim': '#0b0e15',
-            surface: '#10131a',
-            'surface-card': '#151821',
-            'surface-container': '#191c26',
-            'cream-header': '#f5ede3'
+            cream: {
+              50: '#fdfbf7',
+              100: '#f5ede3',
+              200: '#ede1d1',
+              300: '#e2d0bc',
+              card: '#faf6f0'
+            },
+            espresso: {
+              900: '#1b1713',
+              800: '#2c251e',
+              700: '#3e352b',
+              600: '#54493c',
+              500: '#756755'
+            },
+            gold: {
+              DEFAULT: '#d4af37',
+              dark: '#b58e22',
+              light: '#f3e5ab'
+            }
           },
           fontFamily: {
             serif: ['"Bodoni Moda"', 'serif'],
@@ -46,37 +49,62 @@
 
   <style>
     :root {
-      --color-primary: #d4af37;
       --bg-cream: #f4ede4;
-      --text-espresso: #26211c;
+      --bg-cream-card: #ffffff;
+      --text-espresso: #221d18;
+      --text-muted: #6b6155;
+      --accent-gold: #c59b27;
+      --accent-gold-btn: #d4af37;
     }
+
     html { scroll-behavior: smooth; }
     body.menu-open { overflow: hidden; position: fixed; width: 100%; }
 
-    .header-cream-theme {
+    body {
       background-color: var(--bg-cream);
       color: var(--text-espresso);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
-    }
-    .footer-cream-theme {
-      background-color: var(--bg-cream);
-      color: var(--text-espresso);
-      border-top: 1px solid rgba(212, 175, 55, 0.25);
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-    /* Mobile nav smooth transition */
+    .font-bodoni {
+      font-family: 'Bodoni Moda', serif;
+    }
+
+    .bag-card {
+      background-color: #ffffff;
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      box-shadow: 0 4px 20px rgba(60, 45, 30, 0.04);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .bag-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(60, 45, 30, 0.09);
+      border-color: rgba(212, 175, 55, 0.45);
+    }
+
+    .filter-btn.active {
+      background-color: #d4af37;
+      color: #1b1713;
+      border-color: #d4af37;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+    }
+
+    /* =====================================================
+       SMOOTH MOBILE NAVIGATION DRAWER
+       ===================================================== */
     #mobile-nav {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
       opacity: 0;
     }
     #mobile-nav.open {
-      max-height: 560px;
+      max-height: 640px;
       opacity: 1;
       overflow-y: auto;
     }
-
     #mobile-nav-backdrop {
       transition: opacity 0.3s ease, visibility 0.3s ease;
     }
@@ -86,40 +114,77 @@
       pointer-events: none;
     }
 
-    /* Bag cards — always visible unless filtered out */
-    .bag-card { display: flex !important; }
-    .bag-card.hidden-card { display: none !important; }
+    section[id], div[id] { scroll-margin-top: 96px; }
 
-    section[id] { scroll-margin-top: 96px; }
+    /* =====================================================
+       Thumb-Scroll & Touch Improvements
+       ===================================================== */
+    html, body {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+    }
+
+    .filter-btn,
+    .mobile-nav-link {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      #mobile-nav {
+        transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                    opacity 0.35s ease;
+      }
+    }
   </style>
 </head>
 
-<body class="bg-[#0b0e15] font-sans text-[#f5f5f7] antialiased selection:bg-[#d4af37] selection:text-[#07090e]">
+<body class="min-h-screen flex flex-col antialiased selection:bg-[#d4af37] selection:text-[#1b1713]">
 
-  <!-- ============================= HEADER ============================= -->
-  <header class="header-cream-theme sticky top-0 z-50 w-full backdrop-blur-md shadow-sm">
+  <!-- Top Announcement Bar -->
+  <div class="w-full bg-[#ede4d8] border-b border-[#dfd4c5] py-2 px-6 lg:px-12 text-[11px] uppercase tracking-[0.22em] text-[#635749] flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span>
+      <span>Nairobi • Quality Imported Bags</span>
+    </div>
+    <div class="hidden md:block font-medium tracking-[0.25em]">
+      Thoughtfully Chosen. Effortlessly You.
+    </div>
+    <div class="font-semibold text-[#8c7322]">
+      Based in Kenya 📍
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-50 w-full bg-[#f4ede4]/95 backdrop-blur-md border-b border-[#e5dacf]">
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
 
-      <a href="index.html" class="flex items-center gap-3 z-10" aria-label="TETU COLLECTION Home">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Ou7RDgCHZwBqqBMuz74NBCB-sjCjj34ug7rPU6vNcemvi2_CGPmTsFM1kQWzxLEPbbEG-puT4hHKwIiZBI-Y9iQOElviMo4izFeBQCz-5qOrSfMH45mv3t48CoipoWdC46YDM_Q8J_crjProDBQYRu6qXWILPnz3dVRxwUtHjMpAioqzkPf3gPJTCjj5vY3SjjLGVYzTlS3eNHhE4iLsx39HqgWE7rdE5-Ng-QcbrOSf-52mcBdJqs5Aq8dT1amrnDk"
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center py-2 z-10" aria-label="TETU COLLECTION Home">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2g7ZEwrNdWtPkwSmwrsMAshqxQwDFcawzwKaorJz3AJ9qNOERd7UuTyUiJANtNj_7pzV5IIJWK3t7ujq_3F4sPeLPnFwrfie9CCeDuQdd4ymmVFSbQmFdv7e6Gbz0dI5JcOaJpUq6cEhTA24-iepGliILupgQG4WHEONSv6UOKykBLMaj1MLu9qzgvlhvIKtACZpw4WeHSRDyhTjlQRXILOP199PejiI31cWZ_jfu1AIold97qZna_PySnYtnRIOnpBI"
              alt="TETU COLLECTION"
-             class="h-10 w-auto object-contain">
+             class="h-12 sm:h-14 md:h-14 w-auto object-contain transition-transform duration-300 hover:scale-105">
       </a>
 
-      <nav class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-[0.2em] text-[#3e3831]" aria-label="Primary">
-        <a href="index.html" class="hover:text-[#8c7322] transition-colors py-1">Home</a>
-        <a href="bags.html" class="text-[#8c7322] border-b-2 border-[#8c7322] py-1" aria-current="page">Bags Collection</a>
-        <a href="shoes.html" class="hover:text-[#8c7322] transition-colors py-1">Shoes Collection</a>
-        <a href="review.html" class="hover:text-[#8c7322] transition-colors py-1">Reviews</a>
-        <a href="contact.html" class="hover:text-[#8c7322] transition-colors py-1">Contact</a>
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-9 text-xs font-semibold uppercase tracking-[0.22em] text-[#3e352b]" aria-label="Primary Navigation">
+        <a href="index.html" class="hover:text-[#b58e22] transition-colors py-1">Homepage</a>
+        <a href="shoes.html" class="hover:text-[#b58e22] transition-colors py-1">Shoes</a>
+        <a href="bags.html" class="text-[#b58e22] border-b-2 border-[#b58e22] py-1" aria-current="page">Bags</a>
+        <a href="about.html" class="hover:text-[#b58e22] transition-colors py-1">About</a>
+        <a href="review.html" class="hover:text-[#b58e22] transition-colors py-1">Reviews</a>
       </nav>
 
-      <div class="flex items-center gap-4">
-        <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20your%20handcrafted%20leather%20bags."
-           target="_blank" rel="noopener noreferrer"
-           class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#8c7322] text-[#26211c] text-xs font-bold uppercase tracking-wider hover:bg-[#8c7322] hover:text-white transition-all shadow-sm">
-          WhatsApp: +254700309655
-        </a>
+      <!-- Icons + Mobile Menu Toggle -->
+      <div class="flex items-center gap-4 text-[#3e352b]">
+        <button type="button" class="p-2 hover:text-[#b58e22] transition-colors focus:outline-none" aria-label="Search Collection">
+          <span class="material-symbols-outlined text-[22px]">search</span>
+        </button>
+        <button type="button" class="p-2 hover:text-[#b58e22] transition-colors relative focus:outline-none" aria-label="View Inquiries">
+          <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+          <span class="absolute top-1.5 right-1.5 text-[10px] font-bold text-[#3e352b]">0</span>
+        </button>
         <button id="mobile-menu-toggle" type="button"
                 class="md:hidden p-2 text-[#26211c] hover:text-[#8c7322] transition-colors focus:outline-none"
                 aria-label="Toggle Navigation Menu"
@@ -128,375 +193,436 @@
           <span class="material-symbols-outlined text-[26px]" id="mobile-menu-icon">menu</span>
         </button>
       </div>
+
     </div>
 
+    <!-- Mobile Backdrop -->
     <div id="mobile-nav-backdrop" class="fixed inset-0 bg-[#0b0e15]/60 backdrop-blur-sm z-40 md:hidden hidden" aria-hidden="true"></div>
 
-    <div id="mobile-nav" class="md:hidden bg-[#f4ede4] border-t border-[#d4af37]/20">
-      <div class="px-6 pb-6 pt-4 flex flex-col gap-3 text-xs font-bold uppercase tracking-widest text-[#26211c]">
-        <a href="index.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Home</a>
-        <a href="bags.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10 text-[#8c7322]">Bags Collection</a>
-        <a href="shoes.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Shoes Collection</a>
-        <a href="review.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Reviews</a>
-        <a href="contact.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Contact</a>
+    <!-- Mobile Nav Drawer -->
+    <div id="mobile-nav" class="md:hidden bg-[#f4ede4] border-t border-[#dfd4c5]">
+      <div class="px-6 py-5 flex flex-col gap-3 text-xs font-bold uppercase tracking-widest text-[#2c251e]">
+        <a href="index.html" class="mobile-nav-link py-2 border-b border-[#dfd4c5]/60">Homepage</a>
+        <a href="shoes.html" class="mobile-nav-link py-2 border-b border-[#dfd4c5]/60">Shoes Collection</a>
+        <a href="bags.html" class="mobile-nav-link py-2 border-b border-[#dfd4c5]/60 text-[#b58e22]">Bags Collection</a>
+        <a href="about.html" class="mobile-nav-link py-2 border-b border-[#dfd4c5]/60">About</a>
+        <a href="review.html" class="mobile-nav-link py-2 border-b border-[#dfd4c5]/60">Reviews</a>
+        <a href="contact.html" class="mobile-nav-link py-2 border-b border-[#dfd4c5]/60">Contact</a>
         <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer"
-           class="mobile-nav-link py-2 text-[#8c7322] flex items-center gap-2">
-          WhatsApp: +254700309655
+           class="mobile-nav-link py-2 text-[#b58e22] flex items-center gap-2">
+          WhatsApp: +254 700 309 655
         </a>
       </div>
     </div>
   </header>
 
-  <!-- ============================= MAIN ============================= -->
-  <main class="w-full relative overflow-hidden">
+  <!-- ============================= MAIN CONTENT ============================= -->
+  <main class="flex-1 w-full max-w-[1440px] mx-auto px-6 lg:px-12 py-12 md:py-16">
 
-    <!-- HERO -->
-    <section class="py-20 px-6 lg:px-12 max-w-[1440px] mx-auto text-center border-b border-[#212532]">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/30 text-[#d4af37] text-xs uppercase tracking-[0.25em] font-semibold mb-6">
-        Handcrafted in Nairobi
-      </div>
-      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-white uppercase tracking-tight mb-4">
-        HANDCRAFTED <span class="text-[#d4af37] italic font-normal">BAGS</span>
+    <!-- Page Title & Filter -->
+    <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+
+      <h1 class="font-bodoni text-4xl sm:text-5xl lg:text-6xl text-[#1f1a14] uppercase tracking-tight leading-[1.1] mb-5">
+        ELEGANT <span class="text-[#b58e22] italic font-normal">HANDBAGS</span> &amp; TOTES
       </h1>
-      <p class="text-[#9ba1b0] text-sm sm:text-base max-w-xl mx-auto font-light leading-relaxed">
-        Bespoke Kenyan genuine leather bags, shoulder bags, totes, and vibrant custom crescent silhouettes. Inquire directly on WhatsApp to order or customize.
+      <p class="text-[#64594c] text-sm sm:text-base leading-relaxed font-normal max-w-xl mx-auto">
+        Curated imported shoulder bags, curved handbags, and roomy totes. Comfortable, stylish, and made for effortless wear. Order easily or chat with us directly on WhatsApp.
       </p>
 
-      <div class="flex items-center justify-center gap-3 mt-10 overflow-x-auto pb-2 -mx-2 px-2">
-        <button type="button" class="filter-pill active px-5 py-2 rounded-full bg-[#d4af37] text-[#07090e] text-xs font-bold uppercase tracking-wider shadow-md whitespace-nowrap transition-colors" data-filter="all">All Bags (10)</button>
-        <button type="button" class="filter-pill px-5 py-2 rounded-full bg-[#151821] text-[#9ba1b0] hover:text-[#d4af37] border border-white/10 text-xs font-medium uppercase tracking-wider whitespace-nowrap transition-colors" data-filter="shoulder">Shoulder &amp; Totes</button>
-        <button type="button" class="filter-pill px-5 py-2 rounded-full bg-[#151821] text-[#9ba1b0] hover:text-[#d4af37] border border-white/10 text-xs font-medium uppercase tracking-wider whitespace-nowrap transition-colors" data-filter="crescent">Crescent &amp; Mini</button>
+      <div class="flex items-center justify-center gap-3 mt-8 flex-wrap">
+        <button type="button" class="filter-btn active px-5 py-2 rounded-full border border-[#d4af37] text-xs uppercase tracking-wider transition-all" data-filter="all">
+          All Handbags (10)
+        </button>
+        <button type="button" class="filter-btn px-5 py-2 rounded-full bg-[#ece2d4] text-[#6b6051] border border-[#d8cabb] hover:border-[#b58e22] text-xs font-medium uppercase tracking-wider transition-all" data-filter="shoulder">
+          Totes &amp; Shoulder Bags
+        </button>
+        <button type="button" class="filter-btn px-5 py-2 rounded-full bg-[#ece2d4] text-[#6b6051] border border-[#d8cabb] hover:border-[#b58e22] text-xs font-medium uppercase tracking-wider transition-all" data-filter="crescent">
+          Crescent &amp; Statement Bags
+        </button>
       </div>
-    </section>
+    </div>
 
-    <!-- CATALOG -->
-    <section id="all-bags" class="py-16 px-6 lg:px-12 max-w-[1440px] mx-auto">
-      <div id="bags-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Handbag Product Grid -->
+    <div id="bags-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-9">
 
-        <!-- Bag 1 — White Sculpted Crescent -->
-        <div class="bag-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="crescent">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKaBHmZj63mPpQtRRos2NVkHidXBakjALqynXyCgxnQcMvULo2ohxVYR3Tf8Fi8rcLzEOa-x7etmy_3MSOKO9tqRg920iLn9y1T0suGF8GTGxsPwNb67W37jSErZN2sYEYok6xMh5c7ldDAqvcZYsHyMeGomyuFjilxdP0StT7fHI_JGKOp0pK2tuw52kkJZnLWAT0j5ETB9yIB0u0L0lpRceqRX1JMDSMUw6ZQxwhlozWuLsOcU-ipJ8jCZwW1RwBv-w"
-                 alt="White Sculpted Crescent Bag"
-                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                 loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Signature</span>
-          </div>
-          <div class="p-6 flex flex-col justify-between flex-1">
-            <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Crescent Series</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">White Sculpted Crescent Bag</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Handcrafted ivory leather with sculpted curve detailing and polished gold carabiner clasp.</p>
-            </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
-              <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20White%20Sculpted%20Crescent%20Bag."
-                 target="_blank" rel="noopener noreferrer"
-                 class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
-                Enquire on WhatsApp ↗
-              </a>
-            </div>
+      <!-- Bag 1: White Sculpted Crescent Bag -->
+      <article class="bag-card rounded-2xl overflow-hidden flex flex-col p-4 sm:p-5" data-category="crescent">
+        <div class="aspect-square w-full rounded-xl overflow-hidden bg-[#f0e8dc] relative mb-5 group">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVvW5OjtPjhOMSixSUluSCvi31yx1ZNHH43TT5Ne-jpoujb-paX0pG0VH2s76aIy6KHcvL_r4Zdrm55OFS38sPNs52KJJW0Y3lID6v04edkKVeK49v7ErvCzERpWuIDXpKi2TSHgLJxs6rEoZ4Cq3WXj6t0FhYiD2-oAkcxfIKeloiMPbdskUxae_D3aIyLN2hW6UBcBVZsmtMQG7MmDCb_A8lnlXVLL3aC1JdoH5hP_TQ_0HCbV3WAXzU86fSpK30DKA"
+               alt="White Sculpted Crescent Bag"
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+               loading="eager">
+          <span class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm border border-[#dfd2be] text-[#8c6b1d] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">
+            Signature
+          </span>
+          <div class="absolute bottom-3 right-3 px-3 py-1 bg-white/95 backdrop-blur-sm border border-[#d4af37]/40 rounded-lg shadow-sm flex items-center justify-center">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2g7ZEwrNdWtPkwSmwrsMAshqxQwDFcawzwKaorJz3AJ9qNOERd7UuTyUiJANtNj_7pzV5IIJWK3t7ujq_3F4sPeLPnFwrfie9CCeDuQdd4ymmVFSbQmFdv7e6Gbz0dI5JcOaJpUq6cEhTA24-iepGliILupgQG4WHEONSv6UOKykBLMaj1MLu9qzgvlhvIKtACZpw4WeHSRDyhTjlQRXILOP199PejiI31cWZ_jfu1AIold97qZna_PySnYtnRIOnpBI"
+                 alt="Tetu Collection"
+                 class="h-6 w-auto object-contain">
           </div>
         </div>
-
-        <!-- Bag 2 — Cream & Chestnut Shoulder Tote -->
-        <div class="bag-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="shoulder">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-eH8ZzF8PysLNwVDrD8lo27oMfGK7Ppy0gP9JUlUEnQJlG6roIFcSi6BI3CF9w0XS0dMq8K_jmcoplUCUOf8AVkH_O9vfYIKfRND_Wd9_bXCsO6lJdLfuc9RAivWsSTRXv1ysh-TFw0eeWWRSVHTDusSb68J2jCGIEM5A3IlfMYuPYGCXBkE5-qD140m1zZuKmEvOp9U8XHpjNfSP3U2GsCXGFTsiPRN-cOT418Vw5Nz04YiA9y2E2486xh7q7A_GfAA"
-                 alt="Cream and Chestnut Shoulder Tote with Charm"
-                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                 loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Two-Tone Leather</span>
+        <div class="flex flex-col flex-1 justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-[#9c7820] font-bold">Shoulder Bag</span>
+            <h3 class="font-bodoni text-xl text-[#1f1a14] mt-1 font-medium">White Curved Shoulder Bag</h3>
+            <p class="text-xs text-[#6e6354] mt-2 font-normal leading-relaxed">Ivory curved shoulder bag with gold clasp.</p>
           </div>
-          <div class="p-6 flex flex-col justify-between flex-1">
-            <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Tote &amp; Shoulder</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Cream &amp; Chestnut Shoulder Tote</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Two-tone cream and rich chestnut leather carryall with dual shoulder straps and detachable charm.</p>
-            </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
-              <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Cream%20and%20Chestnut%20Shoulder%20Tote."
-                 target="_blank" rel="noopener noreferrer"
-                 class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
-                Enquire on WhatsApp ↗
-              </a>
-            </div>
+          <div class="mt-6 pt-4 border-t border-[#ebdccb]">
+            <span class="block text-[11px] text-[#877a6a] uppercase tracking-wider font-medium mb-3">Inquire for pricing</span>
+            <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20White%20Sculpted%20Crescent%20Bag."
+               target="_blank" rel="noopener noreferrer"
+               class="w-full py-2.5 px-4 bg-[#d4af37] hover:bg-[#b58e22] text-[#1b1713] hover:text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <span>Enquire on WhatsApp</span>
+              <span class="text-[14px]">↗</span>
+            </a>
           </div>
         </div>
+      </article>
 
-        <!-- Bag 3 — Hazelnut Leather Shoulder Tote -->
-        <div class="bag-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="shoulder">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv__4AxjTOgXjgvezIqpmRqe060ROAPn3QsFjTmkoZjPe5Q-FmmqbFuzvOg55cMDIc_DkMM0ZHNhI2OnFrgCQN05__Z8PCsPDcEum5iY1MLBZxxed9ucnbwpHS9SrENmrcyhcmUus3g4PHcEi-k3CSKpGJFm3T7uxfnpAW57Luls5E4AaMiOBpu1es1d0gEmErUYnff4fD8VsuH-ppqqcayEZZRqb4pZwTNYHAH7dwGM4pKCeRyOJnwz0EMXqwa3XjDfs"
-                 alt="Hazelnut Leather Shoulder Tote with Charm"
-                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                 loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Genuine Leather</span>
-          </div>
-          <div class="p-6 flex flex-col justify-between flex-1">
-            <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Tote &amp; Shoulder</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Hazelnut Leather Shoulder Tote</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Solid hazelnut brown leather tote with fine stitching, twin high-drop straps, and signature pom keychain.</p>
-            </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
-              <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Hazelnut%20Leather%20Shoulder%20Tote."
-                 target="_blank" rel="noopener noreferrer"
-                 class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
-                Enquire on WhatsApp ↗
-              </a>
-            </div>
+      <!-- Bag 2: Cream & Chestnut Shoulder Tote -->
+      <article class="bag-card rounded-2xl overflow-hidden flex flex-col p-4 sm:p-5" data-category="shoulder">
+        <div class="aspect-square w-full rounded-xl overflow-hidden bg-[#f0e8dc] relative mb-5 group">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiQwUy4_KDqSWf2HD7zvG_7pkjq-D7VnQf2XFXvHxNZIKnfYgVuncbgtrQmjY6k5OLdjdea-rjQ7wXvzeFdF3ZAOrmEhVflr_Mw7i7gUgQdO8XVHGGE1voVnTItC-DjaDp3ck2SrHCiRztJEhb4_tSiP3kyWXEjzSUb4gE2vXF3jaY1Cz6WC9wN_QR3A6iwjP1eRa3g72hbkqc47SsdW1byq_XXtj9s49Kt_Guo39gcA57xZH602EF74monRmdRTisSlc"
+               alt="Cream &amp; Chestnut Shoulder Tote with Charm"
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+               loading="lazy">
+          <span class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm border border-[#dfd2be] text-[#8c6b1d] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Shoulder Tote</span>
+          <div class="absolute bottom-3 right-3 px-3 py-1 bg-white/95 backdrop-blur-sm border border-[#d4af37]/40 rounded-lg shadow-sm flex items-center justify-center">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2g7ZEwrNdWtPkwSmwrsMAshqxQwDFcawzwKaorJz3AJ9qNOERd7UuTyUiJANtNj_7pzV5IIJWK3t7ujq_3F4sPeLPnFwrfie9CCeDuQdd4ymmVFSbQmFdv7e6Gbz0dI5JcOaJpUq6cEhTA24-iepGliILupgQG4WHEONSv6UOKykBLMaj1MLu9qzgvlhvIKtACZpw4WeHSRDyhTjlQRXILOP199PejiI31cWZ_jfu1AIold97qZna_PySnYtnRIOnpBI"
+                 alt="Tetu Collection"
+                 class="h-6 w-auto object-contain">
           </div>
         </div>
-
-        <!-- Bag 4 — Ivory Daily Shoulder Carryall -->
-        <div class="bag-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="shoulder">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR9PxRdD_Ie8xjMNx_3qu6uzWG9Kum2hSPBvViYGIJ7DgMLq3RNL5hH-ZTEaok7DsOw90chqC0HphzjcwinQqG4ZGDylsPWWPZCuQT74xJVB2zx21vbG87RHY_yz43OP_z_zZFwOSh9ThG8BQtZks5OpwOW_gS1Mo_JcHva_yuISg0S6djUpna9KPv6IbkUuf0_K6litMRAqeY-GFhCwVXkubICdqgrLdRracpRhul43AOVZ8jQ8lu9ZwQ9hL2ci_Wji8"
-                 alt="Ivory Daily Shoulder Carryall with Charm"
-                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                 loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Everyday Luxury</span>
+        <div class="flex flex-col flex-1 justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-[#9c7820] font-bold">Tote Bag</span>
+            <h3 class="font-bodoni text-xl text-[#1f1a14] mt-1 font-medium">Cream &amp; Brown Tote Bag</h3>
+            <p class="text-xs text-[#6e6354] mt-2 font-normal leading-relaxed">Two-tone shoulder tote with dual straps and charm.</p>
           </div>
-          <div class="p-6 flex flex-col justify-between flex-1">
-            <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Tote &amp; Shoulder</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Ivory Daily Shoulder Carryall</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Full-capacity ivory tote trimmed with deep brown handles and gold hardware detailing.</p>
-            </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
-              <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Ivory%20Daily%20Shoulder%20Carryall."
-                 target="_blank" rel="noopener noreferrer"
-                 class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
-                Enquire on WhatsApp ↗
-              </a>
-            </div>
+          <div class="mt-6 pt-4 border-t border-[#ebdccb]">
+            <span class="block text-[11px] text-[#877a6a] uppercase tracking-wider font-medium mb-3">Inquire for pricing</span>
+            <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Cream%20and%20Chestnut%20Shoulder%20Tote."
+               target="_blank" rel="noopener noreferrer"
+               class="w-full py-2.5 px-4 bg-[#d4af37] hover:bg-[#b58e22] text-[#1b1713] hover:text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <span>Enquire on WhatsApp</span>
+              <span class="text-[14px]">↗</span>
+            </a>
           </div>
         </div>
+      </article>
 
-        <!-- Bag 5 — Palette Curved Crescent Handbags -->
-        <div class="bag-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="crescent">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDV3DiQL5eBLOzdfTIWLRKJqK5QImvis8HJ8TIgGIfn4iWz4RLvCC2M7COdK2GBBtt88y2WHXnUCYheVTmbtKCr2OkDLA1SVCsT5bIChrafiJpbMmLGgXukv-xuYHhQBuYuhmCKOgbZAaWtRjI2gOOIWtPC1hiF8VEUgTtYZcCvj8KIap_YEBzd462iH1Nf_7_b8J1AU1g-XnAOiNdxSDSgrlG_3XruTCulFI0uQ9dpMv-Zqu0KHNKvnHscUa_2MqoDrA"
-                 alt="Palette Curved Crescent Handbags"
-                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                 loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Multi-Colour</span>
-          </div>
-          <div class="p-6 flex flex-col justify-between flex-1">
-            <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Crescent Series</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Palette Curved Crescent Handbags</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Supple leather shoulder bags available in camel, blush pink, ivory white, cognac tan, and black.</p>
-            </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
-              <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Palette%20Curved%20Crescent%20Handbags."
-                 target="_blank" rel="noopener noreferrer"
-                 class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
-                Enquire on WhatsApp ↗
-              </a>
-            </div>
+      <!-- Bag 3: Hazelnut Leather Shoulder Tote -->
+      <article class="bag-card rounded-2xl overflow-hidden flex flex-col p-4 sm:p-5" data-category="shoulder">
+        <div class="aspect-square w-full rounded-xl overflow-hidden bg-[#f0e8dc] relative mb-5 group">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxyh9ABkPUHhmHp5_rNAmqNY1wa0dPj0Vw_vXFJZ4RgDSAEPALGbyKSH4AsZrwnodEGW0XtF5S6K8lGEnQhG9Ow33341KlW_BM3MfziN_11aEnXqxx94xYlWTl4OX6LUaKK4OGlXJzaBUmDsMqsss-LnWw870o4iHq9TKy7W8a67E0SGbrRCaooI4q4Hu7uH8gTder0Z3ZkAjwE5Ol0yoJUbpUmVNXF6LGj9nmEaF6CRXSmVTaSCjqN8HFPL1dB0F4nGg"
+               alt="Hazelnut Leather Shoulder Tote with Charm"
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+               loading="lazy">
+          <span class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm border border-[#dfd2be] text-[#8c6b1d] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Shoulder Tote</span>
+          <div class="absolute bottom-3 right-3 px-3 py-1 bg-white/95 backdrop-blur-sm border border-[#d4af37]/40 rounded-lg shadow-sm flex items-center justify-center">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2g7ZEwrNdWtPkwSmwrsMAshqxQwDFcawzwKaorJz3AJ9qNOERd7UuTyUiJANtNj_7pzV5IIJWK3t7ujq_3F4sPeLPnFwrfie9CCeDuQdd4ymmVFSbQmFdv7e6Gbz0dI5JcOaJpUq6cEhTA24-iepGliILupgQG4WHEONSv6UOKykBLMaj1MLu9qzgvlhvIKtACZpw4WeHSRDyhTjlQRXILOP199PejiI31cWZ_jfu1AIold97qZna_PySnYtnRIOnpBI"
+                 alt="Tetu Collection"
+                 class="h-6 w-auto object-contain">
           </div>
         </div>
-
-        <!-- Bag 6 — Croc-Embossed Vibrant Crescents -->
-        <div class="bag-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="crescent">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuqNvnhaCM6j_eYTvu0wt88mPces7bviBPueeaGh-2S_isfoZ5vuhQn1zEBDNFPoLHOksYsvyj42ib_fg9oOjI-vaK-Apy0rMwvfLnvDWuT1kikp0tf9R0MIzdBrAk2D8RBehLG7opntkkQBoqLVzwvam-1q042nZI049uilbGGSRfF6KQI1s9_xHHKtDclCF3efc4ucEgXpHNQudpZFVH-1CjzPQIEXbRH83ARWQ_9cYrNMWqD_P_SfQURrbF3ncWob0"
-                 alt="Croc-Embossed Vibrant Crescents"
-                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                 loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Embossed</span>
+        <div class="flex flex-col flex-1 justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-[#9c7820] font-bold">Tote Bag</span>
+            <h3 class="font-bodoni text-xl text-[#1f1a14] mt-1 font-medium">Brown Leather Tote Bag</h3>
+            <p class="text-xs text-[#6e6354] mt-2 font-normal leading-relaxed">Brown shoulder tote with dual straps and charm.</p>
           </div>
-          <div class="p-6 flex flex-col justify-between flex-1">
-            <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Exotic Series</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Croc-Embossed Vibrant Crescents</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Sculptural croc-texture shoulder bags available in emerald green, hot pink, dark roast espresso, and fiery orange.</p>
-            </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
-              <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Croc-Embossed%20Vibrant%20Crescents."
-                 target="_blank" rel="noopener noreferrer"
-                 class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
-                Enquire on WhatsApp ↗
-              </a>
-            </div>
+          <div class="mt-6 pt-4 border-t border-[#ebdccb]">
+            <span class="block text-[11px] text-[#877a6a] uppercase tracking-wider font-medium mb-3">Inquire for pricing</span>
+            <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Hazelnut%20Leather%20Shoulder%20Tote."
+               target="_blank" rel="noopener noreferrer"
+               class="w-full py-2.5 px-4 bg-[#d4af37] hover:bg-[#b58e22] text-[#1b1713] hover:text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <span>Enquire on WhatsApp</span>
+              <span class="text-[14px]">↗</span>
+            </a>
           </div>
         </div>
+      </article>
 
-        <!-- Bag 7 — Distressed Denim Star Chain Bags -->
-        <div class="bag-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="crescent">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDFIeMObdwG19EWUYu4GGwxZ0yjgYfh2Ci0lhgCQKb9fhlMV9Z5JUSyPMzOCJw_ul-9z0fVnHh42nYaNDdwkJFkTDEvG1Rf-pbphC6keIuJG-RBvOOz45Ul5s7st2whRZn6Hcm1K9qf7J2uei_aOs-WhovzqBeIjSNWG3t4swBvuIQXJoxp84hMpzqFsNOOLCOGWCdg89mBewFjP2GgPxj_LOOpaxxPoacG4Sm12PHIAp1iX0KS0ErZTA77qn2TrlTrxc"
-                 alt="Distressed Denim Star Chain Bags"
-                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                 loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Denim &amp; Chain</span>
-          </div>
-          <div class="p-6 flex flex-col justify-between flex-1">
-            <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Street &amp; Evening</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Distressed Denim Star Chain Bags</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Fringed patchwork star denim bags accented with polished silver chain links and pastel strap options.</p>
-            </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
-              <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Distressed%20Denim%20Star%20Chain%20Bags."
-                 target="_blank" rel="noopener noreferrer"
-                 class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
-                Enquire on WhatsApp ↗
-              </a>
-            </div>
+      <!-- Bag 4: Ivory Daily Shoulder Carryall -->
+      <article class="bag-card rounded-2xl overflow-hidden flex flex-col p-4 sm:p-5" data-category="shoulder">
+        <div class="aspect-square w-full rounded-xl overflow-hidden bg-[#f0e8dc] relative mb-5 group">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRTBMn2iv5lKpuq3oiIonZo5rFpGyli5UeT9ykYy6WZ4e_m07cnISY6CyZOWlFY-V7pYd7noMSK5J-e16mg7WONnKiU_oabGsFwzDLujbc9RMY8ABJdc8YLqltN4XV1wPCu-ToWXT_JkZsJU_9bO5tmtcO12pbo9syiRL8pS0raZj8beldpz8EW25WR2hyIsKYKN2bLiDqoHOHm5qHrKVeA4yrSNPSs8UM4ACqcGrJvt7yget3uLiqcBiytzFgBc_ySTw"
+               alt="Ivory Daily Shoulder Carryall"
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+               loading="lazy">
+          <span class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm border border-[#dfd2be] text-[#8c6b1d] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Daily Tote</span>
+          <div class="absolute bottom-3 right-3 px-3 py-1 bg-white/95 backdrop-blur-sm border border-[#d4af37]/40 rounded-lg shadow-sm flex items-center justify-center">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2g7ZEwrNdWtPkwSmwrsMAshqxQwDFcawzwKaorJz3AJ9qNOERd7UuTyUiJANtNj_7pzV5IIJWK3t7ujq_3F4sPeLPnFwrfie9CCeDuQdd4ymmVFSbQmFdv7e6Gbz0dI5JcOaJpUq6cEhTA24-iepGliILupgQG4WHEONSv6UOKykBLMaj1MLu9qzgvlhvIKtACZpw4WeHSRDyhTjlQRXILOP199PejiI31cWZ_jfu1AIold97qZna_PySnYtnRIOnpBI"
+                 alt="Tetu Collection"
+                 class="h-6 w-auto object-contain">
           </div>
         </div>
-
-        <!-- Bag 8 — Checkered Heritage Travel Tote -->
-        <div class="bag-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="shoulder">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwbOuendz_73QcHeEPBM-sjm37BuPDqubm4eLMI0S8dkrVkAdje1YsaB4epEhyfVpOGFika9DrrS1JeQOfiOCHG0kOpZawykT3WqfbAx4HgIA85UdDjyMAzmsBb5PNCIpE-VGUkJlHaw7qBJxwXhcx3uWuoN-139Nidejv8eLbjB8-i6Y2W_sN-S7iCHmXH5aYK7yF13gR-NOBR_d1cxuewsGMISc8r8-vdKkG_ggK4IFHtzeL17rvCi0K7B0QyPOrUCQ"
-                 alt="Checkered Heritage Travel Tote with Pouch"
-                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                 loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Travel Carryall</span>
+        <div class="flex flex-col flex-1 justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-[#9c7820] font-bold">Tote Bag</span>
+            <h3 class="font-bodoni text-xl text-[#1f1a14] mt-1 font-medium">Ivory Tote Bag</h3>
+            <p class="text-xs text-[#6e6354] mt-2 font-normal leading-relaxed">Spacious ivory daily carryall with brown shoulder straps.</p>
           </div>
-          <div class="p-6 flex flex-col justify-between flex-1">
-            <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Tote Series</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Checkered Heritage Travel Tote</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">High-capacity checkered travel tote with structured black leather handles and matching clip-on zipper pouch.</p>
-            </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
-              <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Checkered%20Heritage%20Travel%20Tote."
-                 target="_blank" rel="noopener noreferrer"
-                 class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
-                Enquire on WhatsApp ↗
-              </a>
-            </div>
+          <div class="mt-6 pt-4 border-t border-[#ebdccb]">
+            <span class="block text-[11px] text-[#877a6a] uppercase tracking-wider font-medium mb-3">Inquire for pricing</span>
+            <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Ivory%20Daily%20Shoulder%20Carryall."
+               target="_blank" rel="noopener noreferrer"
+               class="w-full py-2.5 px-4 bg-[#d4af37] hover:bg-[#b58e22] text-[#1b1713] hover:text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <span>Enquire on WhatsApp</span>
+              <span class="text-[14px]">↗</span>
+            </a>
           </div>
         </div>
+      </article>
 
-        <!-- Bag 9 — Woven Amber Chevron Day Tote -->
-        <div class="bag-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="shoulder">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt4GFu1j33-7wu0oq1VdIamh7sChZs_EhitYQmFsQ4dKcMGCYwgfR2jcK5MYJenrgln0cUFNaRa4HRpj6HcSbd5hlt_7p6w7fCUMh4zF3NKIytZqU5jYcMAIEyouGQkB0R0EkfbXdCIUSmU2LWy0OmnZv3gkaVd2sLV3KRXodEhy2MJp7NKnlOwS7BqMFxCP4kOU6DiQw0m0tGETjphZgRd9S7ydlE6P66HB77Qcu0CCDcDxHJot6kWSRM6IFxAPKlrAQ"
-                 alt="Woven Amber Chevron Day Tote"
-                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                 loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Artisan Woven</span>
-          </div>
-          <div class="p-6 flex flex-col justify-between flex-1">
-            <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Artisan Series</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Woven Amber Chevron Day Tote</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Traditional woven textile tote in amber, terracotta, and gold with rich crimson leather top handles.</p>
-            </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
-              <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Woven%20Amber%20Chevron%20Day%20Tote."
-                 target="_blank" rel="noopener noreferrer"
-                 class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
-                Enquire on WhatsApp ↗
-              </a>
-            </div>
+      <!-- Bag 5: Palette Curved Crescent Handbags -->
+      <article class="bag-card rounded-2xl overflow-hidden flex flex-col p-4 sm:p-5" data-category="crescent">
+        <div class="aspect-square w-full rounded-xl overflow-hidden bg-[#f0e8dc] relative mb-5 group">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA29R4K0LVc1qYQe9q9ml5vZe2qBefoLHEwhzOTida5RczSZx6BzNKlN9maW-0q_iALxOorvruUWdreaaE4qqJY2fj4sjvRDtx57sj9ksGORKy7OJGSJDqVLcUtnCZpsV9CfPeJ5Z4AJ1hbh1ApOaVjj1mFzUAPwLZfV5MBlABJks6N1kiKmfqJXugeURIeLmnZ3CnecTB0MucMI5wkcPz6jxU8OjB97-v27mrZNV-34P9kQEl0F-q0HWrixpTvdSE1Mgg"
+               alt="Palette Curved Crescent Handbags"
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+               loading="lazy">
+          <span class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm border border-[#dfd2be] text-[#8c6b1d] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Colour Options</span>
+          <div class="absolute bottom-3 right-3 px-3 py-1 bg-white/95 backdrop-blur-sm border border-[#d4af37]/40 rounded-lg shadow-sm flex items-center justify-center">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2g7ZEwrNdWtPkwSmwrsMAshqxQwDFcawzwKaorJz3AJ9qNOERd7UuTyUiJANtNj_7pzV5IIJWK3t7ujq_3F4sPeLPnFwrfie9CCeDuQdd4ymmVFSbQmFdv7e6Gbz0dI5JcOaJpUq6cEhTA24-iepGliILupgQG4WHEONSv6UOKykBLMaj1MLu9qzgvlhvIKtACZpw4WeHSRDyhTjlQRXILOP199PejiI31cWZ_jfu1AIold97qZna_PySnYtnRIOnpBI"
+                 alt="Tetu Collection"
+                 class="h-6 w-auto object-contain">
           </div>
         </div>
-
-        <!-- Bag 10 — Noir Corduroy Daily Tote -->
-        <div class="bag-card group bg-[#151821] border border-white/10 hover:border-[#d4af37]/50 rounded-2xl overflow-hidden flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.8)]" data-category="shoulder">
-          <div class="aspect-square bg-[#0b0e15] overflow-hidden relative">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcmBBTpunCrcy7vzP4t--ascFUIDUruogi8igjf0HIH_JYhXRRkaIsAHPf8vjEAC8REcDXyhr1IDWzXDOhlVCtuPrJ4IrAeCqNYDSagPr0VRgl4BFB7idBzVm-efEeTOnrp-RDlOrQneLTPhrpWa37QTJIP5SbeGvRzYbJvqc56g1HcozPtqO6QtAbai1EdG-hlmLlLY71ol7qoiypcGGre4R37Sc0itZKrGxiX73Enk-I0jjhRT9Hi8MMxMLT2RJGH0E"
-                 alt="Noir Corduroy Daily Tote"
-                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                 loading="lazy">
-            <span class="absolute top-4 left-4 px-3 py-1 bg-[#10131a]/80 backdrop-blur-md border border-[#d4af37]/40 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest rounded-full">Everyday Tote</span>
+        <div class="flex flex-col flex-1 justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-[#9c7820] font-bold">Handbag</span>
+            <h3 class="font-bodoni text-xl text-[#1f1a14] mt-1 font-medium">Small Shoulder Handbags</h3>
+            <p class="text-xs text-[#6e6354] mt-2 font-normal leading-relaxed">Curved shoulder bags available in multiple colors.</p>
           </div>
-          <div class="p-6 flex flex-col justify-between flex-1">
-            <div>
-              <span class="text-[11px] uppercase tracking-widest text-[#d4af37] font-semibold">Casual Series</span>
-              <h3 class="font-serif text-xl text-white mt-1 group-hover:text-[#d4af37] transition-colors">Noir Corduroy Daily Tote</h3>
-              <p class="text-xs text-[#9ba1b0] mt-2 font-light">Relaxed black ribbed corduroy tote bag with magnetic clasp and comfortable dual shoulder straps.</p>
-            </div>
-            <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
-              <span class="text-[11px] text-[#9ba1b0] uppercase tracking-wider">Inquire for pricing</span>
-              <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Noir%20Corduroy%20Daily%20Tote."
-                 target="_blank" rel="noopener noreferrer"
-                 class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#d4af37] text-[#07090e] hover:bg-[#e5c158] text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md whitespace-nowrap">
-                Enquire on WhatsApp ↗
-              </a>
-            </div>
+          <div class="mt-6 pt-4 border-t border-[#ebdccb]">
+            <span class="block text-[11px] text-[#877a6a] uppercase tracking-wider font-medium mb-3">Inquire for pricing</span>
+            <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Palette%20Curved%20Crescent%20Handbags."
+               target="_blank" rel="noopener noreferrer"
+               class="w-full py-2.5 px-4 bg-[#d4af37] hover:bg-[#b58e22] text-[#1b1713] hover:text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <span>Enquire on WhatsApp</span>
+              <span class="text-[14px]">↗</span>
+            </a>
           </div>
         </div>
+      </article>
 
-      </div>
-    </section>
+      <!-- Bag 6: Croc-Embossed Vibrant Crescents -->
+      <article class="bag-card rounded-2xl overflow-hidden flex flex-col p-4 sm:p-5" data-category="crescent">
+        <div class="aspect-square w-full rounded-xl overflow-hidden bg-[#f0e8dc] relative mb-5 group">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD48m1hZQY0kYEFiNUvCyWKhbJOlgkp1lFgo7VCwCZbgq-kmmCTKE6tna0qCuoQsA6PXDJod_rX3TGFS9M5Nu-i6pAAQwhB96mRAi34dGdxCbfB4f2RZ7cxYrT7qZkxKQm9ylesK_2dnLSl-gmu_PFBCrbtr6skJ_QFFizvgyozXFrpidImuE2amEAvv-mHAJ1sIoLm3VE8u-BXCnbe72CW-cquihQkjJtyFTrHKO2OOPjRRtPc5UZZ_TbOZhq6egbN218"
+               alt="Croc-Embossed Vibrant Crescents"
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+               loading="lazy">
+          <span class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm border border-[#dfd2be] text-[#8c6b1d] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Croc Texture</span>
+          <div class="absolute bottom-3 right-3 px-3 py-1 bg-white/95 backdrop-blur-sm border border-[#d4af37]/40 rounded-lg shadow-sm flex items-center justify-center">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2g7ZEwrNdWtPkwSmwrsMAshqxQwDFcawzwKaorJz3AJ9qNOERd7UuTyUiJANtNj_7pzV5IIJWK3t7ujq_3F4sPeLPnFwrfie9CCeDuQdd4ymmVFSbQmFdv7e6Gbz0dI5JcOaJpUq6cEhTA24-iepGliILupgQG4WHEONSv6UOKykBLMaj1MLu9qzgvlhvIKtACZpw4WeHSRDyhTjlQRXILOP199PejiI31cWZ_jfu1AIold97qZna_PySnYtnRIOnpBI"
+                 alt="Tetu Collection"
+                 class="h-6 w-auto object-contain">
+          </div>
+        </div>
+        <div class="flex flex-col flex-1 justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-[#9c7820] font-bold">Shoulder Bag</span>
+            <h3 class="font-bodoni text-xl text-[#1f1a14] mt-1 font-medium">Croc Pattern Shoulder Bags</h3>
+            <p class="text-xs text-[#6e6354] mt-2 font-normal leading-relaxed">Croc-embossed curved bags in bright statement colors.</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[#ebdccb]">
+            <span class="block text-[11px] text-[#877a6a] uppercase tracking-wider font-medium mb-3">Inquire for pricing</span>
+            <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Croc-Embossed%20Vibrant%20Crescents."
+               target="_blank" rel="noopener noreferrer"
+               class="w-full py-2.5 px-4 bg-[#d4af37] hover:bg-[#b58e22] text-[#1b1713] hover:text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <span>Enquire on WhatsApp</span>
+              <span class="text-[14px]">↗</span>
+            </a>
+          </div>
+        </div>
+      </article>
 
-    <!-- CUSTOM BANNER -->
-    <section class="w-full bg-[#151821] border-y border-[#212532] py-16 px-6 lg:px-12">
-      <div class="max-w-[1000px] mx-auto text-center flex flex-col items-center">
-        <span class="text-[11px] text-[#d4af37] uppercase tracking-[0.3em] font-semibold mb-3">Custom Leathercraft</span>
-        <h2 class="font-serif text-2xl sm:text-3xl text-white uppercase tracking-tight mb-4">Want a Custom Color or Size?</h2>
-        <p class="text-sm text-[#9ba1b0] max-w-lg mb-8 leading-relaxed font-light">
-          We handcraft each piece locally in Nairobi. If you have a specific leather texture, shade, or strap length in mind, chat directly with us on WhatsApp.
-        </p>
-        <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20would%20like%20to%20request%20a%20custom%20bag%20order."
-           target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center gap-3 px-8 py-3.5 bg-[#d4af37] hover:bg-[#e5c158] text-[#07090e] font-bold text-xs uppercase tracking-[0.2em] rounded-full transition-all shadow-lg hover:-translate-y-0.5">
-          Message on WhatsApp (+254700309655)
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-          </svg>
-        </a>
-      </div>
-    </section>
+      <!-- Bag 7: Distressed Denim Star Chain Bags -->
+      <article class="bag-card rounded-2xl overflow-hidden flex flex-col p-4 sm:p-5" data-category="crescent">
+        <div class="aspect-square w-full rounded-xl overflow-hidden bg-[#f0e8dc] relative mb-5 group">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUIcaSLIYtu9BCvuYoJu4_nVKt29OxvAOt-EDkzIkm9A-5XCYQNw-8NCHb25NHBGH-vjXBOVQGsOy9HICuQFc4dlJakKcI4A1Yo4Igex2x07qkPZn3aCAeG4o0Nv4_SGprB-6-goXijVKaP0iFENBxhjRsYlG9WIk6tZHNOF_SCiMuUTldVfyJjEAI67BenqfYxnBFWiOR22Q3qIbQq_oi2JsIYIuwaWn1sjrLUuJ59JLjRbytnzSpAgWg-Aw3aFDo7rk"
+               alt="Distressed Denim Star Chain Bags"
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+               loading="lazy">
+          <span class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm border border-[#dfd2be] text-[#8c6b1d] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Denim &amp; Chain</span>
+          <div class="absolute bottom-3 right-3 px-3 py-1 bg-white/95 backdrop-blur-sm border border-[#d4af37]/40 rounded-lg shadow-sm flex items-center justify-center">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2g7ZEwrNdWtPkwSmwrsMAshqxQwDFcawzwKaorJz3AJ9qNOERd7UuTyUiJANtNj_7pzV5IIJWK3t7ujq_3F4sPeLPnFwrfie9CCeDuQdd4ymmVFSbQmFdv7e6Gbz0dI5JcOaJpUq6cEhTA24-iepGliILupgQG4WHEONSv6UOKykBLMaj1MLu9qzgvlhvIKtACZpw4WeHSRDyhTjlQRXILOP199PejiI31cWZ_jfu1AIold97qZna_PySnYtnRIOnpBI"
+                 alt="Tetu Collection"
+                 class="h-6 w-auto object-contain">
+          </div>
+        </div>
+        <div class="flex flex-col flex-1 justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-[#9c7820] font-bold">Shoulder Bag</span>
+            <h3 class="font-bodoni text-xl text-[#1f1a14] mt-1 font-medium">Denim Star Shoulder Bags</h3>
+            <p class="text-xs text-[#6e6354] mt-2 font-normal leading-relaxed">Patchwork denim shoulder bags with silver chain strap.</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[#ebdccb]">
+            <span class="block text-[11px] text-[#877a6a] uppercase tracking-wider font-medium mb-3">Inquire for pricing</span>
+            <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Distressed%20Denim%20Star%20Chain%20Bags."
+               target="_blank" rel="noopener noreferrer"
+               class="w-full py-2.5 px-4 bg-[#d4af37] hover:bg-[#b58e22] text-[#1b1713] hover:text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <span>Enquire on WhatsApp</span>
+              <span class="text-[14px]">↗</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Bag 8: Checkered Heritage Travel Tote -->
+      <article class="bag-card rounded-2xl overflow-hidden flex flex-col p-4 sm:p-5" data-category="shoulder">
+        <div class="aspect-square w-full rounded-xl overflow-hidden bg-[#f0e8dc] relative mb-5 group">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVmqvh5CG6BQ8sb5_IcQRSBU_o6ZQ5Z1d-pjStdxxmpRn3eIyJVLJu5WiNJcmONnn7eFM-3CbNhZcE0kVQX9apFHfJm8leSAJKjKYj6iPZl1DjRJC31tWGYJasW7y5d5k8sICeE4cBKNAyjmpuyTYmgxf2yEYcCW3xdUq7mFcG2ooTgzavlxfr7gAReOACItPLotWOIMX1qZm1q7_LdBntg0Dca1RSJzVW8Ko4j2cXLbKhpZmGxgvppiwpTvoWYHOlEMQ"
+               alt="Checkered Heritage Travel Tote with Pouch"
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+               loading="lazy">
+          <span class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm border border-[#dfd2be] text-[#8c6b1d] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Checkered Tote</span>
+          <div class="absolute bottom-3 right-3 px-3 py-1 bg-white/95 backdrop-blur-sm border border-[#d4af37]/40 rounded-lg shadow-sm flex items-center justify-center">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2g7ZEwrNdWtPkwSmwrsMAshqxQwDFcawzwKaorJz3AJ9qNOERd7UuTyUiJANtNj_7pzV5IIJWK3t7ujq_3F4sPeLPnFwrfie9CCeDuQdd4ymmVFSbQmFdv7e6Gbz0dI5JcOaJpUq6cEhTA24-iepGliILupgQG4WHEONSv6UOKykBLMaj1MLu9qzgvlhvIKtACZpw4WeHSRDyhTjlQRXILOP199PejiI31cWZ_jfu1AIold97qZna_PySnYtnRIOnpBI"
+                 alt="Tetu Collection"
+                 class="h-6 w-auto object-contain">
+          </div>
+        </div>
+        <div class="flex flex-col flex-1 justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-[#9c7820] font-bold">Tote Bag</span>
+            <h3 class="font-bodoni text-xl text-[#1f1a14] mt-1 font-medium">Checkered Tote Bag with Pouch</h3>
+            <p class="text-xs text-[#6e6354] mt-2 font-normal leading-relaxed">Checkered travel tote with matching zipper pouch.</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[#ebdccb]">
+            <span class="block text-[11px] text-[#877a6a] uppercase tracking-wider font-medium mb-3">Inquire for pricing</span>
+            <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Checkered%20Heritage%20Travel%20Tote."
+               target="_blank" rel="noopener noreferrer"
+               class="w-full py-2.5 px-4 bg-[#d4af37] hover:bg-[#b58e22] text-[#1b1713] hover:text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <span>Enquire on WhatsApp</span>
+              <span class="text-[14px]">↗</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Bag 9: Woven Amber Chevron Day Tote -->
+      <article class="bag-card rounded-2xl overflow-hidden flex flex-col p-4 sm:p-5" data-category="shoulder">
+        <div class="aspect-square w-full rounded-xl overflow-hidden bg-[#f0e8dc] relative mb-5 group">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBubazRijCLAEjnP-WyzCc7DlQTIQYbEEkUyg487FDc3bdqVlHVq2yejF-g1DnL_lcMwSzn9ZeU8E1_U5byTZhMfxvrUJl_fLOkWI6DVFvOq8boogbejTOeflRo2alvaT6Oxh0AIu2QDhD6-7ny5KICoNT-St-yxypx7L3sT3yeBpO5Sd4uu_HeA9AQZWiHKE9wSU_1sQkE-1vaZBESpI0Dj9OnMNfG--_SKUXpjiZ8OhCzZl0lijUI3B_NlvNYgclRLVI"
+               alt="Woven Amber Chevron Day Tote"
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+               loading="lazy">
+          <span class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm border border-[#dfd2be] text-[#8c6b1d] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Woven Fabric</span>
+          <div class="absolute bottom-3 right-3 px-3 py-1 bg-white/95 backdrop-blur-sm border border-[#d4af37]/40 rounded-lg shadow-sm flex items-center justify-center">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2g7ZEwrNdWtPkwSmwrsMAshqxQwDFcawzwKaorJz3AJ9qNOERd7UuTyUiJANtNj_7pzV5IIJWK3t7ujq_3F4sPeLPnFwrfie9CCeDuQdd4ymmVFSbQmFdv7e6Gbz0dI5JcOaJpUq6cEhTA24-iepGliILupgQG4WHEONSv6UOKykBLMaj1MLu9qzgvlhvIKtACZpw4WeHSRDyhTjlQRXILOP199PejiI31cWZ_jfu1AIold97qZna_PySnYtnRIOnpBI"
+                 alt="Tetu Collection"
+                 class="h-6 w-auto object-contain">
+          </div>
+        </div>
+        <div class="flex flex-col flex-1 justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-[#9c7820] font-bold">Tote Bag</span>
+            <h3 class="font-bodoni text-xl text-[#1f1a14] mt-1 font-medium">Woven Striped Tote Bag</h3>
+            <p class="text-xs text-[#6e6354] mt-2 font-normal leading-relaxed">Woven patterned day tote with red leather handles.</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[#ebdccb]">
+            <span class="block text-[11px] text-[#877a6a] uppercase tracking-wider font-medium mb-3">Inquire for pricing</span>
+            <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Woven%20Amber%20Chevron%20Day%20Tote."
+               target="_blank" rel="noopener noreferrer"
+               class="w-full py-2.5 px-4 bg-[#d4af37] hover:bg-[#b58e22] text-[#1b1713] hover:text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <span>Enquire on WhatsApp</span>
+              <span class="text-[14px]">↗</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Bag 10: Noir Corduroy Daily Tote -->
+      <article class="bag-card rounded-2xl overflow-hidden flex flex-col p-4 sm:p-5" data-category="shoulder">
+        <div class="aspect-square w-full rounded-xl overflow-hidden bg-[#f0e8dc] relative mb-5 group">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiBeimiDkaP7Tct9-GfLCbwfBP7ylAZp0EDjjG_xQmbvt05cjCQvuIT6amtr34ZcoIwpJTm5DoJoLeIMBB3RkQMxR927hdBcAMBe5wbIP5Kb4pqRe7zEivQUYKTcJUl3Ad5gsw5EOLvsocTNE87TLeKDSy0HhkVyh0BuRGHBmL2109HEX9wAVwiNzULywOgFYJ5ayNito9vMiIuPkt2TYZ1iDewK0y95CE-3O0iKCXN_YXC3RMALQbv2IDXkkjm4yVktY"
+               alt="Noir Corduroy Daily Tote"
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+               loading="lazy">
+          <span class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm border border-[#dfd2be] text-[#8c6b1d] text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Casual Tote</span>
+          <div class="absolute bottom-3 right-3 px-3 py-1 bg-white/95 backdrop-blur-sm border border-[#d4af37]/40 rounded-lg shadow-sm flex items-center justify-center">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2g7ZEwrNdWtPkwSmwrsMAshqxQwDFcawzwKaorJz3AJ9qNOERd7UuTyUiJANtNj_7pzV5IIJWK3t7ujq_3F4sPeLPnFwrfie9CCeDuQdd4ymmVFSbQmFdv7e6Gbz0dI5JcOaJpUq6cEhTA24-iepGliILupgQG4WHEONSv6UOKykBLMaj1MLu9qzgvlhvIKtACZpw4WeHSRDyhTjlQRXILOP199PejiI31cWZ_jfu1AIold97qZna_PySnYtnRIOnpBI"
+                 alt="Tetu Collection"
+                 class="h-6 w-auto object-contain">
+          </div>
+        </div>
+        <div class="flex flex-col flex-1 justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-[#9c7820] font-bold">Tote Bag</span>
+            <h3 class="font-bodoni text-xl text-[#1f1a14] mt-1 font-medium">Black Corduroy Tote Bag</h3>
+            <p class="text-xs text-[#6e6354] mt-2 font-normal leading-relaxed">Soft black corduroy tote with twin shoulder straps.</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[#ebdccb]">
+            <span class="block text-[11px] text-[#877a6a] uppercase tracking-wider font-medium mb-3">Inquire for pricing</span>
+            <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20enquiring%20about%20the%20Noir%20Corduroy%20Daily%20Tote."
+               target="_blank" rel="noopener noreferrer"
+               class="w-full py-2.5 px-4 bg-[#d4af37] hover:bg-[#b58e22] text-[#1b1713] hover:text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <span>Enquire on WhatsApp</span>
+              <span class="text-[14px]">↗</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Custom Handbag Consultation Banner -->
+    <div class="mt-20 rounded-2xl bg-[#eee4d6] border border-[#dfd4c5] p-8 md:p-12 text-center max-w-4xl mx-auto shadow-sm">
+      <span class="text-[10px] text-[#8c6b1d] uppercase tracking-[0.25em] font-bold block mb-2">Bag Inquiries &amp; Sourcing</span>
+      <h2 class="font-bodoni text-2xl sm:text-3xl text-[#1f1a14] uppercase tracking-tight mb-3">LOOKING FOR A SPECIFIC BAG OR COLOUR?</h2>
+      <p class="text-xs sm:text-sm text-[#665b4f] max-w-lg mx-auto mb-6 leading-relaxed">We can help you find or order your preferred style and colourway. Chat directly with us on WhatsApp.</p>
+      <a href="https://wa.me/254700309655?text=Hello%20TETU%20COLLECTION,%20I%20am%20looking%20for%20a%20specific%20bag%20or%20colourway."
+         target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 px-8 py-3.5 bg-[#d4af37] hover:bg-[#b58e22] text-[#1b1713] hover:text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-colors shadow-sm">
+        <span>Chat on WhatsApp (+254 700 309 655)</span>
+        <span class="text-[15px]">↗</span>
+      </a>
+    </div>
 
   </main>
 
   <!-- ============================= FOOTER ============================= -->
-  <footer class="footer-cream-theme py-14 px-6 lg:px-12 w-full text-center">
-    <div class="max-w-[1440px] mx-auto flex flex-col items-center justify-center space-y-6">
+  <footer class="w-full bg-[#f4ede4] border-t border-[#e2d5c4] pt-14 pb-12 mt-16 text-[#3e352b]">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
 
-      <div class="flex flex-col items-center">
-        <a href="index.html" class="inline-block mb-3" aria-label="TETU COLLECTION Home">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Ou7RDgCHZwBqqBMuz74NBCB-sjCjj34ug7rPU6vNcemvi2_CGPmTsFM1kQWzxLEPbbEG-puT4hHKwIiZBI-Y9iQOElviMo4izFeBQCz-5qOrSfMH45mv3t48CoipoWdC46YDM_Q8J_crjProDBQYRu6qXWILPnz3dVRxwUtHjMpAioqzkPf3gPJTCjj5vY3SjjLGVYzTlS3eNHhE4iLsx39HqgWE7rdE5-Ng-QcbrOSf-52mcBdJqs5Aq8dT1amrnDk"
-             alt="TETU COLLECTION"
-             class="h-20 md:h-24 w-auto object-contain mx-auto filter drop-shadow-sm">
-        </a>
-        <p class="text-xs text-[#6b6257] mt-2 tracking-wider font-light">
-          Bespoke Kenyan leathercraft &amp; artisanal luxury crafted in Nairobi.
-        </p>
-      </div>
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-10 pb-12 border-b border-[#dfd4c5]/80">
 
-      <div class="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs font-semibold uppercase tracking-wider text-[#3e3831]">
-        <a href="https://instagram.com/tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322] transition-colors">Instagram</a>
-        <span class="text-[#b5a99a]">•</span>
-        <a href="https://tiktok.com/@tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322] transition-colors">TikTok</a>
-        <span class="text-[#b5a99a]">•</span>
-        <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer" class="hover:text-[#8c7322] font-bold transition-colors">WhatsApp: +254700309655</a>
-      </div>
-
-      <div class="w-full max-w-xl h-[1px] bg-[#d4af37]/30 my-2"></div>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 text-xs text-[#524a40]">
-        <div class="flex flex-wrap items-center justify-center gap-2">
-          <span class="w-6 h-6 rounded-full bg-[#26211c] text-[#f4ede4] flex items-center justify-center text-xs font-semibold select-none">T</span>
-          <span>Copyright 2026 Tetu Collection.</span>
+        <div class="max-w-md">
+          <a href="index.html" class="inline-block mb-4" aria-label="TETU COLLECTION">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2g7ZEwrNdWtPkwSmwrsMAshqxQwDFcawzwKaorJz3AJ9qNOERd7UuTyUiJANtNj_7pzV5IIJWK3t7ujq_3F4sPeLPnFwrfie9CCeDuQdd4ymmVFSbQmFdv7e6Gbz0dI5JcOaJpUq6cEhTA24-iepGliILupgQG4WHEONSv6UOKykBLMaj1MLu9qzgvlhvIKtACZpw4WeHSRDyhTjlQRXILOP199PejiI31cWZ_jfu1AIold97qZna_PySnYtnRIOnpBI"
+                 alt="TETU COLLECTION"
+                 class="h-10 sm:h-12 w-auto object-contain">
+          </a>
+          <p class="text-xs text-[#6e6354] leading-relaxed">Curated everyday imported fashion bags and comfortable slides made for everyday wear. Thoughtfully chosen, effortlessly you.</p>
+          <div class="mt-4 text-[11px] uppercase tracking-[0.2em] font-semibold text-[#8c6b1d]">
+            Nairobi, Kenya
+          </div>
         </div>
-        <span class="hidden sm:inline text-[#b5a99a]">•</span>
+
+        <div class="text-left md:text-right">
+          <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-[#1f1a14] mb-3">Official Contact &amp; Social</h4>
+          <div class="space-y-1.5 text-xs text-[#5c5244]">
+            <div>WhatsApp: <a href="https://wa.me/254700309655" target="_blank" rel="noopener noreferrer" class="font-bold text-[#1f1a14] hover:text-[#b58e22]">+254 700 309 655</a></div>
+            <div>Instagram: <a href="https://instagram.com/tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#b58e22]">@tetucollection</a></div>
+            <div>TikTok: <a href="https://tiktok.com/@tetucollection" target="_blank" rel="noopener noreferrer" class="hover:text-[#b58e22]">@tetucollection</a></div>
+          </div>
+          <p class="text-[10px] text-[#8a7d6d] mt-3">Inquiries processed 8:00 AM - 9:00 PM EAT daily.</p>
+        </div>
+
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-[#786c5c]">
+        <div>Copyright 2026 Tetu Collection • All rights reserved.</div>
         <div class="flex items-center gap-2">
-          <span>
-            Website designed &amp; crafted by
-            <a href="#" class="inline-flex items-center gap-1.5 text-[#8c7322] hover:text-[#26211c] font-semibold underline underline-offset-4 decoration-[#8c7322] transition-colors" aria-label="Bossy Design">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0PJVQFXbjXFF8tqWiJTRWa88XZKLj1we2tJ3FiB7Y4YuLh4C_5TsnXtoy4SIL6lI-TH3dJYcNrzgu6I2uRe8eaD5fr84eY4uzc3TTJ585yycZPgTCwQh0WVNncKL2CMbxlDJyTXYZvWyx77don_YJmBncJd647Hau9ZmM-5gmwUqmKu99aXzIPb2lP19Yn0Ay5oWJ4m49nlq08yqYAAgWb1A1RfMy51m-78uw4BPr7WDwOACZca8--nK01WQq6tAlkK4"
-                   alt="Bossy Design"
-                   class="h-6 w-auto object-contain rounded inline-block align-middle">
-              <span>Bossy designs</span>
-            </a>
+          <span>Website designed &amp; crafted by</span>
+          <span class="font-bold text-[#1f1a14] inline-flex items-center gap-1.5">
+            Bossy designs
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqQWEwVwQrqq29ETwRYt1FRzHIZ11O-gAbudK99bIWFUqZZmYdHBqUNse5-oxitazEk10HEAdWotLmVkS_LOZBjNrQjDolrE47X3DiB63BApG1KR8uNCY_S6IKOPVilraogmgrBfZpKDLHllSlh0SOdUR8vroG2s5heBc6lnVQd8CFFnm2l31zn9nmYxqJum1lc6aGPhgqzc9DhQRbuoMSExsyNyOJjyNmg1-C5E5-khHRiH8HQTm4wP8u7SQpuPvJytk"
+                 alt="Bossy designs"
+                 class="h-4 w-auto inline-block object-contain">
           </span>
         </div>
       </div>
@@ -511,38 +637,38 @@
 
       /* ---------- MOBILE NAVIGATION ---------- */
       const menuToggle = document.getElementById('mobile-menu-toggle');
-      const menuPanel = document.getElementById('mobile-nav');
-      const menuBackdrop = document.getElementById('mobile-nav-backdrop');
+      const mobileNav = document.getElementById('mobile-nav');
+      const mobileBackdrop = document.getElementById('mobile-nav-backdrop');
       const menuIcon = document.getElementById('mobile-menu-icon');
 
       function openMenu() {
-        if (!menuPanel || !menuToggle) return;
-        menuPanel.classList.add('open');
-        if (menuBackdrop) menuBackdrop.classList.remove('hidden');
+        if (!menuToggle || !mobileNav) return;
+        mobileNav.classList.add('open');
+        if (mobileBackdrop) mobileBackdrop.classList.remove('hidden');
         menuToggle.setAttribute('aria-expanded', 'true');
         if (menuIcon) menuIcon.textContent = 'close';
         document.body.classList.add('menu-open');
       }
 
       function closeMenu() {
-        if (!menuPanel || !menuToggle) return;
-        menuPanel.classList.remove('open');
-        if (menuBackdrop) menuBackdrop.classList.add('hidden');
+        if (!menuToggle || !mobileNav) return;
+        mobileNav.classList.remove('open');
+        if (mobileBackdrop) mobileBackdrop.classList.add('hidden');
         menuToggle.setAttribute('aria-expanded', 'false');
         if (menuIcon) menuIcon.textContent = 'menu';
         document.body.classList.remove('menu-open');
       }
 
-      if (menuToggle && menuPanel) {
+      if (menuToggle && mobileNav) {
         menuToggle.addEventListener('click', function (e) {
           e.preventDefault();
           e.stopPropagation();
-          if (menuPanel.classList.contains('open')) closeMenu();
+          if (mobileNav.classList.contains('open')) closeMenu();
           else openMenu();
         });
       }
 
-      if (menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
+      if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMenu);
 
       document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
         link.addEventListener('click', function () {
@@ -551,7 +677,7 @@
       });
 
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && menuPanel && menuPanel.classList.contains('open')) closeMenu();
+        if (e.key === 'Escape' && mobileNav && mobileNav.classList.contains('open')) closeMenu();
       });
 
       let resizeTimer;
@@ -562,42 +688,34 @@
         }, 150);
       });
 
-      /* ---------- FILTER PILLS (real filtering) ---------- */
-      const pills = document.querySelectorAll('.filter-pill');
-      const cards = document.querySelectorAll('.bag-card');
+      /* ---------- FILTER PILLS ---------- */
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const bagCards = document.querySelectorAll('.bag-card');
 
-      function applyFilter(filter) {
-        cards.forEach(function (card) {
-          const cat = card.getAttribute('data-category');
-          if (filter === 'all' || cat === filter) {
-            card.classList.remove('hidden-card');
-          } else {
-            card.classList.add('hidden-card');
-          }
-        });
-      }
+      filterBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          filterBtns.forEach(function (b) {
+            b.classList.remove('active', 'bg-[#d4af37]', 'text-[#1b1713]', 'font-bold');
+            b.classList.add('bg-[#ece2d4]', 'text-[#6b6051]', 'font-medium');
+          });
 
-      function setActivePill(activePill) {
-        pills.forEach(function (p) {
-          p.classList.remove('active', 'bg-[#d4af37]', 'text-[#07090e]', 'font-bold', 'shadow-md');
-          p.classList.add('bg-[#151821]', 'text-[#9ba1b0]', 'border', 'border-white/10', 'font-medium');
-        });
-        activePill.classList.remove('bg-[#151821]', 'text-[#9ba1b0]', 'border', 'border-white/10', 'font-medium');
-        activePill.classList.add('active', 'bg-[#d4af37]', 'text-[#07090e]', 'font-bold', 'shadow-md');
-      }
+          this.classList.add('active', 'bg-[#d4af37]', 'text-[#1b1713]', 'font-bold');
+          this.classList.remove('bg-[#ece2d4]', 'text-[#6b6051]', 'font-medium');
 
-      pills.forEach(function (pill) {
-        pill.addEventListener('click', function () {
-          const filter = this.getAttribute('data-filter') || 'all';
-          applyFilter(filter);
-          setActivePill(this);
+          const filter = this.getAttribute('data-filter');
+
+          bagCards.forEach(function (card) {
+            const category = card.getAttribute('data-category');
+            if (filter === 'all' || category === filter) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
         });
       });
 
-      /* Show all on load */
-      applyFilter('all');
-
-      /* ---------- SMOOTH SCROLL for anchor links ---------- */
+      /* ---------- SMOOTH SCROLL ---------- */
       const HEADER_OFFSET = 96;
       document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         anchor.addEventListener('click', function (e) {
@@ -608,12 +726,12 @@
           e.preventDefault();
           const top = target.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
           window.scrollTo({ top: top, behavior: 'smooth' });
-          if (menuPanel && menuPanel.classList.contains('open')) setTimeout(closeMenu, 150);
+          if (mobileNav && mobileNav.classList.contains('open')) setTimeout(closeMenu, 150);
           if (history.pushState) history.pushState(null, null, targetId);
         });
       });
 
-      console.log('✅ TETU bags.html loaded — Total bags:', cards.length);
+      console.log('✅ TETU bags.html synchronized — Total bag items:', bagCards.length);
     })();
   </script>
 
