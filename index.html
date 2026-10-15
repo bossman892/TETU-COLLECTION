@@ -56,8 +56,7 @@
       html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
       ::-webkit-scrollbar { display: none; }
     }
-    html { scroll-behavior: smooth; }
-    body.menu-open { overflow: hidden; position: fixed; width: 100%; }
+    body.menu-open { overflow-x: hidden; }
 
     .header-cream {
       background-color: #f7f3ec;
@@ -167,9 +166,9 @@
       </div>
     </div>
 
-    <div id="mobile-nav-backdrop" class="fixed inset-0 bg-[#0b0e14]/60 backdrop-blur-sm z-40 lg:hidden hidden" aria-hidden="true"></div>
+    <div id="mobile-nav-backdrop" class="fixed inset-0 bg-[#0b0e14]/25 z-40 lg:hidden hidden" aria-hidden="true"></div>
 
-    <div id="mobile-nav-drawer" class="lg:hidden bg-[#f5eedf] border-t border-[#dfd6c0]">
+    <div id="mobile-nav-drawer" class="lg:hidden bg-[#f5eedf] border-t border-[#dfd6c0] relative z-50 shadow-xl">
       <div class="px-8 py-6 flex flex-col gap-4 text-xs font-bold uppercase tracking-[0.2em] text-[#2b2520]">
         <a href="index.html" class="mobile-nav-link py-2 border-b border-[#e5dcce]">Homepage</a>
         <a href="shoes.html" class="mobile-nav-link py-2 border-b border-[#e5dcce]">Shoes</a>
@@ -217,9 +216,10 @@
 
         <div class="lg:col-span-7 relative">
           <div class="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden hero-plinth-shadow bg-[#eae4d8]">
-            <img src="https://lh3.googleusercontent.com/aida/AEtjO1UIUa0XTHc69miTjLL8OwCz9ZQgOk_zExqivxUwtldkyCkwGVnrkQqSoPnPfX083N0Al27IXj5yZRT8PvTBb8yZSlvvOo_037KMf7HhfeZ8Z2S0uCSxWJnN0xDIA3Q5RFmgA6fjTnvSvIM0khj3KozL7RLQP4C3xesaA12tkjI0rNdWqkfOOrgnHOwnUwKUqsrti1RXZIcOMClqsdhKy74ADuQVp7ac4j81eLNKRwjU07cw9n-4KjmRNMne"
+            <img src="images/hero.jpg"
                  alt="Tetu Collection Black Handbag and Handcrafted Loafers"
-                 class="w-full h-full object-cover object-center filter brightness-100 contrast-105">
+                 class="w-full h-full object-cover object-center filter brightness-100 contrast-105"
+                 fetchpriority="high">
 
             <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
 
