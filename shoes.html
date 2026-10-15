@@ -51,7 +51,7 @@
       --text-espresso: #26211c;
     }
     html { scroll-behavior: smooth; }
-    body.menu-open { overflow: hidden; position: fixed; width: 100%; }
+    body.menu-open { overflow-x: hidden; }
 
     .header-cream-theme {
       background-color: var(--bg-cream);
@@ -77,11 +77,21 @@
     }
     #mobile-nav-backdrop {
       transition: opacity 0.3s ease, visibility 0.3s ease;
+      background-color: transparent !important;
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+      pointer-events: none !important;
     }
     #mobile-nav-backdrop.hidden {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
+    }
+    #mobile-nav .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+      touch-action: manipulation;
     }
 
     .shoe-card { display: flex !important; }
@@ -166,9 +176,9 @@
       </div>
     </div>
 
-    <div id="mobile-nav-backdrop" class="fixed inset-0 bg-[#0b0e15]/60 backdrop-blur-sm z-40 md:hidden hidden" aria-hidden="true"></div>
+    <div id="mobile-nav-backdrop" class="fixed inset-0 bg-[#0b0e15]/25 z-40 md:hidden hidden" aria-hidden="true"></div>
 
-    <div id="mobile-nav" class="md:hidden bg-[#f4ede4] border-t border-[#d4af37]/20">
+    <div id="mobile-nav" class="md:hidden bg-[#f4ede4] border-t border-[#d4af37]/20 relative z-50 shadow-xl">
       <div class="px-6 pb-6 pt-4 flex flex-col gap-3 text-xs font-bold uppercase tracking-widest text-[#26211c]">
         <a href="index.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10">Homepage</a>
         <a href="shoes.html" class="mobile-nav-link py-2 border-b border-[#d4af37]/10 text-[#8c7322]">Shoes</a>
